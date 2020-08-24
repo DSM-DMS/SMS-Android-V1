@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">SMS-Android_V1</string>
+
+    //outingcard
+    <string name="go_out_tv">외출</string>
+    <string name="go_out_detail_tv">유의사항에 주의하면서 외출신청을 해주세요</string>
+    <string name="go_out_apply_tv">외출신청</string>
+    <string name="go_out_apply_detail_tv">외출신청을 합니다</string>
+    <string name="go_out_history_tv">내 외출신청 내역</string>
+    <string name="go_out_history_detail_tv">외출한 내역들을 보여줍니다</string>
+    <string name="go_out_complete_tv">승인완료 외출증</string>
+    <string name="go_out_complete_detail_tv">사용가능한 외출증을 보여줍니다</string>
+    <string name="go_out_warning_tv">유의사항</string>
+    <string name="go_out_warning_detail_tv">외출 신청시 유의사항을 보여줍니</string>
 </resources>
