@@ -1,7 +1,8 @@
-package com.dms.sms
+package com.dms.sms.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.dms.sms.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
