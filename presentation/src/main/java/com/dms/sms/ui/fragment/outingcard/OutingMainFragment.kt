@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.dms.sms.R
 
-class MainGoOutFragment : Fragment() {
+class OutingMainFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_go_out, container, false)
+        return inflater.inflate(R.layout.fragment_outing_main, container, false)
     }
 
 }

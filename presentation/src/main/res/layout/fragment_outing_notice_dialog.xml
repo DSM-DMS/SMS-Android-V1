@@ -6,7 +6,7 @@
     android:layout_height="320dp"
     android:background="@drawable/radius_white_view"
     android:elevation="4dp"
-    tools:context=".ui.dialog.ApplyGoOutWarningDialog">
+    tools:context=".ui.dialog.OutingNoticeDialog">
 
     <TextView
         android:id="@+id/textView"
