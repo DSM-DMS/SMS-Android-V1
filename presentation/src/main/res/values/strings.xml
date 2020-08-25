@@ -21,4 +21,8 @@
     //go out apply dialog
     <string name="cancel_tv">취소</string>
     <string name="apply_tv">신청</string>
+
+    //go out complete
+    <string name="do_apply_tv">신청하기</string>
+    <string name="complete_tv">완료</string>
 </resources>
