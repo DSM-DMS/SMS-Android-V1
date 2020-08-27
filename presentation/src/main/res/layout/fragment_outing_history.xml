@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/go_out_history_tv"
+            android:text="@string/outing_history_tv"
             android:textColor="@color/colorBlack"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -46,15 +46,15 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="24dp"
         android:id="@+id/outing_history_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/item_outing_history"
+        android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/outing_history_gl_right"
         app:layout_constraintStart_toStartOf="@+id/outing_history_gl_left"
-        app:layout_constraintTop_toTopOf="@+id/outing_history_gl_top" />
+        app:layout_constraintTop_toTopOf="@+id/outing_history_gl_top"
+        tools:listitem="@layout/item_outing_history" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/outing_history_gl_top"

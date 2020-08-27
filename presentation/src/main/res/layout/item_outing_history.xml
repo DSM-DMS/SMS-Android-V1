@@ -20,7 +20,7 @@
             android:layout_height="match_parent">
 
             <View
-                android:id="@+id/go_out_apply_view"
+                android:id="@+id/outing_apply_view"
                 android:layout_width="2dp"
                 android:layout_height="17dp"
                 android:layout_marginStart="16dp"
@@ -38,7 +38,7 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@id/outing_history_reason_tv"
-                app:layout_constraintStart_toEndOf="@+id/go_out_apply_view"
+                app:layout_constraintStart_toEndOf="@+id/outing_apply_view"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView

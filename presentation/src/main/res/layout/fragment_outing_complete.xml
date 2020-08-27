@@ -12,30 +12,30 @@
         android:layout_height="0dp"
         android:background="@color/colorGray"
         android:elevation="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/go_out_complete_gl_top"
+        app:layout_constraintBottom_toTopOf="@+id/outing_complete_gl_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/go_out_complete_back_btn"
+            android:id="@+id/outing_complete_back_btn"
             android:layout_width="36dp"
             android:layout_height="32dp"
             android:layout_marginStart="16dp"
             android:background="@drawable/ic_back"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/go_out_apply_tv"
+            app:layout_constraintEnd_toStartOf="@+id/outing_apply_tv"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.47" />
 
         <TextView
-            android:id="@+id/go_out_apply_tv"
+            android:id="@+id/outing_apply_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/go_out_apply_tv"
+            android:text="@string/outing_apply_tv"
             android:textColor="@color/colorBlack"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -46,6 +46,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
+        android:id="@+id/outing_complete_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/radius_purple_view"
@@ -53,9 +54,9 @@
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/go_out_complete_gl_right"
-        app:layout_constraintStart_toStartOf="@+id/go_out_complete_gl_left"
-        app:layout_constraintTop_toTopOf="@+id/go_out_complete_gl_bottom" />
+        app:layout_constraintEnd_toStartOf="@+id/outing_complete_gl_right"
+        app:layout_constraintStart_toStartOf="@+id/outing_complete_gl_left"
+        app:layout_constraintTop_toTopOf="@+id/outing_complete_gl_bottom" />
 
     <TextView
         android:id="@+id/textView2"
@@ -66,9 +67,9 @@
                 이루어졌습니다"
         android:textColor="@color/colorBlack"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/go_out_complete_gl_middle"
-        app:layout_constraintEnd_toStartOf="@+id/go_out_complete_gl_right"
-        app:layout_constraintStart_toEndOf="@id/go_out_complete_gl_left" />
+        app:layout_constraintBottom_toTopOf="@+id/outing_complete_gl_middle"
+        app:layout_constraintEnd_toStartOf="@+id/outing_complete_gl_right"
+        app:layout_constraintStart_toEndOf="@id/outing_complete_gl_left" />
 
     <TextView
         android:layout_width="0dp"
@@ -78,40 +79,40 @@
         android:text="부모님 승인후 선생님에게 찾아가 주세요"
         android:textColor="@color/colorDarkGray"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/go_out_complete_gl_right"
-        app:layout_constraintStart_toStartOf="@+id/go_out_complete_gl_left"
-        app:layout_constraintTop_toTopOf="@+id/go_out_complete_gl_middle" />
+        app:layout_constraintEnd_toStartOf="@+id/outing_complete_gl_right"
+        app:layout_constraintStart_toStartOf="@+id/outing_complete_gl_left"
+        app:layout_constraintTop_toTopOf="@+id/outing_complete_gl_middle" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/go_out_complete_gl_top"
+        android:id="@+id/outing_complete_gl_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.09" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/go_out_complete_gl_bottom"
+        android:id="@+id/outing_complete_gl_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.82" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/go_out_complete_gl_left"
+        android:id="@+id/outing_complete_gl_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/go_out_complete_gl_right"
+        android:id="@+id/outing_complete_gl_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.9" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/go_out_complete_gl_middle"
+        android:id="@+id/outing_complete_gl_middle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
