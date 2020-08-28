@@ -112,19 +112,18 @@
         app:layout_constraintStart_toStartOf="@+id/time_table_gl_left"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <GridView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:paddingTop="16dp"
+        android:numColumns="5"
+        android:scrollbars="none"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/time_table_gl_bottom"
         app:layout_constraintEnd_toStartOf="@+id/time_table_gl_right"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/time_table_gl_left"
         app:layout_constraintTop_toBottomOf="@+id/view4"
-        app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/item_time_table">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/item_time_table"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/time_table_gl_left"
