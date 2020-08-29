@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.notice.NoticeFragment">
+
+    <TextView
+        android:id="@+id/notice_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/notice_tv"
+        android:textColor="@color/colorBlack"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="@+id/notice_gl_left"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/notice_gl_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/notice_gl_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <EditText
+        android:id="@+id/search_notice_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorGray"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="8dp"
+        android:hint="@string/search_notice_et"
+        android:padding="8dp"
+        android:textColorHint="@color/colorBlack"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/notice_top_line"
+        app:layout_constraintEnd_toStartOf="@+id/notice_gl_right" />
+
+    <View
+        android:id="@+id/notice_top_line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="65dp"
+        android:background="@color/colorBlack"
+        app:layout_constraintEnd_toStartOf="@+id/notice_gl_right"
+        app:layout_constraintStart_toStartOf="@+id/notice_gl_left"
+        app:layout_constraintTop_toBottomOf="@+id/notice_tv" />
+
+    <TextView
+        android:id="@+id/notice_number_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/notice_number_tv"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintBottom_toTopOf="@+id/notice_bottom_line"
+        app:layout_constraintStart_toStartOf="@+id/notice_gl_left"
+        app:layout_constraintTop_toBottomOf="@+id/notice_top_line" />
+
+    <View
+        android:id="@+id/notice_bottom_line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="42dp"
+        android:background="@color/colorLightGray"
+        app:layout_constraintEnd_toStartOf="@+id/notice_gl_right"
+        app:layout_constraintStart_toStartOf="@+id/notice_gl_left"
+        app:layout_constraintTop_toBottomOf="@+id/notice_top_line" />
+
+    <TextView
+        android:id="@+id/notice_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:text="@string/notice_title_tv"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintBottom_toTopOf="@+id/notice_bottom_line"
+        app:layout_constraintStart_toEndOf="@+id/notice_number_tv"
+        app:layout_constraintTop_toBottomOf="@+id/notice_top_line" />
+
+    <TextView
+        android:id="@+id/notice_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="38dp"
+        android:text="@string/notice_date_tv"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintBottom_toTopOf="@+id/notice_bottom_line"
+        app:layout_constraintEnd_toStartOf="@+id/notice_view_tv"
+        app:layout_constraintTop_toBottomOf="@+id/notice_top_line" />
+
+    <TextView
+        android:id="@+id/notice_view_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notice_view_tv"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintBottom_toTopOf="@+id/notice_bottom_line"
+        app:layout_constraintEnd_toStartOf="@+id/notice_gl_right"
+        app:layout_constraintTop_toBottomOf="@+id/notice_top_line" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/notice_rv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/notice_page_layout"
+        app:layout_constraintEnd_toStartOf="@+id/notice_gl_right"
+        app:layout_constraintStart_toStartOf="@+id/notice_gl_left"
+        app:layout_constraintTop_toBottomOf="@+id/notice_bottom_line" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/notice_page_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/notice_gl_right"
+        app:layout_constraintStart_toStartOf="@+id/notice_gl_left"
+        app:layout_constraintTop_toTopOf="@+id/notice_gl_bottom">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notice_page_rv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/notice_next_page_btn"
+            app:layout_constraintStart_toEndOf="@+id/notice_previous_page_btn"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/notice_previous_page_btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/border_gray"
+            android:src="@drawable/ic_previous_page"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/notice_page_rv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/notice_next_page_btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/border_gray"
+            android:src="@drawable/ic_next_page"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/notice_page_rv"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/notice_gl_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9008674" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
