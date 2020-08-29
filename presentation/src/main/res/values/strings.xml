@@ -28,4 +28,15 @@
 
     //outing online card
     <string name="online_card_tv">온라인 학생증</string>
+
+    //notice
+    <string name="notice_tv">공지사항</string>
+    <string name="search_notice_et">검색할 공지 제목을 입력하세요.</string>
+    <string name="notice_number_tv">번호</string>
+    <string name="notice_title_tv">제목</string>
+    <string name="notice_date_tv">날짜</string>
+    <string name="notice_view_tv">조회 수</string>
+    <string name="previous_notice_tv">이전글</string>
+    <string name="next_notice_tv">다음글</string>
+
 </resources>

@@ -13,5 +13,6 @@
     <color name="colorOrange">#FF9100</color>
     <color name="colorPurple">#5323B2</color>
     <color name="colorGray">#F6F6F6</color>
+    <color name="colorLightGray">#D3D3D3</color>
     <color name="colorDarkGray">#6C6C6C</color>
 </resources>
