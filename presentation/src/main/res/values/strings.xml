@@ -11,7 +11,7 @@
     <string name="outing_complete_tv">승인완료 외출증</string>
     <string name="outing_complete_detail_tv">사용가능한 외출증을 보여줍니다</string>
     <string name="outing_notice_tv">유의사항</string>
-    <string name="outing_notice_detail_tv">외출 신청시 유의사항을 보여줍니</string>
+    <string name="outing_notice_detail_tv">외출 신청시 유의사항을 보여줍니다</string>
 
     //outing apply
     <string name="date_tv">날짜</string>
@@ -28,4 +28,12 @@
 
     //outing online card
     <string name="online_card_tv">온라인 학생증</string>
+
+    //time table
+    <string name="monday_tv">월</string>
+    <string name="tuesday_tv">화</string>
+    <string name="wednesday_tv">수</string>
+    <string name="thursday_tv">목</string>
+    <string name="friday_tv">금</string>
+
 </resources>
