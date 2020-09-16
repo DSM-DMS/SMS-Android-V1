@@ -35,5 +35,8 @@
     <string name="wednesday_tv">수</string>
     <string name="thursday_tv">목</string>
     <string name="friday_tv">금</string>
+    <string name="online_date_tv">외출날짜 : <font color='#5323B2'>%s</font></string>
+    <string name="student_number_tv">학번: %s</string>
+    <string name="student_name_tv">이름: %s</string>
 
 </resources>
