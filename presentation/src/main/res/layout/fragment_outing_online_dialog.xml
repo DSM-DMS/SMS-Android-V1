@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/online_card_profile_image"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="32dp"
@@ -62,7 +62,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/online_card_profile_image" />
 
     <TextView
         android:id="@+id/online_card_schoolNumber_tv"
