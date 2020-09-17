@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_page_nav_graph">
+
+    <fragment
+        android:id="@+id/introducingDevelopersFragment"
+        android:name="com.dms.sms.ui.mypage.IntroducingDevelopersFragment"
+        android:label="fragment_introducing_developers"
+        tools:layout="@layout/fragment_introducing_developers">
+        <action
+            android:id="@+id/action_introducingDevelopersFragment_to_myPageFragment"
+            app:destination="@+id/myPageFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.dms.sms.ui.mypage.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password">
+        <action
+            android:id="@+id/action_changePasswordFragment_to_myPageFragment"
+            app:destination="@+id/myPageFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/myPageFragment2"
+        android:name="com.dms.sms.ui.mypage.MyPageFragment"
+        android:label="fragment_my_page"
+        tools:layout="@layout/fragment_my_page" />
+
+</navigation>
