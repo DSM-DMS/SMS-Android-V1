@@ -48,4 +48,27 @@
     <string name="access_card_place_tv">"<b>"장소"</b>"  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
     <string name="access_card_reason_tv">"<b>"사유"</b>"  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
 
+    //change password
+    <string name="new_password_confirm_et">변경할 비밀번호를 확인해주세요</string>
+    <string name="new_password_confirm_tv">비밀번호 확인</string>
+    <string name="new_password_et">변경할 비밀번호를 입력해주세요</string>
+    <string name="new_password_tv">새 비밀번호</string>
+    <string name="current_password_et">현재 비밀번호를 입력해주세요</string>
+    <string name="current_password_tv">현재 비밀번호</string>
+    <string name="change_password_title_tv">비밀번호 변경</string>
+    <string name="confirm_tv">확인</string>
+
+    //my page
+    <string name="developers_introducing_description_tv">SMS 개발에 참여한 개발자들을 소개합니다.</string>
+    <string name="developers_introducing_tv">개발자 소개</string>
+    <string name="log_out_description_tv">기기내 계정에서 로그아웃합니다.</string>
+    <string name="log_out_tv">로그아웃</string>
+    <string name="change_password_description_tv">비밀번호를 변경합니다.</string>
+    <string name="change_password_tv">비밀번호 변경</string>
+    <string name="my_page_title_tv">마이페이지</string>
+    <string name="outing_status_tv">외출상태</string>
+    <string name="outing_status_detail_tv">%s</string>
+    <string name="student_number_tv">%s학년 %s반 %s번</string>
+    <string name="student_name_tv">%s</string>
+
 </resources>
