@@ -28,6 +28,9 @@
 
     //outing online card
     <string name="online_card_tv">온라인 학생증</string>
+    <string name="online_date_tv">외출날짜 : <font color='#5323B2'>%s</font></string>
+    <string name="student_number_tv">학번: %s</string>
+    <string name="student_name_tv">이름: %s</string>
 
     //time table
     <string name="monday_tv">월</string>
@@ -35,5 +38,14 @@
     <string name="wednesday_tv">수</string>
     <string name="thursday_tv">목</string>
     <string name="friday_tv">금</string>
+
+    //access outing
+    <string name="access_outing_card_tv">승인완료 외출증</string>
+    <string name="access_date_tv">2020.07.21</string>
+    <string name="access_date_string_tv">외출날짜</string>
+    <string name="access_card_name_tv">"<b>"이름"</b>"  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
+    <string name="access_card_number_tv">"<b>"학번"</b>"  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
+    <string name="access_card_place_tv">"<b>"장소"</b>"  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
+    <string name="access_card_reason_tv">"<b>"사유"</b>"  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
 
 </resources>

@@ -34,8 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
-        android:text="거짓으로 질병 외출로 신청 시,
-        불이익과 처벌을 받을 수 있습니다."
+        android:text="거짓으로 질병 외출로 신청 시,\n불이익과 처벌을 받을 수 있습니다."
         android:textColor="@color/colorBlack"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -57,8 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
-        android:text="질병 외출은 질병, 부상으로 인한
-        외출 시에만 신청하실 수 있습니다."
+        android:text="질병 외출은 질병, 부상으로 인한\n외출 시에만 신청하실 수 있습니다."
         android:textColor="@color/colorBlack"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
