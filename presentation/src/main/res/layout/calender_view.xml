@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.schedule.SchoolScheduleFragment">
+
+
+    <TextView
+        android:id="@+id/school_schedule_calender_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="TextView"
+        android:textColor="@color/colorBlack"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/previous_month_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_previous_month"
+        app:layout_constraintBottom_toBottomOf="@+id/school_schedule_calender_title_tv"
+        app:layout_constraintEnd_toStartOf="@+id/school_schedule_calender_title_tv"
+        app:layout_constraintTop_toTopOf="@+id/school_schedule_calender_title_tv" />
+
+
+    <ImageView
+        android:id="@+id/next_month_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_next_month"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="@+id/school_schedule_calender_title_tv"
+        app:layout_constraintStart_toEndOf="@+id/school_schedule_calender_title_tv"
+        app:layout_constraintTop_toTopOf="@+id/school_schedule_calender_title_tv" />
+
+    <GridView
+        android:id="@+id/school_schedule_calender_gv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:numColumns="7"
+        android:listSelector="@android:color/transparent"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/school_schedule_calender_title_tv"
+        tools:listitem="@layout/item_school_schedule_calender" />
+
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="55dp"
+        android:background="#B7B7B7"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="@+id/school_schedule_calender_gv" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/detail_school_schedule_rv"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bottom_radius_gray_view"
+        android:backgroundTint="@color/colorGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/school_schedule_calender_gv"
+        tools:listitem="@layout/item_detail_school_schedule" />
+</androidx.constraintlayout.widget.ConstraintLayout>
