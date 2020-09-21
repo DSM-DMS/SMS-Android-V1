@@ -14,7 +14,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="31dp"
         android:background="@drawable/circle_background"
-        android:contentDescription="TODO"
         android:elevation="5dp"
         app:layout_constraintStart_toStartOf="@+id/my_page_gl_left"
         app:layout_constraintTop_toBottomOf="@+id/my_page_title_tv" />
@@ -31,7 +30,6 @@
             android:id="@+id/outing_status_detail_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/outing_status_detail_tv"
             android:textColor="@color/colorBlack"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +62,6 @@
             android:id="@+id/student_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/student_name_tv"
             android:textColor="@color/colorBlack"
             android:textSize="20sp"
 
