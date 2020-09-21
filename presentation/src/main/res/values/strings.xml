@@ -67,9 +67,7 @@
     <string name="change_password_tv">비밀번호 변경</string>
     <string name="my_page_title_tv">마이페이지</string>
     <string name="outing_status_tv">외출상태</string>
-    <string name="outing_status_detail_tv">%s</string>
     <string name="student_number_tv">%s학년 %s반 %s번</string>
-    <string name="student_name_tv">%s</string>
 
 
     //notice
