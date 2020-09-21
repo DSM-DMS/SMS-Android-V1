@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/schoolScheduleFragment">
+
+    <fragment
+        android:id="@+id/outingMainFragment"
+        android:name="com.dms.sms.ui.fragment.outing.OutingMainFragment"
+        android:label="fragment_outing_main"
+        tools:layout="@layout/fragment_outing_main" />
+    <fragment
+        android:id="@+id/schoolScheduleFragment"
+        android:name="com.dms.sms.ui.fragment.schedule.SchoolScheduleFragment"
+        android:label="calender_view"
+        tools:layout="@layout/calender_view" />
+    <fragment
+        android:id="@+id/myPageFragment"
+        android:name="com.dms.sms.ui.mypage.MyPageFragment"
+        android:label="fragment_my_page"
+        tools:layout="@layout/fragment_my_page" />
+    <fragment
+        android:id="@+id/noticeFragment"
+        android:name="com.dms.sms.ui.fragment.notice.NoticeFragment"
+        android:label="fragment_notice"
+        tools:layout="@layout/fragment_notice" />
+
+    <action android:id="@+id/action_global_outingMainFragment"
+        app:destination="@id/outingMainFragment"/>
+    <action android:id="@+id/action_global_schoolScheduleFragment"
+        app:destination="@id/schoolScheduleFragment"/>
+    <action android:id="@+id/action_global_myPageFragment"
+        app:destination="@id/myPageFragment"/>
+    <action android:id="@+id/action_global_noticeFragment"
+        app:destination="@id/noticeFragment"/>
+</navigation>
