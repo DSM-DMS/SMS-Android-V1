@@ -1,4 +1,4 @@
-package com.dms.sms.ext
+package com.dms.sms
 
 import android.app.Activity
 import androidx.fragment.app.Fragment
