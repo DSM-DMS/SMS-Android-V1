@@ -17,9 +17,9 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.dms.sms.ui.fragment.schedule.SchoolScheduleFragment"
-        android:label="calender_view"
-        tools:layout="@layout/calender_view" />
+        android:name="com.dms.sms.ui.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
 
     <fragment
         android:id="@+id/splashFragment"

@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.dms.sms.R
+import com.dms.sms.ext.navigateFragment
+import com.dms.sms.ext.navigateFragmentWithHost
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -32,25 +34,22 @@ class MainFragment : Fragment() {
         main_navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener)
 
     }
-    private fun replaceFragment(action : Int){
-        childFragmentManager.primaryNavigationFragment!!.findNavController().navigate(action)
 
-    }
     private fun selectSchedule() : Boolean{
-        replaceFragment(R.id.action_global_schoolScheduleFragment)
+        navigateFragmentWithHost(R.id.action_global_schoolScheduleFragment)
         return true
 
     }
     private fun selectOuting(): Boolean{
-        replaceFragment(R.id.action_global_outingMainFragment)
+        navigateFragmentWithHost(R.id.action_global_outingMainFragment)
         return true
     }
     private fun selectNotice(): Boolean{
-        replaceFragment(R.id.action_global_noticeFragment)
+        navigateFragmentWithHost(R.id.action_global_noticeFragment)
         return true
     }
     private fun selectMyPage(): Boolean{
-        replaceFragment(R.id.action_global_myPageFragment)
+        navigateFragmentWithHost(R.id.action_global_myPageFragment)
         return true
     }
 }
