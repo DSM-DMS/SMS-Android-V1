@@ -7,7 +7,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/outing_history_card"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="120dp"
         android:layout_margin="8dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="6dp"
@@ -21,8 +21,8 @@
 
             <View
                 android:id="@+id/outing_apply_view"
-                android:layout_width="2dp"
-                android:layout_height="17dp"
+                android:layout_width="3dp"
+                android:layout_height="14dp"
                 android:layout_marginStart="16dp"
                 android:background="@color/colorPurple"
                 app:layout_constraintBottom_toTopOf="@id/outing_history_reason_tv"
@@ -72,14 +72,14 @@
                 android:layout_marginEnd="16dp"
                 android:text="승인 만료"
                 android:textColor="@color/colorPurple"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/outing_history_reason_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.45" />
 
             <TextView
-                android:id="@+id/outing_history_online_card"
+                android:id="@+id/go_outing_history_online_card_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"

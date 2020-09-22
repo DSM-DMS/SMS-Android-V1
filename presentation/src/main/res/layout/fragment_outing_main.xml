@@ -13,7 +13,7 @@
         android:layout_marginStart="8dp"
         android:text="@string/outing_tv"
         android:textColor="@color/colorBlack"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/outing_detail_tv"
         app:layout_constraintStart_toStartOf="@+id/outing_gl_left"
         app:layout_constraintTop_toTopOf="@+id/outing_gl_top" />

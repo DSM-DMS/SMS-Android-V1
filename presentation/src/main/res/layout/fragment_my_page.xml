@@ -15,6 +15,7 @@
         android:layout_marginTop="31dp"
         android:background="@drawable/circle_background"
         android:elevation="5dp"
+        app:layout_constraintBottom_toTopOf="@id/line"
         app:layout_constraintStart_toStartOf="@+id/my_page_gl_left"
         app:layout_constraintTop_toBottomOf="@+id/my_page_title_tv" />
 
@@ -32,6 +33,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
             android:textSize="20sp"
+            android:text="dfsd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -42,21 +44,24 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:text="@string/outing_status_tv"
-            android:textColor="@color/colorGray"
-            android:textSize="16sp"
+            android:textColor="@color/colorDarkGray"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/outing_status_detail_tv" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="24dp"
         android:layout_marginBottom="45dp"
         app:layout_constraintBottom_toTopOf="@+id/line"
-        app:layout_constraintStart_toEndOf="@+id/profile_img">
+        app:layout_constraintStart_toEndOf="@+id/profile_img"
+        app:layout_constraintTop_toTopOf="@+id/my_page_gl_top"
+        app:layout_constraintVertical_bias="0.7">
 
         <TextView
             android:id="@+id/student_name_tv"
@@ -64,6 +69,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
             android:textSize="20sp"
+            android:text="dddfs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -74,8 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:text="@string/my_page_student_number_tv"
-            android:textColor="@color/colorGray"
-            android:textSize="16sp"
+            android:textColor="@color/colorDarkGray"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -83,12 +89,11 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <View
         android:id="@+id/line"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="48dp"
         android:background="#D3D3D3"
         app:layout_constraintEnd_toStartOf="@+id/my_page_gl_right"
         app:layout_constraintStart_toStartOf="@+id/my_page_gl_left"
@@ -98,7 +103,7 @@
         android:id="@+id/change_password_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/colorLightGray"
+        app:cardBackgroundColor="@color/colorGray"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toTopOf="@+id/log_out_card"
@@ -118,7 +123,7 @@
                 android:layout_marginTop="17dp"
                 android:text="@string/change_password_tv"
                 android:textColor="@color/colorBlack"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -131,7 +136,7 @@
                 android:layout_marginBottom="16dp"
                 android:text="@string/change_password_description_tv"
                 android:textColor="@color/colorPurple"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/change_password_tv" />
@@ -144,7 +149,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
-        app:cardBackgroundColor="@color/colorLightGray"
+        app:cardBackgroundColor="@color/colorGray"
         app:layout_constraintBottom_toTopOf="@+id/developers_introducing_card"
         app:layout_constraintEnd_toStartOf="@+id/my_page_gl_right"
         app:layout_constraintHorizontal_bias="0.5"
@@ -163,7 +168,7 @@
                 android:layout_marginTop="17dp"
                 android:text="@string/log_out_tv"
                 android:textColor="@color/colorBlack"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -172,6 +177,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:textSize="12sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/log_out_description_tv"
@@ -186,7 +192,7 @@
         android:id="@+id/developers_introducing_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/colorLightGray"
+        app:cardBackgroundColor="@color/colorGray"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toTopOf="@+id/my_page_gl_bottom"
@@ -207,7 +213,7 @@
                 android:layout_marginTop="17dp"
                 android:text="@string/developers_introducing_tv"
                 android:textColor="@color/colorBlack"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -220,7 +226,7 @@
                 android:layout_marginBottom="16dp"
                 android:text="@string/developers_introducing_description_tv"
                 android:textColor="@color/colorPurple"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/developers_introducing_tv" />
@@ -233,14 +239,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.08" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/my_page_gl_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.92" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/my_page_gl_bottom"
@@ -249,17 +255,24 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.96" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/my_page_gl_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+
     <TextView
         android:id="@+id/my_page_title_tv"
+        android:layout_marginStart="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="26dp"
         android:text="@string/my_page_title_tv"
         android:textColor="@color/colorBlack"
-        android:textSize="20sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="@+id/my_page_gl_left"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/my_page_gl_top" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
