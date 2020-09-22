@@ -10,7 +10,7 @@
         android:label="fragment_outing_apply">
         <action
             android:id="@+id/action_outingApplyFragment_to_outingMainFragment"
-            app:destination="@+id/outingMainFragment2" />
+            app:destination="@+id/outingMainFragment" />
         <action
             android:id="@+id/action_outingApplyFragment_to_outingCompleteFragment"
             app:destination="@+id/outingCompleteFragment" />
@@ -22,7 +22,7 @@
         android:label="fragment_outing_complete">
         <action
             android:id="@+id/action_outingCompleteFragment_to_outingMainFragment"
-            app:destination="@+id/outingMainFragment2" />
+            app:destination="@+id/outingMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/outingNoticeFragment"
@@ -31,7 +31,7 @@
         android:label="fragment_outing_notice">
         <action
             android:id="@+id/action_outingNoticeFragment_to_outingMainFragment"
-            app:destination="@+id/outingMainFragment2" />
+            app:destination="@+id/outingMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/outingAccessFragment"
@@ -40,7 +40,7 @@
         android:label="fragment_outing_access">
         <action
             android:id="@+id/action_outingAccessFragment_to_outingMainFragment"
-            app:destination="@id/outingMainFragment2" />
+            app:destination="@id/outingMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/outingHistoryFragment"
@@ -49,12 +49,12 @@
         android:label="fragment_outing_history">
         <action
             android:id="@+id/action_outingHistoryFragment_to_outingMainFragment"
-            app:destination="@+id/outingMainFragment2" />
+            app:destination="@+id/outingMainFragment" />
     </fragment>
 
 
     <fragment
-        android:id="@+id/outingMainFragment2"
+        android:id="@+id/outingMainFragment"
         android:name="com.dms.sms.ui.fragment.outing.OutingMainFragment"
         tools:layout="@layout/fragment_outing_main"
         android:label="fragment_outing_main" />

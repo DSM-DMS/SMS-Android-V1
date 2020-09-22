@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_introducing_developers">
         <action
             android:id="@+id/action_introducingDevelopersFragment_to_myPageFragment"
-            app:destination="@+id/myPageFragment2" />
+            app:destination="@+id/myPageFragment" />
     </fragment>
 
     <fragment
@@ -21,11 +21,11 @@
         tools:layout="@layout/fragment_change_password">
         <action
             android:id="@+id/action_changePasswordFragment_to_myPageFragment"
-            app:destination="@+id/myPageFragment2" />
+            app:destination="@+id/myPageFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/myPageFragment2"
+        android:id="@+id/myPageFragment"
         android:name="com.dms.sms.ui.mypage.MyPageFragment"
         android:label="fragment_my_page"
         tools:layout="@layout/fragment_my_page" />
