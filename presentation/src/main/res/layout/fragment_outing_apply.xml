@@ -229,6 +229,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
+        android:id="@+id/outing_apply_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/radius_purple_view"
