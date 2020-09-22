@@ -16,7 +16,7 @@
         android:label="calender_view"
         tools:layout="@layout/calender_view" />
     <fragment
-        android:id="@+id/myPageFragment"
+        android:id="@+id/mainFragment"
         android:name="com.dms.sms.ui.mypage.MyPageFragment"
         android:label="fragment_my_page"
         tools:layout="@layout/fragment_my_page" />
@@ -25,13 +25,21 @@
         android:name="com.dms.sms.ui.fragment.notice.NoticeFragment"
         android:label="fragment_notice"
         tools:layout="@layout/fragment_notice" />
+    <fragment
+        android:id="@+id/timeTableFragment"
+        android:name="com.dms.sms.ui.fragment.schedule.TimeTableFragment"
+        android:label="fragment_time_table"
+        tools:layout="@layout/fragment_time_table" />
 
+    <action android:id="@+id/action_global_timeTableFragment"
+        app:destination="@id/timeTableFragment"/>
     <action android:id="@+id/action_global_outingMainFragment"
         app:destination="@id/outingMainFragment"/>
     <action android:id="@+id/action_global_schoolScheduleFragment"
         app:destination="@id/schoolScheduleFragment"/>
     <action android:id="@+id/action_global_myPageFragment"
-        app:destination="@id/myPageFragment"/>
+        app:destination="@id/mainFragment"/>
     <action android:id="@+id/action_global_noticeFragment"
         app:destination="@id/noticeFragment"/>
+
 </navigation>

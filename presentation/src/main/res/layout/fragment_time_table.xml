@@ -153,4 +153,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/calendar_switch_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="50dp"
+        android:src="@drawable/ic_swap"
+        app:layout_constraintEnd_toStartOf="@+id/time_table_gl_right"
+        app:layout_constraintTop_toBottomOf="@+id/time_table_gl_bottom"
+        app:maxImageSize="35dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

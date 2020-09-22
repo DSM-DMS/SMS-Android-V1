@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dms.sms.R
+import com.dms.sms.navigateFragment
+
 import com.dms.sms.ui.calendar.DetailScheduleAdapter
 import kotlinx.android.synthetic.main.calender_view.view.*
+import kotlinx.android.synthetic.main.fragment_school_schedule.*
 import kotlinx.android.synthetic.main.fragment_school_schedule.view.*
 import java.util.*
 
@@ -24,7 +27,10 @@ class SchoolScheduleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.school_schedule_calender.setCalender(Date())
+        school_schedule_calender.setCalender(Date())
+        calendar_switch_btn.setOnClickListener {
+            navigateFragment(R.id.action_global_timeTableFragment)
+        }
     }
 
 }
