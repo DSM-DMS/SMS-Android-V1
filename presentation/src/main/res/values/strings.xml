@@ -76,7 +76,7 @@
     <string name="notice_number_tv">번호</string>
     <string name="notice_title_tv">제목</string>
     <string name="notice_date_tv">날짜</string>
-    <string name="notice_view_tv">조회 수</string>
+    <string name="notice_view_tv">조회수</string>
     <string name="previous_notice_tv">이전글</string>
     <string name="next_notice_tv">다음글</string>
 
