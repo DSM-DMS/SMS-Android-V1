@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:background="@color/colorGray"
         android:elevation="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/outing_access_gl_top"
+        android:minHeight="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,8 +21,9 @@
 
         <ImageButton
             android:id="@+id/outing_access_back_btn"
-            android:layout_width="36dp"
-            android:layout_height="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="14dp"
             android:layout_marginStart="16dp"
             android:background="@drawable/ic_back"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -40,7 +41,7 @@
             android:includeFontPadding="false"
             android:text="@string/access_outing_card_tv"
             android:textColor="@color/colorBlack"
-            android:textSize="22sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +66,7 @@
             <View
                 android:id="@+id/view5"
                 android:layout_width="0dp"
-                android:layout_height="32dp"
+                android:layout_height="36dp"
                 android:background="@color/colorPurple"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -239,13 +240,6 @@
         app:layout_constraintGuide_percent="0.92" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/outing_access_gl_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.09" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/outing_access_gl_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -257,6 +251,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.16" />
+        app:layout_constraintGuide_percent="0.14" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

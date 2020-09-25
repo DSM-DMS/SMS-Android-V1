@@ -38,7 +38,7 @@
             android:paddingStart="9dp"
             android:paddingEnd="9dp"
             android:paddingBottom="16dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:hint="@string/id_et">
 
         </com.google.android.material.textfield.TextInputEditText>
@@ -66,7 +66,7 @@
         android:background="@drawable/radius_purple_view"
         android:text="@string/login_title_tv"
         android:textColor="@color/colorWhite"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
@@ -75,7 +75,7 @@
         android:id="@+id/password_et_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:errorEnabled="true"
         android:hint=" "
         app:passwordToggleEnabled="true"
@@ -94,7 +94,7 @@
             android:paddingStart="9dp"
             android:paddingEnd="9dp"
             android:paddingBottom="16dp"
-            android:textSize="16sp">
+            android:textSize="14sp">
 
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
@@ -105,7 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:text="@string/auto_log_in_checkbox"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:paddingStart="6dp"
         android:paddingEnd="6dp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
