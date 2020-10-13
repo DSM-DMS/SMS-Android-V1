@@ -9,20 +9,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:background="@color/colorGray"
         android:elevation="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/outing_apply_gl_top"
+        android:minHeight="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/outing_apply_back_btn"
-            android:layout_width="36dp"
-            android:layout_height="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:background="@drawable/ic_back"
+            android:padding="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/outing_apply_tv"
             app:layout_constraintHorizontal_bias="0.0"
@@ -36,7 +37,7 @@
             android:layout_gravity="center"
             android:text="@string/outing_apply_tv"
             android:textColor="@color/colorBlack"
-            android:textSize="22sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +75,6 @@
             app:layout_constraintBottom_toTopOf="@id/reason_tv"
             app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right"
             app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
-
             app:layout_constraintTop_toBottomOf="@+id/date_tv">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -82,11 +82,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:cursorVisible="false"
+                android:hint="0000년 00월 00일"
                 android:inputType="text"
                 android:paddingStart="8dp"
                 android:paddingEnd="4dp"
                 android:textColor="@color/colorPurple"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -119,11 +120,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:cursorVisible="false"
+                android:hint="외출 사유를 입력해주세요"
                 android:inputType="text"
                 android:paddingStart="8dp"
                 android:paddingEnd="4dp"
                 android:textColor="@color/colorPurple"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -165,11 +167,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:cursorVisible="false"
+                android:hint="00 : 00 ~ 00 : 00"
                 android:inputType="text"
                 android:paddingStart="8dp"
                 android:paddingEnd="4dp"
                 android:textColor="@color/colorPurple"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -202,11 +205,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:cursorVisible="false"
+                android:hint="외출 장소를 입력해주세요"
                 android:inputType="text"
                 android:paddingStart="8dp"
                 android:paddingEnd="4dp"
                 android:textColor="@color/colorPurple"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -229,12 +233,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
+        android:id="@+id/outing_apply_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/radius_purple_view"
         android:text="신청하기"
         android:textColor="@color/colorWhite"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right2"
         app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left2"
@@ -253,13 +258,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.9" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/outing_apply_gl_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.09" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/outing_apply_gl_bottom"

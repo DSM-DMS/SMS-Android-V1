@@ -13,7 +13,7 @@
         android:layout_marginStart="8dp"
         android:text="@string/outing_tv"
         android:textColor="@color/colorBlack"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/outing_detail_tv"
         app:layout_constraintStart_toStartOf="@+id/outing_gl_left"
         app:layout_constraintTop_toTopOf="@+id/outing_gl_top" />
@@ -243,8 +243,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:layout_width="167dp"
-                    android:layout_height="19dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/outing_notice_detail_tv"
                     android:textColor="@color/colorDarkGray"

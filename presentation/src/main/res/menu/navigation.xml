@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/schedule_fragment"
+        android:title="@null"
+        android:icon="@drawable/ic_date_range" />
+
+    <item
+        android:id="@+id/outing_fragment"
+        android:icon="@drawable/ic_bike"
+        android:title="@null"/>
+
+    <item
+        android:id="@+id/notice_fragment"
+        android:icon="@drawable/ic_notice"
+        android:title="@null"/>
+
+    <item
+        android:id="@+id/mypage_fragment"
+        android:icon="@drawable/ic_person"
+        android:title="@null"/>
+
+</menu>
