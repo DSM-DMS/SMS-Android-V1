@@ -2,38 +2,57 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="45dp"
+    android:layout_height="50dp"
     >
 
     <View
-        android:id="@+id/view6"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="25dp"
+        android:id="@+id/school_event_view"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/circle_background"
+        android:backgroundTint="@color/colorGreen"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/calendar_day_tv"
-        app:layout_constraintStart_toStartOf="@+id/calendar_day_tv"
+
+        app:layout_constraintEnd_toStartOf="@+id/school_study_event_view"
         app:layout_constraintTop_toTopOf="parent"
-    />
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
-        android:id="@+id/view7"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/calendar_day_tv"
-        app:layout_constraintEnd_toEndOf="@+id/calendar_day_tv"
-        app:layout_constraintStart_toStartOf="@+id/calendar_day_tv"
-        app:layout_constraintTop_toTopOf="@+id/calendar_day_tv" />
+        android:id="@+id/school_study_event_view"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:background="@drawable/circle_background"
+        android:backgroundTint="@color/colorPurple"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/calendar_day_bg_view"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/calendar_day_bg_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/calendar_day_tv"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:textSize="18sp"
         android:textColor="@color/colorLightGray"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
