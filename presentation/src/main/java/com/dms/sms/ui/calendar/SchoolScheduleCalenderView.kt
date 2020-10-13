@@ -8,6 +8,8 @@ import android.widget.GridView
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.R
 import kotlinx.android.synthetic.main.calender_view.view.*
 import java.text.SimpleDateFormat
@@ -26,6 +28,8 @@ class SchoolScheduleCalenderView(context: Context, attrs: AttributeSet): LinearL
         afterImv = next_month_img
         titleTv = school_schedule_calender_title_tv
         daysGrid = school_schedule_calender_gv
+        detailScheduleRecyclerView = detail_school_schedule_rv
+        detailScheduleRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         setOnClickEvent()
     }
@@ -37,8 +41,11 @@ class SchoolScheduleCalenderView(context: Context, attrs: AttributeSet): LinearL
     override lateinit var titleTv: TextView
 
     override lateinit var daysGrid: GridView
+    override lateinit var detailScheduleRecyclerView: RecyclerView
+
 
     override var selectedTv: TextView? = null
+    override var tvColor: Int? = null
 
     override var eventListener: UserListener? = null
 
@@ -51,8 +58,6 @@ class SchoolScheduleCalenderView(context: Context, attrs: AttributeSet): LinearL
     override var month: Int = 0
 
     override var selectedDay: Int = 0
-
-    override val eventDays: ArrayList<String> = arrayListOf()
 
     private fun setOnClickEvent(){
         beforeImv.setOnClickListener {
@@ -68,10 +73,10 @@ class SchoolScheduleCalenderView(context: Context, attrs: AttributeSet): LinearL
     fun setCalender(date: Date){
         year= SimpleDateFormat("yyyy",Locale.KOREA).format(date).toInt()
         month = SimpleDateFormat("M",Locale.KOREA).format(date).toInt()
-        daysGrid.adapter = CalendarAdapter(this, context,createCells(year,month))
+        detailScheduleRecyclerView.adapter= DetailScheduleAdapter(context,month)
+        daysGrid.adapter = CalendarAdapter(this,
+            detailScheduleRecyclerView.adapter as DetailScheduleAdapter, context,createCells(year,month))
         titleTv.text = "${year}년 ${month}월"
-        selectedDay = 11
-
     }
     override fun selectDay(day: Int) {
         calendar.set(Calendar.DAY_OF_MONTH, day)
@@ -79,41 +84,41 @@ class SchoolScheduleCalenderView(context: Context, attrs: AttributeSet): LinearL
 
     }
     private fun updateCalender(year : Int , month : Int){
-        daysGrid.adapter = CalendarAdapter(this, context, createCells(year, month))
+        val cells = createCells(year, month)
+        daysGrid.adapter = CalendarAdapter(this,detailScheduleRecyclerView.adapter as DetailScheduleAdapter, context, cells)
         titleTv.text = "${this.year}년 ${this.month}월"
 
     }
-    private fun createCells(year: Int, month: Int) : ArrayList<Any>{
-        val cells= arrayListOf<Any>("S", "M", "T", "W", "T", "F", "S")
+    private fun createCells(year: Int, month: Int) : ArrayList<Day>{
+        val cells= arrayListOf<Day>(Day("S"), Day("M"), Day("T"), Day("W"), Day("T"), Day("F"), Day("S"))
 
 
-        if (month > 12) {
-            this.year = year + 1
-            this.month = 1
-        }
-        else if (month < 1) {
-            this.year = year - 1
-            this.month = 12
-        }
-        else {
-            this.year = year
-            this.month = month
+        when {
+            month > 12 -> {
+                this.year = year + 1
+                this.month = 1
+            }
+            month < 1 -> {
+                this.year = year - 1
+                this.month = 12
+            }
+            else -> {
+                this.year = year
+                this.month = month
+            }
         }
 
         calendar.time = sdf.parse("${year}년 ${month}월")!!
 
         (1 until calendar.get(Calendar.DAY_OF_WEEK)).forEach {
-            cells.add(0)
+            cells.add(Day(0))
         }
 
         for (i in 1 .. calendar.getActualMaximum(Calendar.DAY_OF_MONTH)) {
-            cells.add(i)
+            val day= Day(i, listOf(Pair(0,"공휴일"),Pair(1,"중간고사"),Pair(2,"의무귀가")))
+            cells.add(day)
         }
         return cells
     }
-    private fun isPublicHoliday(){
-        eventListener?.let {
-            it.selectedEvent(SimpleDateFormat("yyyy,M,d",Locale.KOREAN).format(sdf.parse("${year}")))
-        }
-    }
+
 }
