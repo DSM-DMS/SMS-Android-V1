@@ -3,6 +3,7 @@ package com.dms.sms.ui.calendar
 import android.widget.GridView
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -13,8 +14,11 @@ interface CalendarDaysListener {
     var titleTv: TextView
     var daysGrid: GridView
 
+    var detailScheduleRecyclerView : RecyclerView
+
     var selectedTv: TextView?
 
+    var tvColor : Int?
     var eventListener: UserListener?
 
     var calendar: Calendar
@@ -24,7 +28,6 @@ interface CalendarDaysListener {
     var month: Int
     var selectedDay: Int
 
-    val eventDays: ArrayList<String>
 
 
     fun selectDay(day: Int)

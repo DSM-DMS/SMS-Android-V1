@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <View
-        android:id="@+id/view8"
+        android:id="@+id/event_view"
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:layout_marginStart="15dp"
@@ -20,27 +20,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/schedule_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="TextView"
         android:textSize="16sp"
         android:textColor="@color/colorBlack"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/view8"
+        app:layout_constraintStart_toEndOf="@+id/event_view"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/date_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:layout_marginTop="1dp"
-        android:text="TextView"
         android:textSize="14sp"
         android:textColor="@color/colorDarkGray"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintStart_toEndOf="@+id/schedule_tv"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

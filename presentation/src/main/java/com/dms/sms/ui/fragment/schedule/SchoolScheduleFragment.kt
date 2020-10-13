@@ -28,6 +28,7 @@ class SchoolScheduleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         school_schedule_calender.setCalender(Date())
+
         calendar_switch_btn.setOnClickListener {
             navigateFragment(R.id.action_global_timeTableFragment)
         }
