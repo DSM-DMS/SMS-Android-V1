@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/start_nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.dms.sms.ui.login.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_loginInFragment_to_MainFragment"
+            app:destination="@id/mainFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.dms.sms.ui.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main"
+        >
+        <action
+            android:id="@+id/action_mainFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_noticeDetailFragment"
+            app:destination="@id/noticeDetailFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_introducingDevelopersFragment"
+            app:destination="@id/introducingDevelopersFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_outingApplyFragment"
+            app:destination="@id/outingApplyFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_outingHistoryFragment"
+            app:destination="@id/outingHistoryFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_outingNoticeFragment"
+            app:destination="@id/outingNoticeFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_outingAccessFragment"
+            app:destination="@id/outingAccessFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.dms.sms.ui.fragment.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:popUpTo="@id/splashFragment"
+            app:destination="@id/logInFragment"/>
+        <action
+            android:id="@+id/action_splashFragment_to_MainFragment"
+            app:destination="@id/mainFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.dms.sms.ui.mypage.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" >
+        <action
+            android:id="@+id/action_changePasswordFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noticeDetailFragment"
+        android:name="com.dms.sms.ui.fragment.notice.NoticeDetailFragment"
+        android:label="fragment_notice_detail"
+        tools:layout="@layout/fragment_notice_detail" />
+    <fragment
+        android:id="@+id/introducingDevelopersFragment"
+        android:name="com.dms.sms.ui.mypage.IntroducingDevelopersFragment"
+        android:label="fragment_introducing_developers"
+        tools:layout="@layout/fragment_introducing_developers" />
+    <fragment
+        android:id="@+id/outingHistoryFragment"
+        android:name="com.dms.sms.ui.fragment.outing.OutingHistoryFragment"
+        android:label="fragment_outing_history"
+        tools:layout="@layout/fragment_outing_history" />
+    <fragment
+        android:id="@+id/outingAccessFragment"
+        android:name="com.dms.sms.ui.fragment.outing.OutingAccessFragment"
+        android:label="fragment_outing_access"
+        tools:layout="@layout/fragment_outing_access" />
+    <fragment
+        android:id="@+id/outingCompleteFragment"
+        android:name="com.dms.sms.ui.fragment.outing.OutingCompleteFragment"
+        android:label="fragment_outing_complete"
+        tools:layout="@layout/fragment_outing_complete" >
+        <action
+            android:id="@+id/action_outingCompleteFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/outingApplyFragment"
+        android:name="com.dms.sms.ui.fragment.outing.OutingApplyFragment"
+        android:label="fragment_outing_apply"
+        tools:layout="@layout/fragment_outing_apply" >
+        <action
+            android:id="@+id/action_outingApplyFragment_to_outingCompleteFragment"
+            app:destination="@id/outingCompleteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/outingNoticeFragment"
+        android:name="com.dms.sms.ui.fragment.outing.OutingNoticeFragment"
+        android:label="fragment_outing_notice"
+        tools:layout="@layout/fragment_outing_notice" />
+
+
+</navigation>

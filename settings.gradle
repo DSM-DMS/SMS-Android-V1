@@ -1,2 +1,2 @@
-include ':presentation', ':domain', ':data'
+include ':features', ':domain', ':data'
 rootProject.name = "SMS-Android_V1"
