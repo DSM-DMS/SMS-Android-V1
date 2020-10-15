@@ -43,16 +43,20 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/outing_apply_card"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
             app:cardBackgroundColor="@color/colorGray"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="16dp"
             app:cardElevation="6dp"
             app:layout_constraintBottom_toTopOf="@id/outing_history_card"
             app:layout_constraintEnd_toStartOf="@+id/outing_gl_right2"
+            app:layout_constraintHeight_max="140dp"
             app:layout_constraintStart_toStartOf="@id/outing_gl_left2"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread_inside">
+            app:layout_constraintVertical_chainStyle="packed">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -62,36 +66,41 @@
                     android:id="@+id/outing_apply_view"
                     android:layout_width="2dp"
                     android:layout_height="18dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="14dp"
                     android:background="@color/colorPurple"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintBottom_toBottomOf="@+id/outing_apply_tv"
+                    app:layout_constraintEnd_toStartOf="@+id/outing_card_gl_left1" />
 
                 <TextView
                     android:id="@+id/outing_apply_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="16dp"
                     android:text="@string/outing_apply_tv"
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/outing_apply_view"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintBottom_toTopOf="@id/outing_apply_detail_tv"
+                    app:layout_constraintStart_toStartOf="@+id/outing_card_gl_left1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
                 <TextView
+                    android:id="@+id/outing_apply_detail_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
-                    android:layout_marginBottom="16dp"
                     android:text="@string/outing_apply_detail_tv"
                     android:textColor="@color/colorDarkGray"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/outing_card_gl_left1"
                     app:layout_constraintTop_toBottomOf="@+id/outing_apply_tv" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/outing_card_gl_left1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.06" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -100,13 +109,17 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/outing_history_card"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
             app:cardBackgroundColor="@color/colorGray"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="16dp"
             app:cardElevation="6dp"
             app:layout_constraintBottom_toTopOf="@id/outing_complete_card"
             app:layout_constraintEnd_toStartOf="@id/outing_gl_right2"
+            app:layout_constraintHeight_max="140dp"
             app:layout_constraintStart_toStartOf="@id/outing_gl_left2"
             app:layout_constraintTop_toBottomOf="@id/outing_apply_card">
 
@@ -118,36 +131,41 @@
                     android:id="@+id/outing_history_view"
                     android:layout_width="2dp"
                     android:layout_height="18dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="14dp"
                     android:background="@color/colorPurple"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintBottom_toBottomOf="@+id/outing_history_tv"
+                    app:layout_constraintEnd_toStartOf="@+id/outing_card_gl_left2" />
 
                 <TextView
                     android:id="@+id/outing_history_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="16dp"
                     android:text="@string/outing_history_tv"
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/outing_history_view"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintBottom_toTopOf="@+id/outing_history_detail_tv"
+                    app:layout_constraintStart_toStartOf="@+id/outing_card_gl_left2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
                 <TextView
+                    android:id="@+id/outing_history_detail_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
-                    android:layout_marginBottom="16dp"
                     android:text="@string/outing_history_detail_tv"
                     android:textColor="@color/colorDarkGray"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/outing_card_gl_left2"
                     app:layout_constraintTop_toBottomOf="@+id/outing_history_tv" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/outing_card_gl_left2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.06" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -156,10 +174,13 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/outing_complete_card"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
             app:cardBackgroundColor="@color/colorGray"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="16dp"
             app:cardElevation="6dp"
             app:layout_constraintBottom_toTopOf="@id/outing_notice_card"
             app:layout_constraintEnd_toStartOf="@id/outing_gl_right2"
@@ -177,33 +198,38 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="14dp"
                     android:background="@color/colorPurple"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintBottom_toBottomOf="@+id/outing_complete_tv"
+                    app:layout_constraintEnd_toStartOf="@+id/outing_card_gl_left3" />
 
                 <TextView
                     android:id="@+id/outing_complete_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="16dp"
                     android:text="@string/outing_complete_tv"
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/outing_complete_view"
+                    app:layout_constraintBottom_toTopOf="@+id/outing_complete_detail_tv"
+                    app:layout_constraintStart_toStartOf="@+id/outing_card_gl_left3"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/outing_complete_detail_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="16dp"
                     android:text="@string/outing_complete_detail_tv"
                     android:textColor="@color/colorDarkGray"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/outing_card_gl_left3"
                     app:layout_constraintTop_toBottomOf="@+id/outing_complete_tv" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/outing_card_gl_left3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.06" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -212,10 +238,13 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/outing_notice_card"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
             app:cardBackgroundColor="@color/colorGray"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="16dp"
             app:cardElevation="6dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/outing_gl_right2"
@@ -233,33 +262,38 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="14dp"
                     android:background="@color/colorPurple"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintBottom_toBottomOf="@+id/outing_notice_tv"
+                    app:layout_constraintEnd_toStartOf="@+id/outing_card_gl_left4" />
 
                 <TextView
                     android:id="@+id/outing_notice_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="16dp"
                     android:text="@string/outing_notice_tv"
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/outing_notice_view"
+                    app:layout_constraintBottom_toTopOf="@+id/outing_notice_detail_tv"
+                    app:layout_constraintStart_toStartOf="@+id/outing_card_gl_left4"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/outing_notice_detail_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="16dp"
                     android:text="@string/outing_notice_detail_tv"
                     android:textColor="@color/colorDarkGray"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/outing_card_gl_left4"
                     app:layout_constraintTop_toBottomOf="@+id/outing_notice_tv" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/outing_card_gl_left4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.06" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -287,7 +321,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.94" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/outing_gl_left"
