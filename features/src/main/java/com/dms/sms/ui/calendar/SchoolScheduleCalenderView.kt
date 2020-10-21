@@ -90,7 +90,7 @@ class SchoolScheduleCalenderView(context: Context, attrs: AttributeSet): LinearL
 
     }
     private fun createCells(year: Int, month: Int) : ArrayList<Day>{
-        val cells= arrayListOf<Day>(Day("S"), Day("M"), Day("T"), Day("W"), Day("T"), Day("F"), Day("S"))
+        val cells= arrayListOf(Day("S"), Day("M"), Day("T"), Day("W"), Day("T"), Day("F"), Day("S"))
 
 
         when {
@@ -115,7 +115,7 @@ class SchoolScheduleCalenderView(context: Context, attrs: AttributeSet): LinearL
         }
 
         for (i in 1 .. calendar.getActualMaximum(Calendar.DAY_OF_MONTH)) {
-            val day= Day(i, listOf(Pair(0,"공휴일"),Pair(1,"중간고사"),Pair(2,"의무귀가")))
+            val day= Day(i, listOf(Pair(1,"중간고사"),Pair(2,"의무귀가")))
             cells.add(day)
         }
         return cells

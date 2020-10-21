@@ -27,12 +27,6 @@ class DetailScheduleAdapter(private val context: Context,private val month : Int
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(scheduleList!![position])
-        holder.itemView.setOnClickListener {
-            Log.d("holder",holder.itemView.schedule_tv.text.toString())
-            Log.d("holder",holder.itemView.date_tv.text.toString())
-        }
-
-
     }
     override fun getItemCount(): Int = scheduleList!!.size
 

@@ -39,7 +39,6 @@ class CalendarAdapter(
 
             if (day!!.speciality != null) {
 
-
                 view.calendar_day_tv.setTextColor(
                     ContextCompat.getColor(
                         context,
@@ -48,8 +47,8 @@ class CalendarAdapter(
                 )
 
                 if (previousDayEvent != null || nextDayEvent != null) {
-                    val previousDaySameEvent = checkPreviousDayHasEvent(previousDayEvent, day.speciality!!)
-                    val nextDaySameEvent = checkNextDayHasEvent(nextDayEvent, day.speciality!!)
+                    val previousDaySameEvent = checkPreviousDayHasEvent(previousDayEvent)
+                    val nextDaySameEvent = checkNextDayHasEvent(nextDayEvent)
 
 
                     if (previousDaySameEvent && nextDaySameEvent) {
@@ -63,24 +62,21 @@ class CalendarAdapter(
                     else if (previousDaySameEvent) {
                         view.calendar_day_bg_view.background =
                             ContextCompat.getDrawable(context, R.drawable.right_round_background)
+                        setSpecialDay(day,view)
+
                     }
                     else {
-
                         view.calendar_day_bg_view.background =
                             ContextCompat.getDrawable(context, R.drawable.circle_background)
 
                         view.calendar_day_bg_view.backgroundTintList =
                             context.resources.getColorStateList(R.color.colorLightGray, null)
+                        setSpecialDay(day,view)
+
                     }
 
-                    if (!nextDaySameEvent) {
-                        day.speciality?.forEach {
-                            setSpecialDay(it!!.first, view)
-                        }
-                    }
                 }
-
-                if(isPublicHoliday(day.speciality!!))
+                if(isPublicHoliday(day.holiday))
                     setPublicHoliday(view)
 
             }
@@ -131,40 +127,45 @@ class CalendarAdapter(
         }
     }
 
-    private fun checkPreviousDayHasEvent(previousDay : List<Pair<Int?,String?>?>?,currentDay: List<Pair<Int?,String?>?>): Boolean{
+    private fun checkPreviousDayHasEvent(previousDay : List<Pair<Int?,String?>?>?): Boolean{
         if(previousDay==null){
             return false
         }
-        currentDay.forEach { curDay->
-            previousDay.forEach { preDay ->
-                 if(curDay!!.second == preDay!!.second){
-                     return true
-                 }
+        previousDay.forEach { preDay ->
+            if(preDay!!.second!=null){
+                return true
             }
-
         }
+
         return false
     }
-    private fun checkNextDayHasEvent(nextDay : List<Pair<Int?,String?>?>?,currentDay: List<Pair<Int?,String?>?>) : Boolean {
+    private fun checkNextDayHasEvent(nextDay : List<Pair<Int?,String?>?>?) : Boolean {
         if (nextDay==null){
             return false
         }
-        currentDay.forEach { curDay->
-            nextDay.forEach { nDay ->
-                if(curDay!!.second == nDay!!.second){
-                    return true
-                }
+        nextDay.forEach { nDay ->
+            if(nDay!!.second!=null){
+                return true
             }
         }
         return false
 
     }
-    private fun isPublicHoliday(day : List<Pair<Int?,String?>?>) : Boolean {
-        day.forEach {
-            if(it!!.first ==0) return true
-        }
+//    private fun isPublicHoliday(day : List<Pair<Int?,String?>?>) : Boolean {
+//        day.forEach {
+//            if(it!!.first ==0)
+//                return true
+//        }
+//        return false
+//    }
+    private fun isPublicHoliday(holiday : String?) : Boolean {
+        if(holiday !=null)
+            return true
+
         return false
     }
+
+
     private fun setPublicHoliday(dateView : View){
         dateView.calendar_day_tv.setTextColor(
             ContextCompat.getColor(
@@ -174,16 +175,38 @@ class CalendarAdapter(
         )
     }
 
-    private fun setSpecialDay(speciality : Int?, dateView : View){
-         when (speciality) {
-             1 -> {
-                 dateView.school_event_view.visibility = View.VISIBLE
-             }
-             2 -> {
-                 dateView.school_study_event_view.visibility = View.VISIBLE
-             }
+//    private fun setSpecialDay(speciality : Int?, dateView : View){
+//         when (speciality) {
+//             1 -> {
+//                 dateView.school_event_view.visibility = View.VISIBLE
+//             }
+//             2 -> {
+//                 dateView.school_study_event_view.visibility = View.VISIBLE
+//             }
+//
+//         }
+//    }
 
-         }
+    private fun setSpecialDay(day : Day, dateView : View){
+        day.speciality?.forEach {
+            when(it!!.first){
+                1 -> {
+                    dateView.school_event_view.visibility = View.VISIBLE
+                }
+                2 -> {
+                    dateView.school_study_event_view.visibility = View.VISIBLE
+                }
+            }
+        }
+//        when (day.speciality) {
+//            1 -> {
+//                dateView.school_event_view.visibility = View.VISIBLE
+//            }
+//            2 -> {
+//                dateView.school_study_event_view.visibility = View.VISIBLE
+//            }
+//
+//        }
     }
 
 
