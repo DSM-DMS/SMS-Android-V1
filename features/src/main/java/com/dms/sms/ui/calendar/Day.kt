@@ -1,3 +1,3 @@
 package com.dms.sms.ui.calendar
 
-data class Day(val date : Any,  var speciality : List<Pair<Int?,String?>?>? = null)
+data class Day(val date : Any,  var speciality : List<Pair<Int?,String?>?>? = null, val holiday : String? = null)
