@@ -2,10 +2,8 @@ package com.dms.sms.ui.calendar
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.GridView
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,30 +22,14 @@ class SchoolScheduleCalenderView(context: Context, attrs: AttributeSet): LinearL
         assignUiElements()
     }
     private fun assignUiElements(){
-        beforeImv = previous_month_img
-        afterImv = next_month_img
-        titleTv = school_schedule_calender_title_tv
         daysGrid = school_schedule_calender_gv
-        detailScheduleRecyclerView = detail_school_schedule_rv
-        detailScheduleRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-
-        setOnClickEvent()
     }
 
-    override lateinit var beforeImv: ImageView
-
-    override lateinit var afterImv: ImageView
-
-    override lateinit var titleTv: TextView
-
     override lateinit var daysGrid: GridView
-    override lateinit var detailScheduleRecyclerView: RecyclerView
-
 
     override var selectedTv: TextView? = null
-    override var tvColor: Int? = null
 
-    override var eventListener: UserListener? = null
+    override var tvColor: Int? = null
 
     override var calendar: Calendar = Calendar.getInstance()
 
@@ -59,54 +41,40 @@ class SchoolScheduleCalenderView(context: Context, attrs: AttributeSet): LinearL
 
     override var selectedDay: Int = 0
 
-    private fun setOnClickEvent(){
-        beforeImv.setOnClickListener {
-            updateCalender(year, month-1)
-            Log.d("year and month","$year and  $month")
-        }
-        afterImv.setOnClickListener {
-            updateCalender(year, month+1)
-            Log.d("year and month","$year and  $month")
+    private lateinit var detailScheduleRecyclerView : RecyclerView
 
-        }
-    }
-    fun setCalender(date: Date){
-        year= SimpleDateFormat("yyyy",Locale.KOREA).format(date).toInt()
-        month = SimpleDateFormat("M",Locale.KOREA).format(date).toInt()
+    fun setCalender(year: Int, month: Int, recyclerView: RecyclerView){
+        this.year = year
+        this.month = month
+        setRecyclerView(recyclerView)
         detailScheduleRecyclerView.adapter= DetailScheduleAdapter(context,month)
-        daysGrid.adapter = CalendarAdapter(this,
-            detailScheduleRecyclerView.adapter as DetailScheduleAdapter, context,createCells(year,month))
-        titleTv.text = "${year}년 ${month}월"
+        detailScheduleRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        daysGrid.adapter = CalendarAdapter(this,detailScheduleRecyclerView.adapter as DetailScheduleAdapter, context,createCells(year,month))
+    }
+//    fun setDetailSchedule(){
+//        detailScheduleRecyclerView.adapter= DetailScheduleAdapter(context,month)
+//        daysGrid.adapter = CalendarAdapter(this,
+//                detailScheduleRecyclerView.adapter as DetailScheduleAdapter, context,createCells(year,month))
+//    }
+    fun updateCalender(year : Int , month : Int){
+        val cells = createCells(year, month)
+        daysGrid.adapter = CalendarAdapter(this,detailScheduleRecyclerView.adapter as DetailScheduleAdapter, context, cells)
+    }
+    private fun setRecyclerView(recyclerView: RecyclerView){
+        detailScheduleRecyclerView = recyclerView
     }
     override fun selectDay(day: Int) {
         calendar.set(Calendar.DAY_OF_MONTH, day)
         selectedDay = day
 
     }
-    private fun updateCalender(year : Int , month : Int){
-        val cells = createCells(year, month)
-        daysGrid.adapter = CalendarAdapter(this,detailScheduleRecyclerView.adapter as DetailScheduleAdapter, context, cells)
-        titleTv.text = "${this.year}년 ${this.month}월"
 
-    }
     private fun createCells(year: Int, month: Int) : ArrayList<Day>{
         val cells= arrayListOf(Day("S"), Day("M"), Day("T"), Day("W"), Day("T"), Day("F"), Day("S"))
+//        val (y, m) = calculateTime(year, month)
+//        this.year = y
+//        this.month = m
 
-
-        when {
-            month > 12 -> {
-                this.year = year + 1
-                this.month = 1
-            }
-            month < 1 -> {
-                this.year = year - 1
-                this.month = 12
-            }
-            else -> {
-                this.year = year
-                this.month = month
-            }
-        }
 
         calendar.time = sdf.parse("${year}년 ${month}월")!!
 

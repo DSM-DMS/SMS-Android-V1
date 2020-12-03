@@ -2,33 +2,34 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="45dp"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="50dp"
     android:layout_height="50dp"
     >
 
     <View
-        android:id="@+id/school_event_view"
-        android:layout_width="8dp"
-        android:layout_height="8dp"
-        android:layout_marginEnd="2dp"
-        android:background="@drawable/circle_background"
-        android:backgroundTint="@color/colorGreen"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/calendar_day_tv"
-
-        app:layout_constraintEnd_toStartOf="@+id/school_study_event_view"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+            android:id="@+id/school_event_view"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/circle_background"
+            android:backgroundTint="@color/colorGreen"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/calendar_day_bg_view"
+            app:layout_constraintEnd_toStartOf="@+id/school_study_event_view"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/school_study_event_view"
-        android:layout_width="8dp"
-        android:layout_height="8dp"
-        android:background="@drawable/circle_background"
-        android:backgroundTint="@color/colorPurple"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/calendar_day_bg_view"
-        app:layout_constraintEnd_toEndOf="parent" />
+            android:id="@+id/school_study_event_view"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/circle_background"
+            android:backgroundTint="@color/colorPurple"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/school_event_view" />
 
     <View
         android:id="@+id/calendar_day_bg_view"
@@ -42,19 +43,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/calendar_day_tv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:textColor="@color/colorLightGray"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/calendar_day_tv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:textColor="@color/colorLightGray"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

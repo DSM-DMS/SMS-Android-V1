@@ -7,60 +7,20 @@
         tools:context=".ui.fragment.schedule.SchoolScheduleFragment">
 
 
-    <TextView
-            android:id="@+id/school_schedule_calender_title_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="@color/colorBlack"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline15"
-            app:layout_constraintStart_toStartOf="@+id/guideline11"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-            android:id="@+id/previous_month_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="5dp"
-            android:src="@drawable/ic_previous_month"
-            app:layout_constraintBottom_toBottomOf="@+id/school_schedule_calender_title_tv"
-            app:layout_constraintEnd_toStartOf="@+id/school_schedule_calender_title_tv"
-            app:layout_constraintTop_toTopOf="@+id/school_schedule_calender_title_tv" />
-
-
-    <ImageView
-            android:id="@+id/next_month_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="5dp"
-            android:src="@drawable/ic_next_month"
-            app:layout_constraintBottom_toBottomOf="@+id/school_schedule_calender_title_tv"
-            app:layout_constraintStart_toEndOf="@+id/school_schedule_calender_title_tv"
-            app:layout_constraintTop_toTopOf="@+id/school_schedule_calender_title_tv" />
-
     <GridView
             android:id="@+id/school_schedule_calender_gv"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:columnWidth="100dp"
             android:gravity="center"
-            android:horizontalSpacing="-55dp"
+            android:horizontalSpacing="0dp"
             android:listSelector="@android:color/transparent"
             android:numColumns="7"
             android:stretchMode="columnWidth"
-            app:layout_constraintEnd_toStartOf="@+id/guideline15"
-            app:layout_constraintStart_toStartOf="@+id/guideline11"
-            app:layout_constraintTop_toBottomOf="@+id/school_schedule_calender_title_tv"
+            android:overScrollMode="never"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_school_schedule_calender" />
 
 
@@ -74,18 +34,6 @@
             app:layout_constraintStart_toStartOf="@+id/school_schedule_calender_gv"
             app:layout_constraintTop_toTopOf="@+id/school_schedule_calender_gv" />
 
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/detail_school_schedule_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bottom_radius_gray_view"
-            android:backgroundTint="@color/colorGray"
-            app:layout_constrainedHeight="true"
-            app:layout_constraintEnd_toStartOf="@+id/guideline15"
-            app:layout_constraintStart_toStartOf="@+id/guideline11"
-            app:layout_constraintTop_toBottomOf="@+id/school_schedule_calender_gv"
-            tools:listitem="@layout/item_detail_school_schedule" />
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline11"

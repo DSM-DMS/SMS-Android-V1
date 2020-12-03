@@ -34,7 +34,6 @@ class CalendarAdapter(
                 nextDayEvent = getItem(position + 1)?.speciality
             }
             catch (e: Exception) {
-                e.printStackTrace()
             }
 
             if (day!!.speciality != null) {
@@ -47,8 +46,8 @@ class CalendarAdapter(
                 )
 
                 if (previousDayEvent != null || nextDayEvent != null) {
-                    val previousDaySameEvent = checkPreviousDayHasEvent(previousDayEvent)
-                    val nextDaySameEvent = checkNextDayHasEvent(nextDayEvent)
+                    val previousDaySameEvent = checkHasEvent(previousDayEvent)
+                    val nextDaySameEvent = checkHasEvent(nextDayEvent)
 
 
                     if (previousDaySameEvent && nextDaySameEvent) {
@@ -81,44 +80,47 @@ class CalendarAdapter(
 
             }
 
-            if (day.date != 0) {
+            if (day != null) {
+                if (day.date != 0) {
 
-                if (day.date is String) {
-                    view.calendar_day_tv.setTextColor(context.getColorStateList(R.color.colorBlack))
-                    view.calendar_day_tv.text = day.date
-                }
-                else {
-                    view.calendar_day_tv.text = day.date.toString()
-                    view.setOnClickListener {
-                        if(selectedTv!=null) {
-                            selectedTv?.background = null
-                            selectedTv?.backgroundTintList =
-                                context.resources.getColorStateList(R.color.colorWhite, null)
+                    if (day.date is String) {
+                        view.calendar_day_tv.setTextColor(context.getColorStateList(R.color.colorBlack))
+                        view.calendar_day_tv.text = day.date
+                    }
+                    else {
+                        view.calendar_day_tv.text = day.date.toString()
+                        view.setOnClickListener {
+                            if(selectedTv!=null) {
+                                selectedTv?.background = null
+                                selectedTv?.backgroundTintList =
+                                        context.resources.getColorStateList(R.color.colorWhite, null)
 
-                            selectedTv?.setTextColor(
-                                view.calendar_day_tv.currentTextColor
+                                selectedTv?.setTextColor(
+                                        view.calendar_day_tv.currentTextColor
+                                )
+                            }
+                            if(day.speciality!=null) {
+                                Log.d("has special", adapter.toString())
+                                adapter.scheduleList =day.speciality
+                                adapter.date = day.date
+                                adapter.notifyDataSetChanged()
+                            }
+
+
+                            view.calendar_day_tv.setTextColor(
+                                    ContextCompat.getColor(
+                                            context,
+                                            R.color.colorBlack
+                                    )
                             )
-                        }
-                        if(day.speciality!=null) {
-                            adapter.scheduleList =day.speciality
-                            adapter.date = day.date
-                            adapter.notifyDataSetChanged()
-                        }
 
-
-                        view.calendar_day_tv.setTextColor(
-                            ContextCompat.getColor(
-                                context,
-                                R.color.colorBlack
-                            )
-                        )
-
-                        view.calendar_day_tv.background =
-                            ContextCompat.getDrawable(context, R.drawable.circle_background)
-                        view.calendar_day_tv.backgroundTintList =
-                            context.resources.getColorStateList(R.color.colorDarkGray, null)
+                            view.calendar_day_tv.background =
+                                    ContextCompat.getDrawable(context, R.drawable.circle_background)
+                            view.calendar_day_tv.backgroundTintList =
+                                    context.resources.getColorStateList(R.color.colorLittleDarkGray, null)
                             selectDay(day.date as Int)
                             selectedTv = view.calendar_day_tv
+                        }
                     }
                 }
             }
@@ -127,37 +129,19 @@ class CalendarAdapter(
         }
     }
 
-    private fun checkPreviousDayHasEvent(previousDay : List<Pair<Int?,String?>?>?): Boolean{
-        if(previousDay==null){
-            return false
-        }
-        previousDay.forEach { preDay ->
-            if(preDay!!.second!=null){
-                return true
-            }
-        }
 
-        return false
-    }
-    private fun checkNextDayHasEvent(nextDay : List<Pair<Int?,String?>?>?) : Boolean {
-        if (nextDay==null){
+    private fun checkHasEvent(day : List<Pair<Int?,String?>?>?) : Boolean {
+        if (day==null){
             return false
         }
-        nextDay.forEach { nDay ->
-            if(nDay!!.second!=null){
+        day.forEach { d ->
+            if(d!!.second!=null){
                 return true
             }
         }
         return false
 
     }
-//    private fun isPublicHoliday(day : List<Pair<Int?,String?>?>) : Boolean {
-//        day.forEach {
-//            if(it!!.first ==0)
-//                return true
-//        }
-//        return false
-//    }
     private fun isPublicHoliday(holiday : String?) : Boolean {
         if(holiday !=null)
             return true
@@ -175,18 +159,6 @@ class CalendarAdapter(
         )
     }
 
-//    private fun setSpecialDay(speciality : Int?, dateView : View){
-//         when (speciality) {
-//             1 -> {
-//                 dateView.school_event_view.visibility = View.VISIBLE
-//             }
-//             2 -> {
-//                 dateView.school_study_event_view.visibility = View.VISIBLE
-//             }
-//
-//         }
-//    }
-
     private fun setSpecialDay(day : Day, dateView : View){
         day.speciality?.forEach {
             when(it!!.first){
@@ -198,15 +170,6 @@ class CalendarAdapter(
                 }
             }
         }
-//        when (day.speciality) {
-//            1 -> {
-//                dateView.school_event_view.visibility = View.VISIBLE
-//            }
-//            2 -> {
-//                dateView.school_study_event_view.visibility = View.VISIBLE
-//            }
-//
-//        }
     }
 
 

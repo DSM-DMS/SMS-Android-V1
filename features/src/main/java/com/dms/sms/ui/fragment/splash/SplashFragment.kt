@@ -30,7 +30,7 @@ class SplashFragment : Fragment() {
 
         Handler().postDelayed({
             startApp()
-        },3000)
+        },1000)
     }
 
     private fun startApp(){

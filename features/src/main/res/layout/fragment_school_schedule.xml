@@ -7,16 +7,65 @@
         tools:context=".ui.fragment.schedule.SchoolScheduleFragment">
 
 
-    <com.dms.sms.ui.calendar.SchoolScheduleCalenderView
-            android:id="@+id/school_schedule_calender"
+    <!--    <com.dms.sms.ui.calendar.SchoolScheduleCalenderView-->
+    <!--            android:id="@+id/school_schedule_calender"-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="20dp"-->
+    <!--            app:layout_constraintEnd_toStartOf="@+id/guideline9"-->
+    <!--            app:layout_constraintStart_toStartOf="@+id/guideline8"-->
+    <!--            app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--    </com.dms.sms.ui.calendar.SchoolScheduleCalenderView>-->
+    <TextView
+            android:id="@+id/school_schedule_calender_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:text="2020년 12월"
+            app:layout_constraintEnd_toStartOf="@+id/guideline9"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toTopOf="@id/guideline10" />
+
+    <ImageView
+            android:id="@+id/previous_month_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="5dp"
+            android:src="@drawable/ic_previous_month"
+            app:layout_constraintBottom_toBottomOf="@+id/school_schedule_calender_title_tv"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toTopOf="@+id/school_schedule_calender_title_tv" />
+
+
+    <ImageView
+            android:id="@+id/next_month_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="5dp"
+            android:src="@drawable/ic_next_month"
+            app:layout_constraintBottom_toBottomOf="@+id/school_schedule_calender_title_tv"
+            app:layout_constraintEnd_toStartOf="@+id/guideline9"
+            app:layout_constraintTop_toTopOf="@+id/school_schedule_calender_title_tv" />
+
+
+    <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/calendar_pager"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:overScrollMode="never"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline9"
             app:layout_constraintStart_toStartOf="@+id/guideline8"
-            app:layout_constraintTop_toTopOf="parent">
-
-    </com.dms.sms.ui.calendar.SchoolScheduleCalenderView>
+            app:layout_constraintTop_toBottomOf="@+id/school_schedule_calender_title_tv" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -24,15 +73,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.05" />
+            app:layout_constraintGuide_percent="0.06" />
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.95" />
+            app:layout_constraintGuide_percent="0.94" />
 
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detail_school_schedule_rv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_radius_gray_view"
+            android:backgroundTint="@color/colorGray"
+            android:overScrollMode="never"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintEnd_toStartOf="@+id/guideline9"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toBottomOf="@+id/calendar_pager" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/calendar_switch_btn"
@@ -41,7 +102,7 @@
             android:elevation="50dp"
             android:src="@drawable/ic_swap"
             app:layout_constraintEnd_toStartOf="@+id/guideline9"
-            app:layout_constraintTop_toBottomOf="@+id/school_schedule_calender"
+            app:layout_constraintTop_toBottomOf="@+id/detail_school_schedule_rv"
             app:maxImageSize="35dp" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -49,5 +110,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.8" />
+            app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.08" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,17 +9,11 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 interface CalendarDaysListener {
-    var beforeImv: ImageView
-    var afterImv: ImageView
-    var titleTv: TextView
+
     var daysGrid: GridView
-
-    var detailScheduleRecyclerView : RecyclerView
-
     var selectedTv: TextView?
 
     var tvColor : Int?
-    var eventListener: UserListener?
 
     var calendar: Calendar
     val sdf: SimpleDateFormat
