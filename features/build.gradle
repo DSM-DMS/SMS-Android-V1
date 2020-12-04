@@ -71,6 +71,13 @@ dependencies {
 
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 
+    //koin
+    def koin_version = "2.1.6"
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
     //Lottie
     implementation 'com.airbnb.android:lottie:3.5.0'
 
