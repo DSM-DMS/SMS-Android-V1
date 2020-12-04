@@ -78,14 +78,12 @@
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@id/outing_apply_detail_tv"
                     app:layout_constraintStart_toStartOf="@+id/outing_card_gl_left1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/outing_apply_detail_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:text="@string/outing_apply_detail_tv"
                     android:textColor="@color/colorDarkGray"
                     android:textSize="13sp"
@@ -127,6 +125,8 @@
                     android:id="@+id/outing_history_view"
                     android:layout_width="2.3dp"
                     android:layout_height="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="14dp"
                     android:background="@color/colorPurple"
                     app:layout_constraintBottom_toBottomOf="@+id/outing_history_tv"
                     app:layout_constraintEnd_toStartOf="@+id/outing_card_gl_left2" />
@@ -141,14 +141,12 @@
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/outing_history_detail_tv"
                     app:layout_constraintStart_toStartOf="@+id/outing_card_gl_left2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/outing_history_detail_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:text="@string/outing_history_detail_tv"
                     android:textColor="@color/colorDarkGray"
                     android:textSize="13sp"
@@ -211,7 +209,6 @@
                     android:id="@+id/outing_complete_detail_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:text="@string/outing_complete_detail_tv"
                     android:textColor="@color/colorDarkGray"
                     android:textSize="13sp"
