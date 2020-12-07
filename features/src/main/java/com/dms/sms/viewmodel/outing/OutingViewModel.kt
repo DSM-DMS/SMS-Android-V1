@@ -1,7 +1,7 @@
 package com.dms.sms.viewmodel.outing
 
 import com.dms.sms.util.SingleLiveEvent
-import com.dms.sms.viewmodel.BaseViewModel
+import com.dms.sms.base.BaseViewModel
 
 class OutingViewModel : BaseViewModel() {
 
