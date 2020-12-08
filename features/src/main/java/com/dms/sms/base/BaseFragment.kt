@@ -9,6 +9,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.dms.sms.BR
+import org.koin.android.ext.android.bind
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
 
@@ -16,7 +17,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
 
     abstract val layoutId : Int
 
-    abstract val viewModel : ViewModel
+    abstract val viewModel : BaseViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
