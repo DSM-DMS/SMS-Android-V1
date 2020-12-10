@@ -14,27 +14,22 @@ import org.koin.android.ext.android.bind
 abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
 
     private lateinit var binding : T
+    abstract val viewModel : BaseViewModel
 
     abstract val layoutId : Int
 
-    abstract val viewModel : BaseViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
+    override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        binding.lifecycleOwner = this
-        binding.setVariable(BR.vm, viewModel)
-        return binding.root
 
+        return binding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.setVariable(BR.vm, viewModel)
+
         observeEvents()
     }
 
