@@ -1,20 +1,27 @@
 package com.dms.sms.ui.dialog
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.dms.sms.R
+import com.dms.sms.base.BaseDialog
+import com.dms.sms.databinding.FragmentOutingNoticeDialogBinding
+import com.dms.sms.viewmodel.outing.OutingApplyViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class OutingNoticeDialog : Fragment() {
+class OutingNoticeDialog : BaseDialog<FragmentOutingNoticeDialogBinding>() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_outing_notice_dialog, container, false)
+    override val layoutId: Int
+        get() = R.layout.fragment_outing_notice_dialog
+
+    override val viewModel by sharedViewModel<OutingApplyViewModel>()
+
+    override fun observeEvent() {
+        with(viewModel) {
+            onSuccessDialogEvent.observe(this@OutingNoticeDialog, {
+                outingWithDisease.value = !outingWithDisease.value!!
+                dismiss()
+            })
+            onCancelEvent.observe(this@OutingNoticeDialog, {
+                dismiss()
+            })
+        }
     }
-
 }
