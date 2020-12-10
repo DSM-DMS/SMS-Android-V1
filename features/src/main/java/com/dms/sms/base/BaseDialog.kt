@@ -15,10 +15,9 @@ import com.dms.sms.BR
 abstract class BaseDialog<T: ViewDataBinding> : DialogFragment() {
 
     private lateinit var binding : T
+    abstract val viewModel : ViewModel
 
     abstract val layoutId : Int
-
-    abstract val viewModel : ViewModel
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
