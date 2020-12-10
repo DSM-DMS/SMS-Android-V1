@@ -14,7 +14,7 @@ class SMSApplication : Application(){
         startKoin {
             androidContext(this@SMSApplication)
             modules(
-                listOf( baseModule, authModule, accountModule)
+                listOf(baseModule, authModule, accountModule, networkModule)
             )
         }
     }

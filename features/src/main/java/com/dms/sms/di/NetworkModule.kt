@@ -9,6 +9,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 val networkModule = module {
     single {
@@ -22,9 +23,22 @@ val networkModule = module {
     }
 
 
+    single<AuthApi> {
+        Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL)
+            .client(
+                OkHttpClient.Builder()
+                    .addInterceptor(get<HttpLoggingInterceptor>())
+                    .build())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(AuthApi::class.java)
+    }
+
     single<AccountApi> {
         Retrofit.Builder()
-            .baseUrl(getProperty("base_url"))
+            .baseUrl(BuildConfig.BASE_URL)
             .client(
                 OkHttpClient.Builder()
                     .addInterceptor(get<HttpLoggingInterceptor>())
@@ -35,16 +49,5 @@ val networkModule = module {
             .create(AccountApi::class.java)
     }
 
-    single<AuthApi> {
-        Retrofit.Builder()
-            .baseUrl(getProperty("base_url"))
-            .client(
-                OkHttpClient.Builder()
-                    .addInterceptor(get<HttpLoggingInterceptor>())
-                    .build())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(AuthApi::class.java)
-    }
+
 }
