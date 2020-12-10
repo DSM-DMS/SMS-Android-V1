@@ -1,5 +1,6 @@
 package com.dms.sms.viewmodel.outing
 
+import androidx.lifecycle.MutableLiveData
 import com.dms.sms.util.SingleLiveEvent
 import com.dms.sms.base.BaseViewModel
 
