@@ -1,4 +1,4 @@
-package com.dms.sms.ui
+package com.dms.sms.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.dms.sms.BR
-import org.koin.android.ext.android.bind
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
 
