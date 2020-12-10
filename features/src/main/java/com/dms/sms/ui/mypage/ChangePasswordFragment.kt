@@ -22,7 +22,7 @@ class ChangePasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         change_password_btn.setOnClickListener {
-            navigateFragment(R.id.action_changePasswordFragment_to_logInFragment)
+            navigateFragment(R.id.action_changePasswordFragment_to_loginFragment)
         }
 
     }
