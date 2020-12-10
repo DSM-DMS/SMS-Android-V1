@@ -26,6 +26,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug{
+            buildConfigField("String", "BASE_URL", "\"${base_url}\"")
+            resValue("string", "base_url", "${base_url}")
+        }
     }
     buildFeatures {
         dataBinding = true
