@@ -9,7 +9,7 @@
 
         <variable
             name="vm"
-            type="com.dms.sms.outing.viewmodel.OutingApplyViewModel" />
+            type="com.dms.sms.feature.outing.viewmodel.OutingApplyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

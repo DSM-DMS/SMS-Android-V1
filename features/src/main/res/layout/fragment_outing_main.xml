@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.dms.sms.outing.viewmodel.OutingViewModel" />
+            type="com.dms.sms.feature.outing.viewmodel.OutingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

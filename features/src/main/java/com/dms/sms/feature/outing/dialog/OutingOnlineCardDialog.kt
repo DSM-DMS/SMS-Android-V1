@@ -1,4 +1,4 @@
-package com.dms.sms.outing.dialog
+package com.dms.sms.feature.outing.dialog
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

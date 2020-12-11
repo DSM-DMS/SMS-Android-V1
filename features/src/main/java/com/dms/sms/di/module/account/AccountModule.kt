@@ -1,4 +1,4 @@
-package com.dms.sms.di.account
+package com.dms.sms.di.module.account
 
 import com.dms.data.datasource.AccountDataSource
 import com.dms.data.datasource.AccountDataSourceImpl
