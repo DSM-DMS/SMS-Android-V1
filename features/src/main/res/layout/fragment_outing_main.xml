@@ -7,13 +7,13 @@
 
         <variable
             name="vm"
-            type="com.dms.sms.viewmodel.outing.OutingViewModel" />
+            type="com.dms.sms.outing.viewmodel.OutingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.outing.OutingMainFragment">
+        tools:context=".feature.outing.OutingMainFragment">
 
         <TextView
             android:id="@+id/outing_tv"

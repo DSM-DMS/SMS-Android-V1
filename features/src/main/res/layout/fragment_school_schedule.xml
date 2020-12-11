@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.schedule.SchoolScheduleFragment">
+    tools:context=".feature.schedule.SchoolScheduleFragment">
 
 
-    <com.dms.sms.ui.calendar.SchoolScheduleCalenderView
+    <com.dms.sms.feature.calendar.SchoolScheduleCalenderView
         android:id="@+id/school_schedule_calender"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@+id/guideline16">
 
-    </com.dms.sms.ui.calendar.SchoolScheduleCalenderView>
+    </com.dms.sms.feature.calendar.SchoolScheduleCalenderView>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"

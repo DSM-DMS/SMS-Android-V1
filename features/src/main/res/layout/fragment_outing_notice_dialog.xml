@@ -7,13 +7,13 @@
 
         <variable
             name="vm"
-            type="com.dms.sms.viewmodel.outing.OutingApplyViewModel" />
+            type="com.dms.sms.outing.viewmodel.OutingApplyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:context=".ui.dialog.OutingNoticeDialog">
+        tools:context=".feature.outing.dialog.OutingNoticeDialog">
 
         <androidx.cardview.widget.CardView
             android:layout_width="280dp"

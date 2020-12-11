@@ -3,7 +3,7 @@ package com.dms.sms.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.dms.sms.R
-import com.dms.sms.viewmodel.outing.OutingApplyViewModel
+import com.dms.sms.feature.outing.viewmodel.OutingApplyViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {

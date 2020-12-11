@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/loginFragment"
-            android:name="com.dms.sms.login.LoginFragment"
+            android:name="com.dms.sms.feature.login.LoginFragment"
             android:label="fragment_log_in"
             tools:layout="@layout/fragment_login">
         <action
@@ -47,7 +47,7 @@
 
     <fragment
             android:id="@+id/splashFragment"
-            android:name="com.dms.sms.ui.fragment.splash.SplashFragment"
+            android:name="com.dms.sms.feature.splash.SplashFragment"
             android:label="fragment_splash"
             tools:layout="@layout/fragment_splash">
         <action
@@ -64,7 +64,7 @@
 
     <fragment
             android:id="@+id/changePasswordFragment"
-            android:name="com.dms.sms.ui.mypage.ChangePasswordFragment"
+            android:name="com.dms.sms.feature.mypage.ChangePasswordFragment"
             android:label="fragment_change_password"
             tools:layout="@layout/fragment_change_password">
         <action
@@ -75,27 +75,27 @@
     </fragment>
     <fragment
             android:id="@+id/noticeDetailFragment"
-            android:name="com.dms.sms.ui.fragment.notice.NoticeDetailFragment"
+            android:name="com.dms.sms.feature.notice.NoticeDetailFragment"
             android:label="fragment_notice_detail"
             tools:layout="@layout/fragment_notice_detail" />
     <fragment
             android:id="@+id/introducingDevelopersFragment"
-            android:name="com.dms.sms.ui.mypage.IntroducingDevelopersFragment"
+            android:name="com.dms.sms.feature.mypage.IntroducingDevelopersFragment"
             android:label="fragment_introducing_developers"
             tools:layout="@layout/fragment_introducing_developers" />
     <fragment
             android:id="@+id/outingHistoryFragment"
-            android:name="com.dms.sms.ui.fragment.outing.OutingHistoryFragment"
+            android:name="com.dms.sms.feature.outing.OutingHistoryFragment"
             android:label="fragment_outing_history"
             tools:layout="@layout/fragment_outing_history" />
     <fragment
             android:id="@+id/outingAccessFragment"
-            android:name="com.dms.sms.ui.fragment.outing.OutingAccessFragment"
+            android:name="com.dms.sms.feature.outing.OutingAccessFragment"
             android:label="fragment_outing_access"
             tools:layout="@layout/fragment_outing_access" />
     <fragment
             android:id="@+id/outingCompleteFragment"
-            android:name="com.dms.sms.ui.fragment.outing.OutingCompleteFragment"
+            android:name="com.dms.sms.feature.outing.OutingCompleteFragment"
             android:label="fragment_outing_complete"
             tools:layout="@layout/fragment_outing_complete">
         <action
@@ -106,7 +106,7 @@
     </fragment>
     <fragment
             android:id="@+id/outingApplyFragment"
-            android:name="com.dms.sms.ui.fragment.outing.OutingApplyFragment"
+            android:name="com.dms.sms.feature.outing.OutingApplyFragment"
             android:label="fragment_outing_apply"
             tools:layout="@layout/fragment_outing_apply">
         <action
@@ -115,7 +115,7 @@
     </fragment>
     <fragment
             android:id="@+id/outingNoticeFragment"
-            android:name="com.dms.sms.ui.fragment.outing.OutingNoticeFragment"
+            android:name="com.dms.sms.feature.outing.OutingNoticeFragment"
             android:label="fragment_outing_notice"
             tools:layout="@layout/fragment_outing_notice" />
 

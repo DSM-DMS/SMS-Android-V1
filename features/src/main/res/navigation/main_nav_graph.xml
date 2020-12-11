@@ -7,27 +7,27 @@
 
     <fragment
             android:id="@+id/outing_fragment"
-            android:name="com.dms.sms.ui.fragment.outing.OutingMainFragment"
+            android:name="com.dms.sms.feature.outing.OutingMainFragment"
             android:label="OutingMainFragment"
             tools:layout="@layout/fragment_outing_main" />
     <fragment
             android:id="@+id/schedule_fragment"
-            android:name="com.dms.sms.ui.fragment.schedule.SchoolScheduleFragment"
+            android:name="com.dms.sms.feature.schedule.SchoolScheduleFragment"
             android:label="SchoolScheduleFragment"
             tools:layout="@layout/fragment_school_schedule" />
     <fragment
             android:id="@+id/mypage_fragment"
-            android:name="com.dms.sms.ui.mypage.MyPageFragment"
+            android:name="com.dms.sms.feature.mypage.MyPageFragment"
             android:label="MyPageFragment"
             tools:layout="@layout/fragment_my_page" />
     <fragment
             android:id="@+id/notice_fragment"
-            android:name="com.dms.sms.ui.fragment.notice.NoticeFragment"
+            android:name="com.dms.sms.feature.notice.NoticeFragment"
             android:label="NoticeFragment"
             tools:layout="@layout/fragment_notice" />
     <fragment
             android:id="@+id/time_table_fragment"
-            android:name="com.dms.sms.ui.fragment.schedule.TimeTableFragment"
+            android:name="com.dms.sms.feature.schedule.TimeTableFragment"
             android:label="TimeTableFragment"
             tools:layout="@layout/fragment_time_table" />
 

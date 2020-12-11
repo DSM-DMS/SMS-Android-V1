@@ -9,13 +9,13 @@
 
         <variable
             name="vm"
-            type="com.dms.sms.viewmodel.outing.OutingApplyViewModel" />
+            type="com.dms.sms.outing.viewmodel.OutingApplyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.outing.OutingApplyFragment">
+        tools:context=".feature.outing.OutingApplyFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
