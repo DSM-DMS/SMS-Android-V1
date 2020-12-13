@@ -6,7 +6,7 @@
     android:layout_height="440dp"
     android:background="@drawable/radius_white_view"
     android:elevation="6dp"
-    tools:context=".ui.dialog.OutingOnlineCardDialog">
+    tools:context=".feature.outing.dialog.OutingOnlineCardDialog">
 
     <View
         android:id="@+id/view3"
