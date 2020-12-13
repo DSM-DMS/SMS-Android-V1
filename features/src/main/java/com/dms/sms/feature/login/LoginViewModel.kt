@@ -34,6 +34,7 @@ class LoginViewModel(private val loginUseCase: LoginUseCase) : BaseViewModel() {
     val isAllLoginInfoFilled: LiveData<Boolean> get() = _isAllLoginInfoFilled
 
     fun onLoginClicked() {
+        _loginSuccessEvent.value = true
 
         loginUseCase.execute(
             LoginModel(idText.value!!, passwordText.value!!).toDomain(),

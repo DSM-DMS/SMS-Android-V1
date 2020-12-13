@@ -1,9 +1,9 @@
-package com.dms.sms.outing.dialog
+package com.dms.sms.feature.outing.dialog
 
 import com.dms.sms.R
 import com.dms.sms.base.BaseDialog
 import com.dms.sms.databinding.FragmentOutingNoticeDialogBinding
-import com.dms.sms.outing.viewmodel.OutingApplyViewModel
+import com.dms.sms.feature.outing.viewmodel.OutingApplyViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class OutingNoticeDialog : BaseDialog<FragmentOutingNoticeDialogBinding>() {
