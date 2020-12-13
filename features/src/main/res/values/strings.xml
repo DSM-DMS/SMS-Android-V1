@@ -17,6 +17,8 @@
     <string name="date_tv">날짜</string>
     <string name="time_tv">시간</string>
     <string name="place_tv">장소</string>
+    <string name="disease_apply">질병 외출로 신청 중입니다. </string>
+    <string name="no_disease_apply">질병 외출로 신청하시겠습니까?</string>
 
     //outing apply dialog
     <string name="cancel_tv">취소</string>

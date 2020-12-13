@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="vm" type="com.dms.sms.login.LoginViewModel" />
+        <variable name="vm" type="com.dms.sms.feature.login.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".login.LoginFragment">
+        tools:context=".feature.login.LoginFragment">
 
         <TextView
             android:id="@+id/login_title_tv"
