@@ -1,6 +1,6 @@
 package com.dms.data.dto.response
 
-import com.dms.domain.auth.dto.LoginResponseData
+import com.dms.domain.auth.response.LoginResponseData
 
 data class LoginResponse(
     val student_uuid: String,
