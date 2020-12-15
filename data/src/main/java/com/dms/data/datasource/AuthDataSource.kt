@@ -2,7 +2,7 @@ package com.dms.data.datasource
 
 import com.dms.data.dto.request.LoginData
 import com.dms.data.dto.response.LoginResponseData
-import com.dms.data.local.db.LoggedInUserData
+import com.dms.data.local.auth.LoggedInUserData
 import io.reactivex.Completable
 import io.reactivex.Single
 
