@@ -2,7 +2,7 @@ package com.dms.sms.feature.outing.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.dms.sms.base.BaseViewModel
-import com.dms.sms.util.SingleLiveEvent
+import com.dms.sms.base.SingleLiveEvent
 import java.util.*
 
 class OutingApplyViewModel : BaseViewModel() {

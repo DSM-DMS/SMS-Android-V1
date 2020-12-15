@@ -1,6 +1,6 @@
 package com.dms.data.dto.request
 
-data class StudentRequest(
+data class StudentRequestData(
     val grade: Int,
     val group: Int,
     val student_number: Int,

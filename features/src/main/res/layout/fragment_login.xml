@@ -40,6 +40,8 @@
                 android:drawablePadding="15dp"
                 android:hint="@string/id_et"
                 android:text="@={vm.idText}"
+                android:inputType="text"
+                android:maxLines="1"
                 android:paddingStart="9dp"
                 android:paddingEnd="9dp"
                 android:paddingBottom="16dp"
@@ -71,6 +73,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="16sp"
             android:onClick="@{()->vm.onLoginClicked()}"
+            android:clickable="@{vm.isAllLoginInfoFilled}"
             app:layout_constraintBottom_toTopOf="@+id/login_gl_bottom"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline" />
@@ -95,6 +98,7 @@
                 android:hint="@string/password_et"
                 android:text="@={vm.passwordText}"
                 android:inputType="textPassword"
+                android:maxLines="1"
                 android:paddingStart="9dp"
                 android:paddingEnd="9dp"
                 android:paddingBottom="16dp"
@@ -112,6 +116,7 @@
             android:paddingEnd="6dp"
             android:text="@string/auto_log_in_checkbox"
             android:textSize="14sp"
+            android:checked="@={vm.isAutoLoginChecked}"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/password_et_layout" />
 
