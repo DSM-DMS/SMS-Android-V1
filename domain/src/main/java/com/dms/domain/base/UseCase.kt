@@ -1,6 +1,5 @@
 package com.dms.domain.base
 
-import com.dms.domain.auth.dto.LoginResponseData
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
