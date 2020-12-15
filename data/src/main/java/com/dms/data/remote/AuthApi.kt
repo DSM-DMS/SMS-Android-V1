@@ -6,11 +6,11 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.*
 
-interface AuthApi {
+interface AuthApi : Api {
     @POST("v1/login/student")
-    fun login(@Body loginData: LoginData) : Single<LoginResponseData>
+    fun login(@Body loginData: LoginData): Single<LoginResponseData>
 
     @PUT("v1/students/uuid/{student_uuid}/password")
-    fun changePassword(@Path("student_uuid") studentUUID : String) : Completable
+    fun changePassword(@Path("student_uuid") studentUUID: String): Completable
 
 }
