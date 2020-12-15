@@ -7,7 +7,10 @@ import java.util.*
 
 class OutingApplyViewModel : BaseViewModel() {
 
-    val calendar = Calendar.getInstance()
+    var applyDate: String ?= null
+    var startTime: String ?= null
+    var endTime: String ?= null
+    val calendar = Calendar.getInstance(Locale.KOREA)
 
     val outingWithDisease = MutableLiveData(true)
     val outingDate = MutableLiveData<String>()

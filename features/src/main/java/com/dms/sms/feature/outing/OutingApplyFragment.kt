@@ -29,12 +29,12 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
             dateEvent.observe(this@OutingApplyFragment, {
                 val datePickerDialogListener =
                     DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
-                        val applyDate = "${year}-${month + 1}-${date}"
-                        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
-                        val mDate = simpleDateFormat.parse(applyDate)
-                        val timestamp = mDate!!.time
-
-                        Log.d("timeStamp",(timestamp/1000).toString())
+                        viewModel.applyDate = "${year}/${month + 1}/${date} "
+//                        val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+//                        val mDate = simpleDateFormat.parse(applyDate)
+//                        val timestamp = mDate!!.time
+//
+//                        Log.d("timeStamp",(timestamp/1000).toString())
                         outingDate.value = "${year}년 ${month + 1}월 ${date}일"
                     }
                 val datePickerDialog = DatePickerDialog( requireContext(), datePickerDialogListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
@@ -45,34 +45,27 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
             startTimeEvent.observe(this@OutingApplyFragment, {
                 val timePickerDialogListener =
                     TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-                        outingStartTime.value = "$hour : $minute "
+                        viewModel.startTime = "${hour + 9}:$minute:00"
+                        outingStartTime.value = "${hour}시 ${minute}분"
+
+                        val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+                        val mDate = simpleDateFormat.parse("${viewModel.applyDate} ${viewModel.startTime}")
+                        val timestamp = mDate!!.time
+
+                        Log.d("timeStamp",(timestamp/1000).toString())
+
+                        Log.d("timeStatampapapap","${viewModel.applyDate} ${viewModel.startTime}")
                     }
-                val timePickerDialog = TimePickerDialog(
-                    requireContext(),
-                    android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
-                    timePickerDialogListener,
-                    calendar.get(Calendar.HOUR_OF_DAY),
-                    calendar.get(Calendar.MINUTE),
-                    android.text.format.DateFormat.is24HourFormat(requireContext())
-                )
-                timePickerDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+                val timePickerDialog = TimePickerDialog( requireContext(), timePickerDialogListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), android.text.format.DateFormat.is24HourFormat(requireContext()))
                 timePickerDialog.show()
             })
 
             endTimeEvent.observe(this@OutingApplyFragment, {
                 val timePickerDialogListener =
                     TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-                        outingEndTime.value = "$hour : $minute "
+                        outingEndTime.value = "${hour}시 ${minute} "
                     }
-                val timePickerDialog = TimePickerDialog(
-                    requireContext(),
-                    android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
-                    timePickerDialogListener,
-                    calendar.get(Calendar.HOUR_OF_DAY),
-                    calendar.get(Calendar.MINUTE),
-                    android.text.format.DateFormat.is24HourFormat(requireContext())
-                )
-                timePickerDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+                val timePickerDialog = TimePickerDialog( requireContext(), timePickerDialogListener,calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), android.text.format.DateFormat.is24HourFormat(requireContext()))
                 timePickerDialog.show()
             })
 
