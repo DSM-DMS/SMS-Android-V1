@@ -9,5 +9,5 @@ data class LoginData(
     @SerializedName("student_pw")
     val studentPw : String
     )
-fun LoginRequest.toRequestData() : LoginRequest =
-    LoginRequest(this.id, this.password)
+fun LoginRequest.toData() : LoginData =
+    LoginData(this.id, this.password)

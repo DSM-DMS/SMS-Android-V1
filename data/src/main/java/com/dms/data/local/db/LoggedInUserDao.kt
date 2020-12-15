@@ -1,17 +1,17 @@
-package com.dms.data.local
+package com.dms.data.local.db
 
 import androidx.room.*
 import io.reactivex.Completable
 import io.reactivex.Single
 
 @Dao
-interface AutoLoginUserDao {
+interface LoggedInUserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(autoLoginUser: AutoLoginUser) : Completable
+    fun insert(loggedInUser: LoggedInUserData) : Completable
 
     @Query("SELECT * FROM auto_login_user")
-    fun getAutoLoginUser() : Single<List<AutoLoginUser>>
+    fun getLoggedInUser() : Single<List<LoggedInUserData>>
 
     @Query("DELETE FROM auto_login_user")
     fun delete() : Completable

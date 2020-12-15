@@ -1,11 +1,11 @@
 package com.dms.data.dto.response
 
-import com.dms.domain.auth.response.LoginResponseData
+import com.dms.domain.auth.response.LoginResponse
 
-data class LoginResponse(
+data class LoginResponseData(
     val student_uuid: String,
     val access_token : String
     )
 
-fun LoginResponse.toDomainData() : LoginResponseData =
-    LoginResponseData(this.student_uuid, this.access_token)
+fun LoginResponseData.toDomainData() : LoginResponse =
+    LoginResponse(this.student_uuid, this.access_token)
