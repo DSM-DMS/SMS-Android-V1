@@ -3,8 +3,8 @@ package com.dms.data.repository
 import com.dms.data.datasource.AuthDataSource
 import com.dms.data.dto.request.toData
 import com.dms.data.dto.response.toDomainData
-import com.dms.data.local.db.toData
-import com.dms.data.local.db.toEntity
+import com.dms.data.local.auth.toData
+import com.dms.data.local.auth.toEntity
 import com.dms.domain.auth.request.LoginRequest
 import com.dms.domain.auth.repository.AuthRepository
 import com.dms.domain.auth.response.LoginResponse

@@ -2,8 +2,8 @@ package com.dms.sms.di.module.auth
 
 import com.dms.data.datasource.AuthDataSource
 import com.dms.data.datasource.AuthDataSourceImpl
-import com.dms.data.local.db.LoggedInUserDao
-import com.dms.data.local.db.LoggedInUserDatabase
+import com.dms.data.local.auth.LoggedInUserDao
+import com.dms.data.local.auth.LoggedInUserDatabase
 import com.dms.data.repository.AuthRepositoryImpl
 import com.dms.domain.auth.repository.AuthRepository
 import com.dms.domain.auth.service.AuthService

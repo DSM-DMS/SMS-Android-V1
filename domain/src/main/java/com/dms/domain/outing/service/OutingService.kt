@@ -1,10 +1,10 @@
 package com.dms.domain.outing.service
 
 import com.dms.domain.base.Result
-import com.dms.domain.outing.dto.OutingData
-import com.dms.domain.outing.dto.OutingResponseData
+import com.dms.domain.outing.request.OutingRequest
+import com.dms.domain.outing.response.OutingResponse
 import io.reactivex.Single
 
 interface OutingService {
-    fun createOuting(outingData: OutingData): Single<Result<OutingResponseData>>
+    fun createOuting(outingRequest: OutingRequest): Single<Result<OutingResponse>>
 }

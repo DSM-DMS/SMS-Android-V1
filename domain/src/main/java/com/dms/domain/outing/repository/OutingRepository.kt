@@ -1,9 +1,9 @@
 package com.dms.domain.outing.repository
 
-import com.dms.domain.outing.dto.OutingData
-import com.dms.domain.outing.dto.OutingResponseData
+import com.dms.domain.outing.request.OutingRequest
+import com.dms.domain.outing.response.OutingResponse
 import io.reactivex.Single
 
 interface OutingRepository {
-    fun createOuting(outingData: OutingData): Single<OutingResponseData>
+    fun createOuting(outingRequest: OutingRequest): Single<OutingResponse>
 }
