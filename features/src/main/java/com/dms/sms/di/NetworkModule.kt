@@ -1,5 +1,6 @@
 package com.dms.sms.di
 
+import com.dms.data.base.AuthorizationInterceptor
 import com.dms.data.remote.AccountApi
 import com.dms.data.remote.AnnouncementApi
 import com.dms.data.remote.Api
@@ -25,10 +26,15 @@ val networkModule = module {
     }
 
     single {
+        AuthorizationInterceptor(get())
+    }
+
+    single {
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(
                 OkHttpClient.Builder()
+                    .addInterceptor(get<AuthorizationInterceptor>())
                     .addInterceptor(get<HttpLoggingInterceptor>())
                     .build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
