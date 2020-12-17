@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.dms.sms.BR
 import org.koin.android.ext.android.bind
+import splitties.toast.toast
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
 
@@ -29,6 +30,10 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.setVariable(BR.vm, viewModel)
+
+        viewModel.createToastEvent.observe(this, {
+            toast(it)
+        })
 
         observeEvents()
     }
