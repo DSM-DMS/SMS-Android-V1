@@ -9,7 +9,9 @@ import com.dms.sms.base.BaseFragment
 import com.dms.sms.databinding.FragmentOutingApplyBinding
 import com.dms.sms.feature.outing.dialog.OutingNoticeDialog
 import com.dms.sms.feature.outing.viewmodel.OutingApplyViewModel
+import com.dms.sms.navigateFragment
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import splitties.fragments.start
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,52 +22,54 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
 
     override val viewModel by sharedViewModel<OutingApplyViewModel>()
 
-//    outing_apply_btn.setOnClickListener {
-//        navigateFragment(R.id.action_outingApplyFragment_to_outingCompleteFragment)
-//    }
-
     override fun observeEvents() {
         with(viewModel) {
             dateEvent.observe(this@OutingApplyFragment, {
                 val datePickerDialogListener =
-                    DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
+                    DatePickerDialog.OnDateSetListener { _, year, month, date ->
                         viewModel.applyDate = "${year}/${month + 1}/${date} "
-//                        val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-//                        val mDate = simpleDateFormat.parse(applyDate)
-//                        val timestamp = mDate!!.time
-//
-//                        Log.d("timeStamp",(timestamp/1000).toString())
                         outingDate.value = "${year}년 ${month + 1}월 ${date}일"
                     }
-                val datePickerDialog = DatePickerDialog( requireContext(), datePickerDialogListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+                val datePickerDialog = DatePickerDialog(
+                    requireContext(),
+                    datePickerDialogListener,
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH)
+                )
                 datePickerDialog.datePicker.minDate = System.currentTimeMillis()
                 datePickerDialog.show()
             })
 
             startTimeEvent.observe(this@OutingApplyFragment, {
                 val timePickerDialogListener =
-                    TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-                        viewModel.startTime = "${hour + 9}:$minute:00"
-                        outingStartTime.value = "${hour}시 ${minute}분"
-
-                        val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-                        val mDate = simpleDateFormat.parse("${viewModel.applyDate} ${viewModel.startTime}")
-                        val timestamp = mDate!!.time
-
-                        Log.d("timeStamp",(timestamp/1000).toString())
-
-                        Log.d("timeStatampapapap","${viewModel.applyDate} ${viewModel.startTime}")
+                    TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+                        startTime = "${hour + 9}:$minute:00"
+                        outingStartTime.value = "${hour}시  ${minute}분"
                     }
-                val timePickerDialog = TimePickerDialog( requireContext(), timePickerDialogListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), android.text.format.DateFormat.is24HourFormat(requireContext()))
+                val timePickerDialog = TimePickerDialog(
+                    requireContext(),
+                    timePickerDialogListener,
+                    calendar.get(Calendar.HOUR_OF_DAY),
+                    calendar.get(Calendar.MINUTE),
+                    android.text.format.DateFormat.is24HourFormat(requireContext())
+                )
                 timePickerDialog.show()
             })
 
             endTimeEvent.observe(this@OutingApplyFragment, {
                 val timePickerDialogListener =
-                    TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-                        outingEndTime.value = "${hour}시 ${minute} "
+                    TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+                        endTime = "${hour + 9}:$minute:00"
+                        outingEndTime.value = "${hour}시  ${minute}분 "
                     }
-                val timePickerDialog = TimePickerDialog( requireContext(), timePickerDialogListener,calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), android.text.format.DateFormat.is24HourFormat(requireContext()))
+                val timePickerDialog = TimePickerDialog(
+                    requireContext(),
+                    timePickerDialogListener,
+                    calendar.get(Calendar.HOUR_OF_DAY),
+                    calendar.get(Calendar.MINUTE),
+                    android.text.format.DateFormat.is24HourFormat(requireContext())
+                )
                 timePickerDialog.show()
             })
 
@@ -76,6 +80,10 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
 
             onDiseaseCancelEvent.observe(this@OutingApplyFragment, {
                 outingWithDisease.value = true
+            })
+
+            createOutingSuccessEvent.observe(this@OutingApplyFragment, {
+                navigateFragment(R.id.action_outingApplyFragment_to_outingCompleteFragment)
             })
         }
     }
