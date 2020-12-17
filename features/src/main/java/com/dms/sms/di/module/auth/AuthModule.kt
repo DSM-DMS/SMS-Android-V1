@@ -4,6 +4,8 @@ import com.dms.data.datasource.AuthDataSource
 import com.dms.data.datasource.AuthDataSourceImpl
 import com.dms.data.local.db.LoggedInUserDao
 import com.dms.data.local.db.LoggedInUserDatabase
+import com.dms.data.local.sharedpreference.SharedPreferencesStorage
+import com.dms.data.remote.AuthApi
 import com.dms.data.repository.AuthRepositoryImpl
 import com.dms.domain.auth.repository.AuthRepository
 import com.dms.domain.auth.service.AuthService
@@ -16,8 +18,10 @@ import com.dms.sms.feature.login.AutoLoginViewModel
 import com.dms.sms.feature.login.LoginViewModel
 import com.dms.sms.feature.login.DeleteLoginDataViewModel
 import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+import retrofit2.Retrofit
 
 val authModule = module {
     viewModel { LoginViewModel(get(), get()) }
@@ -38,10 +42,17 @@ val authModule = module {
 
     factory<AuthRepository> { AuthRepositoryImpl(get()) }
 
-    factory<AuthDataSource> { AuthDataSourceImpl(get(),get()) }
+    factory<AuthDataSource> { AuthDataSourceImpl(get(),get(), get()) }
 
     fun provideDao(db : LoggedInUserDatabase) : LoggedInUserDao = db.loggedInUserDao()
     single { LoggedInUserDatabase.getInstance(androidApplication())  }
     single { provideDao(get()) }
+
+    fun provideAuthApi(retrofit: Retrofit): AuthApi =
+        retrofit.create(AuthApi::class.java)
+
+    single { provideAuthApi(get()) }
+
+    single { SharedPreferencesStorage(androidContext()) }
 
 }

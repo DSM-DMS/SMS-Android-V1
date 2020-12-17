@@ -85,6 +85,9 @@ dependencies {
     implementation "androidx.room:room-runtime:2.2.5"
     kapt "androidx.room:room-compiler:2.2.5"
 
+    implementation 'com.github.upstarts:ejkit:1.0.3'
+    implementation 'com.github.upstarts:ejkit-gson:1.0.3'
+
     //Lottie
     implementation 'com.airbnb.android:lottie:3.5.0'
 

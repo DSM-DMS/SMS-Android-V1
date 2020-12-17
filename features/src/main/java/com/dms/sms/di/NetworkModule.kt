@@ -1,6 +1,9 @@
 package com.dms.sms.di
 
+import com.dms.data.base.AuthorizationInterceptor
 import com.dms.data.remote.AccountApi
+import com.dms.data.remote.AnnouncementApi
+import com.dms.data.remote.Api
 import com.dms.data.remote.AuthApi
 import com.dms.sms.BuildConfig
 import okhttp3.OkHttpClient
@@ -22,32 +25,23 @@ val networkModule = module {
         }
     }
 
+    single {
+        AuthorizationInterceptor(get())
+    }
 
-    single<AuthApi> {
+    single {
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(
                 OkHttpClient.Builder()
+                    .addInterceptor(get<AuthorizationInterceptor>())
                     .addInterceptor(get<HttpLoggingInterceptor>())
                     .build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(AuthApi::class.java)
     }
 
-    single<AccountApi> {
-        Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .client(
-                OkHttpClient.Builder()
-                    .addInterceptor(get<HttpLoggingInterceptor>())
-                    .build())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(AccountApi::class.java)
-    }
 
 
 }
