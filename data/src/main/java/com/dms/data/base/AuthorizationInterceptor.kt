@@ -1,15 +1,21 @@
 package com.dms.data.base
 
+import android.util.Log
+import com.dms.data.local.db.LoggedInUserDatabase
+import com.dms.data.local.sharedpreference.SharedPreferencesStorage
+import io.reactivex.Observable
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class AuthorizationInterceptor(): Interceptor {
+class AuthorizationInterceptor(private val preference : SharedPreferencesStorage) : Interceptor{
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
             .newBuilder()
-            .addHeader("Authorization","Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoic3R1ZGVudC03MjA3MTk0MDU1MTIiLCJ0eXBlIjoiYWNjZXNzX3Rva2VuIiwiZXhwIjoxNjA4MjAxMTQ0fQ.IPiupCnvg58ZdalnXD2YbmIDjdJ9mv-Mpa6ynmLSF2sgLo70xbqqq_Lb2XxAqvpTn8ABGdF-YXg6wM_3puWNdg")
+            .addHeader("Authorization",preference.getToken())
             .build()
 
         return chain.proceed(request)
     }
+
+
 }

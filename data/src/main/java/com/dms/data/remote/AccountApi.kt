@@ -6,7 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface AccountApi {
+interface AccountApi : Api {
     @GET("v1/students/uuid/{student_uuid}")
     fun getStudentInfo(@Path("student_uuid") studentUUID : String) : Single<StudentResponse>
 
