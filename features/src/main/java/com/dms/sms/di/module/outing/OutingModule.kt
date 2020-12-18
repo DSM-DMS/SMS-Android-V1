@@ -20,5 +20,5 @@ val outingModule: Module = module {
     factory { OutingUseCase(get(), get()) }
     factory<OutingService> { OutingServiceImpl(get(), get()) }
     factory<OutingRepository> { OutingRepositoryImpl(get()) }
-    factory<OutingDataSource> { OutingDataSourceImpl(get()) }
+    factory<OutingDataSource> { OutingDataSourceImpl(get(), get()) }
 }
