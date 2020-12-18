@@ -6,5 +6,5 @@ import com.dms.domain.outing.response.OutingResponse
 import io.reactivex.Single
 
 interface OutingService {
-    fun createOuting(outingRequest: OutingRequest): Single<Result<OutingResponse>>
+    fun createOuting(outingRequest: OutingRequest): Single<Result<Unit>>
 }
