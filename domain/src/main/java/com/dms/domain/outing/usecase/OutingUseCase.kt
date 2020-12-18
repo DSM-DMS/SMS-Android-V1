@@ -9,7 +9,7 @@ import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 
 class OutingUseCase(private val outingService: OutingService, disposable: CompositeDisposable) :
-    UseCase<OutingRequest, Result<OutingResponse>>(disposable) {
-    override fun buildUseCase(data: OutingRequest): Single<Result<OutingResponse>> =
+    UseCase<OutingRequest, Result<Unit>>(disposable) {
+    override fun buildUseCase(data: OutingRequest): Single<Result<Unit>> =
         outingService.createOuting(data)
 }
