@@ -54,8 +54,8 @@ class OutingApplyViewModel(private val outingUseCase: OutingUseCase) : BaseViewM
 
         val outingModel = OutingModel(Integer.parseInt(startTime), Integer.parseInt(endTime), outingPlace.value!!, outingReason.value!!, isDisease())
 
-        outingUseCase.execute(outingModel.toDomain(), object: DisposableSingleObserver<Result<OutingResponse>>(){
-            override fun onSuccess(result: Result<OutingResponse>) {
+        outingUseCase.execute(outingModel.toDomain(), object: DisposableSingleObserver<Result<Unit>>(){
+            override fun onSuccess(result: Result<Unit>) {
                 when(result){
                     is Result.Success -> createOutingSuccess(result)
                     is Result.Failure -> failOutingSuccess(result)
@@ -67,13 +67,12 @@ class OutingApplyViewModel(private val outingUseCase: OutingUseCase) : BaseViewM
         },AndroidSchedulers.mainThread())
     }
 
-    private fun createOutingSuccess(result: Result.Success<OutingResponse>){
+    private fun createOutingSuccess(result: Result.Success<Unit>){
         createToastEvent.value = "외출증 생성에 성공하셨습니다."
         createOutingSuccessEvent.call()
-        Log.d("outingUUID",result.value.outingUUID)
     }
 
-    private fun failOutingSuccess(result: Result.Failure<OutingResponse>){
+    private fun failOutingSuccess(result: Result.Failure<Unit>){
         when(result.reason){
             Error.Conflict ->
                 createToastEvent.value = "이미 해당날짜에 대기 중인 외출증이 있습니다. "
