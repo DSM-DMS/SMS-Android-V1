@@ -13,4 +13,10 @@ class OutingRepositoryImpl(private val outingDataSource: OutingDataSource) : Out
         outingDataSource.createOuting(outingRequest.toData()).map {
             it.toDomainData()
         }
+
+    override fun saveOutingUUID(uuid: String, content: String) =
+        outingDataSource.saveOutingUUID(uuid, content)
+
+    override fun getOutingUUID(content: String): String =
+        outingDataSource.getOutingUUID(content)
 }
