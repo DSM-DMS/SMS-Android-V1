@@ -1,6 +1,6 @@
 package com.dms.domain.outing.request
 
-data class OutingRequest(
+data class OutingApplyRequest(
     val startTime: Int,
     val endTime: Int,
     val outingPlace: String,
