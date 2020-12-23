@@ -14,7 +14,7 @@ import splitties.toast.toast
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
 
-    private lateinit var binding : T
+    lateinit var binding : T
     abstract val viewModel : BaseViewModel
 
     abstract val layoutId : Int
