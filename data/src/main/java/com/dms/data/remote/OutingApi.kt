@@ -14,5 +14,5 @@ interface OutingApi {
     fun createOuting(@Body outingData: OutingData): Single<OutingResponseData>
 
     @GET("/v1/students/uuid/{student_uuid}/outings")
-    fun getOutingList(@Path("student_uuid") studentUUID: String): Single<ArrayList<OutingListResponseData>>
+    fun getOutingList(@Path("student_uuid") studentUUID: String): Single<OutingListResponseData>
 }
