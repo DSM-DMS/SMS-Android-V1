@@ -8,9 +8,11 @@ import io.reactivex.Single
 interface OutingDataSource {
     fun createOuting(outingData: OutingData): Single<OutingResponseData>
 
-    fun getOutingList(studentUUID: String): Single<ArrayList<OutingListResponseData>>
+    fun getOutingList(studentUUID: String): Single<OutingListResponseData>
 
     fun saveOutingUUID(uuid: String, content: String)
 
     fun getOutingUUID(content: String): String
+
+    fun getStudentUUID(content: String): String
 }
