@@ -11,16 +11,16 @@ class SharedPreferencesStorage(private val context: Context) {
     fun getInfo(content: String): String {
         if (pref == null) pref = context.getSharedPreferences(content, MODE_PRIVATE)
         return if (content == "sms") {
-            "Bearer " + pref?.getString("info","")
+            "Bearer " + pref?.getString(content,"")
         } else
-            pref?.getString("info", "").toString()
+            pref?.getString(content, "").toString()
 
     }
 
     fun saveInfo(info: String, content: String) {
         if (pref == null) pref = context.getSharedPreferences(content, MODE_PRIVATE)
         val editor: SharedPreferences.Editor = pref!!.edit()
-        editor.putString("info", info)
+        editor.putString(content, info)
         editor.apply()
     }
 
