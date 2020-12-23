@@ -1,15 +1,13 @@
 package com.dms.sms.feature.outing.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
-import com.dms.domain.outing.response.OutingResponse
 import com.dms.domain.outing.usecase.OutingUseCase
 import com.dms.sms.base.BaseViewModel
 import com.dms.sms.base.SingleLiveEvent
-import com.dms.sms.feature.outing.model.OutingModel
+import com.dms.sms.feature.outing.model.OutingApplyModel
 import com.dms.sms.feature.outing.model.toDomain
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
@@ -17,7 +15,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class OutingApplyViewModel(private val outingUseCase: OutingUseCase) : BaseViewModel() {
-
     var applyDate: String? = null
     var startTime: String? = null
     var endTime: String? = null
@@ -52,12 +49,12 @@ class OutingApplyViewModel(private val outingUseCase: OutingUseCase) : BaseViewM
         val startTime = (changeToUnixTime(applyDate!!, startTime!!).time / 1000).toString()
         val endTime = (changeToUnixTime(applyDate!!, endTime!!).time / 1000).toString()
 
-        val outingModel = OutingModel(Integer.parseInt(startTime), Integer.parseInt(endTime), outingPlace.value!!, outingReason.value!!, isDisease())
+        val outingModel = OutingApplyModel(Integer.parseInt(startTime), Integer.parseInt(endTime), outingPlace.value!!, outingReason.value!!, isDisease())
 
         outingUseCase.execute(outingModel.toDomain(), object: DisposableSingleObserver<Result<Unit>>(){
             override fun onSuccess(result: Result<Unit>) {
                 when(result){
-                    is Result.Success -> createOutingSuccess(result)
+                    is Result.Success -> createOutingSuccess()
                     is Result.Failure -> failOutingSuccess(result)
                 }
             }
@@ -65,9 +62,10 @@ class OutingApplyViewModel(private val outingUseCase: OutingUseCase) : BaseViewM
                 createToastEvent.value = "외출증 생성에 실패하였습니다. "
             }
         },AndroidSchedulers.mainThread())
+
     }
 
-    private fun createOutingSuccess(result: Result.Success<Unit>){
+    private fun createOutingSuccess(){
         createToastEvent.value = "외출증 생성에 성공하셨습니다."
         createOutingSuccessEvent.call()
     }
@@ -81,7 +79,7 @@ class OutingApplyViewModel(private val outingUseCase: OutingUseCase) : BaseViewM
             Error.Network ->
                 createToastEvent.value = "네트워크 오류 발생"
             Error.BadRequest ->
-                createToastEvent.value = "외출증 생성 실패"
+                createToastEvent.value = "외출 시간을 다시 확인해주세요"
             Error.UnAuthorized ->
                 createToastEvent.value = "외출증 생성 실패"
             Error.Forbidden ->
@@ -109,7 +107,6 @@ class OutingApplyViewModel(private val outingUseCase: OutingUseCase) : BaseViewM
 
     private fun checkFullText(): Boolean =
         !outingDate.value.isNullOrBlank() && !outingEndTime.value.isNullOrBlank() && !outingReason.value.isNullOrBlank() && !outingPlace.value.isNullOrBlank() && !outingStartTime.value.isNullOrBlank()
-
 
     fun clickDisease() = diseaseEvent.call()
     fun clickDate() = dateEvent.call()
