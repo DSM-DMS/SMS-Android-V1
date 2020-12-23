@@ -1,6 +1,6 @@
 package com.dms.data.dto.request
 
-import com.dms.domain.outing.request.OutingRequest
+import com.dms.domain.outing.request.OutingApplyRequest
 import com.google.gson.annotations.SerializedName
 
 data class OutingData(
@@ -16,5 +16,5 @@ data class OutingData(
     val outingSituation: String
 )
 
-fun OutingRequest.toData() : OutingData =
+fun OutingApplyRequest.toData() : OutingData =
     OutingData(startTime, endTime, outingPlace, outingReason, outingSituation)
