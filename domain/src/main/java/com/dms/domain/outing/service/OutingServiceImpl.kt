@@ -1,21 +1,22 @@
 package com.dms.domain.outing.service
 
-import android.util.Log
 import com.dms.domain.base.Result
 import com.dms.domain.base.toResult
 import com.dms.domain.errorhandler.ErrorHandler
 import com.dms.domain.outing.repository.OutingRepository
-import com.dms.domain.outing.request.OutingRequest
-import com.dms.domain.outing.response.OutingResponse
+import com.dms.domain.outing.request.OutingApplyRequest
+import com.dms.domain.outing.response.OutingListResponse
 import io.reactivex.Single
 
-class OutingServiceImpl(private val outingRepository: OutingRepository, private val errorHandler: ErrorHandler): OutingService {
-    override fun createOuting(outingRequest: OutingRequest): Single<Result<Unit>> {
-        Log.d("outingUUID", outingRepository.getOutingUUID("outingUUID"))
-
-        return outingRepository.createOuting(outingRequest).map {
+class OutingServiceImpl(
+    private val outingRepository: OutingRepository,
+    private val errorHandler: ErrorHandler
+) : OutingService {
+    override fun createOuting(outingApplyRequest: OutingApplyRequest): Single<Result<Unit>> =
+        outingRepository.createOuting(outingApplyRequest).map {
             outingRepository.saveOutingUUID(it.outingUUID, "outingUUID")
         }.toResult(errorHandler)
 
-    }
+    override fun getOutingList(studentUUID: String): Single<Result<OutingListResponse>> =
+        outingRepository.getOutingList(studentUUID).toResult(errorHandler)
 }
