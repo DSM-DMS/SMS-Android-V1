@@ -10,5 +10,5 @@ interface OutingService {
 
     fun getOutingList(studentUUID: String): Single<Result<OutingListResponse>>
 
-    fun getStudentUUID(content: String): String
+    fun getStudentUUID(): Single<Result<String>>
 }
