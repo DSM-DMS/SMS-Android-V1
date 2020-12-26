@@ -1,6 +1,5 @@
 package com.dms.sms.feature.outing.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
@@ -26,7 +25,7 @@ class OutingHistoryViewModel(private val outingListUseCase: GetOutingListUseCase
         getStudentUUIDUseCase.execute(Unit, object : DisposableSingleObserver<Result<String>>() {
             override fun onSuccess(result: Result<String>) {
                 when(result) {
-                    is Result.Success -> getList(result.value)
+                    is Result.Success -> getOutingHistoryList(result.value)
                     is Result.Failure -> createToastEvent.value = "실패"
 
                 }
@@ -38,7 +37,7 @@ class OutingHistoryViewModel(private val outingListUseCase: GetOutingListUseCase
         },AndroidSchedulers.mainThread())
     }
 
-    private fun getList(studentUUID: String) {
+    private fun getOutingHistoryList(studentUUID: String) {
         outingListUseCase.execute(studentUUID,object : DisposableSingleObserver<Result<OutingListResponse>>() {
                 override fun onSuccess(result: Result<OutingListResponse>) {
                     when (result) {
