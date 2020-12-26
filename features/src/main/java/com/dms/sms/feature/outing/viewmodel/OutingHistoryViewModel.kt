@@ -19,16 +19,27 @@ class OutingHistoryViewModel(private val outingListUseCase: GetOutingListUseCase
     }
 
     init {
-//        getStudentUUID()
-        getList()
+        getStudentUUID()
     }
 
     private fun getStudentUUID() {
-        Log.d("outingUUIDTest",getStudentUUIDUseCase.getUUID("sms"))
+        getStudentUUIDUseCase.execute(Unit, object : DisposableSingleObserver<Result<String>>() {
+            override fun onSuccess(result: Result<String>) {
+                when(result) {
+                    is Result.Success -> getList(result.value)
+                    is Result.Failure -> createToastEvent.value = "실패"
+
+                }
+            }
+
+            override fun onError(e: Throwable) {
+                TODO("Not yet implemented")
+            }
+        },AndroidSchedulers.mainThread())
     }
 
-    private fun getList() {
-        outingListUseCase.execute("student-076610032850",object : DisposableSingleObserver<Result<OutingListResponse>>() {
+    private fun getList(studentUUID: String) {
+        outingListUseCase.execute(studentUUID,object : DisposableSingleObserver<Result<OutingListResponse>>() {
                 override fun onSuccess(result: Result<OutingListResponse>) {
                     when (result) {
                         is Result.Success -> getOutingList(result.value.outing.map { it.toModel() })

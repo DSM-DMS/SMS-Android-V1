@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="outingListItems"
             type="com.dms.sms.feature.outing.model.OutingModel" />
@@ -52,9 +53,11 @@
 
                 <TextView
                     android:id="@+id/outing_history_reason_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@{@string/outing_reason_tv(outingListItems.reason)}"
                     android:textColor="@color/colorDarkGray"
                     android:textSize="14sp"
@@ -64,9 +67,11 @@
 
                 <TextView
                     android:id="@+id/outing_history_place_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@{@string/outing_place_tv(outingListItems.place)}"
                     android:textColor="@color/colorDarkGray"
                     android:textSize="14sp"
