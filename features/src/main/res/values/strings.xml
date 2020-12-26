@@ -90,4 +90,6 @@
     <string name="id_et">아이디를 입력해주세요</string>
     <string name="login_err_tv">아이디 또는 비밀번호가 일치하지 않습니다</string>
     <string name="logo_tv">SMS</string>
+    <string name="outing_reason_tv">사유 : %s</string>
+    <string name="outing_place_tv">장소 : %s</string>
 </resources>

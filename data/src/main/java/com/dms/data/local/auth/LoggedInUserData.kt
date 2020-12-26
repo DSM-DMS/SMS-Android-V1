@@ -1,4 +1,4 @@
-package com.dms.data.local.db
+package com.dms.data.local.auth
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
