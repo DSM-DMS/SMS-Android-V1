@@ -5,6 +5,7 @@ import com.dms.data.dto.request.toData
 import com.dms.data.dto.response.toDomainData
 import com.dms.domain.outing.repository.OutingRepository
 import com.dms.domain.outing.request.OutingApplyRequest
+import com.dms.domain.outing.response.DetailOutingResponse
 import com.dms.domain.outing.response.OutingListResponse
 import com.dms.domain.outing.response.OutingResponse
 import io.reactivex.Single
@@ -17,6 +18,11 @@ class OutingRepositoryImpl(private val outingDataSource: OutingDataSource) : Out
 
     override fun getOutingList(studentUUID: String): Single<OutingListResponse> =
         outingDataSource.getOutingList(studentUUID).map {
+            it.toDomainData()
+        }
+
+    override fun getDetailOuting(outingUUID: String): Single<DetailOutingResponse> =
+        outingDataSource.getDetailOuting(outingUUID).map {
             it.toDomainData()
         }
 
