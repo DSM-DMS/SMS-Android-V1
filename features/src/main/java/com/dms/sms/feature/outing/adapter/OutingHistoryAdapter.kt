@@ -2,7 +2,6 @@ package com.dms.sms.feature.outing.adapter
 
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -36,11 +35,8 @@ class OutingHistoryAdapter: RecyclerView.Adapter<OutingHistoryAdapter.OutingHist
     inner class OutingHistoryViewHolder(private val binding: ItemOutingHistoryBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(outingModel: OutingModel) {
-            val dv = (outingModel.startTime.toLong() * 1000)
-            val df =  Date(dv)
-            val ss = SimpleDateFormat("yyyy-MM-dd",Locale.KOREA).format(df)
-
-            binding.outingHistoryDateTv.text = ss
+            binding.outingHistoryDateTv.text = setDate(outingModel.startTime.toLong() * 1000).substring(0,11)
+            binding.outingHistoryTimeTv.text = "${setDate(outingModel.startTime.toLong() * 1000).substring(11,16)} ~ ${setDate(outingModel.endTime.toLong() * 1000).substring(11,16)}"
 
             when(outingModel.outingStatus){
                 "0","1","2" -> {
@@ -54,7 +50,9 @@ class OutingHistoryAdapter: RecyclerView.Adapter<OutingHistoryAdapter.OutingHist
                 }
                 "5" -> {
                     setOutingType("승인완료","#0DD214")
-                    binding.goOutingHistoryOnlineCardTv.visibility = View.VISIBLE
+                }
+                "-1","-2" -> {
+                    setOutingType("승인 거부","#F30404")
                 }
             }
 
@@ -65,6 +63,14 @@ class OutingHistoryAdapter: RecyclerView.Adapter<OutingHistoryAdapter.OutingHist
             binding.outingHistoryStateTv.text = outingHistoryState
             binding.outingApplyView.setBackgroundColor(Color.parseColor(color))
             binding.outingHistoryStateTv.setTextColor(Color.parseColor(color))
+        }
+
+        private fun setDate(timeUnix: Long): String{
+            val date = Date(timeUnix)
+            val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss",Locale.KOREA)
+            simpleDateFormat.timeZone = TimeZone.getTimeZone("UTC")
+
+            return simpleDateFormat.format(date)
         }
     }
 
