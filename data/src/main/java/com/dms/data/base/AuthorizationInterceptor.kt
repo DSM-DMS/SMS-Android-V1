@@ -8,7 +8,8 @@ class AuthorizationInterceptor(private val preference : SharedPreferencesStorage
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
             .newBuilder()
-            .addHeader("Authorization",preference.getInfo("sms"))
+            .addHeader("Authorization",preference.getToken())
+            .addHeader("Request-Security",RequestEncoder.getRequestSecurityKey())
             .build()
 
         return chain.proceed(request)
