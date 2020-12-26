@@ -45,10 +45,10 @@
     <string name="access_outing_card_tv">승인완료 외출증</string>
     <string name="access_date_tv">2020.07.21</string>
     <string name="access_date_string_tv">외출날짜</string>
-    <string name="access_card_name_tv">"<b>"이름"</b>"  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
-    <string name="access_card_number_tv">"<b>"학번"</b>"  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
-    <string name="access_card_place_tv">"<b>"장소"</b>"  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
-    <string name="access_card_reason_tv">"<b>"사유"</b>"  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
+    <string name="access_card_name_tv"><b>이름</b>  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
+    <string name="access_card_number_tv"><b>학번</b>  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
+    <string name="access_card_place_tv"><b>장소</b>  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
+    <string name="access_card_reason_tv"><b>사유</b>  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
 
     //change password
     <string name="new_password_confirm_et">변경할 비밀번호를 확인해주세요</string>
