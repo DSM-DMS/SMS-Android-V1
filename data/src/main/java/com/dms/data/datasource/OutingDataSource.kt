@@ -3,6 +3,7 @@ package com.dms.data.datasource
 import com.dms.data.dto.request.OutingData
 import com.dms.data.dto.response.OutingListResponseData
 import com.dms.data.dto.response.OutingResponseData
+import com.dms.data.local.auth.LoggedInUserData
 import io.reactivex.Single
 
 interface OutingDataSource {
@@ -14,5 +15,5 @@ interface OutingDataSource {
 
     fun getOutingUUID(content: String): String
 
-    fun getStudentUUID(content: String): String
+    fun getStudentUUID(): Single<String>
 }
