@@ -14,6 +14,4 @@ class AuthorizationInterceptor(private val preference : SharedPreferencesStorage
 
         return chain.proceed(request)
     }
-
-
 }

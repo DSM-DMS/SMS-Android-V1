@@ -1,20 +1,29 @@
 package com.dms.sms.feature.outing
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dms.sms.R
+import com.dms.sms.base.BaseFragment
+import com.dms.sms.databinding.FragmentOutingHistoryBinding
+import com.dms.sms.feature.outing.adapter.OutingHistoryAdapter
+import com.dms.sms.feature.outing.viewmodel.OutingHistoryViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class OutingHistoryFragment : Fragment() {
+class OutingHistoryFragment : BaseFragment<FragmentOutingHistoryBinding>() {
+    override val viewModel:OutingHistoryViewModel by viewModel()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_outing_history, container, false)
+    override val layoutId: Int
+        get() = R.layout.fragment_outing_history
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.outingHistoryRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.outingHistoryRecyclerView.adapter = OutingHistoryAdapter()
+    }
+
+    override fun observeEvents() {
     }
 
 }

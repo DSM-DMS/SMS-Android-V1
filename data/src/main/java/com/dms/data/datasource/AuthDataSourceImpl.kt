@@ -1,11 +1,11 @@
 package com.dms.data.datasource
 
-import com.dms.data.remote.AuthApi
 import com.dms.data.dto.request.LoginRequestData
 import com.dms.data.dto.response.LoginResponseData
-import com.dms.data.local.db.LoggedInUserData
-import com.dms.data.local.db.LoggedInUserDatabase
+import com.dms.data.local.auth.LoggedInUserData
+import com.dms.data.local.auth.LoggedInUserDatabase
 import com.dms.data.local.sharedpreference.SharedPreferencesStorage
+import com.dms.data.remote.AuthApi
 import io.reactivex.Completable
 import io.reactivex.Single
 
@@ -16,7 +16,7 @@ class AuthDataSourceImpl(private val authApi: AuthApi, private val autoLoginUser
         authApi.login(loginData)
 
     override fun saveLoginData(loggedInUserData: LoggedInUserData): Completable {
-        sharedPreferencesStorage.saveToken(loggedInUserData.token)
+        sharedPreferencesStorage.saveInfo(loggedInUserData.token,"sms")
         return autoLoginUserDatabase.loggedInUserDao().insert(loggedInUserData)
     }
 
@@ -27,7 +27,7 @@ class AuthDataSourceImpl(private val authApi: AuthApi, private val autoLoginUser
         }
 
     override fun deleteLoginData(): Completable {
-        sharedPreferencesStorage.clearToken()
+        sharedPreferencesStorage.clearToken("sms")
         return autoLoginUserDatabase.loggedInUserDao().delete()
     }
 
