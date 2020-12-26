@@ -1,23 +1,30 @@
 package com.dms.sms.feature.outing.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
 import com.dms.domain.outing.response.OutingListResponse
 import com.dms.domain.outing.usecase.GetOutingListUseCase
+import com.dms.domain.outing.usecase.GetStudentUUIDUseCase
 import com.dms.sms.base.BaseViewModel
 import com.dms.sms.feature.outing.model.OutingModel
 import com.dms.sms.feature.outing.model.toModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 
-class OutingHistoryViewModel(private val outingListUseCase: GetOutingListUseCase) :BaseViewModel() {
+class OutingHistoryViewModel(private val outingListUseCase: GetOutingListUseCase, private val getStudentUUIDUseCase: GetStudentUUIDUseCase) :BaseViewModel() {
     val outingHistoryList = MutableLiveData<ArrayList<OutingModel>>().apply{
         value = ArrayList(emptyList())
     }
 
     init {
+//        getStudentUUID()
         getList()
+    }
+
+    private fun getStudentUUID() {
+        Log.d("outingUUIDTest",getStudentUUIDUseCase.getUUID("sms"))
     }
 
     private fun getList() {

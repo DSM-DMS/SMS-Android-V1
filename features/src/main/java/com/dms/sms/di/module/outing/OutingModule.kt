@@ -7,6 +7,7 @@ import com.dms.domain.outing.repository.OutingRepository
 import com.dms.domain.outing.service.OutingService
 import com.dms.domain.outing.service.OutingServiceImpl
 import com.dms.domain.outing.usecase.GetOutingListUseCase
+import com.dms.domain.outing.usecase.GetStudentUUIDUseCase
 import com.dms.domain.outing.usecase.OutingUseCase
 import com.dms.sms.feature.outing.viewmodel.OutingApplyViewModel
 import com.dms.sms.feature.outing.viewmodel.OutingHistoryViewModel
@@ -18,9 +19,10 @@ import org.koin.dsl.module
 val outingModule: Module = module {
     viewModel { OutingViewModel() }
     viewModel { OutingApplyViewModel(get()) }
-    viewModel { OutingHistoryViewModel(get()) }
+    viewModel { OutingHistoryViewModel(get(), get()) }
 
     factory { OutingUseCase(get(), get()) }
+    factory { GetStudentUUIDUseCase(get()) }
     factory { GetOutingListUseCase(get(), get()) }
     factory<OutingService> { OutingServiceImpl(get(), get()) }
     factory<OutingRepository> { OutingRepositoryImpl(get()) }

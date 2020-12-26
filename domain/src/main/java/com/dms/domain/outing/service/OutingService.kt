@@ -9,4 +9,6 @@ interface OutingService {
     fun createOuting(outingApplyRequest: OutingApplyRequest): Single<Result<Unit>>
 
     fun getOutingList(studentUUID: String): Single<Result<OutingListResponse>>
+
+    fun getStudentUUID(content: String): String
 }
