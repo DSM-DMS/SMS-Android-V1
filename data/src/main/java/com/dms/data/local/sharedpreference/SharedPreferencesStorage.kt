@@ -8,7 +8,7 @@ import android.util.Log
 class SharedPreferencesStorage(private val context: Context) {
     private var pref: SharedPreferences? = null
 
-    fun getInfo(content: String): String {
+    fun getInfo(content: String?): String {
         if (pref == null) pref = context.getSharedPreferences(content, MODE_PRIVATE)
         return if (content == "sms") {
             "Bearer " + pref?.getString(content,"")
@@ -26,8 +26,6 @@ class SharedPreferencesStorage(private val context: Context) {
 
     fun clearToken(content: String) {
         if (pref == null) pref = context.getSharedPreferences(content, MODE_PRIVATE)
-        val editor: SharedPreferences.Editor = pref!!.edit()
-        editor.clear()
-        editor.apply()
+        pref!!.edit().remove(content).apply()
     }
 }

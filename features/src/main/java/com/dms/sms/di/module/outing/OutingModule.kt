@@ -6,9 +6,8 @@ import com.dms.data.repository.OutingRepositoryImpl
 import com.dms.domain.outing.repository.OutingRepository
 import com.dms.domain.outing.service.OutingService
 import com.dms.domain.outing.service.OutingServiceImpl
-import com.dms.domain.outing.usecase.GetOutingListUseCase
-import com.dms.domain.outing.usecase.GetStudentUUIDUseCase
-import com.dms.domain.outing.usecase.OutingUseCase
+import com.dms.domain.outing.usecase.*
+import com.dms.sms.feature.outing.viewmodel.OutingAccessViewModel
 import com.dms.sms.feature.outing.viewmodel.OutingApplyViewModel
 import com.dms.sms.feature.outing.viewmodel.OutingHistoryViewModel
 import com.dms.sms.feature.outing.viewmodel.OutingViewModel
@@ -20,11 +19,14 @@ val outingModule: Module = module {
     viewModel { OutingViewModel() }
     viewModel { OutingApplyViewModel(get()) }
     viewModel { OutingHistoryViewModel(get(), get()) }
+    viewModel { OutingAccessViewModel(get(), get()) }
 
+    factory { GetOutingUUIDUseCase(get()) }
+    factory { GetDetailOutingUseCase(get(), get()) }
     factory { OutingUseCase(get(), get()) }
-    factory { GetStudentUUIDUseCase(get(),get()) }
+    factory { GetStudentUUIDUseCase(get(), get()) }
     factory { GetOutingListUseCase(get(), get()) }
     factory<OutingService> { OutingServiceImpl(get(), get()) }
     factory<OutingRepository> { OutingRepositoryImpl(get()) }
-    factory<OutingDataSource> { OutingDataSourceImpl(get(), get(),get()) }
+    factory<OutingDataSource> { OutingDataSourceImpl(get(), get(), get()) }
 }
