@@ -22,9 +22,9 @@
             tools:layout="@layout/fragment_my_page" />
     <fragment
             android:id="@+id/notice_fragment"
-            android:name="com.dms.sms.feature.notice.NoticeFragment"
+            android:name="com.dms.sms.feature.announcement.ui.AnnouncementsFragment"
             android:label="NoticeFragment"
-            tools:layout="@layout/fragment_notice" />
+            tools:layout="@layout/fragment_announcements" />
     <fragment
             android:id="@+id/time_table_fragment"
             android:name="com.dms.sms.feature.schedule.TimeTableFragment"

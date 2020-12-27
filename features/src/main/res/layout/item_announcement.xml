@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="vm"
+            type="com.dms.sms.feature.announcement.viewmodel.AnnouncementsViewModel" />
+
+        <variable
+            name="model"
+            type="com.dms.sms.feature.announcement.model.SimpleAnnouncementModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->vm.onClickAnnouncement(model.announcementUUID)}"
+        >
+
+        <TextView
+            android:id="@+id/notice_item_number_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="13dp"
+            android:text="@{model.number}"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkGray"
+            app:layout_constraintBottom_toTopOf="@+id/notice_item_line"
+            app:layout_constraintEnd_toStartOf="@+id/notice_item_title_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/notice_item_title_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@{model.title}"
+            android:textColor="@color/colorDarkGray"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/notice_item_line"
+            app:layout_constraintEnd_toStartOf="@+id/notice_item_date_tv"
+            app:layout_constraintStart_toEndOf="@+id/notice_item_number_tv"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/notice_item_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="57dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="13dp"
+            android:text="@{model.date}"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkGray"
+            app:layout_constraintBottom_toTopOf="@+id/notice_item_line"
+            app:layout_constraintEnd_toStartOf="@+id/notice_item_view_tv"
+            app:layout_constraintStart_toEndOf="@+id/notice_item_title_tv"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/notice_item_view_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="13dp"
+            android:text="@{model.views}"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkGray"
+            app:layout_constraintBottom_toTopOf="@+id/notice_item_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/notice_item_date_tv"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/notice_item_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorLightGray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notice_item_title_tv" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

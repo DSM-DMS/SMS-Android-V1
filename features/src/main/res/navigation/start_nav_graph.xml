@@ -75,9 +75,9 @@
     </fragment>
     <fragment
             android:id="@+id/noticeDetailFragment"
-            android:name="com.dms.sms.feature.notice.NoticeDetailFragment"
+            android:name="com.dms.sms.feature.announcement.ui.AnnouncementDetailFragment"
             android:label="fragment_notice_detail"
-            tools:layout="@layout/fragment_notice_detail" />
+            tools:layout="@layout/fragment_annoucement_detail" />
     <fragment
             android:id="@+id/introducingDevelopersFragment"
             android:name="com.dms.sms.feature.mypage.IntroducingDevelopersFragment"
