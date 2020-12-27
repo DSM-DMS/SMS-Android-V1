@@ -8,7 +8,9 @@ data class SimpleAnnouncementResponseData(
     val title: String,
     val number: Int,
     val date: Long,
-    val views: Int, val writer_name: String, val is_checked: Int,
+    val views: Int,
+    val writer_name: String,
+    val is_checked: Int,
 )
 
 fun SimpleAnnouncementResponseData.toEntity(): SimpleAnnouncement =

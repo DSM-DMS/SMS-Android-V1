@@ -3,7 +3,9 @@ package com.dms.data.dto.response
 import com.dms.domain.announcement.entity.Announcement
 
 data class AnnouncementResponseData(
-    val date: Long, val title: String, val content: String,
+    val date: Long,
+    val title: String,
+    val content: String,
     val writer_name: String,
     val next_title: String,
     val next_announcement_uuid: String,
@@ -13,7 +15,7 @@ data class AnnouncementResponseData(
 
 fun AnnouncementResponseData.toEntity(): Announcement =
     Announcement(
-        (this.date/1000).toInt(),
+        (this.date / 1000).toInt(),
         this.title,
         this.content,
         this.writer_name,
