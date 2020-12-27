@@ -1,0 +1,13 @@
+package com.dms.data.datasource
+
+import com.dms.data.dto.response.AnnouncementResponseData
+import com.dms.data.dto.response.AnnouncementsResponseData
+import io.reactivex.Single
+
+
+interface AnnouncementDataSource {
+    fun getAnnouncements(announcementPage : Int) : Single<AnnouncementsResponseData>
+
+    fun getAnnouncement(announcementUUID : String) : Single<AnnouncementResponseData>
+
+}
