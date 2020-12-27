@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.mypage.LogOutDialogFragment"
+    tools:context=".feature.mypage.LogOutDialogFragment"
     android:background="@drawable/radius_white_view"
     >
 

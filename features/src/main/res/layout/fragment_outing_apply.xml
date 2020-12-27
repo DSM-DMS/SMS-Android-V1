@@ -1,269 +1,363 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.outing.OutingApplyFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.dms.sms.feature.outing.viewmodel.OutingApplyViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorGray"
-        android:elevation="4dp"
-        android:minHeight="?attr/actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:context=".feature.outing.OutingApplyFragment">
 
-        <ImageButton
-            android:id="@+id/outing_apply_back_btn"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/ic_back"
-            android:padding="14dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/outing_apply_tv"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/outing_apply_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/outing_apply_tv"
-            android:textColor="@color/colorBlack"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/colorGray"
+            android:elevation="4dp"
+            android:minHeight="?attr/actionBarSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/outing_apply_gl_bottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
-
-        <TextView
-            android:id="@+id/date_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:text="@string/date_tv"
-            android:textColor="@color/colorPurple"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/outing_apply_date_edit_layout"
-            app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outing_apply_date_edit_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint=" "
-            app:errorEnabled="true"
-            app:layout_constraintBottom_toTopOf="@id/reason_tv"
-            app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right"
-            app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
-            app:layout_constraintTop_toBottomOf="@+id/date_tv">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/outing_apply_date_edit"
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/outing_apply_back_btn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:cursorVisible="false"
-                android:hint="0000년 00월 00일"
-                android:inputType="text"
-                android:paddingStart="8dp"
-                android:paddingEnd="4dp"
-                android:textColor="@color/colorPurple"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginStart="16dp"
+                android:background="@drawable/ic_back"
+                android:padding="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/outing_apply_tv"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/reason_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="사유"
-            android:textColor="@color/colorPurple"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/outing_apply_reason_edit_layout"
-            app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
-            app:layout_constraintTop_toBottomOf="@+id/outing_apply_date_edit_layout" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outing_apply_reason_edit_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint=" "
-            app:errorEnabled="true"
-            app:layout_constraintBottom_toTopOf="@id/time_tv"
-            app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right"
-            app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
-            app:layout_constraintTop_toBottomOf="@+id/reason_tv">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/outing_apply_reason_edit"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/outing_apply_tv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:cursorVisible="false"
-                android:hint="외출 사유를 입력해주세요"
-                android:inputType="text"
-                android:paddingStart="8dp"
-                android:paddingEnd="4dp"
-                android:textColor="@color/colorPurple"
-                android:textSize="12sp"
+                android:layout_gravity="center"
+                android:text="@string/outing_apply_tv"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/outing_apply_gl_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <TextView
+                android:id="@+id/date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:text="@string/date_tv"
+                android:textColor="@color/colorPurple"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/outing_apply_date_edit_layout"
+                app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/outing_apply_date_edit_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint=" "
+                app:errorEnabled="true"
+                app:layout_constraintBottom_toTopOf="@id/reason_tv"
+                app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right"
+                app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
+                app:layout_constraintTop_toBottomOf="@+id/date_tv">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/outing_apply_date_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="0000년 00월 00일"
+                    android:inputType="text"
+                    android:onClick="@{()->vm.clickDate()}"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="4dp"
+                    android:text="@={vm.outingDate}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/reason_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사유"
+                android:textColor="@color/colorPurple"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/outing_apply_reason_edit_layout"
+                app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
+                app:layout_constraintTop_toBottomOf="@+id/outing_apply_date_edit_layout" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/outing_apply_reason_edit_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint=" "
+                app:errorEnabled="true"
+                app:layout_constraintBottom_toTopOf="@id/time_tv"
+                app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right"
+                app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
+                app:layout_constraintTop_toBottomOf="@+id/reason_tv">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/outing_apply_reason_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:hint="외출 사유를 입력해주세요"
+                    android:inputType="text"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="4dp"
+                    android:text="@={vm.outingReason}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/outing_is_disease_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="질병 외출로 신청하시겠습니까 ? "
+                android:layout_marginEnd="8dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="@{vm.outingWithDisease == true ? true : false }"
+                android:focusable="true"
+                android:onClick="@{()->vm.clickDisease()}"
+                android:padding="4dp"
+                android:text="@{vm.outingWithDisease == true ? @string/no_disease_apply : @string/disease_apply}"
                 android:textColor="@color/colorPurple"
-                android:textSize="12sp" />
+                android:textSize="13sp"
+                app:layout_constraintBottom_toTopOf="@+id/time_tv"
+                app:layout_constraintEnd_toStartOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/outing_apply_reason_edit_layout" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/time_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/time_tv"
-            android:textColor="@color/colorPurple"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/outing_apply_time_edit_layout"
-            app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
-            app:layout_constraintTop_toBottomOf="@+id/outing_apply_reason_edit_layout" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outing_apply_time_edit_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint=" "
-            app:errorEnabled="true"
-            app:layout_constraintBottom_toTopOf="@id/place_tv"
-            app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right"
-            app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
-            app:layout_constraintTop_toBottomOf="@+id/time_tv">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/outing_apply_time_edit"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:cursorVisible="false"
-                android:hint="00 : 00 ~ 00 : 00"
-                android:inputType="text"
-                android:paddingStart="8dp"
-                android:paddingEnd="4dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> vm.clickDiseaseCancel()}"
+                android:text="@string/cancel_tv"
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp"
+                android:visibility="@{vm.outingWithDisease == true ? View.GONE : View.VISIBLE }"
+                app:layout_constraintBottom_toTopOf="@+id/time_tv"
+                app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right"
+                app:layout_constraintTop_toBottomOf="@+id/outing_apply_reason_edit_layout" />
+
+            <TextView
+                android:id="@+id/time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_tv"
                 android:textColor="@color/colorPurple"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/outing_apply_start_time_edit_layout"
+                app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
+                app:layout_constraintTop_toBottomOf="@+id/outing_apply_reason_edit_layout" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/outing_apply_start_time_edit_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:hint=" "
+                app:errorEnabled="true"
+                app:layout_constraintBottom_toTopOf="@id/place_tv"
+                app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_middle"
+                app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
+                app:layout_constraintTop_toBottomOf="@+id/time_tv">
 
-        <TextView
-            android:id="@+id/place_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/place_tv"
-            android:textColor="@color/colorPurple"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/outing_apply_place_edit_layout"
-            app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
-            app:layout_constraintTop_toBottomOf="@+id/outing_apply_time_edit_layout" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/outing_apply_start_time_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="출발 시간"
+                    android:onClick="@{()->vm.clickStartTime()}"
+                    android:text="@={vm.outingStartTime}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outing_apply_place_edit_layout"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/outing_apply_end_time_edit_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:hint=" "
+                app:errorEnabled="true"
+                app:layout_constraintBottom_toTopOf="@id/place_tv"
+                app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right"
+                app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_middle"
+                app:layout_constraintTop_toBottomOf="@+id/time_tv">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/outing_apply_end_time_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="도착 시간  "
+                    android:onClick="@{()->vm.clickEndTime()}"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="4dp"
+                    android:text="@={vm.outingEndTime}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="~"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/place_tv"
+                app:layout_constraintEnd_toStartOf="@+id/outing_apply_end_time_edit_layout"
+                app:layout_constraintStart_toEndOf="@+id/outing_apply_start_time_edit_layout"
+                app:layout_constraintTop_toBottomOf="@+id/time_tv" />
+
+            <TextView
+                android:id="@+id/place_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/place_tv"
+                android:textColor="@color/colorPurple"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/outing_apply_place_edit_layout"
+                app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
+                app:layout_constraintTop_toBottomOf="@+id/outing_apply_start_time_edit_layout" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/outing_apply_place_edit_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint=" "
+                app:errorEnabled="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right"
+                app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
+                app:layout_constraintTop_toBottomOf="@+id/place_tv">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/outing_apply_place_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:hint="외출 장소를 입력해주세요"
+                    android:inputType="text"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="4dp"
+                    android:text="@={vm.outingPlace}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/outing_apply_gl_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.1" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/outing_apply_gl_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.9" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/outing_apply_gl_middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/outing_apply_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint=" "
-            app:errorEnabled="true"
+            android:onClick="@{()->vm.applyOuting()}"
+            android:text="신청하기"
+            android:background="@{!vm.btnClickable ? @drawable/radius_gray_view : @drawable/radius_purple_view}"
+            android:clickable="@{vm.btnClickable}"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right"
-            app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left"
-            app:layout_constraintTop_toBottomOf="@+id/place_tv">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/outing_apply_place_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:cursorVisible="false"
-                android:hint="외출 장소를 입력해주세요"
-                android:inputType="text"
-                android:paddingStart="8dp"
-                android:paddingEnd="4dp"
-                android:textColor="@color/colorPurple"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right2"
+            app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left2"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/outing_apply_gl_left"
+            android:id="@+id/outing_apply_gl_left2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.1" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/outing_apply_gl_right"
+            android:id="@+id/outing_apply_gl_right2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.9" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/outing_apply_gl_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.82" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/outing_apply_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/radius_purple_view"
-        android:text="신청하기"
-        android:textColor="@color/colorWhite"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right2"
-        app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left2"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/outing_apply_gl_left2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/outing_apply_gl_right2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/outing_apply_gl_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.82" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
