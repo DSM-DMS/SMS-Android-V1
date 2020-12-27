@@ -6,7 +6,7 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.*
 
-interface AuthApi : Api {
+interface AuthApi  {
     @POST("v1/login/student")
     fun login(@Body loginRequestData : LoginRequestData): Single<LoginResponseData>
 
