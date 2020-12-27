@@ -1,6 +1,7 @@
 package com.dms.data.remote
 
 import com.dms.data.dto.request.OutingData
+import com.dms.data.dto.response.DetailOutingResponseData
 import com.dms.data.dto.response.OutingListResponseData
 import com.dms.data.dto.response.OutingResponseData
 import io.reactivex.Single
@@ -15,4 +16,7 @@ interface OutingApi {
 
     @GET("/v1/students/uuid/{student_uuid}/outings")
     fun getOutingList(@Path("student_uuid") studentUUID: String): Single<OutingListResponseData>
+
+    @GET("/v1/outings/uuid/{outing_uuid}/card")
+    fun getDetailOuting(@Path("outing_uuid") outingUUID: String): Single<DetailOutingResponseData>
 }
