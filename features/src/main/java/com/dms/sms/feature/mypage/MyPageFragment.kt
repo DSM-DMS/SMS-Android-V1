@@ -2,10 +2,9 @@ package com.dms.sms.feature.mypage
 
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
-import com.dms.sms.base.BaseViewModel
 import com.dms.sms.databinding.FragmentMyPageBinding
 import com.dms.sms.feature.mypage.viewmodel.MyPageViewModel
-import com.dms.sms.feature.outing.viewmodel.OutingViewModel
+import com.dms.sms.navigateFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -17,7 +16,18 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>() {
     override val viewModel: MyPageViewModel by viewModel()
 
     override fun observeEvents() {
-
+        with(viewModel){
+            changePwEvent.observe(this@MyPageFragment, {
+                requireActivity().navigateFragment(R.id.fragment_container,R.id.action_mainFragment_to_changePasswordFragment)
+            })
+            logoutEvent.observe(this@MyPageFragment,{
+                val dialog = LogoutDialogFragment()
+                dialog.show(requireActivity().supportFragmentManager, "LogOutDialogFragment")
+            })
+            developerEvent.observe(this@MyPageFragment,{
+                requireActivity().navigateFragment(R.id.fragment_container,R.id.action_mainFragment_to_introducingDevelopersFragment)
+            })
+        }
     }
 
 }
