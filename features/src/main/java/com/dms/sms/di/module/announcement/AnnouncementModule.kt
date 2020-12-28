@@ -9,6 +9,7 @@ import com.dms.domain.announcement.service.AnnouncementService
 import com.dms.domain.announcement.service.AnnouncementServiceImpl
 import com.dms.domain.announcement.usecase.GetAnnouncementUseCase
 import com.dms.domain.announcement.usecase.GetAnnouncementsUseCase
+import com.dms.sms.feature.announcement.viewmodel.AnnouncementDetailViewModel
 import com.dms.sms.feature.announcement.viewmodel.AnnouncementsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
@@ -24,6 +25,9 @@ val announcementModule: Module = module {
 
 
     viewModel { AnnouncementsViewModel(get()) }
+
+    viewModel { AnnouncementDetailViewModel(get()) }
+
 
     factory { GetAnnouncementsUseCase(get(), get()) }
 
