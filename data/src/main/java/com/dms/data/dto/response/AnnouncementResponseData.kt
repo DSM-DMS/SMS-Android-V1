@@ -1,5 +1,6 @@
 package com.dms.data.dto.response
 
+import com.dms.data.util.convertTimeToDate
 import com.dms.domain.announcement.entity.Announcement
 
 data class AnnouncementResponseData(
@@ -15,7 +16,7 @@ data class AnnouncementResponseData(
 
 fun AnnouncementResponseData.toEntity(): Announcement =
     Announcement(
-        (this.date / 1000).toInt(),
+        this.date.convertTimeToDate(),
         this.title,
         this.content,
         this.writer_name,
