@@ -1,24 +1,19 @@
 package com.dms.sms.feature.announcement.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.dms.domain.announcement.entity.Announcement
+import androidx.lifecycle.*
 import com.dms.domain.announcement.entity.Announcements
 import com.dms.domain.announcement.usecase.GetAnnouncementsUseCase
-import com.dms.domain.base.Error
 import com.dms.domain.base.Result
 import com.dms.sms.base.BaseViewModel
+import com.dms.sms.base.SingleLiveEvent
 import com.dms.sms.feature.announcement.model.SimpleAnnouncementModel
 import com.dms.sms.feature.announcement.model.toModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 
-class AnnouncementsViewModel(private val getAnnouncementsUseCase: GetAnnouncementsUseCase) : BaseViewModel() {
+class AnnouncementsViewModel(private val getAnnouncementsUseCase: GetAnnouncementsUseCase) : BaseViewModel(), LifecycleObserver {
 
-    init {
-        onCreate()
-    }
+
 
     private val _announcements = MutableLiveData<List<SimpleAnnouncementModel>>()
     val announcements : LiveData<List<SimpleAnnouncementModel>> get() = _announcements
@@ -26,14 +21,16 @@ class AnnouncementsViewModel(private val getAnnouncementsUseCase: GetAnnouncemen
     private val _announcementsPages = MutableLiveData<Int>()
     val announcementsPages : LiveData<Int> get() = _announcementsPages
 
-    private val _announcementEvent = MutableLiveData<String>()
-    val announcementEvent : LiveData<String> get() = _announcementEvent
+    val announcementEvent = SingleLiveEvent<String>()
 
+
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
     private fun onCreate(){
         getAnnouncements(0)
     }
     fun onClickAnnouncement(annoucementUUID: String){
-        _announcementEvent.value = annoucementUUID
+        announcementEvent.value = annoucementUUID
     }
 
 
