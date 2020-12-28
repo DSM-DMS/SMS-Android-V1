@@ -1,6 +1,6 @@
 package com.dms.data.dto.response
 
-import com.dms.data.util.convertTime
+import com.dms.data.util.convertTimeToDay
 import com.dms.domain.announcement.entity.SimpleAnnouncement
 
 data class SimpleAnnouncementResponseData(
@@ -18,7 +18,7 @@ fun SimpleAnnouncementResponseData.toEntity(): SimpleAnnouncement =
         this.announcement_uuid,
         this.title,
         this.number,
-        (this.date).convertTime(),
+        (this.date).convertTimeToDay(),
         this.views,
         this.writer_name,
         this.is_checked,

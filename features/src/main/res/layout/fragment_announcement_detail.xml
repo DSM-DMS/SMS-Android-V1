@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.dms.sms.feature.announcement.viewmodel.AnnouncementDetailViewModel"/>
+
+        <variable
+            name="model"
+            type="com.dms.sms.feature.announcement.model.AnnouncementModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".feature.announcement.ui.AnnouncementDetailFragment">
+
+
+        <ImageButton
+            android:id="@+id/announcement_detail_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="27dp"
+            android:background="@drawable/ic_back"
+            android:padding="14dp"
+            android:onClick="@{()->vm.onBackButtonClicked()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/announcement_detail_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            app:layout_constraintBottom_toTopOf="@+id/announcement_detail_rv"
+            app:layout_constraintEnd_toStartOf="@+id/announcement_detail_gl_right"
+            app:layout_constraintStart_toStartOf="@+id/announcement_detail_gl_left"
+            app:layout_constraintTop_toBottomOf="@+id/announcement_detail_back_btn">
+
+            <View
+                android:id="@+id/announcement_detail_top_line"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/colorBlack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/announcement_detail_bottom_line"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorLightGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/announcement_detail_date_tv" />
+
+            <TextView
+                android:id="@+id/announcement_detail_title_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/colorBlack"
+                android:text="@{vm.announcement.title}"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/announcement_detail_top_line" />
+
+
+            <TextView
+                android:id="@+id/announcement_detail_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{vm.announcement.date}"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintBottom_toTopOf="@+id/announcement_detail_bottom_line"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/announcement_detail_title_tv" />
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/announcement_detail_gl_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/announcement_detail_gl_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/announcement_detail_rv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            app:announcement="@{vm.announcementContent}"
+            app:layout_constraintBottom_toTopOf="@+id/announcement_detail_gl_bottom"
+            app:layout_constraintEnd_toStartOf="@+id/announcement_detail_gl_right"
+            app:layout_constraintStart_toStartOf="@+id/announcement_detail_gl_left"
+            app:layout_constraintTop_toBottomOf="@+id/announcement_detail_layout" />
+
+        <View
+            android:id="@+id/announcement_detail_rv_bottom_line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/colorBlack"
+            app:layout_constraintEnd_toStartOf="@+id/announcement_detail_gl_right"
+            app:layout_constraintStart_toStartOf="@+id/announcement_detail_gl_left"
+            app:layout_constraintTop_toBottomOf="@+id/announcement_detail_rv" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/announcement_detail_gl_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.77" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/previous_announcement_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:onClick="@{()->vm.getAnnouncement(vm.announcement.previousAnnouncementUUID)}"
+            app:layout_constraintBottom_toTopOf="@+id/next_announcement_layout"
+            app:layout_constraintEnd_toStartOf="@+id/announcement_detail_gl_right"
+            app:layout_constraintStart_toStartOf="@+id/announcement_detail_gl_left"
+            app:layout_constraintTop_toBottomOf="@+id/announcement_detail_gl_bottom">
+
+            <TextView
+                android:id="@+id/previous_announcement_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="13dp"
+                android:text="@string/previous_announcement_tv"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/previous_announcement_title_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="39dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="13dp"
+                android:layout_marginBottom="13dp"
+                android:text="@{vm.announcement.previousTitle}"
+                android:textSize="14sp"
+                app:previous_post="@{vm.announcement.previousAnnouncementUUID}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/previous_announcement_title_img"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/previous_announcement_title_img"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="13dp"
+                android:src="@drawable/ic_previous_announcement"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/previous_announcement_tv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/previous_announcement_top_line"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="@color/colorLightGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/next_announcement_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="58dp"
+            android:onClick="@{()->vm.getAnnouncement(vm.announcement.nextAnnouncementUUID)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/announcement_detail_gl_right"
+            app:layout_constraintStart_toStartOf="@+id/announcement_detail_gl_left"
+            app:layout_constraintTop_toBottomOf="@+id/previous_announcement_layout">
+
+            <TextView
+                android:id="@+id/next_announcement_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="13dp"
+                android:text="@string/next_announcement_tv"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/next_announcement_title_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="39dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="13dp"
+                android:layout_marginBottom="13dp"
+                android:text="@{vm.announcement.nextTitle}"
+                android:textSize="14sp"
+                app:next_post="@{vm.announcement.nextAnnouncementUUID}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/next_announcement_title_img"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/next_announcement_title_img"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="13dp"
+                android:src="@drawable/ic_next_announcement"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/next_announcement_tv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/next_announcement_bottom_line"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="@color/colorLightGray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/announcement_middle_line"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/colorLightGray"
+            app:layout_constraintBottom_toBottomOf="@+id/previous_announcement_layout"
+            app:layout_constraintEnd_toStartOf="@+id/announcement_detail_gl_right"
+            app:layout_constraintStart_toStartOf="@+id/announcement_detail_gl_left"
+            app:layout_constraintTop_toBottomOf="@+id/previous_announcement_layout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
