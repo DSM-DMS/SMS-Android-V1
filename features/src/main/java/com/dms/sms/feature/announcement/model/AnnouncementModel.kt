@@ -1,7 +1,9 @@
 package com.dms.sms.feature.announcement.model
 
+import com.dms.domain.announcement.entity.Announcement
+
 data class AnnouncementModel(
-    val date: Int,
+    val date: String,
     val title: String,
     val content: String,
     val writerName: String,
@@ -10,3 +12,6 @@ data class AnnouncementModel(
     val previousTitle: String,
     val previousAnnouncementUUID: String,
 )
+
+fun Announcement.toModel() =
+    AnnouncementModel(this.date,this.title,this.content,this.writerName,this.nextTitle,this.nextAnnouncementUUID,this.previousTitle,this.previousAnnouncementUUID)

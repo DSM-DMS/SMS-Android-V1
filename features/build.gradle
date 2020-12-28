@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 
 android {
@@ -10,6 +11,9 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions{
+        jvmTarget = JavaVersion.VERSION_1_8
     }
     defaultConfig {
         applicationId "com.dms.sms"
@@ -91,6 +95,15 @@ dependencies {
 
     //Lottie
     implementation 'com.airbnb.android:lottie:3.5.0'
+
+
+    def lifecycle_version = "2.2.0"
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
     implementation project(':domain')
     implementation project(':data')

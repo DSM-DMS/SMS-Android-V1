@@ -4,7 +4,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-fun Long.convertTime() : String{
+fun Long.convertTimeToDay() : String{
     val startDate = Date(this)
     return SimpleDateFormat("MM-dd",Locale.KOREA).format(startDate)
+}
+
+fun Long.convertTimeToDate() : String{
+    val startDate = Date(this)
+    return SimpleDateFormat("yyyy.MM.dd",Locale.KOREA).format(startDate)
 }

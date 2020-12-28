@@ -26,8 +26,14 @@
                 android:id="@+id/action_mainFragment_to_changePasswordFragment"
                 app:destination="@id/changePasswordFragment" />
         <action
-                android:id="@+id/action_mainFragment_to_noticeDetailFragment"
-                app:destination="@id/noticeDetailFragment" />
+                android:id="@+id/action_mainFragment_to_announcementDetailFragment"
+            app:destination="@id/announcementDetailFragment" >
+            <argument
+                android:name="announcementUUID"
+                app:argType="string"
+                app:nullable="false"
+                />
+        </action>
         <action
                 android:id="@+id/action_mainFragment_to_introducingDevelopersFragment"
                 app:destination="@id/introducingDevelopersFragment" />
@@ -74,10 +80,22 @@
                 app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-            android:id="@+id/noticeDetailFragment"
+            android:id="@+id/announcementDetailFragment"
             android:name="com.dms.sms.feature.announcement.ui.AnnouncementDetailFragment"
-            android:label="fragment_notice_detail"
-            tools:layout="@layout/fragment_annoucement_detail" />
+            android:label="fragment_announcement_detail"
+        tools:layout="@layout/fragment_announcement_detail" >
+        <argument
+            android:name="announcementUUID"
+            app:argType="string"
+            app:nullable="false"
+            />
+        <action
+            android:id="@+id/action_announcementDetailFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/announcementDetailFragment"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
     <fragment
             android:id="@+id/introducingDevelopersFragment"
             android:name="com.dms.sms.feature.mypage.IntroducingDevelopersFragment"

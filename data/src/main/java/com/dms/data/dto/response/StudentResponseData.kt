@@ -2,7 +2,7 @@ package com.dms.data.dto.response
 
 import com.dms.domain.account.entity.Student
 
-data class StudentResponse(
+data class StudentResponseData(
     val grade: Int,
     val group: Int,
     val student_number: Int,
@@ -12,5 +12,5 @@ data class StudentResponse(
     val student_uuid : String,
 )
 
-fun StudentResponse.toEntity() : Student =
+fun StudentResponseData.toEntity() : Student =
     Student(this.grade, this.group, this.student_number, this.name, this.phone_number, this.profile_uri)
