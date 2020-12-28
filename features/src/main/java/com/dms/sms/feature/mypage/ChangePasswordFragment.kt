@@ -1,31 +1,34 @@
 package com.dms.sms.feature.mypage
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.dms.sms.R
+import com.dms.sms.base.BaseFragment
+import com.dms.sms.base.BaseViewModel
+import com.dms.sms.databinding.FragmentChangePasswordBinding
+import com.dms.sms.feature.mypage.viewmodel.ChangePwViewModel
 import com.dms.sms.navigateFragment
-import kotlinx.android.synthetic.main.fragment_change_password.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ChangePasswordFragment : Fragment() {
+class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_change_password, container, false)
-    }
+    override val viewModel: ChangePwViewModel by viewModel()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        change_password_btn.setOnClickListener {
-            navigateFragment(R.id.action_changePasswordFragment_to_loginFragment)
+    override val layoutId: Int
+        get() = R.layout.fragment_change_password
+
+    override fun observeEvents() {
+        with(viewModel){
+            confirmPwErrorEvent.observe(this@ChangePasswordFragment, {
+                binding.newPasswordConfirmEtLayout.error = "비밀번호가 일치하지 않습니다."
+                binding.currentPasswordEtLayout.error = null
+            })
+            currentPwErrorEvent.observe(this@ChangePasswordFragment, {
+                binding.currentPasswordEtLayout.error = "비밀번호가 일치하지 않습니다."
+                binding.newPasswordConfirmEtLayout.error = null
+            })
+            successChangePw.observe(this@ChangePasswordFragment, {
+                requireActivity().navigateFragment(R.id.fragment_container,R.id.action_changePasswordFragment_to_loginFragment)
+            })
         }
-
     }
-
 
 }
