@@ -15,11 +15,11 @@ class LogoutDialogFragment : BaseDialog<FragmentLogOutDialogBinding>() {
 
     override fun observeEvent() {
         with(viewModel){
-            logoutConfirm.observe(this@LogoutDialogFragment,{
+            logoutConfirm.observe(viewLifecycleOwner,{
                 requireActivity().navigateFragment(R.id.fragment_container,R.id.action_mainFragment_to_logInFragment)
                 dismiss()
             })
-            logoutCancel.observe(this@LogoutDialogFragment,{ dismiss() })
+            logoutCancel.observe(viewLifecycleOwner,{ dismiss() })
         }
     }
 }

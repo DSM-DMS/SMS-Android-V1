@@ -17,16 +17,16 @@ class OutingMainFragment : BaseFragment<FragmentOutingMainBinding>() {
 
     override fun observeEvents() {
         with(viewModel){
-            applyOutingEvent.observe(this@OutingMainFragment, {
+            applyOutingEvent.observe(viewLifecycleOwner, {
                 requireActivity().navigateFragment(R.id.fragment_container,R.id.action_mainFragment_to_outingApplyFragment)
             })
-            outingHistoryEvent.observe(this@OutingMainFragment, {
+            outingHistoryEvent.observe(viewLifecycleOwner, {
                 requireActivity().navigateFragment(R.id.fragment_container,R.id.action_mainFragment_to_outingHistoryFragment)
             })
-            accessOutingEvent.observe(this@OutingMainFragment, {
+            accessOutingEvent.observe(viewLifecycleOwner, {
                 requireActivity().navigateFragment(R.id.fragment_container,R.id.action_mainFragment_to_outingAccessFragment)
             })
-            noticeEvent.observe(this@OutingMainFragment, {
+            noticeEvent.observe(viewLifecycleOwner, {
                 requireActivity().navigateFragment(R.id.fragment_container,R.id.action_mainFragment_to_outingNoticeFragment)
             })
         }

@@ -17,15 +17,15 @@ class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
 
     override fun observeEvents() {
         with(viewModel){
-            confirmPwErrorEvent.observe(this@ChangePasswordFragment, {
+            confirmPwErrorEvent.observe(viewLifecycleOwner, {
                 binding.newPasswordConfirmEtLayout.error = "비밀번호가 일치하지 않습니다."
                 binding.currentPasswordEtLayout.error = null
             })
-            currentPwErrorEvent.observe(this@ChangePasswordFragment, {
+            currentPwErrorEvent.observe(viewLifecycleOwner, {
                 binding.currentPasswordEtLayout.error = "비밀번호가 일치하지 않습니다."
                 binding.newPasswordConfirmEtLayout.error = null
             })
-            successChangePw.observe(this@ChangePasswordFragment, {
+            successChangePw.observe(viewLifecycleOwner, {
                 requireActivity().navigateFragment(R.id.fragment_container,R.id.action_changePasswordFragment_to_loginFragment)
             })
         }
