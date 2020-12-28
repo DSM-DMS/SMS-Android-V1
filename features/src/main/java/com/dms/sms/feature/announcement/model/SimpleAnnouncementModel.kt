@@ -17,7 +17,7 @@ fun SimpleAnnouncement.toModel(): SimpleAnnouncementModel =
         this.announcementUUID,
         this.title,
         this.number.toString(),
-        this.date.toString(),
+        this.date,
         this.views.toString(),
         this.writerName,
         this.isChecked

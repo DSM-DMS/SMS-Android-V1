@@ -1,7 +1,7 @@
 package com.dms.domain.announcement.entity
 
 data class Announcement(
-    val date: Int,
+    val date: String,
     val title: String,
     val content: String,
     val writerName: String,
