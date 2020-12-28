@@ -1,11 +1,9 @@
 package com.dms.data.datasource
 
-import android.util.Log
 import com.dms.data.dto.request.OutingData
 import com.dms.data.dto.response.DetailOutingResponseData
 import com.dms.data.dto.response.OutingListResponseData
 import com.dms.data.dto.response.OutingResponseData
-import com.dms.data.local.auth.LoggedInUserData
 import com.dms.data.local.auth.LoggedInUserDatabase
 import com.dms.data.local.sharedpreference.SharedPreferencesStorage
 import com.dms.data.remote.OutingApi
