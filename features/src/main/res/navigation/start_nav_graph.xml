@@ -83,7 +83,7 @@
             android:id="@+id/announcementDetailFragment"
             android:name="com.dms.sms.feature.announcement.ui.AnnouncementDetailFragment"
             android:label="fragment_announcement_detail"
-        tools:layout="@layout/fragment_annoucement_detail" >
+        tools:layout="@layout/fragment_announcement_detail" >
         <argument
             android:name="announcementUUID"
             app:argType="string"
