@@ -6,9 +6,11 @@ import com.dms.data.repository.MyPageRepositoryImpl
 import com.dms.domain.mypage.repository.MyPageRepository
 import com.dms.domain.mypage.service.MyPageService
 import com.dms.domain.mypage.service.MyPageServiceImpl
+import com.dms.domain.mypage.usecase.ChangePasswordUseCase
 import com.dms.domain.mypage.usecase.GetStudentUUIDUseCase
 import com.dms.domain.mypage.usecase.GetUserProfileUseCase
 import com.dms.sms.di.module.provideMyPageApi
+import com.dms.sms.feature.mypage.viewmodel.ChangePwViewModel
 import com.dms.sms.feature.mypage.viewmodel.LogoutViewModel
 import com.dms.sms.feature.mypage.viewmodel.MyPageViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -19,7 +21,9 @@ val myPageModule: Module = module {
 
     viewModel { MyPageViewModel(get(), get()) }
     viewModel { LogoutViewModel() }
+    viewModel { ChangePwViewModel(get()) }
 
+    factory { ChangePasswordUseCase(get(),get()) }
     factory { GetStudentUUIDUseCase(get(), get()) }
     factory { GetUserProfileUseCase(get(), get()) }
     factory<MyPageService> { MyPageServiceImpl(get(), get()) }
