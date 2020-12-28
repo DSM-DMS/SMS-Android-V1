@@ -7,6 +7,7 @@ import com.dms.domain.outing.repository.OutingRepository
 import com.dms.domain.outing.service.OutingService
 import com.dms.domain.outing.service.OutingServiceImpl
 import com.dms.domain.outing.usecase.*
+import com.dms.sms.di.module.provideOutingApi
 import com.dms.sms.feature.outing.viewmodel.OutingAccessViewModel
 import com.dms.sms.feature.outing.viewmodel.OutingApplyViewModel
 import com.dms.sms.feature.outing.viewmodel.OutingHistoryViewModel
@@ -29,4 +30,6 @@ val outingModule: Module = module {
     factory<OutingService> { OutingServiceImpl(get(), get()) }
     factory<OutingRepository> { OutingRepositoryImpl(get()) }
     factory<OutingDataSource> { OutingDataSourceImpl(get(), get(), get()) }
+
+    single { provideOutingApi(get()) }
 }
