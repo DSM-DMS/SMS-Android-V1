@@ -11,6 +11,7 @@ import com.dms.domain.mypage.usecase.GetStudentUUIDUseCase
 import com.dms.domain.mypage.usecase.GetUserProfileUseCase
 import com.dms.sms.di.module.provideMyPageApi
 import com.dms.sms.feature.mypage.viewmodel.ChangePwViewModel
+import com.dms.sms.feature.mypage.viewmodel.IntroduceDeveloperViewModel
 import com.dms.sms.feature.mypage.viewmodel.LogoutViewModel
 import com.dms.sms.feature.mypage.viewmodel.MyPageViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -22,6 +23,7 @@ val myPageModule: Module = module {
     viewModel { MyPageViewModel(get(), get()) }
     viewModel { LogoutViewModel() }
     viewModel { ChangePwViewModel(get()) }
+    viewModel { IntroduceDeveloperViewModel() }
 
     factory { ChangePasswordUseCase(get(),get()) }
     factory { GetStudentUUIDUseCase(get(), get()) }
