@@ -19,6 +19,9 @@ interface LoggedInUserDao {
     @Query("SELECT student_uuid FROM auto_login_user")
     fun getStudentUUID() : Single<List<String>>
 
+    @Query("SELECT student_uuid FROM auto_login_user")
+    fun getStdUUID() : String
+
     @Query("DELETE FROM auto_login_user")
     fun delete(): Completable
 }

@@ -37,20 +37,4 @@ val networkModule = module {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-
-    single<OutingApi> {
-        Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .client(
-                OkHttpClient.Builder()
-                    .addInterceptor(AuthorizationInterceptor(get()))
-                    .addInterceptor(get<HttpLoggingInterceptor>())
-                    .build())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(OutingApi::class.java)
-    }
-
-
 }
