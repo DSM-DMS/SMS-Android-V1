@@ -1,22 +1,31 @@
 package com.dms.sms.feature.mypage
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import com.dms.sms.R
+import com.dms.sms.base.BaseFragment
+import com.dms.sms.databinding.FragmentIntroducingDevelopersBinding
+import com.dms.sms.feature.mypage.adapter.DeveloperAdapter
+import com.dms.sms.feature.mypage.viewmodel.IntroduceDeveloperViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class IntroducingDevelopersFragment : Fragment() {
+class IntroducingDevelopersFragment : BaseFragment<FragmentIntroducingDevelopersBinding>() {
+    override val viewModel: IntroduceDeveloperViewModel by viewModel()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_introducing_developers, container, false)
+    override val layoutId: Int
+        get() = R.layout.fragment_introducing_developers
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.introducingDevelopersRv.layoutManager = GridLayoutManager(context,2)
+        binding.introducingDevelopersRv.adapter = DeveloperAdapter()
     }
 
+    override fun observeEvents() {
+
+    }
 
 }
