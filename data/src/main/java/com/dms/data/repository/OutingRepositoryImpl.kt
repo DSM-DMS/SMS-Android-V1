@@ -8,6 +8,7 @@ import com.dms.domain.outing.request.OutingApplyRequest
 import com.dms.domain.outing.response.DetailOutingResponse
 import com.dms.domain.outing.response.OutingListResponse
 import com.dms.domain.outing.response.OutingResponse
+import com.dms.domain.outing.response.SearchPlaceListResponse
 import io.reactivex.Single
 
 class OutingRepositoryImpl(private val outingDataSource: OutingDataSource) : OutingRepository {
@@ -23,6 +24,11 @@ class OutingRepositoryImpl(private val outingDataSource: OutingDataSource) : Out
 
     override fun getDetailOuting(outingUUID: String): Single<DetailOutingResponse> =
         outingDataSource.getDetailOuting(outingUUID).map {
+            it.toDomainData()
+        }
+
+    override fun getPlaceList(keyword: String): Single<SearchPlaceListResponse> =
+        outingDataSource.getPlaceList(keyword).map{
             it.toDomainData()
         }
 

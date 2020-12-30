@@ -14,7 +14,7 @@ import com.dms.sms.BR
 
 abstract class BaseDialog<T: ViewDataBinding> : DialogFragment() {
 
-    private lateinit var binding : T
+    lateinit var binding : T
     abstract val viewModel : ViewModel
 
     abstract val layoutId : Int
