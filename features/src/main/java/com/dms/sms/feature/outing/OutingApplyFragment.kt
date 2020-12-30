@@ -2,8 +2,6 @@ package com.dms.sms.feature.outing
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.util.Log
-import androidx.core.view.get
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
 import com.dms.sms.databinding.FragmentOutingApplyBinding
@@ -11,8 +9,6 @@ import com.dms.sms.feature.outing.dialog.OutingNoticeDialog
 import com.dms.sms.feature.outing.viewmodel.OutingApplyViewModel
 import com.dms.sms.navigateFragment
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import splitties.fragments.start
-import java.text.SimpleDateFormat
 import java.util.*
 
 class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
@@ -67,6 +63,10 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
 
             createOutingSuccessEvent.observe(viewLifecycleOwner, {
                 navigateFragment(R.id.action_outingApplyFragment_to_outingCompleteFragment)
+            })
+            searchPlaceEvent.observe(viewLifecycleOwner, {
+                val dialog = SearchPlaceFragment()
+                dialog.show(requireActivity().supportFragmentManager, "SearchPlaceDialog")
             })
         }
     }
