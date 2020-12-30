@@ -116,6 +116,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             app:announcement="@{vm.announcementContent}"
+            android:overScrollMode="never"
             app:layout_constraintBottom_toTopOf="@+id/announcement_detail_gl_bottom"
             app:layout_constraintEnd_toStartOf="@+id/announcement_detail_gl_right"
             app:layout_constraintStart_toStartOf="@+id/announcement_detail_gl_left"
