@@ -4,6 +4,7 @@ import com.dms.domain.base.Result
 import com.dms.domain.outing.request.OutingApplyRequest
 import com.dms.domain.outing.response.DetailOutingResponse
 import com.dms.domain.outing.response.OutingListResponse
+import com.dms.domain.outing.response.SearchPlaceListResponse
 import io.reactivex.Single
 
 interface OutingService {
@@ -12,6 +13,8 @@ interface OutingService {
     fun getOutingList(studentUUID: String): Single<Result<OutingListResponse>>
 
     fun getDetailOuting(outingUUID: String): Single<Result<DetailOutingResponse>>
+
+    fun getPlaceList(keyword: String): Single<Result<SearchPlaceListResponse>>
 
     fun getStudentUUID(): Single<Result<String>>
 
