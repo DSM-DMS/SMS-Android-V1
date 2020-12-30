@@ -1,13 +1,15 @@
 package com.dms.sms.feature.outing.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.databinding.ItemSearchPlaceBinding
 import com.dms.sms.feature.outing.model.PlaceListModel
+import com.dms.sms.feature.outing.viewmodel.OutingApplyViewModel
 
-class SearchPlaceAdapter : RecyclerView.Adapter<SearchPlaceAdapter.SearchPlaceViewHolder>() {
+class SearchPlaceAdapter(private val outingApplyViewModel: OutingApplyViewModel) : RecyclerView.Adapter<SearchPlaceAdapter.SearchPlaceViewHolder>() {
     private var searchPlaceListItems = ArrayList<PlaceListModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchPlaceViewHolder {
@@ -17,7 +19,7 @@ class SearchPlaceAdapter : RecyclerView.Adapter<SearchPlaceAdapter.SearchPlaceVi
     }
 
     override fun onBindViewHolder(holder: SearchPlaceViewHolder, position: Int) {
-        holder.bind(searchPlaceListItems[position])
+        holder.bind(searchPlaceListItems[position],position)
     }
 
     override fun getItemCount(): Int =
@@ -29,8 +31,16 @@ class SearchPlaceAdapter : RecyclerView.Adapter<SearchPlaceAdapter.SearchPlaceVi
     }
 
     inner class SearchPlaceViewHolder(private val binding: ItemSearchPlaceBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(placeListModel: PlaceListModel) {
+        private var position:Int? = 0
+
+        fun bind(placeListModel: PlaceListModel, position: Int) {
+            this.position = position
+            binding.vh = this
             binding.placeModel = placeListModel
+        }
+
+        fun clickItem(v: View) {
+            outingApplyViewModel.setSearchPlace(position!!)
         }
     }
 }
