@@ -18,10 +18,11 @@ import org.koin.dsl.module
 
 val outingModule: Module = module {
     viewModel { OutingViewModel() }
-    viewModel { OutingApplyViewModel(get()) }
+    viewModel { OutingApplyViewModel(get(),get()) }
     viewModel { OutingHistoryViewModel(get(), get()) }
     viewModel { OutingAccessViewModel(get(), get()) }
 
+    factory { GetPlaceListUseCase(get(),get()) }
     factory { GetOutingUUIDUseCase(get()) }
     factory { GetDetailOutingUseCase(get(), get()) }
     factory { OutingUseCase(get(), get()) }
