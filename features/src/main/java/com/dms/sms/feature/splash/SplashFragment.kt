@@ -30,7 +30,7 @@ class SplashFragment : Fragment() {
         loading_lottie.playAnimation()
 
         Handler(Looper.myLooper()!!).postDelayed({
-            viewModel.autoLoginEvent.observe(viewLifecycleOwner, Observer {
+            viewModel.autoLoginEvent.observe(viewLifecycleOwner, {
                 if (it)
                     findNavController().navigate(R.id.action_splashFragment_to_MainFragment)
                 else
