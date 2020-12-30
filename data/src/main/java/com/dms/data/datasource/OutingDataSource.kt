@@ -4,7 +4,7 @@ import com.dms.data.dto.request.OutingData
 import com.dms.data.dto.response.DetailOutingResponseData
 import com.dms.data.dto.response.OutingListResponseData
 import com.dms.data.dto.response.OutingResponseData
-import com.dms.data.local.auth.LoggedInUserData
+import com.dms.data.dto.response.SearchPlaceListResponseData
 import io.reactivex.Single
 
 interface OutingDataSource {
@@ -13,6 +13,8 @@ interface OutingDataSource {
     fun getOutingList(studentUUID: String): Single<OutingListResponseData>
 
     fun getDetailOuting(outingUUID: String): Single<DetailOutingResponseData>
+
+    fun getPlaceList(keyword: String): Single<SearchPlaceListResponseData>
 
     fun saveOutingUUID(uuid: String, content: String)
 
