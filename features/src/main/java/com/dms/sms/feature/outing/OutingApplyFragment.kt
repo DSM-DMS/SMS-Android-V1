@@ -20,6 +20,13 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
 
     override fun observeEvents() {
         with(viewModel) {
+            outingPlace.value = null
+            outingDate.value = null
+            outingEndTime.value = null
+            outingStartTime.value = null
+            outingReason.value = null
+            outingWithDisease.value = true
+
             dateEvent.observe(viewLifecycleOwner, {
                 val datePickerDialogListener =
                     DatePickerDialog.OnDateSetListener { _, year, month, date ->
