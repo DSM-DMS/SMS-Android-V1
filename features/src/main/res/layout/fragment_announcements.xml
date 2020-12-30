@@ -70,6 +70,7 @@
             android:id="@+id/announcement_bottom_line"
             android:layout_width="0dp"
             android:layout_height="1dp"
+            android:elevation="5dp"
             android:layout_marginTop="42dp"
             android:background="@color/colorLightGray"
             app:layout_constraintEnd_toStartOf="@+id/announcement_gl_right"
@@ -80,7 +81,7 @@
             android:id="@+id/announcement_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="25dp"
             android:text="@string/announcement_title_tv"
             android:textColor="@color/colorBlack"
             app:layout_constraintBottom_toTopOf="@+id/announcement_bottom_line"
@@ -91,7 +92,7 @@
             android:id="@+id/announcement_date_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="38dp"
+            android:layout_marginEnd="30dp"
             android:text="@string/announcement_date_tv"
             android:textColor="@color/colorBlack"
             app:layout_constraintBottom_toTopOf="@+id/announcement_bottom_line"
@@ -115,53 +116,59 @@
             android:layout_height="0dp"
             app:vm="@{vm}"
             app:announcementItems="@{vm.announcements}"
+            android:overScrollMode="never"
             app:layout_constraintBottom_toTopOf="@+id/announcement_page_layout"
             app:layout_constraintEnd_toStartOf="@+id/announcement_gl_right"
             app:layout_constraintStart_toStartOf="@+id/announcement_gl_left"
             app:layout_constraintTop_toBottomOf="@+id/announcement_bottom_line" />
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/announcement_page_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/announcement_gl_right"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/announcement_gl_left"
-            app:layout_constraintTop_toTopOf="@+id/announcement_gl_bottom">
+            app:layout_constraintTop_toTopOf="@+id/announcement_gl_bottom"
+            app:layout_constraintVertical_bias="0.0">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/announcement_page_rv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
+                android:overScrollMode="never"
+                app:announcement_pages="@{vm.announcementsPages[vm.currentPageBunch]}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/announcement_next_page_btn"
                 app:layout_constraintStart_toEndOf="@+id/announcement_previous_page_btn"
                 app:layout_constraintTop_toTopOf="parent"
-                />
+                app:vm="@{vm}" />
 
             <ImageView
                 android:id="@+id/announcement_previous_page_btn"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@drawable/border_gray"
+                android:onClick="@{()->vm.onPreviousPageClick()}"
                 android:src="@drawable/ic_previous_page"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/announcement_page_rv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/announcement_next_page_btn"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@drawable/border_gray"
+                android:onClick="@{()->vm.onNextPageClick()}"
                 android:src="@drawable/ic_next_page"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/announcement_page_rv"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
