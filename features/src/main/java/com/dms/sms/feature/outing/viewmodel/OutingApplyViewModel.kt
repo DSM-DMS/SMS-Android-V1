@@ -18,8 +18,11 @@ import io.reactivex.observers.DisposableSingleObserver
 import java.text.SimpleDateFormat
 import java.util.*
 
-class OutingApplyViewModel(private val outingUseCase: OutingUseCase, private val getPlaceListUseCase: GetPlaceListUseCase) : BaseViewModel() {
-    val searchPlaceList = MutableLiveData<ArrayList<PlaceListModel>>().apply{
+class OutingApplyViewModel(
+    private val outingUseCase: OutingUseCase,
+    private val getPlaceListUseCase: GetPlaceListUseCase
+) : BaseViewModel() {
+    val searchPlaceList = MutableLiveData<ArrayList<PlaceListModel>>().apply {
         value = ArrayList(emptyList())
     }
 
@@ -54,34 +57,46 @@ class OutingApplyViewModel(private val outingUseCase: OutingUseCase, private val
     val startTimeEvent = SingleLiveEvent<Unit>()
     val endTimeEvent = SingleLiveEvent<Unit>()
     val searchPlaceEvent = SingleLiveEvent<Unit>()
+    val searchPlaceItemEvent = SingleLiveEvent<Unit>()
 
     fun applyOuting() {
         val startTime = (changeToUnixTime(applyDate!!, startTime!!).time / 1000).toString()
         val endTime = (changeToUnixTime(applyDate!!, endTime!!).time / 1000).toString()
 
-        val outingModel = OutingApplyModel(Integer.parseInt(startTime), Integer.parseInt(endTime), outingPlace.value!!, outingReason.value!!, isDisease())
+        val outingModel = OutingApplyModel(
+            Integer.parseInt(startTime),
+            Integer.parseInt(endTime),
+            outingPlace.value!!,
+            outingReason.value!!,
+            isDisease()
+        )
 
-        outingUseCase.execute(outingModel.toDomain(), object: DisposableSingleObserver<Result<Unit>>(){
-            override fun onSuccess(result: Result<Unit>) {
-                when(result){
-                    is Result.Success -> createOutingSuccess()
-                    is Result.Failure -> failOutingSuccess(result)
+        outingUseCase.execute(
+            outingModel.toDomain(),
+            object : DisposableSingleObserver<Result<Unit>>() {
+                override fun onSuccess(result: Result<Unit>) {
+                    when (result) {
+                        is Result.Success -> createOutingSuccess()
+                        is Result.Failure -> failOutingSuccess(result)
+                    }
                 }
-            }
-            override fun onError(e: Throwable) {
-                createToastEvent.value = "외출증 생성에 실패하였습니다. "
-            }
-        },AndroidSchedulers.mainThread())
+
+                override fun onError(e: Throwable) {
+                    createToastEvent.value = "외출증 생성에 실패하였습니다. "
+                }
+            },
+            AndroidSchedulers.mainThread()
+        )
 
     }
 
-    private fun createOutingSuccess(){
+    private fun createOutingSuccess() {
         createToastEvent.value = "외출증 생성에 성공하셨습니다."
         createOutingSuccessEvent.call()
     }
 
-    private fun failOutingSuccess(result: Result.Failure<Unit>){
-        when(result.reason){
+    private fun failOutingSuccess(result: Result.Failure<Unit>) {
+        when (result.reason) {
             Error.Conflict ->
                 createToastEvent.value = "이미 해당날짜에 대기 중인 외출증이 있습니다. "
             Error.InternalServer ->
@@ -104,20 +119,23 @@ class OutingApplyViewModel(private val outingUseCase: OutingUseCase, private val
         }
     }
 
-    fun searchPlace(){
-        getPlaceListUseCase.execute(searchPlaceEt.value!!, object: DisposableSingleObserver<Result<SearchPlaceListResponse>>(){
-            override fun onSuccess(result: Result<SearchPlaceListResponse>) {
-                when(result){
-                    is Result.Success -> searchPlaceList.value = ArrayList(result.value.searchPlace.map { it.toModel() })
-                    is Result.Failure -> failGetPlace(result)
+    fun searchPlace() {
+        getPlaceListUseCase.execute(
+            searchPlaceEt.value!!,
+            object : DisposableSingleObserver<Result<SearchPlaceListResponse>>() {
+                override fun onSuccess(result: Result<SearchPlaceListResponse>) {
+                    when (result) {
+                        is Result.Success -> searchPlaceList.value =
+                            ArrayList(result.value.searchPlace.map { it.toModel() })
+                        is Result.Failure -> failGetPlace(result)
+                    }
                 }
-            }
+                override fun onError(e: Throwable) {
 
-            override fun onError(e: Throwable) {
-
-            }
-
-        }, AndroidSchedulers.mainThread())
+                }
+            },
+            AndroidSchedulers.mainThread()
+        )
     }
 
     private fun changeToUnixTime(applyDate: String, time: String): Date =
@@ -131,8 +149,8 @@ class OutingApplyViewModel(private val outingUseCase: OutingUseCase, private val
         }
     }
 
-    private fun failGetPlace(result: Result.Failure<SearchPlaceListResponse>){
-        when(result.reason){
+    private fun failGetPlace(result: Result.Failure<SearchPlaceListResponse>) {
+        when (result.reason) {
             Error.InternalServer ->
                 createToastEvent.value = "서버 오류 발생"
             Error.Network ->
@@ -142,6 +160,11 @@ class OutingApplyViewModel(private val outingUseCase: OutingUseCase, private val
             else ->
                 createToastEvent.value = "알 수 없는 오류 발생"
         }
+    }
+
+    fun setSearchPlace(position: Int) {
+        searchPlaceItemEvent.call()
+        outingPlace.value = searchPlaceList.value?.get(position)?.placeAddress
     }
 
     private fun checkFullText(): Boolean =
