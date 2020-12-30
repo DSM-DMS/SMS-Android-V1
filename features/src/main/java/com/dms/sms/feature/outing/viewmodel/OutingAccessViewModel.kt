@@ -12,33 +12,46 @@ import com.dms.sms.feature.outing.model.toModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 
-class OutingAccessViewModel(private val getDetailOutingUseCase: GetDetailOutingUseCase, private val getOutingUUIDUseCase: GetOutingUUIDUseCase): BaseViewModel() {
+class OutingAccessViewModel(
+    private val getDetailOutingUseCase: GetDetailOutingUseCase,
+    private val getOutingUUIDUseCase: GetOutingUUIDUseCase
+) : BaseViewModel() {
 
     val detailOutingData = MutableLiveData<DetailOutingModel>()
+    val accessResult = MutableLiveData(true)
 
     init {
         getDetailOuting()
     }
 
-    private fun getDetailOuting(){
+    private fun getDetailOuting() {
         val outingUUID = getOutingUUIDUseCase.getUUID("outingUUID")
 
-        getDetailOutingUseCase.execute(outingUUID,object: DisposableSingleObserver<Result<DetailOutingResponse>>(){
-            override fun onSuccess(result: Result<DetailOutingResponse>) {
-                when(result){
-                    is Result.Success -> detailOutingData.value = result.value.toModel()
-                    is Result.Failure -> failDetailOuting(result)
+        getDetailOutingUseCase.execute(
+            outingUUID,
+            object : DisposableSingleObserver<Result<DetailOutingResponse>>() {
+                override fun onSuccess(result: Result<DetailOutingResponse>) {
+                    when (result) {
+                        is Result.Success -> {
+                            accessResult.value = false
+                            detailOutingData.value = result.value.toModel()
+                        }
+                        is Result.Failure -> {
+                            accessResult.value = true
+                            failDetailOuting(result)
+                        }
+                    }
                 }
-            }
 
-            override fun onError(e: Throwable) {
-                TODO("Not yet implemented")
-            }
-        },AndroidSchedulers.mainThread())
+                override fun onError(e: Throwable) {
+                }
+            },
+            AndroidSchedulers.mainThread()
+        )
     }
 
-    private fun failDetailOuting(result: Result.Failure<DetailOutingResponse>){
-        when(result.reason){
+    private fun failDetailOuting(result: Result.Failure<DetailOutingResponse>) {
+        when (result.reason) {
             Error.InternalServer ->
                 createToastEvent.value = "서버 오류 발생"
             Error.Network ->
