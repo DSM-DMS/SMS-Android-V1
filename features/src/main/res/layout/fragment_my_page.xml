@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="com.dms.sms.feature.mypage.viewmodel.MyPageViewModel" />
@@ -21,19 +22,19 @@
             android:layout_height="90dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="31dp"
-            app:cardCornerRadius="2000dp"
             android:elevation="5dp"
+            app:cardCornerRadius="2000dp"
             app:layout_constraintBottom_toTopOf="@id/line"
             app:layout_constraintStart_toStartOf="@+id/my_page_gl_left"
             app:layout_constraintTop_toBottomOf="@+id/my_page_title_tv">
 
             <ImageView
                 android:id="@+id/profile_image"
-                android:scaleType="centerCrop"
-                app:setProfile="@{vm.userModel.profileUri}"
-                android:background="@drawable/circle_background"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@drawable/circle_background"
+                android:scaleType="centerCrop"
+                app:setProfile="@{vm.userModel.profileUri}" />
 
         </androidx.cardview.widget.CardView>
 
@@ -131,7 +132,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClick="@{()->vm.clickChangePw()}">
 
                 <TextView
                     android:id="@+id/change_password_tv"
@@ -176,7 +179,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClick="@{()->vm.clickLogOut()}">
 
                 <TextView
                     android:id="@+id/log_out_tv"
@@ -220,7 +225,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClick="@{()->vm.clickDeveloper()}">
 
                 <TextView
                     android:id="@+id/developers_introducing_tv"

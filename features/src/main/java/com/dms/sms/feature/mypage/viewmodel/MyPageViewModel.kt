@@ -6,6 +6,7 @@ import com.dms.domain.mypage.response.UserResponse
 import com.dms.domain.mypage.usecase.GetStudentUUIDUseCase
 import com.dms.domain.mypage.usecase.GetUserProfileUseCase
 import com.dms.sms.base.BaseViewModel
+import com.dms.sms.base.SingleLiveEvent
 import com.dms.sms.feature.mypage.model.UserModel
 import com.dms.sms.feature.mypage.model.toModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,6 +14,10 @@ import io.reactivex.observers.DisposableSingleObserver
 
 class MyPageViewModel(private val getUserProfileUseCase: GetUserProfileUseCase, private val getStudentUUIDUseCase: GetStudentUUIDUseCase): BaseViewModel() {
     val userModel = MutableLiveData<UserModel>()
+
+    val changePwEvent = SingleLiveEvent<Unit>()
+    val logoutEvent = SingleLiveEvent<Unit>()
+    val developerEvent = SingleLiveEvent<Unit>()
 
     init {
         getStudentUUID()
@@ -49,4 +54,8 @@ class MyPageViewModel(private val getUserProfileUseCase: GetUserProfileUseCase, 
 
         }, AndroidSchedulers.mainThread())
     }
+
+    fun clickChangePw() = changePwEvent.call()
+    fun clickLogOut() = logoutEvent.call()
+    fun clickDeveloper() = developerEvent.call()
 }

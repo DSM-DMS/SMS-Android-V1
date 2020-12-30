@@ -24,7 +24,7 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
 
     override fun observeEvents() {
         with(viewModel) {
-            dateEvent.observe(this@OutingApplyFragment, {
+            dateEvent.observe(viewLifecycleOwner, {
                 val datePickerDialogListener =
                     DatePickerDialog.OnDateSetListener { _, year, month, date ->
                         viewModel.applyDate = "${year}/${month + 1}/${date} "
@@ -35,7 +35,7 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
                 datePickerDialog.show()
             })
 
-            startTimeEvent.observe(this@OutingApplyFragment, {
+            startTimeEvent.observe(viewLifecycleOwner, {
                 val timePickerDialogListener =
                     TimePickerDialog.OnTimeSetListener { _, hour, minute ->
                         startTime = "${hour + 9}:$minute:00"
@@ -45,7 +45,7 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
                 timePickerDialog.show()
             })
 
-            endTimeEvent.observe(this@OutingApplyFragment, {
+            endTimeEvent.observe(viewLifecycleOwner, {
                 val timePickerDialogListener =
                     TimePickerDialog.OnTimeSetListener { _, hour, minute ->
                         endTime = "${hour + 9}:$minute:00"
@@ -56,16 +56,16 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
                 timePickerDialog.show()
             })
 
-            diseaseEvent.observe(this@OutingApplyFragment, {
+            diseaseEvent.observe(viewLifecycleOwner, {
                 val dialog = OutingNoticeDialog()
                 dialog.show(requireActivity().supportFragmentManager, "OutingNoticeDialog")
             })
 
-            onDiseaseCancelEvent.observe(this@OutingApplyFragment, {
+            onDiseaseCancelEvent.observe(viewLifecycleOwner, {
                 outingWithDisease.value = true
             })
 
-            createOutingSuccessEvent.observe(this@OutingApplyFragment, {
+            createOutingSuccessEvent.observe(viewLifecycleOwner, {
                 navigateFragment(R.id.action_outingApplyFragment_to_outingCompleteFragment)
             })
         }
