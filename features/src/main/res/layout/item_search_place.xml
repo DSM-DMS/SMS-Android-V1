@@ -8,11 +8,16 @@
         <variable
             name="placeModel"
             type="com.dms.sms.feature.outing.model.PlaceListModel" />
+
+        <variable
+            name="vh"
+            type="com.dms.sms.feature.outing.adapter.SearchPlaceAdapter.SearchPlaceViewHolder" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{(v)->vh.clickItem(v)}">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
