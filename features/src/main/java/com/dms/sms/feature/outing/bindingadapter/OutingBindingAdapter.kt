@@ -5,12 +5,19 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.feature.outing.adapter.OutingHistoryAdapter
+import com.dms.sms.feature.outing.adapter.SearchPlaceAdapter
 import com.dms.sms.feature.outing.model.OutingModel
+import com.dms.sms.feature.outing.model.PlaceListModel
 import com.dms.sms.util.GlideApp
 
 @BindingAdapter("outingHistoryList")
 fun RecyclerView.bindOutingList(outingHistoryItems: MutableLiveData<ArrayList<OutingModel>>) {
     (adapter as OutingHistoryAdapter).setItems(outingHistoryItems)
+}
+
+@BindingAdapter("searchPlaceList")
+fun RecyclerView.bindPlaceList(searchPlaceItems: MutableLiveData<ArrayList<PlaceListModel>>) {
+    (adapter as SearchPlaceAdapter).setItems(searchPlaceItems)
 }
 
 @BindingAdapter("setProfile")
