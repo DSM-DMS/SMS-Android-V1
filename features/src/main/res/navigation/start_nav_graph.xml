@@ -6,27 +6,40 @@
     app:startDestination="@id/splashFragment">
 
     <fragment
-        android:id="@+id/logInFragment"
-        android:name="com.dms.sms.ui.login.LogInFragment"
+        android:id="@+id/loginFragment"
+        android:name="com.dms.sms.feature.login.LoginFragment"
         android:label="fragment_log_in"
-        tools:layout="@layout/fragment_log_in" >
+        tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginInFragment_to_MainFragment"
-            app:destination="@id/mainFragment"/>
+            android:id="@+id/action_loginFragment_to_MainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.dms.sms.ui.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main"
-        >
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_logInFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_mainFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_noticeDetailFragment"
-            app:destination="@id/noticeDetailFragment" />
+      
+      <action
+                android:id="@+id/action_mainFragment_to_announcementDetailFragment"
+            app:destination="@id/announcementDetailFragment" >
+            <argument
+                android:name="announcementUUID"
+                app:argType="string"
+                app:nullable="false"
+                />
+        </action>
         <action
             android:id="@+id/action_mainFragment_to_introducingDevelopersFragment"
             app:destination="@id/introducingDevelopersFragment" />
@@ -46,68 +59,89 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.dms.sms.ui.fragment.splash.SplashFragment"
+        android:name="com.dms.sms.feature.splash.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
             app:popUpTo="@id/splashFragment"
-            app:destination="@id/logInFragment"/>
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_MainFragment"
-            app:destination="@id/mainFragment"/>
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/changePasswordFragment"
-        android:name="com.dms.sms.ui.mypage.ChangePasswordFragment"
+        android:name="com.dms.sms.feature.mypage.ChangePasswordFragment"
         android:label="fragment_change_password"
-        tools:layout="@layout/fragment_change_password" >
+        tools:layout="@layout/fragment_change_password">
         <action
-            android:id="@+id/action_changePasswordFragment_to_logInFragment"
-            app:destination="@id/logInFragment" />
+            android:id="@+id/action_changePasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/announcementDetailFragment"
+            android:name="com.dms.sms.feature.announcement.ui.AnnouncementDetailFragment"
+            android:label="fragment_announcement_detail"
+        tools:layout="@layout/fragment_announcement_detail" >
+        <argument
+            android:name="announcementUUID"
+            app:argType="string"
+            app:nullable="false"
+            />
+        <action
+            android:id="@+id/action_announcementDetailFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/announcementDetailFragment"
+            app:popUpToInclusive="true"
+            />
     </fragment>
     <fragment
-        android:id="@+id/noticeDetailFragment"
-        android:name="com.dms.sms.ui.fragment.notice.NoticeDetailFragment"
-        android:label="fragment_notice_detail"
-        tools:layout="@layout/fragment_notice_detail" />
-    <fragment
-        android:id="@+id/introducingDevelopersFragment"
-        android:name="com.dms.sms.ui.mypage.IntroducingDevelopersFragment"
-        android:label="fragment_introducing_developers"
-        tools:layout="@layout/fragment_introducing_developers" />
+            android:id="@+id/introducingDevelopersFragment"
+            android:name="com.dms.sms.feature.mypage.IntroducingDevelopersFragment"
+            android:label="fragment_introducing_developers"
+            tools:layout="@layout/fragment_introducing_developers" />
+  
     <fragment
         android:id="@+id/outingHistoryFragment"
-        android:name="com.dms.sms.ui.fragment.outing.OutingHistoryFragment"
+        android:name="com.dms.sms.feature.outing.OutingHistoryFragment"
         android:label="fragment_outing_history"
         tools:layout="@layout/fragment_outing_history" />
     <fragment
         android:id="@+id/outingAccessFragment"
-        android:name="com.dms.sms.ui.fragment.outing.OutingAccessFragment"
+        android:name="com.dms.sms.feature.outing.OutingAccessFragment"
         android:label="fragment_outing_access"
         tools:layout="@layout/fragment_outing_access" />
     <fragment
         android:id="@+id/outingCompleteFragment"
-        android:name="com.dms.sms.ui.fragment.outing.OutingCompleteFragment"
+        android:name="com.dms.sms.feature.outing.OutingCompleteFragment"
         android:label="fragment_outing_complete"
-        tools:layout="@layout/fragment_outing_complete" >
+        tools:layout="@layout/fragment_outing_complete">
         <action
             android:id="@+id/action_outingCompleteFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/outingApplyFragment"
-        android:name="com.dms.sms.ui.fragment.outing.OutingApplyFragment"
+        android:name="com.dms.sms.feature.outing.OutingApplyFragment"
         android:label="fragment_outing_apply"
-        tools:layout="@layout/fragment_outing_apply" >
+        tools:layout="@layout/fragment_outing_apply">
         <action
             android:id="@+id/action_outingApplyFragment_to_outingCompleteFragment"
             app:destination="@id/outingCompleteFragment" />
     </fragment>
     <fragment
         android:id="@+id/outingNoticeFragment"
-        android:name="com.dms.sms.ui.fragment.outing.OutingNoticeFragment"
+        android:name="com.dms.sms.feature.outing.OutingNoticeFragment"
         android:label="fragment_outing_notice"
         tools:layout="@layout/fragment_outing_notice" />
 
