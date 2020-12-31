@@ -74,6 +74,7 @@
 
     //announcement
     <string name="announcement_tv">공지사항</string>
+    <string name="search_announcement_tv">검색결과</string>
     <string name="search_announcement_et">검색할 공지 제목을 입력하세요.</string>
     <string name="announcement_number_tv">번호</string>
     <string name="announcement_title_tv">제목</string>
