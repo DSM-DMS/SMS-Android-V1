@@ -16,4 +16,9 @@ class AnnouncementRepositoryImpl(private val announcementDataSource: Announcemen
         announcementDataSource.getAnnouncement(announcementUUID).map {
             it.toEntity()
         }
+
+    override fun searchAnnouncements(searchQuery: String, announcementPage : Int): Single<Announcements> =
+        announcementDataSource.searchAnnouncements(searchQuery, announcementPage).map {
+            it.toEntity()
+        }
 }

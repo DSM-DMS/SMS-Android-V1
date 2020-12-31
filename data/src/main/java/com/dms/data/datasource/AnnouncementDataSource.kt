@@ -10,4 +10,6 @@ interface AnnouncementDataSource {
 
     fun getAnnouncement(announcementUUID : String) : Single<AnnouncementResponseData>
 
+    fun searchAnnouncements(searchQuery : String, announcementPage : Int) : Single<AnnouncementsResponseData>
+
 }

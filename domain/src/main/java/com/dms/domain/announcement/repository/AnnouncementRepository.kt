@@ -9,4 +9,7 @@ interface AnnouncementRepository {
     fun getAnnouncements(announcementPage : Int) : Single<Announcements>
 
     fun getAnnouncement(announcementUUID : String) : Single<Announcement>
+
+    fun searchAnnouncements(searchQuery : String, announcementPage : Int) : Single<Announcements>
+
 }
