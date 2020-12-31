@@ -12,4 +12,7 @@ class AnnouncementDataSourceImpl(private val announcementApi: AnnouncementApi) :
     override fun getAnnouncement(announcementUUID: String): Single<AnnouncementResponseData> =
         announcementApi.getAnnouncement(announcementUUID)
 
+    override fun searchAnnouncements(searchQuery: String, announcementPage : Int): Single<AnnouncementsResponseData> =
+        announcementApi.searchAnnouncement(searchQuery, announcementPage, 8 )
+
 }

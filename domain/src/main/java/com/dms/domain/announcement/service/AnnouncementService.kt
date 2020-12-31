@@ -11,4 +11,6 @@ interface AnnouncementService {
 
     fun getAnnouncement(announcementUUID : String) : Single<Result<Announcement>>
 
+    fun searchAnnouncements(searchQuery : String, announcementPage: Int) : Single<Result<Announcements>>
+
 }
