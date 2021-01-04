@@ -60,12 +60,11 @@
         app:layout_constraintTop_toTopOf="@+id/outing_complete_gl_bottom" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/outing_apply_complete_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="외출신청이 성공적으로
-                이루어졌습니다"
+        android:text="@string/outing_apply_complete_tv"
         android:textColor="@color/colorBlack"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/outing_complete_gl_middle"

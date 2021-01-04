@@ -38,7 +38,7 @@ class OutingApplyViewModel(
     val outingPlace = MutableLiveData<String>()
     val outingStartTime = MutableLiveData<String>()
     val outingEndTime = MutableLiveData<String>()
-    val searchPlaceEt = MutableLiveData<String>()
+    val searchPlaceEt = MutableLiveData<String>("")
 
     val btnClickable = MediatorLiveData<Boolean>().apply {
         addSource(outingDate) { value = checkFullText() }
@@ -120,22 +120,25 @@ class OutingApplyViewModel(
     }
 
     fun searchPlace() {
-        getPlaceListUseCase.execute(
-            searchPlaceEt.value!!,
-            object : DisposableSingleObserver<Result<SearchPlaceListResponse>>() {
-                override fun onSuccess(result: Result<SearchPlaceListResponse>) {
-                    when (result) {
-                        is Result.Success -> searchPlaceList.value =
-                            ArrayList(result.value.searchPlace.map { it.toModel() })
-                        is Result.Failure -> failGetPlace(result)
+        if (!searchPlaceEt.value.isNullOrEmpty()) {
+            getPlaceListUseCase.execute(
+                searchPlaceEt.value!!,
+                object : DisposableSingleObserver<Result<SearchPlaceListResponse>>() {
+                    override fun onSuccess(result: Result<SearchPlaceListResponse>) {
+                        when (result) {
+                            is Result.Success -> searchPlaceList.value =
+                                ArrayList(result.value.searchPlace.map { it.toModel() })
+                            is Result.Failure -> failGetPlace(result)
+                        }
                     }
-                }
-                override fun onError(e: Throwable) {
 
-                }
-            },
-            AndroidSchedulers.mainThread()
-        )
+                    override fun onError(e: Throwable) {
+
+                    }
+                },
+                AndroidSchedulers.mainThread()
+            )
+        }
     }
 
     private fun changeToUnixTime(applyDate: String, time: String): Date =

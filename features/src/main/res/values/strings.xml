@@ -74,6 +74,7 @@
 
     //announcement
     <string name="announcement_tv">공지사항</string>
+    <string name="search_announcement_tv">검색결과</string>
     <string name="search_announcement_et">검색할 공지 제목을 입력하세요.</string>
     <string name="announcement_number_tv">번호</string>
     <string name="announcement_title_tv">제목</string>
@@ -92,4 +93,6 @@
     <string name="logo_tv">SMS</string>
     <string name="outing_reason_tv">사유 : %s</string>
     <string name="outing_place_tv">장소 : %s</string>
+    <string name="no_apply_outing_card_tv">&lt;font color="#5323B2">신청한 외출증&lt;/font>이 없습니다.</string>
+    <string name="outing_apply_complete_tv">&lt;font color="#5323B2">외출신청&lt;/font>이 성공적으로 이루어졌습니다</string>
 </resources>

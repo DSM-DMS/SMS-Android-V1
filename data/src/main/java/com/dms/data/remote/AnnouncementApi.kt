@@ -16,5 +16,5 @@ interface AnnouncementApi {
     fun getAnnouncement(@Path("announcement_uuid") announcementUUID : String) : Single<AnnouncementResponseData>
 
     @GET("v1/announcements/types/school/query/{search_query}")
-    fun searchAnnouncement(@Path("search_query") searchQuery : String) : Single<AnnouncementResponseData>
+    fun searchAnnouncement(@Path("search_query") searchQuery : String, @Query("start") start : Int,@Query("count") count : Int) : Single<AnnouncementsResponseData>
 }

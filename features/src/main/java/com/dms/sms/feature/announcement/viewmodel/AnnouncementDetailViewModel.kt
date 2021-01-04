@@ -28,11 +28,11 @@ class AnnouncementDetailViewModel(private val getAnnouncementUseCase: GetAnnounc
 
     val backButtonEvent = SingleLiveEvent<Unit>()
 
-    fun onCreate(announcementUUID: String){
+    fun onCreate(announcementUUID: String) {
         getAnnouncement(announcementUUID)
     }
 
-    fun onBackButtonClicked(){
+    fun onBackButtonClicked() {
         backButtonEvent.call()
     }
 
@@ -61,18 +61,20 @@ class AnnouncementDetailViewModel(private val getAnnouncementUseCase: GetAnnounc
             AndroidSchedulers.mainThread()
         )
     }
-    fun onFailedToLoadAnnouncement(result: Result.Failure<Announcement>){
-        when(result.reason){
-            Error.Network -> createToastEvent.value ="네트워크 오류 발생"
-            Error.BadRequest -> createToastEvent.value ="오류 발생"
-            Error.UnAuthorized -> createToastEvent.value ="인증되지 않은 사용자입니다"
-            Error.Forbidden -> createToastEvent.value ="오류 발생"
+
+    fun onFailedToLoadAnnouncement(result: Result.Failure<Announcement>) {
+        when (result.reason) {
+            Error.Network -> createToastEvent.value = "네트워크 오류 발생"
+            Error.BadRequest -> createToastEvent.value = "오류 발생"
+            Error.UnAuthorized -> createToastEvent.value = "인증되지 않은 사용자입니다"
+            Error.Forbidden -> createToastEvent.value = "오류 발생"
             Error.NotFound -> createToastEvent.value = "글이 존재하지 않습니다"
             Error.Timeout -> createToastEvent.value = "요청 시간이 너무 오래 걸립니다"
             Error.Conflict -> createToastEvent.value = "오류 발생"
             Error.InternalServer -> createToastEvent.value = "서버 오류 발생"
             Error.Unknown -> createToastEvent.value = "알 수 없는 오류 발생"
-        }    }
+        }
+    }
 
 
 }

@@ -1,17 +1,15 @@
 package com.dms.sms.feature.announcement.bindingadapter
 
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dms.sms.feature.announcement.adapter.AnnouncementPageAdapter
 import com.dms.sms.feature.announcement.adapter.AnnouncementsAdapter
 import com.dms.sms.feature.announcement.model.SimpleAnnouncementModel
 import com.dms.sms.feature.announcement.viewmodel.AnnouncementsViewModel
-import org.w3c.dom.Text
 import work.upstarts.editorjskit.models.EJBlock
 import work.upstarts.editorjskit.ui.EditorJsAdapter
-import work.upstarts.editorjskit.ui.theme.EJStyle
 
 @BindingAdapter("vm","announcementItems")
 fun RecyclerView.bindAnnouncementItems(viewModel: AnnouncementsViewModel,announcementItems: List<SimpleAnnouncementModel>?) {
@@ -45,9 +43,12 @@ fun TextView.isPreviousPostExists(announcementUUID : String?) {
 
 }
 
+@BindingAdapter("announcement_pages","vm")
+fun RecyclerView.bindAnnouncementPages(announcementPages: List<String>?, viewModel: AnnouncementsViewModel) {
+    adapter = AnnouncementPageAdapter(viewModel)
+    layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+    if(!announcementPages.isNullOrEmpty()) {
+        (adapter as AnnouncementPageAdapter).setPages(announcementPages)
+    }
 
-//fun RecyclerView.bindAnnouncementPages(announcementPages: List<Int>) {
-//    adapter = AnnouncementPageAdapter(announcementPages)
-//    layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
-//
-//}
+}

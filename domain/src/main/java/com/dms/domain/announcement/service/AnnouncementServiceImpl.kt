@@ -16,4 +16,7 @@ class AnnouncementServiceImpl(private val announcementRepository: AnnouncementRe
     override fun getAnnouncement(announcementUUID : String): Single<Result<Announcement>>  =
         announcementRepository.getAnnouncement(announcementUUID).toResult(errorHandler)
 
+    override fun searchAnnouncements(searchQuery: String, announcementPage: Int): Single<Result<Announcements>> =
+        announcementRepository.searchAnnouncements(searchQuery, announcementPage).toResult(errorHandler)
+
 }

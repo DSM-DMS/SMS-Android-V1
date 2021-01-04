@@ -21,7 +21,7 @@ import org.koin.dsl.module
 val myPageModule: Module = module {
 
     viewModel { MyPageViewModel(get(), get()) }
-    viewModel { LogoutViewModel() }
+    viewModel { LogoutViewModel(get()) }
     viewModel { ChangePwViewModel(get()) }
     viewModel { IntroduceDeveloperViewModel() }
 
