@@ -5,6 +5,7 @@ import com.dms.domain.outing.response.DetailOutingResponse
 import com.dms.domain.outing.response.OutingListResponse
 import com.dms.domain.outing.response.OutingResponse
 import com.dms.domain.outing.response.SearchPlaceListResponse
+import io.reactivex.Completable
 import io.reactivex.Single
 
 interface OutingRepository {
@@ -15,6 +16,8 @@ interface OutingRepository {
     fun getDetailOuting(outingUUID: String): Single<DetailOutingResponse>
 
     fun getPlaceList(keyword: String): Single<SearchPlaceListResponse>
+
+    fun postOutingAction(action: String): Completable
 
     fun saveOutingUUID(uuid: String, content: String)
 

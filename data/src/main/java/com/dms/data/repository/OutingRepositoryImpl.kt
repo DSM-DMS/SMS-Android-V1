@@ -9,6 +9,7 @@ import com.dms.domain.outing.response.DetailOutingResponse
 import com.dms.domain.outing.response.OutingListResponse
 import com.dms.domain.outing.response.OutingResponse
 import com.dms.domain.outing.response.SearchPlaceListResponse
+import io.reactivex.Completable
 import io.reactivex.Single
 
 class OutingRepositoryImpl(private val outingDataSource: OutingDataSource) : OutingRepository {
@@ -31,6 +32,9 @@ class OutingRepositoryImpl(private val outingDataSource: OutingDataSource) : Out
         outingDataSource.getPlaceList(keyword).map{
             it.toDomainData()
         }
+
+    override fun postOutingAction(action: String): Completable =
+        outingDataSource.postOutingAction(action)
 
     override fun saveOutingUUID(uuid: String, content: String) =
         outingDataSource.saveOutingUUID(uuid, content)
