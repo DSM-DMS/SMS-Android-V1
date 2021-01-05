@@ -8,6 +8,8 @@ import com.dms.data.dto.response.SearchPlaceListResponseData
 import com.dms.data.local.auth.LoggedInUserDatabase
 import com.dms.data.local.sharedpreference.SharedPreferencesStorage
 import com.dms.data.remote.OutingApi
+import com.dms.domain.util.getCurrentDate
+import io.reactivex.Completable
 import io.reactivex.Single
 
 class OutingDataSourceImpl(
@@ -26,6 +28,12 @@ class OutingDataSourceImpl(
 
     override fun getPlaceList(keyword: String): Single<SearchPlaceListResponseData> =
         outingApi.getPlaceList(keyword)
+
+    override fun postOutingAction(action: String): Completable {
+        val outingUUID = pref.getInfo(getCurrentDate())
+
+        return outingApi.postOutingAction(outingUUID, action)
+    }
 
     override fun saveOutingUUID(uuid: String, content: String) =
         pref.saveInfo(uuid, content)
