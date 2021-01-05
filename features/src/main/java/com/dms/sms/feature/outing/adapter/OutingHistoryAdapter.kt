@@ -39,7 +39,7 @@ class OutingHistoryAdapter: RecyclerView.Adapter<OutingHistoryAdapter.OutingHist
             binding.outingHistoryTimeTv.text = "${setDate(outingModel.startTime.toLong() * 1000).substring(11,16)} ~ ${setDate(outingModel.endTime.toLong() * 1000).substring(11,16)}"
 
             when(outingModel.outingStatus){
-                "0","1","2" -> {
+                "0","1" -> {
                     setOutingType("승인 대기","#FEDF42")
                 }
                 "3" -> {
@@ -48,7 +48,7 @@ class OutingHistoryAdapter: RecyclerView.Adapter<OutingHistoryAdapter.OutingHist
                 "4" -> {
                     setOutingType("만료","#5323B2")
                 }
-                "5" -> {
+                "2","5" -> {
                     setOutingType("승인완료","#0DD214")
                 }
                 "-1","-2" -> {

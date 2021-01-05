@@ -1,7 +1,6 @@
 package com.dms.sms.feature.outing.model
 
 import com.dms.domain.outing.response.DetailOutingResponse
-import com.dms.domain.outing.response.OutingList
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -15,23 +14,40 @@ data class DetailOutingModel(
     val _group: Int,
     val _number: Int,
     val profileUri: String
-){
+) {
     val studentNumber: String
         get() = "$_grade$_group$_number"
 
     val outingDate: String
         get() {
             val sd = Date(startTime.toLong() * 1000)
-            return SimpleDateFormat("yyyy.MM.dd",Locale.KOREA).format(sd)
+            return SimpleDateFormat("yyyy.MM.dd", Locale.KOREA).format(sd)
         }
 
     val outingTime: String
         get() {
             val sd = Date(startTime.toLong() * 1000)
-            val simpleDateFormat = SimpleDateFormat("HH:mm",Locale.KOREA)
+            val simpleDateFormat = SimpleDateFormat("HH:mm", Locale.KOREA)
             simpleDateFormat.timeZone = TimeZone.getTimeZone("UTC")
 
             return simpleDateFormat.format(sd)
+        }
+
+    val status: String
+        get() {
+            var outingState = ""
+            when(outingStatus){
+                "0" -> outingState = "승인 대기"
+                "1" -> outingState = "학부모 승인"
+                "-1" -> outingState = "학부모 거절"
+                "2" -> outingState = "선생님 승인"
+                "-2" -> outingState = "선생님 거절"
+                "3" -> outingState = "외출 시작"
+                "4" -> outingState = "외출 종료"
+                "5" -> outingState = "외출 인증 승인"
+            }
+
+            return outingState
         }
 }
 

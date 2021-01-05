@@ -16,6 +16,8 @@ interface OutingService {
 
     fun getPlaceList(keyword: String): Single<Result<SearchPlaceListResponse>>
 
+    fun postOutingAction(action: String): Single<Result<Unit>>
+
     fun getStudentUUID(): Single<Result<String>>
 
     fun getOutingUUID(content: String): String
