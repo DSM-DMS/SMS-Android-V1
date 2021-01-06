@@ -17,7 +17,10 @@ import com.dms.sms.feature.login.model.toEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 
-class LoginViewModel(private val loginUseCase: LoginUseCase, private val saveLoginDataUseCase: SaveLoginDataUseCase) : BaseViewModel() {
+class LoginViewModel(
+    private val loginUseCase: LoginUseCase,
+    private val saveLoginDataUseCase: SaveLoginDataUseCase
+) : BaseViewModel() {
 
     val idText = MutableLiveData<String>()
     val passwordText = MutableLiveData<String>()
@@ -46,15 +49,15 @@ class LoginViewModel(private val loginUseCase: LoginUseCase, private val saveLog
     fun onLoginClicked() {
 
         loginUseCase.execute(
-            LoginModel(idText.value!!, passwordText.value!!).toDomain(),
+            LoginModel(idText.value!!.trim(), passwordText.value!!.trim()).toDomain(),
             object : DisposableSingleObserver<Result<LoginResponse>>() {
                 override fun onSuccess(result: Result<LoginResponse>) {
-                    when(result){
-                        is Result.Success ->{
+                    when (result) {
+                        is Result.Success -> {
                             loginSuccess(result)
 
                         }
-                        is Result.Failure->{
+                        is Result.Failure -> {
                             loginFailed(result)
                         }
                     }
@@ -72,25 +75,29 @@ class LoginViewModel(private val loginUseCase: LoginUseCase, private val saveLog
 
 
     }
-    private fun saveLoginData(loginResponse: LoginResponse){
-        saveLoginDataUseCase.execute(LoggedInUserModel(loginResponse.accessToken,loginResponse.studentUUID,
-            isAutoLoginChecked.value!!
-        ).toEntity(), object : DisposableSingleObserver<Result<Unit>>(){
-            override fun onSuccess(result : Result<Unit>) {
-                when(result){
-                    is Result.Success-> {
-                        Log.d("자동 로그인","성공")
-                    }
-                    is Result.Failure->{
-                        createToastEvent.value = "자동 로그인 설정이 실패했습니다."
+
+    private fun saveLoginData(loginResponse: LoginResponse) {
+        saveLoginDataUseCase.execute(
+            LoggedInUserModel(
+                loginResponse.accessToken, loginResponse.studentUUID,
+                isAutoLoginChecked.value!!
+            ).toEntity(), object : DisposableSingleObserver<Result<Unit>>() {
+                override fun onSuccess(result: Result<Unit>) {
+                    when (result) {
+                        is Result.Success -> {
+                            Log.d("자동 로그인", "성공")
+                        }
+                        is Result.Failure -> {
+                            createToastEvent.value = "자동 로그인 설정이 실패했습니다."
+                        }
                     }
                 }
-            }
 
-            override fun onError(e: Throwable) {
-                createToastEvent.value = "자동 로그인 설정이 실패했습니다."
-            }
-        },AndroidSchedulers.mainThread())
+                override fun onError(e: Throwable) {
+                    createToastEvent.value = "자동 로그인 설정이 실패했습니다."
+                }
+            }, AndroidSchedulers.mainThread()
+        )
     }
 
 
@@ -103,7 +110,7 @@ class LoginViewModel(private val loginUseCase: LoginUseCase, private val saveLog
     }
 
     private fun loginFailed(result: Result.Failure<LoginResponse>) {
-        when(result.reason){
+        when (result.reason) {
             Error.Conflict ->
                 _loginErrorEvent.value = true
             Error.InternalServer ->
@@ -126,7 +133,6 @@ class LoginViewModel(private val loginUseCase: LoginUseCase, private val saveLog
         }
 
     }
-
 
 
 }
