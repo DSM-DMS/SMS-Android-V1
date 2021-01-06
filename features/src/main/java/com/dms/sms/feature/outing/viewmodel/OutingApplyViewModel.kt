@@ -181,4 +181,5 @@ class OutingApplyViewModel(
     fun clickCancel() = onCancelEvent.call()
     fun clickDiseaseCancel() = onDiseaseCancelEvent.call()
     fun clickSearchPlace() = searchPlaceEvent.call()
+    fun clickBack() = backEvent.call()
 }

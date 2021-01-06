@@ -31,7 +31,7 @@ class OutingAccessViewModel(
 
     private fun getDetailOuting() {
         val outingUUID = getOutingUUIDUseCase.getUUID(getCurrentDate())
-        
+
         getDetailOutingUseCase.execute(
             outingUUID,
             object : DisposableSingleObserver<Result<DetailOutingResponse>>() {
@@ -110,4 +110,6 @@ class OutingAccessViewModel(
             "start"
         } else "end"
     }
+
+    fun clickBack() = backEvent.call()
 }

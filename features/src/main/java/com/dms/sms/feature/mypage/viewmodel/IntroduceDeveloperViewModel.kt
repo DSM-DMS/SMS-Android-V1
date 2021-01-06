@@ -13,4 +13,8 @@ class IntroduceDeveloperViewModel : BaseViewModel() {
     init {
         developerList.value = DeveloperList.getDeveloperList()
     }
+
+    fun clickBack() {
+        backEvent.call()
+    }
 }
