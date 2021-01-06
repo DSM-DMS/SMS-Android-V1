@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="outingListItems"
             type="com.dms.sms.feature.outing.model.OutingModel" />
@@ -37,6 +39,17 @@
                     android:background="@color/colorPurple"
                     app:layout_constraintBottom_toBottomOf="@+id/outing_history_time_tv"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/outing_history_time_tv" />
+
+                <ImageView
+                    android:id="@+id/outing_history_emergency_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_emergency"
+                    android:visibility="@{outingListItems.isEmergency == true ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/outing_history_time_tv"
+                    app:layout_constraintStart_toEndOf="@+id/outing_history_time_tv"
                     app:layout_constraintTop_toTopOf="@+id/outing_history_time_tv" />
 
                 <TextView
