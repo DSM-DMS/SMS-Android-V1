@@ -10,7 +10,12 @@ data class OutingModel(
     val endTime: Int,
     val outingSituation: String,
     val outingStatus: String
-)
+) {
+    val isEmergency: Boolean
+        get() {
+            return outingSituation == "EMERGENCY"
+        }
+}
 
 fun OutingList.toModel(): OutingModel =
     OutingModel(
