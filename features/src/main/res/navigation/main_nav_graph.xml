@@ -27,7 +27,7 @@
             tools:layout="@layout/fragment_announcements" />
     <fragment
             android:id="@+id/time_table_fragment"
-            android:name="com.dms.sms.feature.schedule.TimeTableFragment"
+            android:name="com.dms.sms.feature.timetable.TimeTableFragment"
             android:label="TimeTableFragment"
             tools:layout="@layout/fragment_time_table" />
 
