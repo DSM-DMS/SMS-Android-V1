@@ -67,4 +67,8 @@ class ChangePwViewModel(private val changePasswordUseCase: ChangePasswordUseCase
 
     private fun checkFullText(): Boolean =
         !currentPw.value.isNullOrBlank() && !newPw.value.isNullOrBlank() && !confirmPw.value.isNullOrBlank()
+
+    fun clickBack(){
+        backEvent.call()
+    }
 }

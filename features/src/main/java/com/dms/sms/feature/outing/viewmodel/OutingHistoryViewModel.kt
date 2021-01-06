@@ -12,8 +12,11 @@ import com.dms.sms.feature.outing.model.toModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 
-class OutingHistoryViewModel(private val outingListUseCase: GetOutingListUseCase, private val getStudentUUIDUseCase: GetStudentUUIDUseCase) :BaseViewModel() {
-    val outingHistoryList = MutableLiveData<ArrayList<OutingModel>>().apply{
+class OutingHistoryViewModel(
+    private val outingListUseCase: GetOutingListUseCase,
+    private val getStudentUUIDUseCase: GetStudentUUIDUseCase
+) : BaseViewModel() {
+    val outingHistoryList = MutableLiveData<ArrayList<OutingModel>>().apply {
         value = ArrayList(emptyList())
     }
 
@@ -24,7 +27,7 @@ class OutingHistoryViewModel(private val outingListUseCase: GetOutingListUseCase
     private fun getStudentUUID() {
         getStudentUUIDUseCase.execute(Unit, object : DisposableSingleObserver<Result<String>>() {
             override fun onSuccess(result: Result<String>) {
-                when(result) {
+                when (result) {
                     is Result.Success -> getOutingHistoryList(result.value)
                     is Result.Failure -> createToastEvent.value = "실패"
 
@@ -34,17 +37,19 @@ class OutingHistoryViewModel(private val outingListUseCase: GetOutingListUseCase
             override fun onError(e: Throwable) {
                 TODO("Not yet implemented")
             }
-        },AndroidSchedulers.mainThread())
+        }, AndroidSchedulers.mainThread())
     }
 
     private fun getOutingHistoryList(studentUUID: String) {
-        outingListUseCase.execute(studentUUID,object : DisposableSingleObserver<Result<OutingListResponse>>() {
+        outingListUseCase.execute(
+            studentUUID, object : DisposableSingleObserver<Result<OutingListResponse>>() {
                 override fun onSuccess(result: Result<OutingListResponse>) {
                     when (result) {
                         is Result.Success -> getOutingList(result.value.outing.map { it.toModel() })
                         is Result.Failure -> failGetOutingList(result)
                     }
                 }
+
                 override fun onError(e: Throwable) {
                     createToastEvent.value = e.message
                 }
@@ -78,5 +83,9 @@ class OutingHistoryViewModel(private val outingListUseCase: GetOutingListUseCase
 
     private fun getOutingList(outingList: List<OutingModel>) {
         this.outingHistoryList.value = ArrayList(outingList)
+    }
+
+    fun clickBack() {
+        backEvent.call()
     }
 }
