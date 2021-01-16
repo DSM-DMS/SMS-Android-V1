@@ -41,8 +41,6 @@ class OutingDataSourceImpl(
     override fun getOutingUUID(content: String) =
         pref.getInfo(content)
 
-    override fun getStudentUUID(): Single<String> =
-        autoLoginUserDatabase.loggedInUserDao().getStudentUUID().map{
-            it[0]
-        }
+    override fun getStudentUUID(): String =
+        autoLoginUserDatabase.loggedInUserDao().getStdUUID()
 }
