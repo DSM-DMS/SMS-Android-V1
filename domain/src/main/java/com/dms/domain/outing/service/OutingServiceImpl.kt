@@ -37,8 +37,8 @@ class OutingServiceImpl(
     override fun postOutingAction(action: String): Single<Result<Unit>> =
         outingRepository.postOutingAction(action).toSingleResult(errorHandler)
 
-    override fun getStudentUUID(): Single<Result<String>> =
-        outingRepository.getStudentUUID().toResult(errorHandler)
+    override fun getStudentUUID(): String =
+        outingRepository.getStudentUUID()
 
     override fun getOutingUUID(content: String): String =
         outingRepository.getOutingUUID(content)

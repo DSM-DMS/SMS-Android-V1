@@ -18,7 +18,7 @@ interface OutingService {
 
     fun postOutingAction(action: String): Single<Result<Unit>>
 
-    fun getStudentUUID(): Single<Result<String>>
+    fun getStudentUUID(): String
 
     fun getOutingUUID(content: String): String
 }
