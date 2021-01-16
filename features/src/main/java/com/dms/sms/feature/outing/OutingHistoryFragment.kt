@@ -2,6 +2,7 @@ package com.dms.sms.feature.outing
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
@@ -24,6 +25,11 @@ class OutingHistoryFragment : BaseFragment<FragmentOutingHistoryBinding>() {
     }
 
     override fun observeEvents() {
+        viewModel.outingHistoryList.observe(viewLifecycleOwner, {
+            binding.outingHistoryRecyclerView.layoutAnimation =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.recycler_item_slide_right)
+            binding.outingHistoryRecyclerView.scheduleLayoutAnimation()
+        })
     }
 
 }

@@ -29,32 +29,55 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_mainFragment_to_changePasswordFragment"
-            app:destination="@id/changePasswordFragment" />
-      
-      <action
-                android:id="@+id/action_mainFragment_to_announcementDetailFragment"
-            app:destination="@id/announcementDetailFragment" >
+            app:destination="@id/changePasswordFragment"
+            app:enterAnim="@anim/fadein"
+            app:exitAnim="@anim/fadeout"
+            app:popEnterAnim="@anim/fadein"
+            app:popExitAnim="@anim/fadeout" />
+
+        <action
+            android:id="@+id/action_mainFragment_to_announcementDetailFragment"
+            app:destination="@id/announcementDetailFragment">
             <argument
                 android:name="announcementUUID"
                 app:argType="string"
-                app:nullable="false"
-                />
+                app:nullable="false" />
         </action>
         <action
             android:id="@+id/action_mainFragment_to_introducingDevelopersFragment"
-            app:destination="@id/introducingDevelopersFragment" />
+            app:destination="@id/introducingDevelopersFragment"
+            app:enterAnim="@anim/fadein"
+            app:exitAnim="@anim/fadeout"
+            app:popEnterAnim="@anim/fadein"
+            app:popExitAnim="@anim/fadeout" />
         <action
             android:id="@+id/action_mainFragment_to_outingApplyFragment"
-            app:destination="@id/outingApplyFragment" />
+            app:destination="@id/outingApplyFragment"
+            app:popEnterAnim="@anim/fadein"
+            app:popExitAnim="@anim/slide_to_right"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/fadeout" />
         <action
             android:id="@+id/action_mainFragment_to_outingHistoryFragment"
-            app:destination="@id/outingHistoryFragment" />
+            app:destination="@id/outingHistoryFragment"
+            app:popEnterAnim="@anim/fadein"
+            app:popExitAnim="@anim/slide_to_right"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/fadeout"/>
         <action
             android:id="@+id/action_mainFragment_to_outingNoticeFragment"
-            app:destination="@id/outingNoticeFragment" />
+            app:destination="@id/outingNoticeFragment"
+            app:popEnterAnim="@anim/fadein"
+            app:popExitAnim="@anim/slide_to_right"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/fadeout" />
         <action
             android:id="@+id/action_mainFragment_to_outingAccessFragment"
-            app:destination="@id/outingAccessFragment" />
+            app:destination="@id/outingAccessFragment"
+            app:popEnterAnim="@anim/fadein"
+            app:popExitAnim="@anim/slide_to_right"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/fadeout"/>
     </fragment>
 
     <fragment
@@ -87,28 +110,26 @@
     </fragment>
 
     <fragment
-            android:id="@+id/announcementDetailFragment"
-            android:name="com.dms.sms.feature.announcement.ui.AnnouncementDetailFragment"
-            android:label="fragment_announcement_detail"
-        tools:layout="@layout/fragment_announcement_detail" >
+        android:id="@+id/announcementDetailFragment"
+        android:name="com.dms.sms.feature.announcement.ui.AnnouncementDetailFragment"
+        android:label="fragment_announcement_detail"
+        tools:layout="@layout/fragment_announcement_detail">
         <argument
             android:name="announcementUUID"
             app:argType="string"
-            app:nullable="false"
-            />
+            app:nullable="false" />
         <action
             android:id="@+id/action_announcementDetailFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:popUpTo="@id/announcementDetailFragment"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
-            android:id="@+id/introducingDevelopersFragment"
-            android:name="com.dms.sms.feature.mypage.IntroducingDevelopersFragment"
-            android:label="fragment_introducing_developers"
-            tools:layout="@layout/fragment_introducing_developers" />
-  
+        android:id="@+id/introducingDevelopersFragment"
+        android:name="com.dms.sms.feature.mypage.IntroducingDevelopersFragment"
+        android:label="fragment_introducing_developers"
+        tools:layout="@layout/fragment_introducing_developers" />
+
     <fragment
         android:id="@+id/outingHistoryFragment"
         android:name="com.dms.sms.feature.outing.OutingHistoryFragment"
