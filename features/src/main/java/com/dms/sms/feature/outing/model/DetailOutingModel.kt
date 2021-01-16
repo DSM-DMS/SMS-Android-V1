@@ -21,7 +21,10 @@ data class DetailOutingModel(
     val outingDate: String
         get() {
             val sd = Date(startTime.toLong() * 1000)
-            return SimpleDateFormat("yyyy.MM.dd", Locale.KOREA).format(sd)
+            val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
+            simpleDateFormat.timeZone = TimeZone.getTimeZone("UTC")
+
+            return simpleDateFormat.format(sd)
         }
 
     val outingTime: String
