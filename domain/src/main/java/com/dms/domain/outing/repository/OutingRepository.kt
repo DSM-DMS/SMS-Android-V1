@@ -23,5 +23,5 @@ interface OutingRepository {
 
     fun getOutingUUID(content: String): String
 
-    fun getStudentUUID(): Single<String>
+    fun getStudentUUID(): String
 }

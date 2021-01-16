@@ -42,6 +42,6 @@ class OutingRepositoryImpl(private val outingDataSource: OutingDataSource) : Out
     override fun getOutingUUID(content: String): String =
         outingDataSource.getOutingUUID(content)
 
-    override fun getStudentUUID(): Single<String> =
+    override fun getStudentUUID(): String =
         outingDataSource.getStudentUUID()
 }
