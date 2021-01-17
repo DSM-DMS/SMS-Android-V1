@@ -16,6 +16,7 @@ class OutingHistoryViewModel(
     private val outingListUseCase: GetOutingListUseCase,
     private val getStudentUUIDUseCase: GetStudentUUIDUseCase
 ) : BaseViewModel() {
+    private lateinit var studentUUID: String
     val outingHistoryList = MutableLiveData<ArrayList<OutingModel>>().apply {
         value = ArrayList(emptyList())
     }
@@ -25,19 +26,13 @@ class OutingHistoryViewModel(
     }
 
     private fun getStudentUUID() {
-        getStudentUUIDUseCase.execute(Unit, object : DisposableSingleObserver<Result<String>>() {
-            override fun onSuccess(result: Result<String>) {
-                when (result) {
-                    is Result.Success -> getOutingHistoryList(result.value)
-                    is Result.Failure -> createToastEvent.value = "실패"
+        val thread = Thread {
+            studentUUID = getStudentUUIDUseCase.getUUID("")
+        }
+        thread.start()
+        thread.join()
 
-                }
-            }
-
-            override fun onError(e: Throwable) {
-                TODO("Not yet implemented")
-            }
-        }, AndroidSchedulers.mainThread())
+        getOutingHistoryList(studentUUID)
     }
 
     private fun getOutingHistoryList(studentUUID: String) {

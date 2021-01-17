@@ -5,6 +5,7 @@ import com.dms.domain.base.toResult
 import com.dms.domain.base.toSingleResult
 import com.dms.domain.errorhandler.ErrorHandler
 import com.dms.domain.outing.repository.OutingRepository
+import com.dms.domain.outing.request.AccessOutingRequest
 import com.dms.domain.outing.request.OutingApplyRequest
 import com.dms.domain.outing.response.DetailOutingResponse
 import com.dms.domain.outing.response.OutingListResponse
@@ -34,11 +35,12 @@ class OutingServiceImpl(
     override fun getPlaceList(keyword: String): Single<Result<SearchPlaceListResponse>> =
         outingRepository.getPlaceList(keyword).toResult(errorHandler)
 
-    override fun postOutingAction(action: String): Single<Result<Unit>> =
-        outingRepository.postOutingAction(action).toSingleResult(errorHandler)
+    override fun postOutingAction(actionData: AccessOutingRequest): Single<Result<Unit>> =
+        outingRepository.postOutingAction(actionData).toSingleResult(errorHandler)
 
-    override fun getStudentUUID(): Single<Result<String>> =
-        outingRepository.getStudentUUID().toResult(errorHandler)
+
+    override fun getStudentUUID(): String =
+        outingRepository.getStudentUUID()
 
     override fun getOutingUUID(content: String): String =
         outingRepository.getOutingUUID(content)

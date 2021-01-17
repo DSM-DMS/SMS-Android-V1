@@ -1,5 +1,6 @@
 package com.dms.data.datasource
 
+import com.dms.data.dto.request.AccessOutingRequestData
 import com.dms.data.dto.request.OutingData
 import com.dms.data.dto.response.DetailOutingResponseData
 import com.dms.data.dto.response.OutingListResponseData
@@ -17,11 +18,11 @@ interface OutingDataSource {
 
     fun getPlaceList(keyword: String): Single<SearchPlaceListResponseData>
 
-    fun postOutingAction(action: String): Completable
+    fun postOutingAction(actionData: AccessOutingRequestData): Completable
 
     fun saveOutingUUID(uuid: String, content: String)
 
     fun getOutingUUID(content: String): String
 
-    fun getStudentUUID(): Single<String>
+    fun getStudentUUID(): String
 }

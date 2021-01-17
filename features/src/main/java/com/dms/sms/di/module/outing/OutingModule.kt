@@ -20,14 +20,14 @@ val outingModule: Module = module {
     viewModel { OutingViewModel() }
     viewModel { OutingApplyViewModel(get(), get()) }
     viewModel { OutingHistoryViewModel(get(), get()) }
-    viewModel { OutingAccessViewModel(get(), get(), get()) }
+    viewModel { OutingAccessViewModel(get(), get(), get(), get()) }
 
     factory { PostOutingActionUseCase(get(), get()) }
     factory { GetPlaceListUseCase(get(), get()) }
     factory { GetOutingUUIDUseCase(get()) }
     factory { GetDetailOutingUseCase(get(), get()) }
     factory { OutingUseCase(get(), get()) }
-    factory { GetStudentUUIDUseCase(get(), get()) }
+    factory { GetStudentUUIDUseCase(get()) }
     factory { GetOutingListUseCase(get(), get()) }
     factory<OutingService> { OutingServiceImpl(get(), get()) }
     factory<OutingRepository> { OutingRepositoryImpl(get()) }

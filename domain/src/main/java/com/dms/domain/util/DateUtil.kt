@@ -11,18 +11,19 @@ fun getCurrentDate(): String {
     return simpleDate.format(date)
 }
 
-fun getDate(timeUnix: Long): String{
-    val date = Date(timeUnix)
-    val simpleDateFormat = SimpleDateFormat("yyyyMMdd",Locale.KOREA)
+fun getDate(timeUnix: Long): String {
+    val sd = Date(timeUnix * 1000)
+    val simpleDateFormat = SimpleDateFormat("yyyyMMdd", Locale.KOREA)
+    simpleDateFormat.timeZone = TimeZone.getTimeZone("UTC")
 
-    return simpleDateFormat.format(date)
+    return simpleDateFormat.format(sd)
 }
 
-fun getCurDay(day: Int): String{
+fun getCurDay(day: Int): String {
     val formatter = SimpleDateFormat("yyyyMMdd", Locale.KOREA)
     val c = Calendar.getInstance()
 
-    when(day){
+    when (day) {
         1 -> c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
         2 -> c.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY)
         3 -> c.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY)
@@ -33,6 +34,9 @@ fun getCurDay(day: Int): String{
     return formatter.format(c.time)
 }
 
-fun isMonday(curDate: String): Boolean{
+fun isMonday(curDate: String): Boolean {
     return curDate == getCurDay(1)
 }
+
+fun isToday(timeUnix: Long): Boolean =
+    getDate(timeUnix) == getCurrentDate()
