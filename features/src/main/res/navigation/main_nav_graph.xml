@@ -12,9 +12,10 @@
         tools:layout="@layout/fragment_outing_main" />
     <fragment
         android:id="@+id/schedule_fragment"
-        android:name="com.dms.sms.feature.schedule.SchoolScheduleFragment"
+        android:name="com.dms.sms.feature.schedule.ui.SchoolScheduleFragment"
         android:label="SchoolScheduleFragment"
         tools:layout="@layout/fragment_school_schedule" />
+
     <fragment
         android:id="@+id/mypage_fragment"
         android:name="com.dms.sms.feature.mypage.MyPageFragment"
