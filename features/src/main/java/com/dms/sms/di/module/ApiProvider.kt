@@ -12,11 +12,14 @@ fun provideOutingApi(retrofit: Retrofit): OutingApi =
 fun provideAuthApi(retrofit: Retrofit): AuthApi =
     retrofit.create(AuthApi::class.java)
 
-fun provideAnnouncementApi(retrofit: Retrofit) : AnnouncementApi =
+fun provideAnnouncementApi(retrofit: Retrofit): AnnouncementApi =
     retrofit.create(AnnouncementApi::class.java)
-
-fun provideAccountApi(retrofit: Retrofit) : AccountApi =
-    retrofit.create(AccountApi::class.java)
 
 fun provideScheduleApi(retrofit: Retrofit) : ScheduleApi =
     retrofit.create(ScheduleApi::class.java)
+
+fun provideAccountApi(retrofit: Retrofit): AccountApi =
+    retrofit.create(AccountApi::class.java)
+
+fun provideTimeTableApi(retrofit: Retrofit): TimeTableApi =
+    retrofit.create(TimeTableApi::class.java)

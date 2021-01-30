@@ -34,9 +34,11 @@
                 android:id="@+id/outing_access_back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:background="@drawable/ic_back"
-                android:padding="14dp"
+                android:layout_marginStart="12dp"
+                android:src="@drawable/ic_back"
+                android:padding="10dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClick="@{()->vm.clickBack()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/outing_apply_tv"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -50,7 +52,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/notosanscjkkrregular"
                 android:includeFontPadding="false"
-                android:text="@string/access_outing_card_tv"
+                android:text="@string/outing_today_card_tv"
                 android:textColor="@color/colorBlack"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -61,6 +63,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView6"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:visibility="@{vm.accessResult == false ? View.VISIBLE : View.GONE}"
@@ -100,6 +103,7 @@
                         android:id="@+id/access_online_card_profile_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
                         app:setProfile="@{vm.detailOutingData.profileUri}" />
 
                 </androidx.cardview.widget.CardView>
@@ -109,7 +113,7 @@
                     android:id="@+id/access_online_card_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="12dp"
                     android:text="@{@string/access_card_name_tv(vm.detailOutingData.name)}"
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
@@ -120,7 +124,7 @@
                     android:id="@+id/view6"
                     android:layout_width="0dp"
                     android:layout_height="3dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/drawable_dash_line"
                     app:layout_constraintEnd_toStartOf="@+id/outing_access_card_gl_right"
                     app:layout_constraintStart_toStartOf="@+id/outing_access_card_gl_left"
@@ -130,7 +134,7 @@
                     android:id="@+id/access_online_card_number_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="16dp"
                     android:text="@{@string/access_card_number_tv(vm.detailOutingData.studentNumber)}"
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
@@ -141,7 +145,7 @@
                     android:id="@+id/view7"
                     android:layout_width="0dp"
                     android:layout_height="3dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/drawable_dash_line"
                     app:layout_constraintEnd_toStartOf="@+id/outing_access_card_gl_right"
                     app:layout_constraintStart_toStartOf="@+id/outing_access_card_gl_left"
@@ -149,14 +153,39 @@
 
                 <TextView
                     android:id="@+id/access_online_card_place_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@{@string/access_card_place_tv(vm.detailOutingData.place)}"
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/outing_access_card_gl_right"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/outing_access_card_gl_left"
                     app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+                <View
+                    android:id="@+id/view9"
+                    android:layout_width="0dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/drawable_dash_line"
+                    app:layout_constraintEnd_toStartOf="@+id/outing_access_card_gl_right"
+                    app:layout_constraintStart_toStartOf="@+id/outing_access_card_gl_left"
+                    app:layout_constraintTop_toBottomOf="@+id/access_online_card_place_tv" />
+
+                <TextView
+                    android:id="@+id/access_online_card_status_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@{@string/access_card_status_tv(vm.detailOutingData.status)}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/outing_access_card_gl_left"
+                    app:layout_constraintTop_toBottomOf="@+id/view9" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout3"
@@ -262,7 +291,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.57" />
+                    app:layout_constraintGuide_percent="0.54" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -350,6 +379,20 @@
 
         </androidx.cardview.widget.CardView>
 
+        <Button
+            android:id="@+id/outing_access_start_btn"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@{vm.outingStartTv == true ? @drawable/radius_purple_view : @drawable/radius_red_view}"
+            android:onClick="@{()-> vm.clickStart()}"
+            android:text="@{vm.outingStartTv == true ? @string/outing_start_tv : @string/outing_end_tv}"
+            android:textColor="@color/colorWhite"
+            android:visibility="@{vm.accessBtnResult == false ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/outing_access_gl_right"
+            app:layout_constraintStart_toStartOf="@+id/outing_access_gl_left"
+            app:layout_constraintTop_toBottomOf="@+id/cardView6" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/outing_access_gl_left"
             android:layout_width="wrap_content"
@@ -369,7 +412,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.9" />
+            app:layout_constraintGuide_percent="0.88" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/outing_access_gl_middle"

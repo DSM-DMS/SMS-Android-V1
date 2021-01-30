@@ -4,42 +4,42 @@ import androidx.lifecycle.MutableLiveData
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
 import com.dms.domain.outing.response.DetailOutingResponse
+import com.dms.domain.outing.response.OutingListResponse
 import com.dms.domain.outing.usecase.GetDetailOutingUseCase
-import com.dms.domain.outing.usecase.GetOutingUUIDUseCase
+import com.dms.domain.outing.usecase.GetOutingListUseCase
+import com.dms.domain.outing.usecase.GetStudentUUIDUseCase
+import com.dms.domain.outing.usecase.PostOutingActionUseCase
+import com.dms.domain.util.isToday
 import com.dms.sms.base.BaseViewModel
-import com.dms.sms.feature.outing.model.DetailOutingModel
-import com.dms.sms.feature.outing.model.toModel
+import com.dms.sms.feature.outing.model.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 
 class OutingAccessViewModel(
     private val getDetailOutingUseCase: GetDetailOutingUseCase,
-    private val getOutingUUIDUseCase: GetOutingUUIDUseCase
+    private val getOutingListUseCase: GetOutingListUseCase,
+    private val getStudentUUIDUseCase: GetStudentUUIDUseCase,
+    private val postOutingActionUseCase: PostOutingActionUseCase
 ) : BaseViewModel() {
 
+    private lateinit var studentUUID: String
+    private lateinit var outingUUID: String
     val detailOutingData = MutableLiveData<DetailOutingModel>()
     val accessResult = MutableLiveData(true)
+    val outingStartTv = MutableLiveData(true)
+    val accessBtnResult = MutableLiveData(false)
 
     init {
-        getDetailOuting()
+        getStudentUUID()
     }
 
-    private fun getDetailOuting() {
-        val outingUUID = getOutingUUIDUseCase.getUUID("outingUUID")
-
+    private fun getDetailOuting(outingUUID: String) {
         getDetailOutingUseCase.execute(
-            outingUUID,
-            object : DisposableSingleObserver<Result<DetailOutingResponse>>() {
+            outingUUID, object : DisposableSingleObserver<Result<DetailOutingResponse>>() {
                 override fun onSuccess(result: Result<DetailOutingResponse>) {
                     when (result) {
-                        is Result.Success -> {
-                            accessResult.value = false
-                            detailOutingData.value = result.value.toModel()
-                        }
-                        is Result.Failure -> {
-                            accessResult.value = true
-                            failDetailOuting(result)
-                        }
+                        is Result.Success -> successDetailOuting(result)
+                        is Result.Failure -> failDetailOuting(result)
                     }
                 }
 
@@ -50,7 +50,37 @@ class OutingAccessViewModel(
         )
     }
 
+    private fun getStudentUUID() {
+        val thread = Thread {
+            studentUUID = getStudentUUIDUseCase.getUUID("")
+        }
+        thread.start()
+        thread.join()
+
+        getOutingList()
+    }
+
+    private fun getOutingList() {
+        getOutingListUseCase.execute(
+            studentUUID, object : DisposableSingleObserver<Result<OutingListResponse>>() {
+                override fun onSuccess(result: Result<OutingListResponse>) {
+                    when (result) {
+                        is Result.Success -> isTodayOuting(result.value.outing.map { it.toModel() })
+                        is Result.Failure -> accessResult.value = true
+                    }
+                }
+
+                override fun onError(e: Throwable) {
+                    createToastEvent.value = e.message
+                }
+            },
+            AndroidSchedulers.mainThread()
+        )
+    }
+
     private fun failDetailOuting(result: Result.Failure<DetailOutingResponse>) {
+        accessResult.value = true
+
         when (result.reason) {
             Error.InternalServer ->
                 createToastEvent.value = "서버 오류 발생"
@@ -71,4 +101,58 @@ class OutingAccessViewModel(
 
         }
     }
+
+    private fun successDetailOuting(result: Result.Success<DetailOutingResponse>) {
+        accessResult.value = false
+        detailOutingData.value = result.value.toModel()
+
+        if (result.value.outingStatus == "2") {
+            accessBtnResult.value = true
+            outingStartTv.value = true
+        } else if (result.value.outingStatus == "3") {
+            accessBtnResult.value = true
+            outingStartTv.value = false
+        }
+    }
+
+    fun clickStart() {
+        val accessOutingModel = AccessOutingModel(outingUUID!!, isOutingStart())
+        postOutingActionUseCase.execute(
+            accessOutingModel.toDomain(),
+            object : DisposableSingleObserver<Result<Unit>>() {
+                override fun onSuccess(result: Result<Unit>) {
+                    when (result) {
+                        is Result.Success -> {
+                            if (isOutingStart() == "end") {
+                                accessBtnResult.value = false
+                            }
+                            outingStartTv.value = !outingStartTv.value!!
+                        }
+                        is Result.Failure -> createToastEvent.value = result.reason.toString()
+                    }
+                }
+
+                override fun onError(e: Throwable) {
+                }
+            },
+            AndroidSchedulers.mainThread()
+        )
+    }
+
+    private fun isOutingStart(): String {
+        return if (outingStartTv.value == true) {
+            "start"
+        } else "end"
+    }
+
+    private fun isTodayOuting(outingList: List<OutingModel>) {
+        for (i in outingList.indices) {
+            if (isToday(outingList[i].startTime.toLong())) {
+                outingUUID = outingList[i].outingUUID
+                getDetailOuting(outingList[i].outingUUID)
+            }
+        }
+    }
+
+    fun clickBack() = backEvent.call()
 }

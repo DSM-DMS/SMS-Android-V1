@@ -1,5 +1,6 @@
 package com.dms.data.datasource
 
+import com.dms.data.dto.request.AccessOutingRequestData
 import com.dms.data.dto.request.OutingData
 import com.dms.data.dto.response.DetailOutingResponseData
 import com.dms.data.dto.response.OutingListResponseData
@@ -8,6 +9,7 @@ import com.dms.data.dto.response.SearchPlaceListResponseData
 import com.dms.data.local.auth.LoggedInUserDatabase
 import com.dms.data.local.sharedpreference.SharedPreferencesStorage
 import com.dms.data.remote.OutingApi
+import io.reactivex.Completable
 import io.reactivex.Single
 
 class OutingDataSourceImpl(
@@ -27,14 +29,15 @@ class OutingDataSourceImpl(
     override fun getPlaceList(keyword: String): Single<SearchPlaceListResponseData> =
         outingApi.getPlaceList(keyword)
 
+    override fun postOutingAction(actionData: AccessOutingRequestData): Completable =
+        outingApi.postOutingAction(actionData.outingUUID, actionData.action)
+
     override fun saveOutingUUID(uuid: String, content: String) =
         pref.saveInfo(uuid, content)
 
     override fun getOutingUUID(content: String) =
         pref.getInfo(content)
 
-    override fun getStudentUUID(): Single<String> =
-        autoLoginUserDatabase.loggedInUserDao().getStudentUUID().map{
-            it[0]
-        }
+    override fun getStudentUUID(): String =
+        autoLoginUserDatabase.loggedInUserDao().getStdUUID()
 }

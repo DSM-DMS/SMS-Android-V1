@@ -5,6 +5,7 @@ import com.dms.data.dto.response.DetailOutingResponseData
 import com.dms.data.dto.response.OutingListResponseData
 import com.dms.data.dto.response.OutingResponseData
 import com.dms.data.dto.response.SearchPlaceListResponseData
+import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.*
 
@@ -20,4 +21,7 @@ interface OutingApi {
 
     @GET("/naver-open-api/search/local")
     fun getPlaceList(@Query("keyword") keyword: String): Single<SearchPlaceListResponseData>
+
+    @POST("/v1/outings/uuid/{outing_uuid}/actions/{action}")
+    fun postOutingAction(@Path("outing_uuid") outingUUID: String, @Path("action") action: String): Completable
 }
