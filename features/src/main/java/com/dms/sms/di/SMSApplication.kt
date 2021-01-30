@@ -27,7 +27,7 @@ class SMSApplication : Application() {
                     outingModule,
                     announcementModule,
                     myPageModule,
-                    scheduleModule
+                    scheduleModule,
                     timeTableModule
                 )
             )

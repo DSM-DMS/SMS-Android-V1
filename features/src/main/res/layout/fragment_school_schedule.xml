@@ -79,6 +79,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="24dp"
             android:elevation="50dp"
+            android:onClick="@{()->vm.onClickSwitch()}"
             android:src="@drawable/ic_swap"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detail_school_schedule_rv"

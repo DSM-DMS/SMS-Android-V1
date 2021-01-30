@@ -5,6 +5,7 @@ import com.dms.domain.base.Result
 import com.dms.domain.schedule.entity.Schedules
 import com.dms.domain.schedule.usecase.GetScheduleUseCase
 import com.dms.sms.base.BaseViewModel
+import com.dms.sms.base.SingleLiveEvent
 import com.dms.sms.feature.schedule.calculateTime
 import com.dms.sms.feature.schedule.getCurrentDate
 import com.dms.sms.feature.schedule.model.ScheduleDateModel
@@ -31,6 +32,8 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
     private val _selectedDateSchedule = MutableLiveData<List<ScheduleModel>>()
     val selectedDateSchedule : LiveData<List<ScheduleModel>> get() =_selectedDateSchedule
 
+    val onClickTimeTableSwitch = SingleLiveEvent<Unit>()
+
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate(){
         _currentYear.value = getCurrentDate().year
@@ -41,6 +44,10 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
     fun onClickDate(schedules : List<ScheduleModel>, selectedDay : String) {
         _isSelected.value = selectedDay
         _selectedDateSchedule.value = schedules
+    }
+
+    fun onClickSwitch() {
+        onClickTimeTableSwitch.call()
     }
 
     fun onClickNext(){
