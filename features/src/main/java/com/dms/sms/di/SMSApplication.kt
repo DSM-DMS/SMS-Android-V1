@@ -7,6 +7,7 @@ import com.dms.sms.di.base.baseModule
 import com.dms.sms.di.module.announcement.announcementModule
 import com.dms.sms.di.module.mypage.myPageModule
 import com.dms.sms.di.module.outing.outingModule
+import com.dms.sms.di.module.schedule.scheduleModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -24,7 +25,8 @@ class SMSApplication : Application() {
                     networkModule,
                     outingModule,
                     announcementModule,
-                    myPageModule
+                    myPageModule,
+                    scheduleModule
                 )
             )
         }

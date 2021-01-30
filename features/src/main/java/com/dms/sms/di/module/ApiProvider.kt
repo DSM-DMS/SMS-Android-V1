@@ -17,3 +17,6 @@ fun provideAnnouncementApi(retrofit: Retrofit) : AnnouncementApi =
 
 fun provideAccountApi(retrofit: Retrofit) : AccountApi =
     retrofit.create(AccountApi::class.java)
+
+fun provideScheduleApi(retrofit: Retrofit) : ScheduleApi =
+    retrofit.create(ScheduleApi::class.java)
