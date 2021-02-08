@@ -50,6 +50,7 @@
                 android:fontFamily="@font/notosanscjkkrregular"
                 android:includeFontPadding="false"
                 android:textSize="17sp"
+                android:paddingVertical="8dp"
                 tools:text="asdfasd"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
