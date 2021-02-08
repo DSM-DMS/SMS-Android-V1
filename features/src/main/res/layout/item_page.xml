@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <variable
+            name="page"
+            type="Integer" />
+
+        <variable
+            name="vm"
+            type="com.dms.sms.feature.announcement.viewmodel.AnnouncementsViewModel" />
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/page_item_tv"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:background= "@{vm.currentPage == page-1 ?  @drawable/purple_background : @drawable/border_gray}"
+            android:onClick="@{()->vm.onPageClick(page.toString())}"
+            android:text="@{page.toString()}"
+            android:textColor="@{vm.currentPage == page-1 ? @color/colorWhite : @color/colorBlack}"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

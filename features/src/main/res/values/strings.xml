@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">SMS-Android_V1</string>
+
+    //outing main
+    <string name="outing_tv">외출</string>
+    <string name="outing_detail_tv">유의사항에 주의하면서 외출신청을 해주세요</string>
+    <string name="outing_apply_tv">외출신청</string>
+    <string name="outing_apply_detail_tv">외출신청을 합니다</string>
+    <string name="outing_history_tv">내 외출신청 내역</string>
+    <string name="outing_history_detail_tv">외출한 내역들을 보여줍니다</string>
+    <string name="outing_complete_tv">승인완료 외출증</string>
+    <string name="outing_complete_detail_tv">사용가능한 외출증을 보여줍니다</string>
+    <string name="outing_notice_tv">유의사항</string>
+    <string name="outing_notice_detail_tv">외출 신청시 유의사항을 보여줍니다</string>
+
+    //outing apply
+    <string name="date_tv">날짜</string>
+    <string name="time_tv">시간</string>
+    <string name="place_tv">장소</string>
+    <string name="disease_apply">질병 외출로 신청 중입니다. </string>
+    <string name="no_disease_apply">질병 외출로 신청하시겠습니까?</string>
+
+    //outing apply dialog
+    <string name="cancel_tv">취소</string>
+    <string name="apply_tv">신청</string>
+
+    //outing complete
+    <string name="do_apply_tv">신청하기</string>
+    <string name="complete_tv">완료</string>
+
+    //outing online card
+    <string name="online_card_tv">온라인 학생증</string>
+    <string name="online_date_tv">외출날짜 : <font color='#5323B2'>%s</font></string>
+    <string name="student_number_tv">학번: %s</string>
+    <string name="student_name_tv">이름: %s</string>
+
+    //time table
+    <string name="monday_tv">월</string>
+    <string name="tuesday_tv">화</string>
+    <string name="wednesday_tv">수</string>
+    <string name="thursday_tv">목</string>
+    <string name="friday_tv">금</string>
+
+    //access outing
+    <string name="access_outing_card_tv">승인완료 외출증</string>
+    <string name="access_date_tv">2020.07.21</string>
+    <string name="access_date_string_tv">외출날짜</string>
+    <string name="outing_start_tv">외출 시작</string>
+    <string name="outing_today_card_tv">오늘의 외출증</string>
+    <string name="show_today_outing_card_tv">오늘 신청한 외출증을 보여줍니다</string>
+    <string name="outing_end_tv">외출 종료</string>
+    <string name="access_card_name_tv"><b>이름</b>  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
+    <string name="access_card_status_tv"><b>상태</b>  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
+    <string name="access_card_number_tv"><b>학번</b>  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
+    <string name="access_card_place_tv"><b>장소</b>  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
+    <string name="access_card_reason_tv"><b>사유</b>  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
+
+    //change password
+    <string name="new_password_confirm_et">변경할 비밀번호를 확인해주세요</string>
+    <string name="new_password_confirm_tv">비밀번호 확인</string>
+    <string name="new_password_et">변경할 비밀번호를 입력해주세요</string>
+    <string name="new_password_tv">새 비밀번호</string>
+    <string name="current_password_et">현재 비밀번호를 입력해주세요</string>
+    <string name="current_password_tv">현재 비밀번호</string>
+    <string name="change_password_title_tv">비밀번호 변경</string>
+    <string name="confirm_tv">확인</string>
+
+    //my page
+    <string name="developers_introducing_description_tv">SMS 개발에 참여한 개발자들을 소개합니다.</string>
+    <string name="developers_introducing_tv">개발자 소개</string>
+    <string name="log_out_description_tv">기기내 계정에서 로그아웃합니다.</string>
+    <string name="log_out_tv">로그아웃</string>
+    <string name="change_password_description_tv">비밀번호를 변경합니다.</string>
+    <string name="change_password_tv">비밀번호 변경</string>
+    <string name="my_page_title_tv">마이페이지</string>
+    <string name="outing_status_tv">외출상태</string>
+    <string name="my_page_student_number_tv">%s학년 %s반 %s번</string>
+
+
+    //announcement
+    <string name="announcement_tv">공지사항</string>
+    <string name="search_announcement_tv">검색결과</string>
+    <string name="search_announcement_et">검색할 공지 제목을 입력하세요.</string>
+    <string name="announcement_number_tv">번호</string>
+    <string name="announcement_title_tv">제목</string>
+    <string name="announcement_date_tv">날짜</string>
+    <string name="announcement_view_tv">조회수</string>
+    <string name="previous_announcement_tv">이전글</string>
+    <string name="next_announcement_tv">다음글</string>
+
+
+    //login
+    <string name="login_title_tv">로그인</string>
+    <string name="password_et">비밀번호를 입력해주세요</string>
+    <string name="auto_log_in_checkbox">자동 로그인</string>
+    <string name="id_et">아이디를 입력해주세요</string>
+    <string name="login_err_tv">아이디 또는 비밀번호가 일치하지 않습니다</string>
+    <string name="logo_tv">SMS</string>
+    <string name="outing_reason_tv">사유 : %s</string>
+    <string name="outing_place_tv">장소 : %s</string>
+    <string name="no_apply_outing_card_tv">&lt;font color="#5323B2">신청한 외출증&lt;/font>이 없습니다.</string>
+    <string name="outing_apply_complete_tv">&lt;font color="#5323B2">외출신청&lt;/font>이 성공적으로 이루어졌습니다</string>
+
+    //schedule
+    <string name="school_schedule_calender_title_tv">%s년 %s월</string>
+
+</resources>
