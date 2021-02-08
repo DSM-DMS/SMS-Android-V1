@@ -76,13 +76,12 @@
             android:id="@+id/calendar_switch_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="24dp"
             android:elevation="50dp"
             android:onClick="@{()->vm.onClickSwitch()}"
             android:src="@drawable/ic_swap"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_school_schedule_rv"
+            app:layout_constraintTop_toTopOf="@+id/guideline12"
             app:maxImageSize="35dp" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -105,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.7" />
+            app:layout_constraintGuide_percent="0.9" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline10"
@@ -129,15 +128,15 @@
             app:year="@{vm.currentYear}" />
 
 
-        <View
-            android:id="@+id/view9"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="33dp"
-            android:background="@color/colorGray2"
-            app:layout_constraintEnd_toStartOf="@+id/guideline9"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
-            app:layout_constraintTop_toTopOf="@+id/school_calendar_rv" />
+<!--        <View-->
+<!--            android:id="@+id/view9"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="1.6dp"-->
+<!--            android:layout_marginTop="33dp"-->
+<!--            android:background="@color/colorGray2"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/guideline9"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/guideline8"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/school_calendar_rv" />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
