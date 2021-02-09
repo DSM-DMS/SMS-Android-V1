@@ -2,27 +2,20 @@ package com.dms.sms.feature.announcement.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.R
-import com.dms.sms.base.BaseFragment
+import com.dms.sms.base.EndPointBaseFragment
 import com.dms.sms.databinding.FragmentAnnouncementsBinding
-import com.dms.sms.feature.announcement.adapter.AnnouncementsAdapter
 import com.dms.sms.feature.announcement.viewmodel.AnnouncementsViewModel
-import com.dms.sms.navigateFragment
 import com.dms.sms.navigateFragmentWithArgs
 import com.dms.sms.ui.MainFragmentDirections
 import kotlinx.android.synthetic.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AnnouncementsFragment : BaseFragment<FragmentAnnouncementsBinding>() {
+class AnnouncementsFragment : EndPointBaseFragment<FragmentAnnouncementsBinding>() {
 
     override val viewModel: AnnouncementsViewModel by viewModel()
     override val layoutId: Int

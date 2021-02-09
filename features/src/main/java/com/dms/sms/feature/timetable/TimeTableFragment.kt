@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.R
-import com.dms.sms.base.BaseFragment
+import com.dms.sms.base.EndPointBaseFragment
 import com.dms.sms.databinding.FragmentTimeTableBinding
 import com.dms.sms.feature.timetable.adapter.TimeTableAdapter
 import com.dms.sms.feature.timetable.viewmodel.TimeTableViewModel
@@ -13,7 +13,7 @@ import com.dms.sms.navigateFragment
 import kotlinx.android.synthetic.main.fragment_school_schedule.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TimeTableFragment : BaseFragment<FragmentTimeTableBinding>() {
+class TimeTableFragment : EndPointBaseFragment<FragmentTimeTableBinding>() {
 
     override val viewModel: TimeTableViewModel by viewModel()
     override val layoutId: Int
