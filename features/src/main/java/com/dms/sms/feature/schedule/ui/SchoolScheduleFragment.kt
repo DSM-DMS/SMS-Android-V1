@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.R
-import com.dms.sms.base.BaseFragment
+import com.dms.sms.base.EndPointBaseFragment
 import com.dms.sms.databinding.FragmentSchoolScheduleBinding
 import com.dms.sms.feature.schedule.adapter.DetailScheduleAdapter
 import com.dms.sms.feature.schedule.adapter.SchoolCalendarAdapter
@@ -18,7 +18,7 @@ import com.dms.sms.navigateFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class SchoolScheduleFragment : BaseFragment<FragmentSchoolScheduleBinding>() {
+class SchoolScheduleFragment : EndPointBaseFragment<FragmentSchoolScheduleBinding>() {
     override val viewModel: SchoolScheduleViewModel by viewModel()
     override val layoutId: Int = R.layout.fragment_school_schedule
 
