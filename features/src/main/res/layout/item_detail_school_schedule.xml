@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="model"
+            type="com.dms.sms.feature.schedule.model.ScheduleModel" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -10,11 +14,10 @@
         android:id="@+id/event_view"
         android:layout_width="10dp"
         android:layout_height="10dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="18dp"
         android:background="@drawable/circle_background"
-        android:backgroundTint="@color/colorGray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,9 +26,14 @@
         android:id="@+id/schedule_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:textSize="16sp"
+        android:layout_marginStart="12dp"
+        android:text="@{model.detail}"
         android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        android:maxLines="1"
+        android:maxLength="15"
+        android:ellipsize="end"
+        android:fontFamily="@font/notosanscjkkrregular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/event_view"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,9 +44,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:layout_marginTop="1dp"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:textColor="@color/colorDarkGray"
+        android:fontFamily="@font/notosanscjkkrregular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/schedule_tv"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -100,4 +100,8 @@
     <string name="outing_place_tv">장소 : %s</string>
     <string name="no_apply_outing_card_tv">&lt;font color="#5323B2">신청한 외출증&lt;/font>이 없습니다.</string>
     <string name="outing_apply_complete_tv">&lt;font color="#5323B2">외출신청&lt;/font>이 성공적으로 이루어졌습니다</string>
+
+    //schedule
+    <string name="school_schedule_calender_title_tv">%s년 %s월</string>
+
 </resources>
