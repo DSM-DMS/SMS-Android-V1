@@ -1,6 +1,5 @@
 package com.dms.sms.feature.outing
 
-import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
@@ -21,28 +20,20 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
     override fun observeEvents() {
         with(viewModel) {
             outingPlace.value = null
-            outingDate.value = null
             outingEndTime.value = null
             outingStartTime.value = null
             outingReason.value = null
             outingWithDisease.value = true
 
-            dateEvent.observe(viewLifecycleOwner, {
-                val datePickerDialogListener =
-                    DatePickerDialog.OnDateSetListener { _, year, month, date ->
-                        viewModel.applyDate = "${year}/${month + 1}/${date} "
-                        outingDate.value = "${year}년 ${month + 1}월 ${date}일"
-                    }
-                val datePickerDialog = DatePickerDialog(requireContext(),datePickerDialogListener,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH))
-                datePickerDialog.datePicker.minDate = System.currentTimeMillis()
-                datePickerDialog.show()
-            })
-
             startTimeEvent.observe(viewLifecycleOwner, {
                 val timePickerDialogListener =
                     TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-                        startTime = "${hour + 9}:$minute:00"
-                        outingStartTime.value = "${hour}시  ${minute}분"
+                        startTime = "$hour:$minute:00"
+                        when(compareTime("$hour:$minute:00",1)){
+                            1,3 -> outingStartTime.value = "${hour}시  ${minute}분"
+                            2 -> createToastEvent.value = "외출은 4시 20분 이후에 가능합니다."
+                            4 -> createToastEvent.value = "귀교 시간보다 늦을 수 없습니다."
+                        }
                     }
                 val timePickerDialog = TimePickerDialog(requireContext(),timePickerDialogListener,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),android.text.format.DateFormat.is24HourFormat(requireContext()))
                 timePickerDialog.show()
@@ -51,8 +42,12 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
             endTimeEvent.observe(viewLifecycleOwner, {
                 val timePickerDialogListener =
                     TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-                        endTime = "${hour + 9}:$minute:00"
-                        outingEndTime.value = "${hour}시  ${minute}분 "
+                        endTime = "$hour:$minute:00"
+                        when(compareTime("$hour:$minute:00",2)){
+                            1,3 -> outingEndTime.value = "${hour}시  ${minute}분 "
+                            2 -> createToastEvent.value = "외출은 20시 30분 이후엔 불가능합니다."
+                            4 -> createToastEvent.value = "외출 시간보다 빠를 수 없습니다."
+                        }
                     }
                 val timePickerDialog = TimePickerDialog( requireContext(),timePickerDialogListener,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),android.text.format.DateFormat.is24HourFormat(requireContext())
                 )
