@@ -68,7 +68,7 @@ class OutingHistoryAdapter: RecyclerView.Adapter<OutingHistoryAdapter.OutingHist
         private fun setDate(timeUnix: Long): String{
             val date = Date(timeUnix)
             val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss",Locale.KOREA)
-            simpleDateFormat.timeZone = TimeZone.getTimeZone("UTC")
+            simpleDateFormat.timeZone = TimeZone.getTimeZone("Asia/Seoul")
 
             return simpleDateFormat.format(date)
         }
