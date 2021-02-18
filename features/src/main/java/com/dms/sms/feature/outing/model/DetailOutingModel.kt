@@ -22,7 +22,7 @@ data class DetailOutingModel(
         get() {
             val sd = Date(startTime.toLong() * 1000)
             val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
-            simpleDateFormat.timeZone = TimeZone.getTimeZone("UTC")
+            simpleDateFormat.timeZone = TimeZone.getTimeZone("Asia/Seoul")
 
             return simpleDateFormat.format(sd)
         }
@@ -31,7 +31,7 @@ data class DetailOutingModel(
         get() {
             val sd = Date(startTime.toLong() * 1000)
             val simpleDateFormat = SimpleDateFormat("HH:mm", Locale.KOREA)
-            simpleDateFormat.timeZone = TimeZone.getTimeZone("UTC")
+            simpleDateFormat.timeZone = TimeZone.getTimeZone("Asia/Seoul")
 
             return simpleDateFormat.format(sd)
         }
