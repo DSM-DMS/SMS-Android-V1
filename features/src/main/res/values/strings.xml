@@ -47,7 +47,7 @@
     <string name="access_date_string_tv">외출날짜</string>
     <string name="outing_start_tv">외출 시작</string>
     <string name="outing_today_card_tv">오늘의 외출증</string>
-    <string name="show_today_outing_card_tv">오늘 신청한 외출증을 보여줍니다</string>
+    <string name="show_today_outing_card_tv">외출을 시작하고 종료할 수 있습니다.</string>
     <string name="outing_end_tv">외출 종료</string>
     <string name="access_card_name_tv"><b>이름</b>  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
     <string name="access_card_status_tv"><b>상태</b>  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
