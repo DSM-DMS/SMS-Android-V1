@@ -30,8 +30,10 @@ class OutingApplyViewModel(
     var applyDate: String? = getCurrentDate()
     var startTime: String? = null
     var endTime: String? = null
-    private val localDate = getCurrentDate()
     val calendar: Calendar = Calendar.getInstance(Locale.KOREA)
+    var inputStartTime: String? = null
+    var inputEndTime: String? = null
+    private val localDate = getCurrentDate()
     private val simpleDateFormat = SimpleDateFormat("yyyyMMdd HH:mm:ss", Locale.KOREA).apply {
         timeZone = TimeZone.getTimeZone("Asia/Seoul")
     }
@@ -195,9 +197,9 @@ class OutingApplyViewModel(
                         1 // 1 - 정규시간이 입력시간보다 작다 즉 옳은 경우
                     } else 2 // 2 - 정규시간이 입력시간보다 크다 즉 틀린 경우
                 } else {
-                    val inputEndTime = endTime!!.split(":")
+                    val inputEndTime = this.inputEndTime!!.split(":")
                     if ((regularStartTime[0].toInt() * 60 + regularStartTime[1].toInt()) - (inputTime[0].toInt() * 60 + inputTime[1].toInt()) < 0) {
-                        if ((inputEndTime[0].toInt() - 9) * 60 + inputEndTime[1].toInt() >= (inputTime[0].toInt() * 60 + inputTime[1].toInt())) {
+                        if (inputEndTime[0].toInt() * 60 + inputEndTime[1].toInt() >= (inputTime[0].toInt() * 60 + inputTime[1].toInt())) {
                             3 // 도착 시간보다 시작 시간이 작다 즉 옳은 경우
                         } else 4 // 도착 시간보다 시작 시간이 크다 즉 틀린 경우
                     } else 2
@@ -212,9 +214,9 @@ class OutingApplyViewModel(
                         1 //정규 종료시간이 입력 종료시간보다 크다 즉 옳은 경우
                     } else 2 // 정규 종료시간이 입력 종류시간보다 작다 즉 틀린 경우
                 } else {
-                    val inputStartTime = startTime!!.split(":")
+                    val inputStartTime = this.inputStartTime!!.split(":")
                     if ((regularEndTime[0].toInt() * 60 + regularEndTime[1].toInt()) - (inputTime[0].toInt() * 60 + inputTime[1].toInt()) >= 0) {
-                        if ((inputStartTime[0].toInt() - 9) * 60 + inputStartTime[1].toInt() <= (inputTime[0].toInt() * 60 + inputTime[1].toInt())) {
+                        if (inputStartTime[0].toInt() * 60 + inputStartTime[1].toInt() <= (inputTime[0].toInt() * 60 + inputTime[1].toInt())) {
                             3 // 도착 시간보다 시작 시간이 크다 즉 옳은 경우
                         } else 4 // 도착 시간보다 시작 시간이 작다 즉 틀린 경우
                     } else 2

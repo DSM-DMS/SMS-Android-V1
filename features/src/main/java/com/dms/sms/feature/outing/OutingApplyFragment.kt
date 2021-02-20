@@ -30,7 +30,10 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
                     TimePickerDialog.OnTimeSetListener { _, hour, minute ->
                         startTime = "$hour:$minute:00"
                         when(compareTime("$hour:$minute:00",1)){
-                            1,3 -> outingStartTime.value = "${hour}시  ${minute}분"
+                            1,3 -> {
+                                inputStartTime = "$hour:$minute:00"
+                                outingStartTime.value = "${hour}시  ${minute}분"
+                            }
                             2 -> createToastEvent.value = "외출은 4시 20분 이후에 가능합니다."
                             4 -> createToastEvent.value = "귀교 시간보다 늦을 수 없습니다."
                         }
@@ -44,7 +47,10 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
                     TimePickerDialog.OnTimeSetListener { _, hour, minute ->
                         endTime = "$hour:$minute:00"
                         when(compareTime("$hour:$minute:00",2)){
-                            1,3 -> outingEndTime.value = "${hour}시  ${minute}분 "
+                            1,3 -> {
+                                inputEndTime = "$hour:$minute:00"
+                                outingEndTime.value = "${hour}시  ${minute}분 "
+                            }
                             2 -> createToastEvent.value = "외출은 20시 30분 이후엔 불가능합니다."
                             4 -> createToastEvent.value = "외출 시간보다 빠를 수 없습니다."
                         }
