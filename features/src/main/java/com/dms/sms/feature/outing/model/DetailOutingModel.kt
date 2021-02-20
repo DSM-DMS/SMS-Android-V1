@@ -30,24 +30,28 @@ data class DetailOutingModel(
     val outingTime: String
         get() {
             val sd = Date(startTime.toLong() * 1000)
-            val simpleDateFormat = SimpleDateFormat("HH:mm", Locale.KOREA)
-            simpleDateFormat.timeZone = TimeZone.getTimeZone("Asia/Seoul")
+            val simpleDateFormat1 = SimpleDateFormat("HH:mm", Locale.KOREA)
+            simpleDateFormat1.timeZone = TimeZone.getTimeZone("Asia/Seoul")
 
-            return simpleDateFormat.format(sd)
+            val ed = Date(endTime.toLong() * 1000)
+            val simpleDateFormat2 = SimpleDateFormat("HH:mm", Locale.KOREA)
+            simpleDateFormat2.timeZone = TimeZone.getTimeZone("Asia/Seoul")
+
+            return "${simpleDateFormat1.format(sd)} ~ ${simpleDateFormat2.format(ed)}"
         }
 
     val status: String
         get() {
             var outingState = ""
             when(outingStatus){
-                "0" -> outingState = "승인 대기"
-                "1" -> outingState = "학부모 승인"
                 "-1" -> outingState = "학부모 거절"
-                "2" -> outingState = "선생님 승인"
                 "-2" -> outingState = "선생님 거절"
-                "3" -> outingState = "외출 시작"
-                "4" -> outingState = "외출 종료"
-                "5" -> outingState = "외출 인증 승인"
+                "0" -> outingState = "학부모 승인 대기"
+                "1" -> outingState = "선생님 승인 대기"
+                "2" -> outingState = "외출 가능"
+                "3" -> outingState = "외출중"
+                "4" -> outingState = "선생님 방문 인증 필요"
+                "5" -> outingState = "외출 확인 완료"
             }
 
             return outingState

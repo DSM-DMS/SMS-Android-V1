@@ -39,20 +39,26 @@ class OutingHistoryAdapter: RecyclerView.Adapter<OutingHistoryAdapter.OutingHist
             binding.outingHistoryTimeTv.text = "${setDate(outingModel.startTime.toLong() * 1000).substring(11,16)} ~ ${setDate(outingModel.endTime.toLong() * 1000).substring(11,16)}"
 
             when(outingModel.outingStatus){
-                "0","1" -> {
-                    setOutingType("승인 대기","#FEDF42")
+                "0" -> {
+                    setOutingType("학부모 승인 대기","#FEDF42") // 노란색
+                }
+                "1" -> {
+                    setOutingType("선생님 승인 대기","#FEDF42") // 노란색
+                }
+                "2" -> {
+                    setOutingType("외출 가능","#0DD214") // 연두색
                 }
                 "3" -> {
-                    setOutingType("외출중","#FF9100")
+                    setOutingType("외출 시작","#5323B2") // 보라색
                 }
                 "4" -> {
-                    setOutingType("만료","#5323B2")
+                    setOutingType("만료","#F30404") // 빨간색
                 }
-                "2","5" -> {
-                    setOutingType("승인완료","#0DD214")
+                "5" -> {
+                    setOutingType("외출 확인 완료","#344FE6") // 파란색
                 }
                 "-1","-2" -> {
-                    setOutingType("승인 거부","#F30404")
+                    setOutingType("승인 거부","#FF9100") // 주황색 
                 }
             }
 
