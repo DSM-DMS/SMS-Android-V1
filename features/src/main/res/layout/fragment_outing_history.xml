@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="com.dms.sms.feature.outing.viewmodel.OutingHistoryViewModel" />
@@ -30,10 +33,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:src="@drawable/ic_back"
-                android:padding="10dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:onClick="@{()->vm.clickBack()}"
+                android:padding="10dp"
+                android:src="@drawable/ic_back"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/outing_history_tv"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -56,16 +59,55 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="외출 신청 내역이 없습니다."
+            android:textSize="15sp"
+            android:visibility="@{vm.historyResult == true ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toStartOf="@+id/outing_history_gl_right"
+            app:layout_constraintStart_toStartOf="@+id/outing_history_gl_left"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="@{()->vm.clickOutingApply()}"
+            app:layout_constraintEnd_toStartOf="@+id/outing_history_gl_right"
+            app:layout_constraintStart_toStartOf="@+id/outing_history_gl_left"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            <TextView
+                android:id="@+id/go_outing_history_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/go_apply_outing"
+                android:textColor="@color/colorPurple"
+                android:textSize="15sp"
+                android:visibility="@{vm.historyResult == true ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/outing_history_recycler_view"
             android:layout_width="0dp"
-            app:outingHistoryList="@{vm.outingHistoryList}"
             android:layout_height="0dp"
             android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/outing_history_gl_right"
             app:layout_constraintStart_toStartOf="@+id/outing_history_gl_left"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:outingHistoryList="@{vm.outingHistoryList}"
             tools:listitem="@layout/item_outing_history" />
 
         <androidx.constraintlayout.widget.Guideline

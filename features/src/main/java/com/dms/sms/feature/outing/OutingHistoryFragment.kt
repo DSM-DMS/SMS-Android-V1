@@ -1,6 +1,7 @@
 package com.dms.sms.feature.outing
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +10,7 @@ import com.dms.sms.base.BaseFragment
 import com.dms.sms.databinding.FragmentOutingHistoryBinding
 import com.dms.sms.feature.outing.adapter.OutingHistoryAdapter
 import com.dms.sms.feature.outing.viewmodel.OutingHistoryViewModel
+import com.dms.sms.navigateFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class OutingHistoryFragment : BaseFragment<FragmentOutingHistoryBinding>() {
@@ -21,7 +23,7 @@ class OutingHistoryFragment : BaseFragment<FragmentOutingHistoryBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.outingHistoryRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.outingHistoryRecyclerView.adapter = OutingHistoryAdapter()
+        binding.outingHistoryRecyclerView.adapter = OutingHistoryAdapter(viewModel)
     }
 
     override fun observeEvents() {
@@ -29,6 +31,11 @@ class OutingHistoryFragment : BaseFragment<FragmentOutingHistoryBinding>() {
             binding.outingHistoryRecyclerView.layoutAnimation =
                 AnimationUtils.loadLayoutAnimation(context, R.anim.recycler_item_slide_right)
             binding.outingHistoryRecyclerView.scheduleLayoutAnimation()
+        })
+
+        viewModel.clickOutingApplyEvent.observe(viewLifecycleOwner, {
+            Log.e("click","clickcolci")
+            navigateFragment(R.id.action_outingHistoryFragment_to_outingApplyFragment)
         })
     }
 

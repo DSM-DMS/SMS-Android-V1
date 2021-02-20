@@ -103,5 +103,6 @@
 
     //schedule
     <string name="school_schedule_calender_title_tv">%s년 %s월</string>
+    <string name="go_apply_outing"><u>외출신청하러 가기</u></string>
 
 </resources>

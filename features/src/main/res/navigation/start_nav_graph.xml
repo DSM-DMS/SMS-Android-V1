@@ -53,31 +53,31 @@
         <action
             android:id="@+id/action_mainFragment_to_outingApplyFragment"
             app:destination="@id/outingApplyFragment"
-            app:popEnterAnim="@anim/fadein"
-            app:popExitAnim="@anim/slide_to_right"
             app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/fadeout" />
+            app:exitAnim="@anim/fadeout"
+            app:popEnterAnim="@anim/fadein"
+            app:popExitAnim="@anim/slide_to_right" />
         <action
             android:id="@+id/action_mainFragment_to_outingHistoryFragment"
             app:destination="@id/outingHistoryFragment"
-            app:popEnterAnim="@anim/fadein"
-            app:popExitAnim="@anim/slide_to_right"
             app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/fadeout"/>
+            app:exitAnim="@anim/fadeout"
+            app:popEnterAnim="@anim/fadein"
+            app:popExitAnim="@anim/slide_to_right" />
         <action
             android:id="@+id/action_mainFragment_to_outingNoticeFragment"
             app:destination="@id/outingNoticeFragment"
-            app:popEnterAnim="@anim/fadein"
-            app:popExitAnim="@anim/slide_to_right"
             app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/fadeout" />
+            app:exitAnim="@anim/fadeout"
+            app:popEnterAnim="@anim/fadein"
+            app:popExitAnim="@anim/slide_to_right" />
         <action
             android:id="@+id/action_mainFragment_to_outingAccessFragment"
             app:destination="@id/outingAccessFragment"
-            app:popEnterAnim="@anim/fadein"
-            app:popExitAnim="@anim/slide_to_right"
             app:enterAnim="@anim/slide_from_right"
-            app:exitAnim="@anim/fadeout"/>
+            app:exitAnim="@anim/fadeout"
+            app:popEnterAnim="@anim/fadein"
+            app:popExitAnim="@anim/slide_to_right" />
     </fragment>
 
     <fragment
@@ -134,7 +134,15 @@
         android:id="@+id/outingHistoryFragment"
         android:name="com.dms.sms.feature.outing.OutingHistoryFragment"
         android:label="fragment_outing_history"
-        tools:layout="@layout/fragment_outing_history" />
+        tools:layout="@layout/fragment_outing_history">
+        <action
+            android:id="@+id/action_outingHistoryFragment_to_outingApplyFragment"
+            app:destination="@id/outingApplyFragment"
+            app:exitAnim="@anim/fadeout"
+            app:popExitAnim="@anim/slide_to_right"
+            app:popUpTo="@id/outingHistoryFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/outingAccessFragment"
         android:name="com.dms.sms.feature.outing.OutingAccessFragment"

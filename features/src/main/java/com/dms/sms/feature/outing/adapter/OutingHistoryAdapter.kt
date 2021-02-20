@@ -7,11 +7,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.databinding.ItemOutingHistoryBinding
 import com.dms.sms.feature.outing.model.OutingModel
+import com.dms.sms.feature.outing.viewmodel.OutingHistoryViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class OutingHistoryAdapter: RecyclerView.Adapter<OutingHistoryAdapter.OutingHistoryViewHolder>() {
+class OutingHistoryAdapter(private val outingHistoryViewModel: OutingHistoryViewModel): RecyclerView.Adapter<OutingHistoryAdapter.OutingHistoryViewHolder>() {
     private var outingListItems = ArrayList<OutingModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OutingHistoryViewHolder {
@@ -24,8 +25,10 @@ class OutingHistoryAdapter: RecyclerView.Adapter<OutingHistoryAdapter.OutingHist
         holder.bind(outingListItems[position])
     }
 
-    override fun getItemCount(): Int =
-        outingListItems.size
+    override fun getItemCount(): Int {
+        outingHistoryViewModel.historyResult.value = outingListItems.size != 0
+        return outingListItems.size
+    }
 
     fun setItems(outingHistoryList: MutableLiveData<ArrayList<OutingModel>>) {
         this.outingListItems = outingHistoryList.value!!
@@ -58,7 +61,7 @@ class OutingHistoryAdapter: RecyclerView.Adapter<OutingHistoryAdapter.OutingHist
                     setOutingType("외출 확인 완료","#344FE6") // 파란색
                 }
                 "-1","-2" -> {
-                    setOutingType("승인 거부","#FF9100") // 주황색 
+                    setOutingType("승인 거부","#FF9100") // 주황색
                 }
             }
 
