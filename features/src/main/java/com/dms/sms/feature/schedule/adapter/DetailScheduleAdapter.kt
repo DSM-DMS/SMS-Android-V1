@@ -3,6 +3,7 @@ package com.dms.sms.feature.schedule.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.R
 import com.dms.sms.databinding.ItemDetailSchoolScheduleBinding
@@ -18,8 +19,15 @@ class DetailScheduleAdapter(var scheduleList: List<ScheduleModel> = listOf(), pr
     }
 
     override fun onBindViewHolder(holder: DetailScheduleViewHolder, position: Int) {
-        Log.d("onBindViewHolder det", position.toString())
         holder.bind(scheduleList[position], month)
+    }
+
+    fun updateDetailSchedule(newScheduleList : List<ScheduleModel>, month: Int) {
+        val diffCallback = ScheduleDiffCallback(scheduleList,newScheduleList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        scheduleList= newScheduleList
+        this.month = month
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun getItemCount(): Int = scheduleList.size
@@ -46,4 +54,18 @@ class DetailScheduleViewHolder(private val binding: ItemDetailSchoolScheduleBind
 
     }
 
+}
+
+class ScheduleDiffCallback(private val oldList : List<ScheduleModel>, private val newList : List<ScheduleModel>) : DiffUtil.Callback(){
+
+    override fun getOldListSize(): Int = oldList.size
+
+    override fun getNewListSize(): Int = newList.size
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+        oldList[oldItemPosition] == newList[newItemPosition]
+
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+        areItemsTheSame(oldItemPosition, newItemPosition)
 }
