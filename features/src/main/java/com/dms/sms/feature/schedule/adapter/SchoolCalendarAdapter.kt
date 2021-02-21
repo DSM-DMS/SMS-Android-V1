@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.R
@@ -20,13 +21,13 @@ class SchoolCalendarAdapter(
 ) : RecyclerView.Adapter<SchoolCalendarViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SchoolCalendarViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemSchoolScheduleCalenderBinding.inflate(inflater, parent, false)
-        return SchoolCalendarViewHolder(binding, viewModel)
+        return SchoolCalendarViewHolder.from(parent, viewModel)
     }
 
     override fun onBindViewHolder(holder: SchoolCalendarViewHolder, position: Int) {
-        Log.d("onBindViewHolder cal", position.toString())
+        Log.d("regen",position.toString() + " "+viewModel.currentMonth.value)
+        Log.d("gogo",position.toString() + " "+days[position])
+
         try {
             holder.bindSchedule(days[position - 1], days[position])
         } catch (e: Exception) {
@@ -40,21 +41,24 @@ class SchoolCalendarAdapter(
         val calendar = Calendar.getInstance()
         val sdf = SimpleDateFormat("yyyy년 M월", Locale.KOREAN)
         calendar.time = sdf.parse("${year}년 ${month}월")!!
-        val emptyDays = 6 + calendar.get(Calendar.DAY_OF_WEEK) - 1
+        val emptyDays = 5 + calendar.get(Calendar.DAY_OF_WEEK)
 
 
         list.forEach {
-            for (i in it.startDate..it.endDate) {
-                days[emptyDays + i].schedule.add(it)
+            if(it.endDate<it.startDate){
+                for (i in it.startDate..calendar.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+                    days[emptyDays + i].schedule.add(it)
+                }
+            }
+            else {
+                for (i in it.startDate..it.endDate) {
+                    days[emptyDays + i].schedule.add(it)
+                }
             }
         }
+
         notifyDataSetChanged()
 
-    }
-    fun updateCalendar() {
-////        val diffCallback = DiffCallback(listOf(Day("")),days)
-//        val diffResult = DiffUtil.calculateDiff(diffCallback)
-//        diffResult.dispatchUpdatesTo(this)
     }
 
 
@@ -64,15 +68,41 @@ class SchoolCalendarViewHolder(
     private val binding: ItemSchoolScheduleCalenderBinding,
     private val viewModel: SchoolScheduleViewModel
 ) : RecyclerView.ViewHolder(binding.root) {
+
+    companion object {
+        fun from(parent: ViewGroup, viewModel: SchoolScheduleViewModel): SchoolCalendarViewHolder {
+            val layoutInflater = LayoutInflater.from(parent.context)
+            val binding = ItemSchoolScheduleCalenderBinding.inflate(layoutInflater, parent, false)
+            return SchoolCalendarViewHolder(binding, viewModel)
+        }
+    }
+
     fun bind(day: Day) {
-        Log.d("bindday", day.toString())
         binding.vm = viewModel
         binding.model = day
-        binding.day = day.date
         binding.executePendingBindings()
 
     }
-    private fun bindSameScheduleAsYesterday(previousDay: Day, today: Day){
+
+    fun bindSchedule(previousDay: Day, today: Day) {
+//        if (viewModel.isSelected.value != null && viewModel.isSelected.value == adapterPosition)
+//            binding.dayHeadLayout.background = ContextCompat.getDrawable(binding.dayHeadLayout.context, R.drawable.square_background)
+//        else
+//            binding.dayHeadLayout.setBackgroundColor(binding.dayHeadLayout.context.getColor(R.color.colorWhite))
+
+        bindSameScheduleAsYesterday(previousDay, today)
+        bindTodaySchedule(today)
+
+
+        binding.vm = viewModel
+        binding.position = adapterPosition
+        binding.model = today
+        binding.executePendingBindings()
+
+
+    }
+
+    private fun bindSameScheduleAsYesterday(previousDay: Day, today: Day) {
 
         for (i in 0 until today.schedule.size) {
             for (j in 0 until previousDay.schedule.size) {
@@ -110,7 +140,8 @@ class SchoolCalendarViewHolder(
             }
         }
     }
-    private fun bindTodaySchedule(today: Day){
+
+    private fun bindTodaySchedule(today: Day) {
         val list: MutableList<Int> = mutableListOf()
         for (i in 0 until today.schedule.size) {
 
@@ -119,8 +150,7 @@ class SchoolCalendarViewHolder(
             if (today.schedule[i].datePosition != -1) {
                 list.add(today.schedule[i].datePosition)
                 continue
-            }
-            else {
+            } else {
 
                 if (list.size > 1) {
                     when {
@@ -253,36 +283,5 @@ class SchoolCalendarViewHolder(
     }
 
 
-    fun bindSchedule(previousDay: Day, today: Day) {
-        Log.d("binddaysche", today.toString())
-
-        bindSameScheduleAsYesterday(previousDay, today)
-
-        bindTodaySchedule(today)
-
-        binding.vm = viewModel
-        binding.day = today.date
-        binding.model = today
-        binding.executePendingBindings()
-
-
-    }
-
-
 }
 
- class DiffCallback(private val oldList : List<Day>, private val newList : List<Day>) : DiffUtil.Callback() {
-
-
-     override fun getOldListSize(): Int = oldList.size
-
-     override fun getNewListSize(): Int = newList.size
-
-     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-         return oldList[oldItemPosition].isSelected == oldList[oldItemPosition].isSelected
-     }
-
-     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-         return oldList[oldItemPosition].isSelected == oldList[oldItemPosition].isSelected
-     }
- }

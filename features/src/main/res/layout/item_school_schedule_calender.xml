@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="day"
-            type="java.lang.String" />
+            name="position"
+            type="java.lang.Integer" />
         <variable
             name="vm"
             type="com.dms.sms.feature.schedule.viewmodel.SchoolScheduleViewModel" />
@@ -19,9 +19,7 @@
     android:id="@+id/day_head_layout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:onClick="@{()->vm.onClickDate(model.schedule, day)}"
-    selectedDay="@{vm.isSelected}"
-    date="@{day}">
+    android:onClick="@{()->vm.onClickDate(model.schedule, position)}">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,17 +42,18 @@
                 android:id="@+id/calendar_day_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/notosanscjkkrregular"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:text="@{model.date}"
                 android:textColor="@color/colorBlack"
-                android:fontFamily="@font/notosanscjkkrregular"
-                android:includeFontPadding="false"
                 android:textSize="17sp"
-                tools:text="asdfasd"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="asdfasd" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
