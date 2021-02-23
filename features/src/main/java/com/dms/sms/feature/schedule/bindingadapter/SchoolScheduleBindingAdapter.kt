@@ -18,20 +18,39 @@ fun RecyclerView.setSchedules(schedules : List<ScheduleModel>?,year: Int, month:
 
 }
 
-@BindingAdapter(value = ["selectedDay", "date"], requireAll = false)
-fun View.selectDay(selectedDay : String?, date : String) {
-    try {
-        selectedDay?.toInt()
-        if (selectedDay==date) {
-            this.background = ContextCompat.getDrawable(this.context, R.drawable.square_background)
-        }
-        else {
-            this.setBackgroundColor(this.context.getColor(R.color.colorWhite))
+//@BindingAdapter(value = ["selectedDay", "date"], requireAll = false)
+//fun View.selectDay(selectedDay : String?, date : String) {
+////    try {
+////        selectedDay?.toInt()
+////        if (selectedDay==date) {
+////            this.background = ContextCompat.getDrawable(this.context, R.drawable.square_background)
+////        }
+////        else {
+////            this.setBackgroundColor(this.context.getColor(R.color.colorWhite))
+////
+////        }
+////    }
+////    catch (e: Exception){
+////        this.setBackgroundColor(this.context.getColor(R.color.colorWhite))
+////    }
+//
+//}
 
-        }
-    }
-    catch (e: Exception){
-        this.setBackgroundColor(this.context.getColor(R.color.colorWhite))
-    }
-
+@BindingAdapter("selectedDay")
+fun RecyclerView.selectDay(selectedDay : String?) {
+    if(adapter!=null && selectedDay!=null)
+        (adapter as SchoolCalendarAdapter).selectDay(selectedDay.toInt())
+//
+//    try {
+//        selectedDay?.toInt()
+//        if (selectedDay == date) {
+//            this.background = ContextCompat.getDrawable(this.context, R.drawable.square_background)
+//        } else {
+//            this.setBackgroundColor(this.context.getColor(R.color.colorWhite))
+//
+//        }
+//    } catch (e: Exception) {
+//        this.setBackgroundColor(this.context.getColor(R.color.colorWhite))
+//
+//    }
 }

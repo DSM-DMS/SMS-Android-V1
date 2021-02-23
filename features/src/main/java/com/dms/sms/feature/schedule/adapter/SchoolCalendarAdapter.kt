@@ -2,6 +2,7 @@ package com.dms.sms.feature.schedule.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
@@ -19,6 +20,9 @@ class SchoolCalendarAdapter(
     private val viewModel: SchoolScheduleViewModel
 ) : RecyclerView.Adapter<SchoolCalendarViewHolder>() {
 
+    var emptyDays : Int = 0
+    var selectedDay : Int? = null
+    var previousDay : Int? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SchoolCalendarViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemSchoolScheduleCalenderBinding.inflate(inflater, parent, false)
@@ -26,9 +30,12 @@ class SchoolCalendarAdapter(
     }
 
     override fun onBindViewHolder(holder: SchoolCalendarViewHolder, position: Int) {
-        Log.d("onBindViewHolder cal", position.toString())
         try {
-            holder.bindSchedule(days[position - 1], days[position])
+            if(position>emptyDays)
+                holder.bindSchedule(days[position - 1], days[position], selectedDay)
+            else
+                holder.bind(days[position])
+
         } catch (e: Exception) {
             holder.bind(days[position])
         }
@@ -40,16 +47,36 @@ class SchoolCalendarAdapter(
         val calendar = Calendar.getInstance()
         val sdf = SimpleDateFormat("yyyy년 M월", Locale.KOREAN)
         calendar.time = sdf.parse("${year}년 ${month}월")!!
-        val emptyDays = 6 + calendar.get(Calendar.DAY_OF_WEEK) - 1
+        emptyDays = 5 + calendar.get(Calendar.DAY_OF_WEEK)
 
 
         list.forEach {
-            for (i in it.startDate..it.endDate) {
-                days[emptyDays + i].schedule.add(it)
+            if(it.startMonth< it.endMonth && it.endMonth==viewModel.currentMonth.value){
+                for (i in 1..it.endDay) {
+                    days[emptyDays + i].schedule.add(it)
+                }
+            }
+            else if (it.startMonth< it.endMonth && it.startMonth==viewModel.currentMonth.value){
+                for (i in it.startDay..calendar.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+                    days[emptyDays + i].schedule.add(it)
+                }
+            }
+            else {
+                for (i in it.startDay..it.endDay) {
+                    days[emptyDays + i].schedule.add(it)
+                }
             }
         }
         notifyDataSetChanged()
 
+    }
+    fun selectDay(selectedDay : Int){
+        previousDay = this.selectedDay
+        this.selectedDay = selectedDay
+        if(previousDay!=null){
+            notifyItemChanged(previousDay!! +emptyDays)
+        }
+        notifyItemChanged(selectedDay+emptyDays)
     }
     fun updateCalendar() {
 ////        val diffCallback = DiffCallback(listOf(Day("")),days)
@@ -70,6 +97,24 @@ class SchoolCalendarViewHolder(
         binding.model = day
         binding.day = day.date
         binding.executePendingBindings()
+
+    }
+    fun bindSchedule(previousDay: Day, today: Day, selectedDay: Int? = null) {
+        Log.d("binddaysche", today.toString())
+
+        bindSameScheduleAsYesterday(previousDay, today)
+        bindTodaySchedule(today)
+
+        if(selectedDay.toString() == today.date)
+            binding.selectedStateImg.visibility= View.VISIBLE
+        else
+            binding.selectedStateImg.visibility= View.INVISIBLE
+
+        binding.vm = viewModel
+        binding.day = today.date
+        binding.model = today
+        binding.executePendingBindings()
+
 
     }
     private fun bindSameScheduleAsYesterday(previousDay: Day, today: Day){
@@ -253,20 +298,7 @@ class SchoolCalendarViewHolder(
     }
 
 
-    fun bindSchedule(previousDay: Day, today: Day) {
-        Log.d("binddaysche", today.toString())
 
-        bindSameScheduleAsYesterday(previousDay, today)
-
-        bindTodaySchedule(today)
-
-        binding.vm = viewModel
-        binding.day = today.date
-        binding.model = today
-        binding.executePendingBindings()
-
-
-    }
 
 
 }
