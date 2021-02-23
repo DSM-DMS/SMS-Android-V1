@@ -15,6 +15,7 @@ import com.dms.sms.feature.schedule.getCurrentDate
 import com.dms.sms.feature.schedule.model.ScheduleDateModel
 import com.dms.sms.feature.schedule.viewmodel.SchoolScheduleViewModel
 import com.dms.sms.navigateFragment
+import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -43,7 +44,10 @@ class SchoolScheduleFragment : EndPointBaseFragment<FragmentSchoolScheduleBindin
 //        })
         viewModel.selectedDateSchedule.observe(viewLifecycleOwner, {
             it?.let {
-                binding.detailSchoolScheduleRv.adapter = DetailScheduleAdapter(it,viewModel.currentMonth.value!!)
+                if(it.isEmpty())
+                    binding.detailSchoolScheduleRv.adapter = DetailScheduleAdapter()
+                else
+                    (binding.detailSchoolScheduleRv.adapter as DetailScheduleAdapter).updateDetailSchedule(it)
             }
         })
 
