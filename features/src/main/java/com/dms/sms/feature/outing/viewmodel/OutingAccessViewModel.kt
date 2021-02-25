@@ -11,6 +11,7 @@ import com.dms.domain.outing.usecase.GetStudentUUIDUseCase
 import com.dms.domain.outing.usecase.PostOutingActionUseCase
 import com.dms.domain.util.isToday
 import com.dms.sms.base.BaseViewModel
+import com.dms.sms.base.SingleLiveEvent
 import com.dms.sms.feature.outing.model.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
@@ -28,6 +29,14 @@ class OutingAccessViewModel(
     val accessResult = MutableLiveData(true)
     val outingStartTv = MutableLiveData(true)
     val accessBtnResult = MutableLiveData(false)
+
+    val outingStartDialogEvent = SingleLiveEvent<Unit>()
+    val outingFinishDialogEvent = SingleLiveEvent<Unit>()
+    val outingStartConfirmEvent = SingleLiveEvent<Unit>()
+    val outingStartCancelEvent = SingleLiveEvent<Unit>()
+    val outingFinishConfirmEvent = SingleLiveEvent<Unit>()
+    val outingFinishCancelEvent = SingleLiveEvent<Unit>()
+    val reloadEvent = SingleLiveEvent<Unit>()
 
     init {
         getStudentUUID()
@@ -50,7 +59,7 @@ class OutingAccessViewModel(
         )
     }
 
-    private fun getStudentUUID() {
+    fun getStudentUUID() {
         val thread = Thread {
             studentUUID = getStudentUUIDUseCase.getUUID("")
         }
@@ -116,7 +125,15 @@ class OutingAccessViewModel(
     }
 
     fun clickStart() {
-        val accessOutingModel = AccessOutingModel(outingUUID!!, isOutingStart())
+        if (outingStartTv.value!!) {
+            outingStartDialogEvent.call()
+        } else {
+            outingFinishDialogEvent.call()
+        }
+    }
+
+    fun startOrFinishOuting() {
+        val accessOutingModel = AccessOutingModel(outingUUID, isOutingStart())
         postOutingActionUseCase.execute(
             accessOutingModel.toDomain(),
             object : DisposableSingleObserver<Result<Unit>>() {
@@ -155,4 +172,8 @@ class OutingAccessViewModel(
     }
 
     fun clickBack() = backEvent.call()
+    fun clickOutingStartConfirm() = outingStartConfirmEvent.call()
+    fun clickOutingStartCancel() = outingStartCancelEvent.call()
+    fun clickOutingFinishConfirm() = outingFinishConfirmEvent.call()
+    fun clickOutingFinishCancel() = outingFinishCancelEvent.call()
 }

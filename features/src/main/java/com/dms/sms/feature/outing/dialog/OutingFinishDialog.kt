@@ -4,10 +4,10 @@ import com.dms.sms.R
 import com.dms.sms.base.BaseDialog
 import com.dms.sms.databinding.FragmentOutingFinishDialogBinding
 import com.dms.sms.feature.outing.viewmodel.OutingAccessViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class OutingFinishDialog : BaseDialog<FragmentOutingFinishDialogBinding>() {
-    override val viewModel: OutingAccessViewModel by viewModel()
+    override val viewModel by sharedViewModel<OutingAccessViewModel>()
 
     override val layoutId: Int
         get() = R.layout.fragment_outing_finish_dialog
