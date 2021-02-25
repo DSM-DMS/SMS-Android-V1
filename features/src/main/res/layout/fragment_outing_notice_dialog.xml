@@ -59,7 +59,7 @@
                     android:layout_marginTop="2dp"
                     android:text="거짓으로 질병 외출로 신청 시,\n불이익과 처벌을 받을 수 있습니다."
                     android:textColor="@color/colorBlack"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline4"
                     app:layout_constraintStart_toEndOf="@+id/view"
                     app:layout_constraintTop_toTopOf="@+id/guideline2" />
@@ -79,13 +79,36 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="12dp"
                     android:text="질병 외출은 질병, 부상으로 인한\n외출 시에만 신청하실 수 있습니다."
                     android:textColor="@color/colorBlack"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline4"
                     app:layout_constraintStart_toEndOf="@+id/view"
                     app:layout_constraintTop_toBottomOf="@+id/guideline6" />
+
+                <View
+                    android:id="@+id/view10"
+                    android:layout_width="2dp"
+                    android:layout_height="14dp"
+                    android:background="@color/colorPurple"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toTopOf="@+id/textView18"
+                    app:layout_constraintVertical_bias="0.1" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="22dp"
+                    android:text="학부모 승인 절차를 건너뛰게 됩니다."
+                    android:textColor="@color/colorBlack"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                    app:layout_constraintStart_toEndOf="@+id/view"
+                    app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
                 <TextView
                     android:id="@+id/apply_outing_warning_dialog_cancel_tv"
@@ -93,6 +116,7 @@
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
                     android:gravity="center"
+                    android:layout_marginTop="10dp"
                     android:onClick="@{()->vm.clickCancel()}"
                     android:padding="12dp"
                     android:text="@string/cancel_tv"
@@ -100,10 +124,8 @@
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guideline7"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/guideline5"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
                 <TextView
                     android:id="@+id/apply_outing_warning_dialog_apply_tv"
@@ -111,6 +133,7 @@
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
                     android:gravity="center"
+                    android:layout_marginTop="10dp"
                     android:onClick="@{()->vm.clickSuccess()}"
                     android:padding="12dp"
                     android:text="@string/apply_tv"
@@ -160,7 +183,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.5" />
+                    app:layout_constraintGuide_percent="0.42" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.62" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.78" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline7"

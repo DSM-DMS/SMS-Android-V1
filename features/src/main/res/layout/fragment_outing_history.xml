@@ -73,11 +73,12 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="4dp"
             android:background="?attr/selectableItemBackground"
             android:onClick="@{()->vm.clickOutingApply()}"
+            android:padding="4dp"
             app:layout_constraintEnd_toStartOf="@+id/outing_history_gl_right"
             app:layout_constraintStart_toStartOf="@+id/outing_history_gl_left"
             app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -102,11 +103,10 @@
             android:id="@+id/outing_history_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/outing_history_gl_right"
             app:layout_constraintStart_toStartOf="@+id/outing_history_gl_left"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
             app:outingHistoryList="@{vm.outingHistoryList}"
             tools:listitem="@layout/item_outing_history" />
 
