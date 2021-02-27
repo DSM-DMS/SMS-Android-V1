@@ -9,6 +9,9 @@ fun getCurrentDate() : ScheduleDateModel {
     val date = Date(System.currentTimeMillis())
     val formatter = SimpleDateFormat("yyyy.MM", Locale.KOREA).format(date)
     val yearAndMonth = formatter.split(".")
-    Log.d("ㅇㅇㅇㅇㅇ",ScheduleDateModel(yearAndMonth[0].toInt(), yearAndMonth[1].toInt()).toString())
     return ScheduleDateModel(yearAndMonth[0].toInt(), yearAndMonth[1].toInt())
+}
+fun getCurrentDay() : String {
+    val date = Date(System.currentTimeMillis())
+    return SimpleDateFormat("dd", Locale.KOREA).format(date)
 }
