@@ -10,6 +10,7 @@ import com.dms.domain.auth.usecase.SaveLoginDataUseCase
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
 import com.dms.sms.base.BaseViewModel
+import com.dms.sms.base.SingleLiveEvent
 import com.dms.sms.feature.login.model.LoggedInUserModel
 import com.dms.sms.feature.login.model.LoginModel
 import com.dms.sms.feature.login.model.toDomain
@@ -33,6 +34,8 @@ class LoginViewModel(
 
     private val _loginSuccessEvent = MutableLiveData<Boolean>()
     private val _loginErrorEvent = MutableLiveData<Boolean>()
+    val onClickSignUpEvent = SingleLiveEvent<Unit>()
+
 
     private val _isAllLoginInfoFilled = MediatorLiveData<Boolean>().apply {
         addSource(idText) {
@@ -46,6 +49,9 @@ class LoginViewModel(
 
     val isAllLoginInfoFilled: LiveData<Boolean> get() = _isAllLoginInfoFilled
 
+    fun onSignUpClicked(){
+        onClickSignUpEvent.call()
+    }
     fun onLoginClicked() {
 
         loginUseCase.execute(
