@@ -34,10 +34,11 @@
 
     <TextView
         android:id="@+id/quest_to_dms_confirm_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="14dp"
+        android:gravity="center"
         android:fontFamily="@font/notosanscjkkrregular"
         android:includeFontPadding="false"
         android:text="@string/confirm_tv"

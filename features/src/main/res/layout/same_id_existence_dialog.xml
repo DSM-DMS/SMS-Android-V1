@@ -35,8 +35,9 @@
 
     <TextView
         android:id="@+id/same_id_existence_confirm_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="14dp"
         android:fontFamily="@font/notosanscjkkrregular"
