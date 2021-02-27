@@ -15,6 +15,7 @@ import com.dms.sms.feature.signup.ui.dialog.CreatedAccountDialogFragment
 import com.dms.sms.feature.signup.ui.dialog.QuestToDmsDialogFragment
 import com.dms.sms.feature.signup.ui.dialog.SameIdExistenceDialogFragment
 import com.dms.sms.feature.signup.viewmodel.SignUpViewModel
+import com.dms.sms.navigateFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -34,6 +35,9 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>() {
         })
         viewModel.duplicateIdEvent.observe(viewLifecycleOwner, {
             SameIdExistenceDialogFragment().show(requireActivity().supportFragmentManager, "SameIdExistenceDialogFragment")
+        })
+        viewModel.loginFailedEvent.observe(viewLifecycleOwner, {
+            navigateFragment(R.id.action_signUpFragment_to_loginFragment)
         })
     }
     private fun initView(){

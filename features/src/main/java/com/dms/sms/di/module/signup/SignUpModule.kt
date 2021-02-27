@@ -16,7 +16,7 @@ import org.koin.dsl.module
 
 
 val signUpModule = module {
-    single { SignUpViewModel(get(),get()) }
+    single { SignUpViewModel(get(),get(),get(),get()) }
 
     factory { SignUpUseCase(get(), get()) }
     factory { GetNoAccountStudentInfoUseCase(get(), get()) }
