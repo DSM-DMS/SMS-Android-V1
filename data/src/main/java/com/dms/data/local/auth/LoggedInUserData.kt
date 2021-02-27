@@ -12,4 +12,4 @@ fun LoggedInUserData.toEntity() : LoggedInUser =
     LoggedInUser(this.token, this.student_uuid, this.isAutoLoginChecked)
 
 fun LoggedInUser.toData() : LoggedInUserData =
-    LoggedInUserData(this.accessToken, this.studentUUID, this.isAutoLoginChecked)
+    LoggedInUserData( this.studentUUID,this.accessToken, this.isAutoLoginChecked)

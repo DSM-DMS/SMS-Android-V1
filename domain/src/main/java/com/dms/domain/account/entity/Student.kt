@@ -1,10 +1,12 @@
 package com.dms.domain.account.entity
 
 data class Student(
-    private val grade : Int,
-    private val group : Int,
-    private val studentNumber : Int,
-    private val name : String,
-    private val phoneNumber : String,
-    private val profileImage : String,
-    )
+     val grade: Int,
+     val group: Int,
+     val studentNumber: Int,
+     val name: String,
+     val phoneNumber: String,
+     val profileImage: String,
+     val studentUUID: String,
+     val parentStatus: String
+)
