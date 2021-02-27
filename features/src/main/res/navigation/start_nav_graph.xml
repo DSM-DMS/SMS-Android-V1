@@ -15,6 +15,9 @@
             app:destination="@id/mainFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_verificationNumberFragment"
+            app:destination="@id/verificationNumberFragment" />
     </fragment>
 
     <fragment
@@ -165,6 +168,33 @@
         android:name="com.dms.sms.feature.outing.OutingNoticeFragment"
         android:label="fragment_outing_notice"
         tools:layout="@layout/fragment_outing_notice" />
+    <fragment
+        android:id="@+id/verificationNumberFragment"
+        android:name="com.dms.sms.feature.signup.ui.VerificationNumberFragment"
+        android:label="fragment_verification_number"
+        tools:layout="@layout/fragment_verification_number" >
+        <action
+            android:id="@+id/action_verificationNumberFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_verificationNumberFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.dms.sms.feature.signup.ui.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_verificationNumberFragment"
+            app:destination="@id/verificationNumberFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
 
 
 </navigation>
