@@ -71,12 +71,12 @@ class SchoolCalendarAdapter(
 
     }
     fun selectDay(selectedDay : Int){
-        previousDay = this.selectedDay
-        this.selectedDay = selectedDay
-        if(previousDay!=null){
-            notifyItemChanged(previousDay!! +emptyDays)
-        }
-        notifyItemChanged(selectedDay+emptyDays)
+//        previousDay = this.selectedDay
+//        this.selectedDay = selectedDay
+//        if(previousDay!=null){
+//            notifyItemChanged(previousDay!! +emptyDays)
+//        }
+//        notifyItemChanged(selectedDay+emptyDays)
     }
     fun updateCalendar() {
 ////        val diffCallback = DiffCallback(listOf(Day("")),days)
@@ -105,8 +105,9 @@ class SchoolCalendarViewHolder(
         bindSameScheduleAsYesterday(previousDay, today)
         bindTodaySchedule(today)
 
-        if(selectedDay.toString() == today.date)
-            binding.selectedStateImg.visibility= View.VISIBLE
+        if(selectedDay.toString() == today.date) {
+            binding.selectedStateImg.visibility = View.VISIBLE
+        }
         else
             binding.selectedStateImg.visibility= View.INVISIBLE
 
