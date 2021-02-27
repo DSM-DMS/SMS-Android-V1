@@ -1,5 +1,6 @@
 package com.dms.sms.feature.schedule.bindingadapter
 
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -38,8 +39,10 @@ fun RecyclerView.setSchedules(schedules : List<ScheduleModel>?,year: Int, month:
 
 @BindingAdapter("selectedDay")
 fun RecyclerView.selectDay(selectedDay : String?) {
-    if(adapter!=null && selectedDay!=null)
+    if(adapter!=null && selectedDay!=null) {
+        Log.d("tlqkf", selectedDay.toString())
         (adapter as SchoolCalendarAdapter).selectDay(selectedDay.toInt())
+    }
 //
 //    try {
 //        selectedDay?.toInt()
