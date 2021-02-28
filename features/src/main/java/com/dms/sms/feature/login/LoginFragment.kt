@@ -21,6 +21,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             navigateFragment(R.id.action_loginFragment_to_MainFragment)
 
         })
+        viewModel.onClickSignUpEvent.observe(viewLifecycleOwner, {
+            navigateFragment(R.id.action_loginFragment_to_verificationNumberFragment)
+        })
         viewModel.loginErrorEvent.observe(viewLifecycleOwner, {
             binding.passwordEtLayout.error = null
             binding.passwordEtLayout.error = "아이디 또는 비밀번호가 일치하지 않습니다"

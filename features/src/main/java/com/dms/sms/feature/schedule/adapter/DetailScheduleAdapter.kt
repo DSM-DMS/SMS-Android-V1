@@ -3,12 +3,13 @@ package com.dms.sms.feature.schedule.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.R
 import com.dms.sms.databinding.ItemDetailSchoolScheduleBinding
 import com.dms.sms.feature.schedule.model.ScheduleModel
 
-class DetailScheduleAdapter(var scheduleList: List<ScheduleModel> = listOf(), private var month : Int = 0) : RecyclerView.Adapter<DetailScheduleViewHolder>() {
+class DetailScheduleAdapter(var scheduleList: List<ScheduleModel> = listOf(ScheduleModel("",0,0,0,0,"일정이 없어요")), private var month : Int = 0) : RecyclerView.Adapter<DetailScheduleViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailScheduleViewHolder {
@@ -18,10 +19,15 @@ class DetailScheduleAdapter(var scheduleList: List<ScheduleModel> = listOf(), pr
     }
 
     override fun onBindViewHolder(holder: DetailScheduleViewHolder, position: Int) {
-        Log.d("onBindViewHolder det", position.toString())
-        holder.bind(scheduleList[position], month)
+        holder.bind(scheduleList[position])
     }
 
+    fun updateDetailSchedule(newScheduleList : List<ScheduleModel>) {
+        val diffCallback = ScheduleDiffCallback(scheduleList,newScheduleList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        scheduleList= newScheduleList
+        diffResult.dispatchUpdatesTo(this)
+    }
     override fun getItemCount(): Int = scheduleList.size
 
 
@@ -29,7 +35,7 @@ class DetailScheduleAdapter(var scheduleList: List<ScheduleModel> = listOf(), pr
 
 class DetailScheduleViewHolder(private val binding: ItemDetailSchoolScheduleBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: ScheduleModel, month: Int) {
+    fun bind(item: ScheduleModel) {
         binding.model = item
         when (item.datePosition) {
             0 -> binding.eventView.backgroundTintList = binding.root.context.resources.getColorStateList(R.color.colorPrimary, null)
@@ -37,13 +43,24 @@ class DetailScheduleViewHolder(private val binding: ItemDetailSchoolScheduleBind
             2 -> binding.eventView.backgroundTintList = binding.root.context.resources.getColorStateList(R.color.colorYellow2, null)
             else -> binding.eventView.backgroundTintList = binding.root.context.resources.getColorStateList(R.color.colorGray2, null)
         }
-        if(item.startDate == item.endDate)
-            binding.dateTv.text = month.toString()+"/"+item.startDate.toString()
-        else
-            binding.dateTv.text = month.toString()+"/"+item.startDate.toString() + " - " + month.toString()+"/"+item.endDate.toString()
+        binding.dateTv.text = item.startMonth.toString()+"/"+item.startDay.toString() + " - " + item.endMonth.toString()+"/"+item.endDay.toString()
+
 
 
 
     }
 
+}
+class ScheduleDiffCallback(private val oldList : List<ScheduleModel>, private val newList : List<ScheduleModel>) : DiffUtil.Callback(){
+
+    override fun getOldListSize(): Int = oldList.size
+
+    override fun getNewListSize(): Int = newList.size
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+        oldList[oldItemPosition] == newList[newItemPosition]
+
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+        areItemsTheSame(oldItemPosition, newItemPosition)
 }
