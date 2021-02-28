@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import com.dms.domain.account.entity.Student
+import com.dms.domain.account.usecase.GetStudentUseCase
 import com.dms.domain.auth.response.LoginResponse
 import com.dms.domain.auth.usecase.LoginUseCase
 import com.dms.domain.auth.usecase.SaveLoginDataUseCase
@@ -20,7 +22,8 @@ import io.reactivex.observers.DisposableSingleObserver
 
 class LoginViewModel(
     private val loginUseCase: LoginUseCase,
-    private val saveLoginDataUseCase: SaveLoginDataUseCase
+    private val saveLoginDataUseCase: SaveLoginDataUseCase,
+    private val getStudentUseCase: GetStudentUseCase
 ) : BaseViewModel() {
 
     val idText = MutableLiveData<String>()
@@ -61,7 +64,6 @@ class LoginViewModel(
                     when (result) {
                         is Result.Success -> {
                             loginSuccess(result)
-
                         }
                         is Result.Failure -> {
                             loginFailed(result)
@@ -111,8 +113,29 @@ class LoginViewModel(
         createToastEvent.value = "로그인에 성공하셨습니다"
         _loginSuccessEvent.value = true
         saveLoginData(result.value)
+        isConnectedWithParents(result)
 
 
+    }
+    private fun isConnectedWithParents(result : Result.Success<LoginResponse>){
+        getStudentUseCase.execute(result.value.studentUUID,object : DisposableSingleObserver<Result<Student>>(){
+            override fun onSuccess(result: Result<Student>) {
+                when(result){
+                    is Result.Success->{
+                        if(result.value.parentStatus=="CONNECTED")
+                            createToastEvent.value="학부모 계정과 연결되었습니다."
+                        else if(result.value.parentStatus=="UN_CONNECTED")
+                            createToastEvent.value="현재 연결된 학부모 계정이 없습니다."
+
+                    }
+                    is Result.Failure-> createToastEvent.value= "오류 발생"
+                }
+            }
+
+            override fun onError(e: Throwable) {
+                e.printStackTrace()
+            }
+        }, AndroidSchedulers.mainThread())
     }
 
     private fun loginFailed(result: Result.Failure<LoginResponse>) {

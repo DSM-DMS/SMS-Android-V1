@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dms.domain.account.entity.Student
+import com.dms.domain.account.usecase.GetStudentUseCase
 import com.dms.domain.auth.request.LoginRequest
 import com.dms.domain.auth.response.LoginResponse
 import com.dms.domain.auth.usecase.LoginUseCase
@@ -31,7 +33,8 @@ class SignUpViewModel(
     private val getNoAccountStudentInfoUseCase: GetNoAccountStudentInfoUseCase,
     private val signUpUseCase: SignUpUseCase,
     private val loginUseCase: LoginUseCase,
-    private val saveLoginDataUseCase: SaveLoginDataUseCase
+    private val saveLoginDataUseCase: SaveLoginDataUseCase,
+    private val getStudentUseCase: GetStudentUseCase
 ) : BaseViewModel() {
 
     val verificationNumber = MutableLiveData<String>()
@@ -70,6 +73,7 @@ class SignUpViewModel(
                     when (result) {
                         is Result.Success -> {
                             saveLoginData(result.value)
+                            isConnectedWithParents(result)
                             initialize()
                         }
                         is Result.Failure -> {
@@ -185,6 +189,27 @@ class SignUpViewModel(
                 }
             }, AndroidSchedulers.mainThread()
         )
+    }
+
+    private fun isConnectedWithParents(result : Result.Success<LoginResponse>){
+        getStudentUseCase.execute(result.value.studentUUID,object : DisposableSingleObserver<Result<Student>>(){
+            override fun onSuccess(result: Result<Student>) {
+                when(result){
+                    is Result.Success->{
+                        if(result.value.parentStatus=="CONNECTED")
+                            createToastEvent.value="학부모 계정과 연결되었습니다."
+                        else if(result.value.parentStatus=="UN_CONNECTED")
+                            createToastEvent.value="현재 연결된 학부모 계정이 없습니다."
+
+                    }
+                    is Result.Failure-> createToastEvent.value= "오류 발생"
+                }
+            }
+
+            override fun onError(e: Throwable) {
+                e.printStackTrace()
+            }
+        }, AndroidSchedulers.mainThread())
     }
 
 

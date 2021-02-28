@@ -9,8 +9,4 @@ import retrofit2.http.*
 interface AuthApi  {
     @POST("v1/login/student")
     fun login(@Body loginRequestData : LoginRequestData): Single<LoginResponseData>
-
-    @PUT("v1/students/uuid/{student_uuid}/password")
-    fun changePassword(@Path("student_uuid") studentUUID: String): Completable
-
 }
