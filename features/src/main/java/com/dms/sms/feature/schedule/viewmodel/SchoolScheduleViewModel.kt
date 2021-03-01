@@ -41,7 +41,6 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
     fun onCreate(){
         _currentYear.value = getCurrentDate().year
         _currentMonth.value = getCurrentDate().month
-        _isSelected.value = getCurrentDay()
         getSchedule()
     }
 
@@ -80,6 +79,10 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
                 when(result){
                     is Result.Success->{
                         _schedule.value = result.value.schedules.map { it.toModel() }.sortedBy { it.startDay }
+
+                        if (currentMonth.value == getCurrentDate().month)
+                            _isSelected.value = getCurrentDay()
+
                     }
                     is Result.Failure->{
                         getScheduleFailed(result)

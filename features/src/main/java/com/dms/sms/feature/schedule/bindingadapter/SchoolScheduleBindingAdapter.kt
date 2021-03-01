@@ -40,8 +40,11 @@ fun RecyclerView.setSchedules(schedules : List<ScheduleModel>?,year: Int, month:
 @BindingAdapter("selectedDay")
 fun RecyclerView.selectDay(selectedDay : String?) {
     if(adapter!=null && selectedDay!=null) {
-        Log.d("tlqkf", selectedDay.toString())
-        (adapter as SchoolCalendarAdapter).selectDay(selectedDay.toInt())
+        try {
+            (adapter as SchoolCalendarAdapter).selectDay(selectedDay.toInt())
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
     }
 //
 //    try {

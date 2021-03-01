@@ -71,18 +71,15 @@ class SchoolCalendarAdapter(
 
     }
     fun selectDay(selectedDay : Int){
-//        previousDay = this.selectedDay
-//        this.selectedDay = selectedDay
-//        if(previousDay!=null){
-//            notifyItemChanged(previousDay!! +emptyDays)
-//        }
-//        notifyItemChanged(selectedDay+emptyDays)
+        previousDay = this.selectedDay
+        this.selectedDay = selectedDay
+
+        notifyItemChanged(selectedDay+emptyDays)
+        if(previousDay!=null){
+            notifyItemChanged(previousDay!! +emptyDays)
+        }
     }
-    fun updateCalendar() {
-////        val diffCallback = DiffCallback(listOf(Day("")),days)
-//        val diffResult = DiffUtil.calculateDiff(diffCallback)
-//        diffResult.dispatchUpdatesTo(this)
-    }
+
 
 
 }
@@ -97,13 +94,15 @@ class SchoolCalendarViewHolder(
         binding.model = day
         binding.day = day.date
         binding.executePendingBindings()
-
     }
     fun bindSchedule(previousDay: Day, today: Day, selectedDay: Int? = null) {
         Log.d("binddaysche", today.toString())
-
-        bindSameScheduleAsYesterday(previousDay, today)
-        bindTodaySchedule(today)
+        Log.d("binddayschepr", previousDay.toString())
+        Log.d("binddayschese", selectedDay.toString())
+        if(!today.schedule.isNullOrEmpty()) {
+            bindTodaySchedule(today)
+            bindSameScheduleAsYesterday(previousDay, today)
+        }
 
         if(selectedDay.toString() == today.date) {
             binding.selectedStateImg.visibility = View.VISIBLE
@@ -120,6 +119,7 @@ class SchoolCalendarViewHolder(
     }
     private fun bindSameScheduleAsYesterday(previousDay: Day, today: Day){
 
+        Log.d("bssay",today.schedule.toString())
         for (i in 0 until today.schedule.size) {
             for (j in 0 until previousDay.schedule.size) {
                 if (today.schedule[i].scheduleUUID == previousDay.schedule[j].scheduleUUID) {
@@ -127,28 +127,16 @@ class SchoolCalendarViewHolder(
                         break
                     when (previousDay.schedule[j].datePosition) {
                         0 -> {
-                            binding.firstScheduleView.setBackgroundColor(
-                                binding.root.resources.getColor(
-                                    R.color.colorPurple,
-                                    null
-                                )
-                            )
+                            Log.d("bssay 0",previousDay.schedule[j].datePosition.toString())
+                            binding.firstScheduleView.visibility=View.VISIBLE
                         }
                         1 -> {
-                            binding.secondScheduleView.setBackgroundColor(
-                                binding.root.resources.getColor(
-                                    R.color.colorOrange2,
-                                    null
-                                )
-                            )
+                            Log.d("bssay 1",previousDay.schedule[j].datePosition.toString())
+                            binding.secondScheduleView.visibility =View.VISIBLE
                         }
                         2 -> {
-                            binding.thirdScheduleView.setBackgroundColor(
-                                binding.root.resources.getColor(
-                                    R.color.colorYellow2,
-                                    null
-                                )
-                            )
+                            Log.d("bssay 2",previousDay.schedule[j].datePosition.toString())
+                            binding.thirdScheduleView.visibility =View.VISIBLE
                         }
                     }
 
@@ -157,6 +145,7 @@ class SchoolCalendarViewHolder(
         }
     }
     private fun bindTodaySchedule(today: Day){
+        Log.d("bts", today.schedule.toString())
         val list: MutableList<Int> = mutableListOf()
         for (i in 0 until today.schedule.size) {
 
@@ -169,16 +158,13 @@ class SchoolCalendarViewHolder(
             else {
 
                 if (list.size > 1) {
+                    Log.d("bts",list.toString())
+
                     when {
                         list.containsAll(listOf(0, 1)) -> {
-                            binding.thirdScheduleView.setBackgroundColor(
-                                binding.root.resources.getColor(
-                                    R.color.colorYellow2,
-                                    null
-                                )
-                            )
-                            val layoutParams =
-                                binding.thirdScheduleView.layoutParams as ConstraintLayout.LayoutParams
+                            Log.d("bts 0",today.schedule[i].datePosition.toString())
+                            binding.thirdScheduleView.visibility =View.VISIBLE
+                            val layoutParams = binding.thirdScheduleView.layoutParams as ConstraintLayout.LayoutParams
                             layoutParams.leftMargin = 5
                             binding.thirdScheduleView.layoutParams = layoutParams
 
@@ -186,12 +172,8 @@ class SchoolCalendarViewHolder(
                             list.add(2)
                         }
                         list.containsAll(listOf(0, 2)) -> {
-                            binding.secondScheduleView.setBackgroundColor(
-                                binding.root.resources.getColor(
-                                    R.color.colorOrange2,
-                                    null
-                                )
-                            )
+                            Log.d("bts 1",today.schedule[i].datePosition.toString())
+                            binding.secondScheduleView.visibility =View.VISIBLE
                             val layoutParams =
                                 binding.secondScheduleView.layoutParams as ConstraintLayout.LayoutParams
                             layoutParams.leftMargin = 5
@@ -203,12 +185,8 @@ class SchoolCalendarViewHolder(
 
                         }
                         list.containsAll(listOf(1, 2)) -> {
-                            binding.firstScheduleView.setBackgroundColor(
-                                binding.root.resources.getColor(
-                                    R.color.colorPrimary,
-                                    null
-                                )
-                            )
+                            Log.d("bts 2",today.schedule[i].datePosition.toString())
+                            binding.firstScheduleView.visibility =View.VISIBLE
 
                             val layoutParams =
                                 binding.firstScheduleView.layoutParams as ConstraintLayout.LayoutParams
@@ -224,12 +202,8 @@ class SchoolCalendarViewHolder(
                 if (list.size == 1) {
                     when {
                         list.contains(0) -> {
-                            binding.secondScheduleView.setBackgroundColor(
-                                binding.root.resources.getColor(
-                                    R.color.colorOrange2,
-                                    null
-                                )
-                            )
+                            Log.d("bts 4",today.schedule[i].datePosition.toString())
+                            binding.secondScheduleView.visibility =View.VISIBLE
                             val layoutParams =
                                 binding.secondScheduleView.layoutParams as ConstraintLayout.LayoutParams
                             layoutParams.leftMargin = 5
@@ -240,12 +214,8 @@ class SchoolCalendarViewHolder(
 
                         }
                         list.contains(1) -> {
-                            binding.firstScheduleView.setBackgroundColor(
-                                binding.root.resources.getColor(
-                                    R.color.colorPrimary,
-                                    null
-                                )
-                            )
+                            Log.d("bts 5",today.schedule[i].datePosition.toString())
+                            binding.firstScheduleView.visibility =View.VISIBLE
                             val layoutParams =
                                 binding.firstScheduleView.layoutParams as ConstraintLayout.LayoutParams
                             layoutParams.leftMargin = 5
@@ -256,12 +226,8 @@ class SchoolCalendarViewHolder(
 
                         }
                         list.contains(2) -> {
-                            binding.firstScheduleView.setBackgroundColor(
-                                binding.root.resources.getColor(
-                                    R.color.colorPrimary,
-                                    null
-                                )
-                            )
+                            Log.d("bts 6",today.schedule[i].datePosition.toString())
+                            binding.firstScheduleView.visibility =View.VISIBLE
                             val layoutParams =
                                 binding.firstScheduleView.layoutParams as ConstraintLayout.LayoutParams
                             layoutParams.leftMargin = 5
@@ -277,12 +243,8 @@ class SchoolCalendarViewHolder(
 
                 }
                 if (list.size == 0) {
-                    binding.firstScheduleView.setBackgroundColor(
-                        binding.root.resources.getColor(
-                            R.color.colorPrimary,
-                            null
-                        )
-                    )
+                    Log.d("bts 7",today.schedule[i].datePosition.toString())
+                    binding.firstScheduleView.visibility =View.VISIBLE
                     val layoutParams =
                         binding.firstScheduleView.layoutParams as ConstraintLayout.LayoutParams
                     layoutParams.leftMargin = 5
@@ -304,18 +266,18 @@ class SchoolCalendarViewHolder(
 
 }
 
- class DiffCallback(private val oldList : List<Day>, private val newList : List<Day>) : DiffUtil.Callback() {
-
-
-     override fun getOldListSize(): Int = oldList.size
-
-     override fun getNewListSize(): Int = newList.size
-
-     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-         return oldList[oldItemPosition].isSelected == oldList[oldItemPosition].isSelected
-     }
-
-     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-         return oldList[oldItemPosition].isSelected == oldList[oldItemPosition].isSelected
-     }
- }
+// class DiffCallback(private val oldList : List<Day>, private val newList : List<Day>) : DiffUtil.Callback() {
+//
+//
+//     override fun getOldListSize(): Int = oldList.size
+//
+//     override fun getNewListSize(): Int = newList.size
+//
+//     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+//         return oldList[oldItemPosition].isSelected == oldList[oldItemPosition].isSelected
+//     }
+//
+//     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+//         return oldList[oldItemPosition].isSelected == oldList[oldItemPosition].isSelected
+//     }
+// }
