@@ -1,6 +1,7 @@
 package com.dms.sms.feature.announcement.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.databinding.ItemAnnouncementBinding
@@ -36,6 +37,9 @@ class AnnouncementsAdapter(private val viewModel: AnnouncementsViewModel ) : Rec
 
 class AnnouncementsViewHolder(private val binding : ItemAnnouncementBinding, private val viewModel: AnnouncementsViewModel) : RecyclerView.ViewHolder(binding.root){
     fun bind(item : SimpleAnnouncementModel){
+        if(item.isChecked==0)
+            binding.noticeItemRenewalTv.visibility = View.VISIBLE
+
         binding.model = item
         binding.vm = viewModel
         binding.executePendingBindings()
