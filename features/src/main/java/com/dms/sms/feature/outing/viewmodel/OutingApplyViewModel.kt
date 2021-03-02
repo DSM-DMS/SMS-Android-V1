@@ -7,6 +7,7 @@ import com.dms.domain.base.Result
 import com.dms.domain.outing.response.SearchPlaceListResponse
 import com.dms.domain.outing.usecase.GetPlaceListUseCase
 import com.dms.domain.outing.usecase.OutingUseCase
+import com.dms.domain.util.getCurrentDate
 import com.dms.sms.base.BaseViewModel
 import com.dms.sms.base.SingleLiveEvent
 import com.dms.sms.feature.outing.model.OutingApplyModel
@@ -26,14 +27,20 @@ class OutingApplyViewModel(
         value = ArrayList(emptyList())
     }
 
-    var applyDate: String? = null
+    var applyDate: String? = getCurrentDate()
     var startTime: String? = null
     var endTime: String? = null
     val calendar: Calendar = Calendar.getInstance(Locale.KOREA)
-    private val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+    var inputStartTime: String? = null
+    var inputEndTime: String? = null
+    private val localDate = getCurrentDate()
+    private val simpleDateFormat = SimpleDateFormat("yyyyMMdd HH:mm:ss", Locale.KOREA).apply {
+        timeZone = TimeZone.getTimeZone("Asia/Seoul")
+    }
 
     val outingWithDisease = MutableLiveData(true)
-    val outingDate = MutableLiveData<String>()
+    val outingDate = MutableLiveData(setToday(localDate))
+    val searchPlaceResult = MutableLiveData(false)
     val outingReason = MutableLiveData<String>()
     val outingPlace = MutableLiveData<String>()
     val outingStartTime = MutableLiveData<String>()
@@ -53,11 +60,13 @@ class OutingApplyViewModel(
     val onCancelEvent = SingleLiveEvent<Unit>()
     val onSuccessDialogEvent = SingleLiveEvent<Unit>()
     val diseaseEvent = SingleLiveEvent<Unit>()
-    val dateEvent = SingleLiveEvent<Unit>()
     val startTimeEvent = SingleLiveEvent<Unit>()
     val endTimeEvent = SingleLiveEvent<Unit>()
     val searchPlaceEvent = SingleLiveEvent<Unit>()
     val searchPlaceItemEvent = SingleLiveEvent<Unit>()
+    val outingApplyNoticeEvent = SingleLiveEvent<Unit>()
+    val outingApplyNoticeConfirmEvent = SingleLiveEvent<Unit>()
+    val outingApplyNoticeCancelEvent = SingleLiveEvent<Unit>()
 
     fun applyOuting() {
         val startTime = (changeToUnixTime(applyDate!!, startTime!!).time / 1000).toString()
@@ -160,6 +169,8 @@ class OutingApplyViewModel(
                 createToastEvent.value = "네트워크 오류 발생"
             Error.Unknown ->
                 createToastEvent.value = "알 수 없는 오류 발생"
+            Error.Locked ->
+                createToastEvent.value = "3초 뒤에 다시 시도해주세요"
             else ->
                 createToastEvent.value = "알 수 없는 오류 발생"
         }
@@ -170,11 +181,61 @@ class OutingApplyViewModel(
         outingPlace.value = searchPlaceList.value?.get(position)?.placeAddress
     }
 
+    private fun setToday(localDate: String): String {
+        val year = localDate.substring(0, 4)
+        val month = localDate.substring(4, 6)
+        val day = localDate.substring(6, 8)
+
+        return "${year}년 ${month}월 ${day}일"
+    }
+
+    fun compareTime(time: String, type: Int): Int {
+        when (type) {
+            1 -> {
+                val regularStartTime = "16:20:00".split(":")
+                val inputTime = time.split(":")
+
+                return if (outingEndTime.value.isNullOrEmpty()) {
+                    if ((regularStartTime[0].toInt() * 60 + regularStartTime[1].toInt()) - (inputTime[0].toInt() * 60 + inputTime[1].toInt()) < 0) {
+                        1 // 1 - 정규시간이 입력시간보다 작다 즉 옳은 경우
+                    } else 2 // 2 - 정규시간이 입력시간보다 크다 즉 틀린 경우
+                } else {
+                    val inputEndTime = this.inputEndTime!!.split(":")
+                    if ((regularStartTime[0].toInt() * 60 + regularStartTime[1].toInt()) - (inputTime[0].toInt() * 60 + inputTime[1].toInt()) < 0) {
+                        if (inputEndTime[0].toInt() * 60 + inputEndTime[1].toInt() >= (inputTime[0].toInt() * 60 + inputTime[1].toInt())) {
+                            3 // 도착 시간보다 시작 시간이 작다 즉 옳은 경우
+                        } else 4 // 도착 시간보다 시작 시간이 크다 즉 틀린 경우
+                    } else 2
+                }
+            }
+            2 -> {
+                val regularEndTime = "20:30:00".split(":")
+                val inputTime = time.split(":")
+
+                return if (outingStartTime.value.isNullOrEmpty()) {
+                    return if ((regularEndTime[0].toInt() * 60 + regularEndTime[1].toInt()) - (inputTime[0].toInt() * 60 + inputTime[1].toInt()) >= 0) {
+                        1 //정규 종료시간이 입력 종료시간보다 크다 즉 옳은 경우
+                    } else 2 // 정규 종료시간이 입력 종류시간보다 작다 즉 틀린 경우
+                } else {
+                    val inputStartTime = this.inputStartTime!!.split(":")
+                    if ((regularEndTime[0].toInt() * 60 + regularEndTime[1].toInt()) - (inputTime[0].toInt() * 60 + inputTime[1].toInt()) >= 0) {
+                        if (inputStartTime[0].toInt() * 60 + inputStartTime[1].toInt() <= (inputTime[0].toInt() * 60 + inputTime[1].toInt())) {
+                            3 // 도착 시간보다 시작 시간이 크다 즉 옳은 경우
+                        } else 4 // 도착 시간보다 시작 시간이 작다 즉 틀린 경우
+                    } else 2
+                }
+            }
+        }
+        return 0
+    }
+
     private fun checkFullText(): Boolean =
         !outingDate.value.isNullOrBlank() && !outingEndTime.value.isNullOrBlank() && !outingReason.value.isNullOrBlank() && !outingPlace.value.isNullOrBlank() && !outingStartTime.value.isNullOrBlank()
 
+    fun clickOutingApplyNoticeConfirm() = outingApplyNoticeConfirmEvent.call()
+    fun clickOutingApplyNoticeCancel() = outingApplyNoticeCancelEvent.call()
+    fun clickOutingApply() = outingApplyNoticeEvent.call()
     fun clickDisease() = diseaseEvent.call()
-    fun clickDate() = dateEvent.call()
     fun clickStartTime() = startTimeEvent.call()
     fun clickEndTime() = endTimeEvent.call()
     fun clickSuccess() = onSuccessDialogEvent.call()

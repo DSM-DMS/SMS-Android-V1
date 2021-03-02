@@ -22,8 +22,10 @@ class SearchPlaceAdapter(private val outingApplyViewModel: OutingApplyViewModel)
         holder.bind(searchPlaceListItems[position],position)
     }
 
-    override fun getItemCount(): Int =
-        searchPlaceListItems.size
+    override fun getItemCount(): Int {
+        outingApplyViewModel.searchPlaceResult.value = searchPlaceListItems.size != 0
+        return searchPlaceListItems.size
+    }
 
     fun setItems(searchPlaceList: MutableLiveData<ArrayList<PlaceListModel>>) {
         this.searchPlaceListItems = searchPlaceList.value!!

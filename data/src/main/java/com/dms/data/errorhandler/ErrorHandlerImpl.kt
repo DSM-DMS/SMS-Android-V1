@@ -18,6 +18,7 @@ class ErrorHandlerImpl : ErrorHandler {
                     404 -> Error.NotFound
                     408 -> Error.Timeout
                     409 -> Error.Conflict
+                    423 -> Error.Locked
                     500 -> Error.InternalServer
 
                     else -> Error.Unknown
