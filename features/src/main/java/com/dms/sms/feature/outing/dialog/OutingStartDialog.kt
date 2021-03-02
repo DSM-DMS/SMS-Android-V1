@@ -16,6 +16,7 @@ class OutingStartDialog : BaseDialog<FragmentOutingStartDialogBinding>() {
         with(viewModel) {
             outingStartConfirmEvent.observe(viewLifecycleOwner, {
                 startOrFinishOuting()
+                getStudentUUID()
                 dismiss()
             })
 
