@@ -13,6 +13,14 @@ class OutingApplyNoticeDialog : BaseDialog<FragmentOutingApplyNoticeDialogBindin
         get() = R.layout.fragment_outing_apply_notice_dialog
 
     override fun observeEvent() {
-
+        with(viewModel) {
+            outingApplyNoticeConfirmEvent.observe(viewLifecycleOwner, {
+                applyOuting()
+                dismiss()
+            })
+            outingApplyNoticeCancelEvent.observe(viewLifecycleOwner, {
+                dismiss()
+            })
+        }
     }
 }
