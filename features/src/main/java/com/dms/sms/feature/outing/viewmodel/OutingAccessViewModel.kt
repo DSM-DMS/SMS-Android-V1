@@ -36,11 +36,6 @@ class OutingAccessViewModel(
     val outingStartCancelEvent = SingleLiveEvent<Unit>()
     val outingFinishConfirmEvent = SingleLiveEvent<Unit>()
     val outingFinishCancelEvent = SingleLiveEvent<Unit>()
-    val reloadEvent = SingleLiveEvent<Unit>()
-
-    init {
-        getStudentUUID()
-    }
 
     private fun getDetailOuting(outingUUID: String) {
         getDetailOutingUseCase.execute(
@@ -126,7 +121,7 @@ class OutingAccessViewModel(
 
     fun clickStart() {
         if (outingStartTv.value!!) {
-            outingStartDialogEvent.call()
+            compareTime(detailOutingData.value!!.startTime)
         } else {
             outingFinishDialogEvent.call()
         }
@@ -168,6 +163,17 @@ class OutingAccessViewModel(
                 outingUUID = outingList[i].outingUUID
                 getDetailOuting(outingList[i].outingUUID)
             }
+        }
+    }
+
+    private fun compareTime(time: String) {
+        val nowTime: Long = System.currentTimeMillis()/1000
+        val startTime: Long = time.toLong()
+
+        if(nowTime > startTime) {
+            outingStartDialogEvent.call()
+        } else {
+            createToastEvent.value = "아직 외출시간이 아닙니다."
         }
     }
 
