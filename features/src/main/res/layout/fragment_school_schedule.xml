@@ -126,7 +126,6 @@
             app:month="@{vm.currentMonth}"
             app:schedules="@{vm.schedule}"
             app:year="@{vm.currentYear}"
-            app:selectedDay="@{vm.isSelected}"
             />
 
 

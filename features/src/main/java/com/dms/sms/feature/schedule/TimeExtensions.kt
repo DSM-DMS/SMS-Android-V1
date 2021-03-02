@@ -16,3 +16,7 @@ fun getCurrentDay() : String {
     val date = Date(System.currentTimeMillis())
     return SimpleDateFormat("dd", Locale.KOREA).format(date).toInt().toString()
 }
+fun getCurrentMonth() : String {
+    val date = Date(System.currentTimeMillis())
+    return SimpleDateFormat("MM", Locale.KOREA).format(date).toInt().toString()
+}

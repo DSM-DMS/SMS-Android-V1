@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.R
 import com.dms.sms.databinding.ItemSchoolScheduleCalenderBinding
+import com.dms.sms.feature.schedule.getCurrentDate
+import com.dms.sms.feature.schedule.getCurrentDay
+import com.dms.sms.feature.schedule.getCurrentMonth
 import com.dms.sms.feature.schedule.model.Day
 import com.dms.sms.feature.schedule.viewmodel.SchoolScheduleViewModel
 import com.dms.sms.feature.schedule.model.ScheduleModel
@@ -43,12 +46,12 @@ class SchoolCalendarAdapter(
 
     override fun getItemCount(): Int = days.size
 
-    fun setCalendar(list: List<ScheduleModel>, year: Int, month: Int) {
+    fun setCalendar(list: List<ScheduleModel>, year: Int, month: Int ){
         val calendar = Calendar.getInstance()
         val sdf = SimpleDateFormat("yyyy년 M월", Locale.KOREAN)
         calendar.time = sdf.parse("${year}년 ${month}월")!!
         emptyDays = 5 + calendar.get(Calendar.DAY_OF_WEEK)
-
+        previousDay = null
 
         list.forEach {
             if(it.startMonth< it.endMonth && it.endMonth==viewModel.currentMonth.value){
@@ -68,15 +71,22 @@ class SchoolCalendarAdapter(
             }
         }
         notifyDataSetChanged()
-
     }
     fun selectDay(selectedDay : Int){
-        previousDay = this.selectedDay
-        this.selectedDay = selectedDay
+        Log.d("sssssseeeeeellllllllll","22")
 
-        notifyItemChanged(selectedDay+emptyDays)
-        if(previousDay!=null){
-            notifyItemChanged(previousDay!! +emptyDays)
+        previousDay = this.selectedDay
+        if(previousDay != selectedDay) {
+            this.selectedDay = selectedDay
+
+            Log.d("seleday", previousDay.toString())
+            Log.d("seleday", this.selectedDay.toString())
+            Log.d("seleday", (this.selectedDay!! + emptyDays).toString())
+            Log.d("seleday", (this.previousDay!! + emptyDays).toString())
+            notifyItemChanged(this.selectedDay!! + emptyDays)
+            if (previousDay != null) {
+                notifyItemChanged(previousDay!! + emptyDays)
+            }
         }
     }
 
@@ -95,13 +105,13 @@ class SchoolCalendarViewHolder(
         binding.day = day.date
         binding.executePendingBindings()
     }
+
     fun bindSchedule(previousDay: Day, today: Day, selectedDay: Int? = null) {
         Log.d("binddaysche", today.toString())
         Log.d("binddayschepr", previousDay.toString())
-        Log.d("binddayschese", selectedDay.toString())
         if(!today.schedule.isNullOrEmpty()) {
-            bindTodaySchedule(today)
             bindSameScheduleAsYesterday(previousDay, today)
+            bindTodaySchedule(today)
         }
 
         if(selectedDay.toString() == today.date) {
@@ -109,7 +119,6 @@ class SchoolCalendarViewHolder(
         }
         else
             binding.selectedStateImg.visibility= View.INVISIBLE
-
         binding.vm = viewModel
         binding.day = today.date
         binding.model = today
@@ -123,6 +132,7 @@ class SchoolCalendarViewHolder(
         for (i in 0 until today.schedule.size) {
             for (j in 0 until previousDay.schedule.size) {
                 if (today.schedule[i].scheduleUUID == previousDay.schedule[j].scheduleUUID) {
+                    today.schedule[i].datePosition = previousDay.schedule[j].datePosition
                     if (j > 2)
                         break
                     when (previousDay.schedule[j].datePosition) {
@@ -145,10 +155,9 @@ class SchoolCalendarViewHolder(
         }
     }
     private fun bindTodaySchedule(today: Day){
-        Log.d("bts", today.schedule.toString())
         val list: MutableList<Int> = mutableListOf()
-        for (i in 0 until today.schedule.size) {
 
+        for (i in 0 until today.schedule.size) {
             if (i > 2)
                 break
             if (today.schedule[i].datePosition != -1) {
@@ -159,7 +168,6 @@ class SchoolCalendarViewHolder(
 
                 if (list.size > 1) {
                     Log.d("bts",list.toString())
-
                     when {
                         list.containsAll(listOf(0, 1)) -> {
                             Log.d("bts 0",today.schedule[i].datePosition.toString())

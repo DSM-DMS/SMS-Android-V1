@@ -54,6 +54,7 @@ class AnnouncementsViewModel(
         _currentPage.value = 0
         isSearched.value = false
         searchQuery.value = ""
+        checkAnnouncementsUnread()
         getAnnouncements(currentPage.value!!)
     }
 
