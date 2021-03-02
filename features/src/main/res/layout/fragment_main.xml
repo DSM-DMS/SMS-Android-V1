@@ -32,7 +32,9 @@
         app:itemBackground="@drawable/bottom_nav_tab_backgroud"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/navigation" >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/navigation" />
 
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>

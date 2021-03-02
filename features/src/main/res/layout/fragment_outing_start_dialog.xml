@@ -7,22 +7,22 @@
 
         <variable
             name="vm"
-            type="com.dms.sms.feature.mypage.viewmodel.LogoutViewModel" />
+            type="com.dms.sms.feature.outing.viewmodel.OutingAccessViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/radius_white_view"
-        tools:context=".feature.mypage.LogoutDialogFragment">
+        tools:context=".feature.outing.dialog.OutingStartDialog">
 
         <TextView
-            android:id="@+id/logout_title_tv"
+            android:id="@+id/outing_start_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:includeFontPadding="false"
-            android:text="로그아웃"
+            android:text="외출 시작"
             android:textColor="@color/colorPurple"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/textView13"
@@ -32,57 +32,57 @@
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="40dp"
-            android:text="SMS 계정에서 로그아웃 하시겠습니까?"
+            android:layout_marginEnd="120dp"
+            android:text="외출을 시작하시겠습니까?"
             android:textColor="@color/colorBlack"
             android:textSize="13sp"
             app:layout_constraintBottom_toTopOf="@id/textView17"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logout_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/outing_start_tv"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
             android:id="@+id/textView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="(현재 접속중인 게정에서 로그아웃을 진행합니다.)"
+            android:layout_marginBottom="32dp"
+            android:text="(지금부터 신청하신 외출을 시작합니다.)"
             android:textSize="9sp"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/logout_cancel_tv"
+            app:layout_constraintBottom_toTopOf="@+id/outing_start_cancel_tv"
             app:layout_constraintStart_toStartOf="@+id/textView13"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
         <TextView
-            android:id="@+id/logout_confirm_tv"
+            android:id="@+id/outing_start_confirm_tv"
             android:layout_width="0dp"
-            android:layout_height="32dp"
+            android:layout_height="36dp"
             android:background="?attr/selectableItemBackground"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:onClick="@{()->vm.clickConfirm()}"
+            android:onClick="@{()->vm.clickOutingStartConfirm()}"
             android:text="확인"
             android:textColor="@color/colorPurple"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/logout_cancel_tv" />
+            app:layout_constraintStart_toEndOf="@id/outing_start_cancel_tv" />
 
         <TextView
-            android:id="@+id/logout_cancel_tv"
+            android:id="@+id/outing_start_cancel_tv"
             android:layout_width="0dp"
-            android:layout_height="32dp"
+            android:layout_height="36dp"
             android:background="?attr/selectableItemBackground"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:onClick="@{()->vm.clickCancel()}"
+            android:onClick="@{()->vm.clickOutingStartCancel()}"
             android:text="취소"
             android:textColor="@color/colorBlack"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/logout_confirm_tv"
+            app:layout_constraintEnd_toStartOf="@+id/outing_start_confirm_tv"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

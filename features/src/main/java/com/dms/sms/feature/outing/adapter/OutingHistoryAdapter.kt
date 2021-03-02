@@ -7,11 +7,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.databinding.ItemOutingHistoryBinding
 import com.dms.sms.feature.outing.model.OutingModel
+import com.dms.sms.feature.outing.viewmodel.OutingHistoryViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class OutingHistoryAdapter: RecyclerView.Adapter<OutingHistoryAdapter.OutingHistoryViewHolder>() {
+class OutingHistoryAdapter(private val outingHistoryViewModel: OutingHistoryViewModel): RecyclerView.Adapter<OutingHistoryAdapter.OutingHistoryViewHolder>() {
     private var outingListItems = ArrayList<OutingModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OutingHistoryViewHolder {
@@ -24,8 +25,10 @@ class OutingHistoryAdapter: RecyclerView.Adapter<OutingHistoryAdapter.OutingHist
         holder.bind(outingListItems[position])
     }
 
-    override fun getItemCount(): Int =
-        outingListItems.size
+    override fun getItemCount(): Int {
+        outingHistoryViewModel.historyResult.value = outingListItems.size != 0
+        return outingListItems.size
+    }
 
     fun setItems(outingHistoryList: MutableLiveData<ArrayList<OutingModel>>) {
         this.outingListItems = outingHistoryList.value!!
@@ -39,20 +42,26 @@ class OutingHistoryAdapter: RecyclerView.Adapter<OutingHistoryAdapter.OutingHist
             binding.outingHistoryTimeTv.text = "${setDate(outingModel.startTime.toLong() * 1000).substring(11,16)} ~ ${setDate(outingModel.endTime.toLong() * 1000).substring(11,16)}"
 
             when(outingModel.outingStatus){
-                "0","1" -> {
-                    setOutingType("승인 대기","#FEDF42")
+                "0" -> {
+                    setOutingType("학부모 승인 대기","#FEDF42") // 노란색
+                }
+                "1" -> {
+                    setOutingType("선생님 승인 대기","#FEDF42") // 노란색
+                }
+                "2" -> {
+                    setOutingType("외출 가능","#0DD214") // 연두색
                 }
                 "3" -> {
-                    setOutingType("외출중","#FF9100")
+                    setOutingType("외출중","#5323B2") // 보라색
                 }
                 "4" -> {
-                    setOutingType("만료","#5323B2")
+                    setOutingType("만료","#F30404") // 빨간색
                 }
-                "2","5" -> {
-                    setOutingType("승인완료","#0DD214")
+                "5" -> {
+                    setOutingType("외출 확인 완료","#344FE6") // 파란색
                 }
                 "-1","-2" -> {
-                    setOutingType("승인 거부","#F30404")
+                    setOutingType("승인 거부","#FF9100") // 주황색
                 }
             }
 
@@ -68,7 +77,7 @@ class OutingHistoryAdapter: RecyclerView.Adapter<OutingHistoryAdapter.OutingHist
         private fun setDate(timeUnix: Long): String{
             val date = Date(timeUnix)
             val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss",Locale.KOREA)
-            simpleDateFormat.timeZone = TimeZone.getTimeZone("UTC")
+            simpleDateFormat.timeZone = TimeZone.getTimeZone("Asia/Seoul")
 
             return simpleDateFormat.format(date)
         }
