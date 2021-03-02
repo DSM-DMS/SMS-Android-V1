@@ -1,11 +1,15 @@
 package com.dms.sms.feature.announcement.viewmodel
 
 import androidx.lifecycle.*
+import com.dms.domain.account.usecase.GetStudentUseCase
+import com.dms.domain.announcement.entity.AnnouncementCheck
 import com.dms.domain.announcement.entity.Announcements
+import com.dms.domain.announcement.usecase.CheckAnnouncementUnreadUseCase
 import com.dms.domain.announcement.usecase.GetAnnouncementsUseCase
 import com.dms.domain.announcement.usecase.SearchAnnouncementsUseCase
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
+import com.dms.domain.mypage.usecase.GetStudentUUIDUseCase
 import com.dms.domain.schedule.entity.Schedules
 import com.dms.sms.base.BaseViewModel
 import com.dms.sms.base.SingleLiveEvent
@@ -18,9 +22,11 @@ import io.reactivex.observers.DisposableSingleObserver
 
 class AnnouncementsViewModel(
     private val getAnnouncementsUseCase: GetAnnouncementsUseCase,
-    private val searchAnnouncementsUseCase: SearchAnnouncementsUseCase
-) :
-    BaseViewModel(), LifecycleObserver {
+    private val searchAnnouncementsUseCase: SearchAnnouncementsUseCase,
+    private val checkAnnouncementUnreadUseCase: CheckAnnouncementUnreadUseCase,
+    private val getStudentUUIDUseCase: GetStudentUUIDUseCase) :
+    BaseViewModel() {
+
 
 
     private val _announcements = MutableLiveData<List<SimpleAnnouncementModel>>()
@@ -35,15 +41,19 @@ class AnnouncementsViewModel(
     private val _currentPageBunch = MutableLiveData(0)
     val currentPageBunch: LiveData<Int> get() = _currentPageBunch
 
+    private val _announcementsChecked = MutableLiveData<Int>()
+    val announcementsChecked: LiveData<Int> get() = _announcementsChecked
+
     val searchQuery = MutableLiveData<String>()
 
     val isSearched = MutableLiveData(false)
 
     val announcementEvent = SingleLiveEvent<String>()
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    private fun onCreate() {
+    fun onCreate() {
         _currentPage.value = 0
+        isSearched.value = false
+        searchQuery.value = ""
         getAnnouncements(currentPage.value!!)
     }
 
@@ -65,6 +75,40 @@ class AnnouncementsViewModel(
         }
         else
             createToastEvent.value = "글을 입력해주세요"
+    }
+    fun checkAnnouncementsUnread(){
+        getStudentUUIDUseCase.execute(Unit, object : DisposableSingleObserver<Result<String>>(){
+            override fun onSuccess(result: Result<String>) {
+                when(result){
+                    is Result.Success-> {
+                        checkAnnouncementUnreadUseCase.execute(result.value, object : DisposableSingleObserver<Result<AnnouncementCheck>>(){
+                            override fun onSuccess(result: Result<AnnouncementCheck>) {
+                                when(result){
+                                    is Result.Success->{
+                                        _announcementsChecked.value = result.value.school
+                                    }
+                                    is Result.Failure->{
+
+                                    }
+                                }
+
+                            }
+
+                            override fun onError(e: Throwable) {
+                                e.printStackTrace()
+                            }
+                        }, AndroidSchedulers.mainThread())
+                    }
+                    is Result.Failure -> {
+
+                    }
+                }
+            }
+            override fun onError(e: Throwable) {
+                e.printStackTrace()
+            }
+        },AndroidSchedulers.mainThread())
+
     }
 
     private fun searchAnnouncements(searchQuery: String, announcementsPage: Int) {

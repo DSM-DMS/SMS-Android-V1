@@ -21,9 +21,9 @@ val announcementModule: Module = module {
 
     single { provideAnnouncementApi(get()) }
 
-    viewModel { AnnouncementsViewModel(get(), get()) }
+    single { AnnouncementsViewModel(get(), get(),get(),get()) }
 
-    viewModel { AnnouncementDetailViewModel(get()) }
+    single { AnnouncementDetailViewModel(get()) }
 
     factory { CheckAnnouncementUnreadUseCase(get(), get()) }
 

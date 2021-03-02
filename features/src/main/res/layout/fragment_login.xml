@@ -96,12 +96,12 @@
                 android:drawableStart="@drawable/ic_login_pw"
                 android:drawablePadding="15dp"
                 android:hint="@string/password_et"
-                android:text="@={vm.passwordText}"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:paddingStart="9dp"
                 android:paddingEnd="9dp"
                 android:paddingBottom="16dp"
+                android:text="@={vm.passwordText}"
                 android:textSize="14sp">
 
             </com.google.android.material.textfield.TextInputEditText>
