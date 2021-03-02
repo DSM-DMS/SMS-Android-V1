@@ -6,6 +6,7 @@ import com.dms.domain.announcement.usecase.GetAnnouncementsUseCase
 import com.dms.domain.announcement.usecase.SearchAnnouncementsUseCase
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
+import com.dms.domain.schedule.entity.Schedules
 import com.dms.sms.base.BaseViewModel
 import com.dms.sms.base.SingleLiveEvent
 import com.dms.sms.feature.announcement.model.SearchAnnouncementsModel
@@ -195,7 +196,9 @@ class AnnouncementsViewModel(
             Error.Network -> createToastEvent.value = "네트워크 오류 발생"
             Error.BadRequest -> createToastEvent.value = "오류 발생"
             Error.UnAuthorized -> createToastEvent.value = "인증되지 않은 사용자입니다"
-            Error.Forbidden -> createToastEvent.value = "오류 발생"
+            Error.Forbidden ->{
+                expiredTokenEvent.call()
+                createToastEvent.value = "로그인 정보가 만료되었습니다, 다시 로그인 해주십시오"}
             Error.NotFound -> createToastEvent.value = "글이 없습니다"
             Error.Timeout -> createToastEvent.value = "요청 시간이 너무 오래 걸립니다"
             Error.Conflict -> createToastEvent.value = "오류 발생"
@@ -203,4 +206,5 @@ class AnnouncementsViewModel(
             Error.Unknown -> createToastEvent.value = "알 수 없는 오류 발생"
         }
     }
+
 }

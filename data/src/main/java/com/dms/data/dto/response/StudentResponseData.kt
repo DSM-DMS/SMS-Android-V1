@@ -10,7 +10,9 @@ data class StudentResponseData(
     val phone_number : String,
     val profile_uri : String,
     val student_uuid : String,
-)
+    val parent_status : String
+    )
 
 fun StudentResponseData.toEntity() : Student =
-    Student(this.grade, this.group, this.student_number, this.name, this.phone_number, this.profile_uri)
+    Student(this.grade, this.group, this.student_number, this.name, this.phone_number, this.profile_uri, this.student_uuid,
+this.parent_status)

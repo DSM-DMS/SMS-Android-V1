@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="vm"
+            type="com.dms.sms.feature.signup.viewmodel.SignUpViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.signup.ui.SignUpFragment">
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.11" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.88" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <TextView
+        android:id="@+id/sign_up_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/sign_up_title_tv"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/gl_left"
+        app:layout_constraintTop_toTopOf="@+id/gl_top" />
+
+
+    <TextView
+        android:id="@+id/student_number_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/sign_up_student_number_tv"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/gl_left"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_title_tv" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/student_number_et_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint=" "
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintStart_toStartOf="@+id/gl_left"
+        app:layout_constraintTop_toBottomOf="@+id/student_number_tv">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/student_number_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint=""
+            android:focusable="false"
+            android:clickable="false"
+            android:text="@{vm.noAccountStudentInfo.studentNumber}"
+            android:inputType="number"
+            android:maxLength="4"
+            android:maxLines="1"
+            android:textStyle="bold"
+            android:textSize="19sp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/student_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/sign_up_student_name_tv"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/student_name_et_layout"
+        app:layout_constraintStart_toStartOf="@+id/guideline11"
+         />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/student_name_et_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:hint=" "
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toStartOf="@+id/gl_right"
+        app:layout_constraintStart_toEndOf="@+id/student_number_et_layout"
+        app:layout_constraintTop_toTopOf="@+id/student_number_et_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/student_name_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint=""
+            android:text="@{vm.noAccountStudentInfo.name}"
+
+            android:focusable="false"
+            android:clickable="false"
+            android:maxLength="4"
+            android:maxLines="1"
+            android:textStyle="bold"
+            android:textSize="19sp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/student_phone_number_et_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint=" "
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toStartOf="@+id/gl_right"
+        app:layout_constraintStart_toStartOf="@+id/gl_left"
+        app:layout_constraintTop_toBottomOf="@+id/student_phone_number_tv">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/student_phone_number_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint=""
+            android:text="@{vm.noAccountStudentInfo.phoneNumber}"
+            android:focusable="false"
+            android:clickable="false"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:textStyle="bold"
+            android:textSize="19sp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/student_id_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이디"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/gl_left"
+        app:layout_constraintTop_toBottomOf="@+id/student_phone_number_et_layout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/student_id_et_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint=" "
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toStartOf="@+id/gl_right"
+        app:layout_constraintStart_toStartOf="@+id/gl_left"
+        app:layout_constraintTop_toBottomOf="@+id/student_id_tv">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/student_id_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="4~16자 사이의 아이디를 입력해주세요"
+            android:inputType="textUri"
+            android:text="@={vm.idText}"
+            android:maxLines="1"
+            android:maxLength="16"
+            android:textStyle="bold"
+            android:textSize="14sp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/student_phone_number_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전화번호"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/gl_left"
+        app:layout_constraintTop_toBottomOf="@+id/student_number_et_layout" />
+
+    <TextView
+        android:id="@+id/student_pw_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/gl_left"
+        app:layout_constraintTop_toBottomOf="@+id/student_id_et_layout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/student_pw_et_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint=" "
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toStartOf="@+id/gl_right"
+        app:layout_constraintStart_toStartOf="@+id/gl_left"
+        app:layout_constraintTop_toBottomOf="@+id/student_pw_tv"
+        app:passwordToggleEnabled="true"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/student_pw_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="4~16자 사이의 비밀번호를 입력해주세요"
+            android:text="@={vm.passwordText}"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:maxLength="16"
+            android:textStyle="bold"
+            android:textSize="14sp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <Button
+        android:id="@+id/create_account_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/create_account_btn"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:background="@{vm.idText.length()>=4 &amp;&amp; vm.passwordText.length()>=4 ? @drawable/radius_purple_view : @drawable/radius_gray_view}"
+        android:clickable="@{vm.idText.length()>=4 &amp;&amp; vm.passwordText.length()>=4}"
+        android:onClick="@{()->vm.signUp()}"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/gl_right"
+        app:layout_constraintStart_toStartOf="@+id/gl_left" />
+
+    <TextView
+        android:id="@+id/different_info_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/different_info_tv"
+        android:onClick="@{()->vm.questToDms()}"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toStartOf="@+id/gl_right"
+        app:layout_constraintStart_toStartOf="@+id/gl_left"
+        app:layout_constraintTop_toBottomOf="@+id/create_account_btn" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:onClick="@{()->vm.back()}"
+        android:padding="10dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -23,3 +23,6 @@ fun provideAccountApi(retrofit: Retrofit): AccountApi =
 
 fun provideTimeTableApi(retrofit: Retrofit): TimeTableApi =
     retrofit.create(TimeTableApi::class.java)
+
+fun provideSignUpApi(retrofit: Retrofit): SignUpApi =
+    retrofit.create(SignUpApi::class.java)
