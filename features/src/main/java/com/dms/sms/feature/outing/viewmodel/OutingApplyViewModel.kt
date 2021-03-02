@@ -64,6 +64,9 @@ class OutingApplyViewModel(
     val endTimeEvent = SingleLiveEvent<Unit>()
     val searchPlaceEvent = SingleLiveEvent<Unit>()
     val searchPlaceItemEvent = SingleLiveEvent<Unit>()
+    val outingApplyNoticeEvent = SingleLiveEvent<Unit>()
+    val outingApplyNoticeConfirmEvent = SingleLiveEvent<Unit>()
+    val outingApplyNoticeCancelEvent = SingleLiveEvent<Unit>()
 
     fun applyOuting() {
         val startTime = (changeToUnixTime(applyDate!!, startTime!!).time / 1000).toString()
@@ -229,6 +232,9 @@ class OutingApplyViewModel(
     private fun checkFullText(): Boolean =
         !outingDate.value.isNullOrBlank() && !outingEndTime.value.isNullOrBlank() && !outingReason.value.isNullOrBlank() && !outingPlace.value.isNullOrBlank() && !outingStartTime.value.isNullOrBlank()
 
+    fun clickOutingApplyNoticeConfirm() = outingApplyNoticeConfirmEvent.call()
+    fun clickOutingApplyNoticeCancel() = outingApplyNoticeCancelEvent.call()
+    fun clickOutingApply() = outingApplyNoticeEvent.call()
     fun clickDisease() = diseaseEvent.call()
     fun clickStartTime() = startTimeEvent.call()
     fun clickEndTime() = endTimeEvent.call()
