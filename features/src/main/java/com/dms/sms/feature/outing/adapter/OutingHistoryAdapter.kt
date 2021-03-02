@@ -52,7 +52,7 @@ class OutingHistoryAdapter(private val outingHistoryViewModel: OutingHistoryView
                     setOutingType("외출 가능","#0DD214") // 연두색
                 }
                 "3" -> {
-                    setOutingType("외출 시작","#5323B2") // 보라색
+                    setOutingType("외출중","#5323B2") // 보라색
                 }
                 "4" -> {
                     setOutingType("만료","#F30404") // 빨간색
