@@ -4,6 +4,7 @@ import android.app.TimePickerDialog
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
 import com.dms.sms.databinding.FragmentOutingApplyBinding
+import com.dms.sms.feature.outing.dialog.OutingApplyNoticeDialog
 import com.dms.sms.feature.outing.dialog.OutingNoticeDialog
 import com.dms.sms.feature.outing.viewmodel.OutingApplyViewModel
 import com.dms.sms.navigateFragment
@@ -75,6 +76,10 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
             searchPlaceEvent.observe(viewLifecycleOwner, {
                 val dialog = SearchPlaceFragment()
                 dialog.show(requireActivity().supportFragmentManager, "SearchPlaceDialog")
+            })
+            outingApplyNoticeEvent.observe(viewLifecycleOwner, {
+                val dialog = OutingApplyNoticeDialog()
+                dialog.show(requireActivity().supportFragmentManager, "OutingApplyNoticeDialog")
             })
         }
     }
