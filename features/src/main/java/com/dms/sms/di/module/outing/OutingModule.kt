@@ -8,10 +8,7 @@ import com.dms.domain.outing.service.OutingService
 import com.dms.domain.outing.service.OutingServiceImpl
 import com.dms.domain.outing.usecase.*
 import com.dms.sms.di.module.provideOutingApi
-import com.dms.sms.feature.outing.viewmodel.OutingAccessViewModel
-import com.dms.sms.feature.outing.viewmodel.OutingApplyViewModel
-import com.dms.sms.feature.outing.viewmodel.OutingHistoryViewModel
-import com.dms.sms.feature.outing.viewmodel.OutingViewModel
+import com.dms.sms.feature.outing.viewmodel.*
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -21,6 +18,7 @@ val outingModule: Module = module {
     viewModel { OutingApplyViewModel(get(), get()) }
     viewModel { OutingHistoryViewModel(get(), get()) }
     viewModel { OutingAccessViewModel(get(), get(), get(), get()) }
+    viewModel { OutingNoticeViewModel() }
 
     factory { PostOutingActionUseCase(get(), get()) }
     factory { GetPlaceListUseCase(get(), get()) }
