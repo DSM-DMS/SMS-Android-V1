@@ -1,8 +1,8 @@
 package com.dms.sms.feature.schedule.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.*
-import com.dms.domain.auth.response.LoginResponse
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
 import com.dms.domain.schedule.entity.Schedules
@@ -58,7 +58,7 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
         _currentYear.value = calculateTime(currentYear.value!!, currentMonth.value!!.plus(1)).year
         _currentMonth.value = calculateTime(currentYear.value!!, currentMonth.value!!.plus(1)).month
         selectedDateSchedule.value = listOf()
-        _isSelected.value=null
+        _isSelected.postValue(null)
         _schedule.value = listOf()
         getSchedule()
 
@@ -67,7 +67,7 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
         _currentYear.value = calculateTime(currentYear.value!!, currentMonth.value!!.minus(1)).year
         _currentMonth.value = calculateTime(currentYear.value!!, currentMonth.value!!.minus(1)).month
         selectedDateSchedule.value = listOf()
-        _isSelected.value=null
+        _isSelected.postValue(null)
         _schedule.value = listOf()
         getSchedule()
 
