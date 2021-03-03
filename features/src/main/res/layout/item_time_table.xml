@@ -10,16 +10,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:elevation="3dp"
-        android:layout_width="64dp"
-        android:layout_height="64dp">
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_width="66dp"
+        android:layout_height="60dp">
 
         <TextView
             android:id="@+id/time_table_subject_tv"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@{item}"
-            android:layout_marginEnd="8dp"
+            android:layout_margin="15dp"
             android:textColor="@color/colorBlack"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
