@@ -11,6 +11,8 @@ import com.dms.sms.base.EndPointBaseFragment
 import com.dms.sms.databinding.FragmentSchoolScheduleBinding
 import com.dms.sms.feature.schedule.adapter.DetailScheduleAdapter
 import com.dms.sms.feature.schedule.adapter.SchoolCalendarAdapter
+import com.dms.sms.feature.schedule.adapter.SchoolCalendarSelectionAdapter
+import com.dms.sms.feature.schedule.generateEmptyMonth
 import com.dms.sms.feature.schedule.generateMonth
 import com.dms.sms.feature.schedule.getCurrentDate
 import com.dms.sms.feature.schedule.getCurrentDay
@@ -34,6 +36,8 @@ class SchoolScheduleFragment : EndPointBaseFragment<FragmentSchoolScheduleBindin
         viewModel.currentMonth.observe(viewLifecycleOwner,  {
             it?.let {
                 binding.schoolCalendarRv.adapter = SchoolCalendarAdapter(generateMonth(ScheduleDateModel(viewModel.currentYear.value!!,it)),viewModel)
+                binding.schoolCalendarSelectionRv.adapter = SchoolCalendarSelectionAdapter(generateEmptyMonth(ScheduleDateModel(viewModel.currentYear.value!!,it)),viewModel)
+
             }
 
         })
@@ -53,6 +57,10 @@ class SchoolScheduleFragment : EndPointBaseFragment<FragmentSchoolScheduleBindin
     private fun initView(){
         binding.schoolCalendarRv.layoutManager = GridLayoutManager(requireContext(), 7)
         binding.schoolCalendarRv.adapter = SchoolCalendarAdapter(generateMonth(getCurrentDate()),viewModel)
+
+        binding.schoolCalendarSelectionRv.layoutManager = GridLayoutManager(requireContext(), 7)
+        binding.schoolCalendarSelectionRv.adapter = SchoolCalendarSelectionAdapter(generateEmptyMonth(getCurrentDate()),viewModel)
+
         binding.detailSchoolScheduleRv.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.detailSchoolScheduleRv.adapter = DetailScheduleAdapter()
         viewModel.onCreate()

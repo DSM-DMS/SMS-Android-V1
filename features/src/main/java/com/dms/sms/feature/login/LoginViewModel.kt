@@ -56,7 +56,7 @@ class LoginViewModel(
         onClickSignUpEvent.call()
     }
     fun onLoginClicked() {
-
+        _isAllLoginInfoFilled.value = false
         loginUseCase.execute(
             LoginModel(idText.value!!.trim(), passwordText.value!!.trim()).toDomain(),
             object : DisposableSingleObserver<Result<LoginResponse>>() {
@@ -64,9 +64,11 @@ class LoginViewModel(
                     when (result) {
                         is Result.Success -> {
                             loginSuccess(result)
+                            _isAllLoginInfoFilled.value = false
                         }
                         is Result.Failure -> {
                             loginFailed(result)
+                            _isAllLoginInfoFilled.value = true
                         }
                     }
 
@@ -80,6 +82,7 @@ class LoginViewModel(
             },
             AndroidSchedulers.mainThread()
         )
+        _isAllLoginInfoFilled.value = true
 
 
     }
@@ -158,7 +161,7 @@ class LoginViewModel(
                 createToastEvent.value = "요청하는데 시간이 너무 오래 걸립니다."
             Error.Unknown ->
                 createToastEvent.value = "알 수 없는 오류 발생"
-
+            Error.Locked ->   createToastEvent.value = "로그인 실패"
         }
 
     }
