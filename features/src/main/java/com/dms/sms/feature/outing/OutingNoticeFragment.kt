@@ -1,20 +1,19 @@
 package com.dms.sms.feature.outing
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.dms.sms.R
+import com.dms.sms.base.BaseFragment
+import com.dms.sms.databinding.FragmentOutingNoticeBinding
+import com.dms.sms.feature.outing.viewmodel.OutingNoticeViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class OutingNoticeFragment : Fragment() {
+class OutingNoticeFragment : BaseFragment<FragmentOutingNoticeBinding>() {
+    override val viewModel: OutingNoticeViewModel by viewModel()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_outing_notice, container, false)
+    override val layoutId: Int
+        get() = R.layout.fragment_outing_notice
+
+    override fun observeEvents() {
+
     }
 
 }
