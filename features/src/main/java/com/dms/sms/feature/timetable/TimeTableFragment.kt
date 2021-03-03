@@ -2,7 +2,7 @@ package com.dms.sms.feature.timetable
 
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.R
 import com.dms.sms.base.EndPointBaseFragment
@@ -16,14 +16,18 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class TimeTableFragment : EndPointBaseFragment<FragmentTimeTableBinding>() {
 
     override val viewModel: TimeTableViewModel by viewModel()
+
     override val layoutId: Int
         get() = R.layout.fragment_time_table
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.timeTableRecyclerView.layoutManager = GridLayoutManager(context,7,RecyclerView.HORIZONTAL, false)
-        binding.timeTableRecyclerView.adapter = TimeTableAdapter()
+        bindToAdapter(binding.timeTableMonRecyclerView)
+        bindToAdapter(binding.timeTableTueRecyclerView)
+        bindToAdapter(binding.timeTableWedRecyclerView)
+        bindToAdapter(binding.timeTableThuRecyclerView)
+        bindToAdapter(binding.timeTableFriRecyclerView)
     }
 
     override fun observeEvents() {
@@ -32,4 +36,8 @@ class TimeTableFragment : EndPointBaseFragment<FragmentTimeTableBinding>() {
         }
     }
 
+    private fun bindToAdapter(rc: RecyclerView){
+        rc.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL, false)
+        rc.adapter = TimeTableAdapter()
+    }
 }
