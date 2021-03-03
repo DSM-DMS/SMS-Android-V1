@@ -50,24 +50,35 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="16dp"
         android:text="@string/outing_apply_complete_tv"
         android:textColor="@color/colorBlack"
-        android:textSize="28sp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/outing_complete_gl_right"
+        app:layout_constraintStart_toEndOf="@id/outing_complete_gl_left"
+        app:layout_constraintTop_toTopOf="@+id/outing_complete_gl_middle" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_complete"
         app:layout_constraintBottom_toTopOf="@+id/outing_complete_gl_middle"
         app:layout_constraintEnd_toStartOf="@+id/outing_complete_gl_right"
-        app:layout_constraintStart_toEndOf="@id/outing_complete_gl_left" />
+        app:layout_constraintStart_toStartOf="@+id/outing_complete_gl_left" />
 
     <TextView
+        android:id="@+id/textView21"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="부모님 승인후 선생님에게 찾아가 주세요"
+        android:layout_marginTop="24dp"
         android:textColor="@color/colorDarkGray"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/outing_complete_gl_right"
         app:layout_constraintStart_toStartOf="@+id/outing_complete_gl_left"
-        app:layout_constraintTop_toTopOf="@+id/outing_complete_gl_middle" />
+        app:layout_constraintTop_toBottomOf="@+id/outing_apply_complete_tv" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/outing_complete_gl_bottom"
