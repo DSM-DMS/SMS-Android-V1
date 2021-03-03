@@ -77,15 +77,15 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/radius_white_view"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/outing_notice_gl_bottom"
             app:layout_constraintEnd_toStartOf="@+id/outing_notice_gl_right"
             app:layout_constraintStart_toStartOf="@+id/outing_notice_gl_left"
             app:layout_constraintTop_toTopOf="@+id/outing_notice_gl_middle">
 
             <ScrollView
-                android:fillViewport="true"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:fillViewport="true">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -149,6 +149,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.18" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/outing_notice_gl_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.92" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
