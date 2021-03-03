@@ -47,7 +47,7 @@
     <string name="access_date_string_tv">외출날짜</string>
     <string name="outing_start_tv">외출 시작</string>
     <string name="outing_today_card_tv">오늘의 외출증</string>
-    <string name="show_today_outing_card_tv">오늘 신청한 외출증을 보여줍니다</string>
+    <string name="show_today_outing_card_tv">외출을 시작하고 종료할 수 있습니다.</string>
     <string name="outing_end_tv">외출 종료</string>
     <string name="access_card_name_tv"><b>이름</b>  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
     <string name="access_card_status_tv"><b>상태</b>  &#160;&#160;&#160;&#160;&#160;&#160;%s</string>
@@ -99,9 +99,26 @@
     <string name="outing_reason_tv">사유 : %s</string>
     <string name="outing_place_tv">장소 : %s</string>
     <string name="no_apply_outing_card_tv">&lt;font color="#5323B2">신청한 외출증&lt;/font>이 없습니다.</string>
-    <string name="outing_apply_complete_tv">&lt;font color="#5323B2">외출신청&lt;/font>이 성공적으로 이루어졌습니다</string>
+    <string name="outing_apply_complete_tv">&lt;font color="#5323B2">외출신청&lt;/font>이 성공적으로\n 이루어졌습니다</string>
 
     //schedule
     <string name="school_schedule_calender_title_tv">%s년 %s월</string>
+    <string name="go_apply_outing"><u>외출신청하러 가기</u></string>
+
+    //sign up
+    <string name="sign_up_tv">아직 계정이 없으신가요?</string>
+    <string name="verification_number_title_tv">문자로 받은 인증 번호를\n입력해주세요</string>
+    <string name="verification_number_tv">인증번호</string>
+    <string name="quest_to_dms_tv">페이스북 그룹<font color='#5323B2'> DSM 기숙사\n지원 시스템</font>에 문의해주세요</string>
+    <string name="validation_failed_tv"><font color='#ED1818'>유효하지 않은</font> 인증 번호입니다</string>
+    <string name="validation_retry_tv">재시도</string>
+    <string name="same_id_existence_tv"><font color='#ED1818'>사용중인 아이디</font>입니다\n 다른 아이디를 사용해주세요</string>
+    <string name="account_created_tv">계정이 <font color='#5323B2'>생성</font>되었습니다\n dsm-sms.com을 방문해주세요</string>
+    <string name="sign_up_title_tv">작성 후 계정을 생성해주세요</string>
+    <string name="sign_up_student_number_tv">학번</string>
+    <string name="sign_up_student_name_tv">이름</string>
+    <string name="different_info_tv">표시된 정보가 실제 정보와 다른가요?</string>
+    <string name="create_account_btn">계정 생성</string>
+    <string name="timetable_date_tv">2020년 3월 2일</string>
 
 </resources>

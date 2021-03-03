@@ -1,14 +1,13 @@
 package com.dms.sms.feature.outing
 
 import com.dms.sms.R
-import com.dms.sms.base.BaseFragment
+import com.dms.sms.base.EndPointBaseFragment
 import com.dms.sms.databinding.FragmentOutingMainBinding
-import com.dms.sms.navigateFragment
 import com.dms.sms.feature.outing.viewmodel.OutingViewModel
-import kotlinx.android.synthetic.main.fragment_outing_main.*
+import com.dms.sms.navigateFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class OutingMainFragment : BaseFragment<FragmentOutingMainBinding>() {
+class OutingMainFragment : EndPointBaseFragment<FragmentOutingMainBinding>() {
 
     override val layoutId: Int
         get() = R.layout.fragment_outing_main

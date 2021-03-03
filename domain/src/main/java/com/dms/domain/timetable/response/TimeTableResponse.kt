@@ -1,5 +1,9 @@
 package com.dms.domain.timetable.response
 
+data class TimeTableListResponse(
+    val timeTables: List<TimeTableResponse>
+)
+
 data class TimeTableResponse(
     val time1: String,
     val time2: String,

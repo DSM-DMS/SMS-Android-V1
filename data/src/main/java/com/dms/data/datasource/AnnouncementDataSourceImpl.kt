@@ -1,5 +1,6 @@
 package com.dms.data.datasource
 
+import com.dms.data.dto.response.AnnouncementCheckResponseData
 import com.dms.data.dto.response.AnnouncementResponseData
 import com.dms.data.dto.response.AnnouncementsResponseData
 import com.dms.data.remote.AnnouncementApi
@@ -14,5 +15,8 @@ class AnnouncementDataSourceImpl(private val announcementApi: AnnouncementApi) :
 
     override fun searchAnnouncements(searchQuery: String, announcementPage : Int): Single<AnnouncementsResponseData> =
         announcementApi.searchAnnouncement(searchQuery, announcementPage, 8 )
+
+    override fun checkAnnouncementUnread(studentUUID: String): Single<AnnouncementCheckResponseData> =
+        announcementApi.checkAnnouncementsUnread(studentUUID)
 
 }

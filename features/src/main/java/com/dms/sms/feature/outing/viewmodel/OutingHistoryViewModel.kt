@@ -1,5 +1,6 @@
 package com.dms.sms.feature.outing.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
@@ -7,6 +8,7 @@ import com.dms.domain.outing.response.OutingListResponse
 import com.dms.domain.outing.usecase.GetOutingListUseCase
 import com.dms.domain.outing.usecase.GetStudentUUIDUseCase
 import com.dms.sms.base.BaseViewModel
+import com.dms.sms.base.SingleLiveEvent
 import com.dms.sms.feature.outing.model.OutingModel
 import com.dms.sms.feature.outing.model.toModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,6 +19,10 @@ class OutingHistoryViewModel(
     private val getStudentUUIDUseCase: GetStudentUUIDUseCase
 ) : BaseViewModel() {
     private lateinit var studentUUID: String
+
+    val clickOutingApplyEvent = SingleLiveEvent<Unit>()
+
+    val historyResult = MutableLiveData(true)
     val outingHistoryList = MutableLiveData<ArrayList<OutingModel>>().apply {
         value = ArrayList(emptyList())
     }
@@ -82,5 +88,10 @@ class OutingHistoryViewModel(
 
     fun clickBack() {
         backEvent.call()
+    }
+
+    fun clickOutingApply() {
+        Log.d("asdfasdfasdfasdf","dfasdfasdfasfas")
+        return clickOutingApplyEvent.call()
     }
 }

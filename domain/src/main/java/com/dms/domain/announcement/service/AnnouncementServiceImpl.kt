@@ -1,6 +1,7 @@
 package com.dms.domain.announcement.service
 
 import com.dms.domain.announcement.entity.Announcement
+import com.dms.domain.announcement.entity.AnnouncementCheck
 import com.dms.domain.announcement.entity.Announcements
 import com.dms.domain.announcement.entity.SimpleAnnouncement
 import com.dms.domain.announcement.repository.AnnouncementRepository
@@ -18,5 +19,8 @@ class AnnouncementServiceImpl(private val announcementRepository: AnnouncementRe
 
     override fun searchAnnouncements(searchQuery: String, announcementPage: Int): Single<Result<Announcements>> =
         announcementRepository.searchAnnouncements(searchQuery, announcementPage).toResult(errorHandler)
+
+    override fun checkAnnouncementsUnread(studentUUID: String): Single<Result<AnnouncementCheck>> =
+        announcementRepository.checkAnnouncementsUnread(studentUUID).toResult(errorHandler)
 
 }

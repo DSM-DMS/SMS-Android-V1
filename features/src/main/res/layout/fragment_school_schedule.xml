@@ -125,10 +125,24 @@
             app:layout_constraintTop_toBottomOf="@+id/school_schedule_calender_title_tv"
             app:month="@{vm.currentMonth}"
             app:schedules="@{vm.schedule}"
-            app:year="@{vm.currentYear}" />
+            app:year="@{vm.currentYear}"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/school_calendar_selection_rv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
+            app:empty_month="@{vm.currentMonth}"
+            app:empty_year="@{vm.currentYear}"
+            app:empty_schedules="@{vm.schedule}"
+            app:selectedDay="@{vm.isSelected}"
+            app:layout_constraintEnd_toStartOf="@+id/guideline9"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toTopOf="@+id/school_calendar_rv" />
 
 
-<!--        <View-->
+        <!--        <View-->
 <!--            android:id="@+id/view9"-->
 <!--            android:layout_width="0dp"-->
 <!--            android:layout_height="1.6dp"-->

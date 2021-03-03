@@ -6,6 +6,7 @@ import com.dms.data.repository.AnnouncementRepositoryImpl
 import com.dms.domain.announcement.repository.AnnouncementRepository
 import com.dms.domain.announcement.service.AnnouncementService
 import com.dms.domain.announcement.service.AnnouncementServiceImpl
+import com.dms.domain.announcement.usecase.CheckAnnouncementUnreadUseCase
 import com.dms.domain.announcement.usecase.GetAnnouncementUseCase
 import com.dms.domain.announcement.usecase.GetAnnouncementsUseCase
 import com.dms.domain.announcement.usecase.SearchAnnouncementsUseCase
@@ -20,10 +21,11 @@ val announcementModule: Module = module {
 
     single { provideAnnouncementApi(get()) }
 
-    viewModel { AnnouncementsViewModel(get(), get()) }
+    single { AnnouncementsViewModel(get(), get(),get(),get()) }
 
-    viewModel { AnnouncementDetailViewModel(get()) }
+    single { AnnouncementDetailViewModel(get()) }
 
+    factory { CheckAnnouncementUnreadUseCase(get(), get()) }
 
     factory { GetAnnouncementsUseCase(get(), get()) }
 

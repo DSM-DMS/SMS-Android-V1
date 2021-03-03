@@ -3,6 +3,7 @@ package com.dms.data.repository
 import com.dms.data.datasource.AnnouncementDataSource
 import com.dms.data.dto.response.toEntity
 import com.dms.domain.announcement.entity.Announcement
+import com.dms.domain.announcement.entity.AnnouncementCheck
 import com.dms.domain.announcement.entity.Announcements
 import com.dms.domain.announcement.entity.SimpleAnnouncement
 import com.dms.domain.announcement.repository.AnnouncementRepository
@@ -21,4 +22,7 @@ class AnnouncementRepositoryImpl(private val announcementDataSource: Announcemen
         announcementDataSource.searchAnnouncements(searchQuery, announcementPage).map {
             it.toEntity()
         }
+
+    override fun checkAnnouncementsUnread(studentUUID: String): Single<AnnouncementCheck> =
+        announcementDataSource.checkAnnouncementUnread(studentUUID).map { it.toEntity() }
 }

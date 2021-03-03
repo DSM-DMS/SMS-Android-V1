@@ -58,7 +58,7 @@
                 app:cardBackgroundColor="@color/colorGray"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="6dp"
-                app:layout_constraintBottom_toTopOf="@id/outing_history_card"
+                app:layout_constraintBottom_toTopOf="@id/outing_complete_card"
                 app:layout_constraintEnd_toStartOf="@+id/outing_gl_right2"
                 app:layout_constraintHeight_max="140dp"
                 app:layout_constraintStart_toStartOf="@id/outing_gl_left2"
@@ -122,11 +122,11 @@
                 app:cardBackgroundColor="@color/colorGray"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="6dp"
-                app:layout_constraintBottom_toTopOf="@id/outing_complete_card"
+                app:layout_constraintBottom_toTopOf="@id/outing_notice_card"
                 app:layout_constraintEnd_toStartOf="@id/outing_gl_right2"
                 app:layout_constraintHeight_max="140dp"
                 app:layout_constraintStart_toStartOf="@id/outing_gl_left2"
-                app:layout_constraintTop_toBottomOf="@id/outing_apply_card">
+                app:layout_constraintTop_toBottomOf="@id/outing_complete_card">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -187,10 +187,10 @@
                 app:cardBackgroundColor="@color/colorGray"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="6dp"
-                app:layout_constraintBottom_toTopOf="@id/outing_notice_card"
+                app:layout_constraintBottom_toTopOf="@id/outing_history_card"
                 app:layout_constraintEnd_toStartOf="@id/outing_gl_right2"
                 app:layout_constraintStart_toStartOf="@id/outing_gl_left2"
-                app:layout_constraintTop_toBottomOf="@id/outing_history_card">
+                app:layout_constraintTop_toBottomOf="@id/outing_apply_card">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -254,7 +254,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/outing_gl_right2"
                 app:layout_constraintStart_toStartOf="@id/outing_gl_left2"
-                app:layout_constraintTop_toBottomOf="@id/outing_complete_card">
+                app:layout_constraintTop_toBottomOf="@id/outing_history_card">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

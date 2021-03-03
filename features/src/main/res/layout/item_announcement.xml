@@ -12,11 +12,11 @@
             name="model"
             type="com.dms.sms.feature.announcement.model.SimpleAnnouncementModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{()->vm.onClickAnnouncement(model.announcementUUID)}"
-        >
+        android:onClick="@{()->vm.onClickAnnouncement(model.announcementUUID)}">
 
         <TextView
             android:id="@+id/notice_item_number_tv"
@@ -26,40 +26,61 @@
             android:layout_marginTop="13dp"
             android:layout_marginBottom="13dp"
             android:text="@{model.number}"
-            android:textSize="15sp"
             android:textColor="@color/colorDarkGray"
+            android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/notice_item_line"
-            app:layout_constraintEnd_toStartOf="@+id/notice_item_title_tv"
+            app:layout_constraintEnd_toStartOf="@+id/notice_item_renewal_tv"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/notice_item_renewal_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="15dp"
+            android:text="new"
+            android:visibility="gone"
+            android:textColor="@color/colorRed2"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/notice_item_line"
+            app:layout_constraintEnd_toStartOf="@+id/notice_item_title_tv"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/notice_item_number_tv" />
 
         <TextView
             android:id="@+id/notice_item_title_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="27dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
             android:layout_marginBottom="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@{model.title}"
             android:textColor="@color/colorDarkGray"
             android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/notice_item_line"
             app:layout_constraintEnd_toStartOf="@+id/notice_item_date_tv"
-            app:layout_constraintStart_toEndOf="@+id/notice_item_number_tv"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/notice_item_renewal_tv"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/notice_item_date_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="57dp"
             android:layout_marginTop="13dp"
+            android:layout_marginEnd="45dp"
             android:layout_marginBottom="13dp"
             android:text="@{model.date}"
-            android:textSize="15sp"
             android:textColor="@color/colorDarkGray"
+            android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/notice_item_line"
             app:layout_constraintEnd_toStartOf="@+id/notice_item_view_tv"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/notice_item_title_tv"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,13 +88,12 @@
             android:id="@+id/notice_item_view_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="39dp"
             android:layout_marginTop="13dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="13dp"
             android:text="@{model.views}"
-            android:textSize="15sp"
             android:textColor="@color/colorDarkGray"
+            android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/notice_item_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
