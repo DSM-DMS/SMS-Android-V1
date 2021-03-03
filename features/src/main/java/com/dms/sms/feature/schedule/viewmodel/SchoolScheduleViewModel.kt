@@ -12,6 +12,7 @@ import com.dms.sms.base.SingleLiveEvent
 import com.dms.sms.feature.schedule.calculateTime
 import com.dms.sms.feature.schedule.getCurrentDate
 import com.dms.sms.feature.schedule.getCurrentDay
+import com.dms.sms.feature.schedule.getCurrentMonth
 import com.dms.sms.feature.schedule.model.ScheduleDateModel
 import com.dms.sms.feature.schedule.model.ScheduleModel
 import com.dms.sms.feature.schedule.model.toEntity
@@ -33,22 +34,20 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
     private val _schedule = MutableLiveData<List<ScheduleModel>>()
     val schedule : LiveData<List<ScheduleModel>> get() =_schedule
 
-    private val _selectedDateSchedule = MutableLiveData<List<ScheduleModel>>()
-    val selectedDateSchedule : LiveData<List<ScheduleModel>> get() =_selectedDateSchedule
+    val selectedDateSchedule = MutableLiveData<List<ScheduleModel>>()
 
     val onClickTimeTableSwitch = SingleLiveEvent<Unit>()
 
     fun onCreate(){
         _currentYear.value = getCurrentDate().year
         _currentMonth.value = getCurrentDate().month
-        _isSelected.value = getCurrentDay()
         getSchedule()
     }
 
     fun onClickDate(schedules : List<ScheduleModel>, selectedDay : String) {
         Log.d("selectedDay", selectedDay)
         _isSelected.value = selectedDay
-        _selectedDateSchedule.value = schedules
+        selectedDateSchedule.value = schedules
     }
 
     fun onClickSwitch() {
@@ -58,7 +57,7 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
     fun onClickNext(){
         _currentYear.value = calculateTime(currentYear.value!!, currentMonth.value!!.plus(1)).year
         _currentMonth.value = calculateTime(currentYear.value!!, currentMonth.value!!.plus(1)).month
-        _selectedDateSchedule.value = listOf()
+        selectedDateSchedule.value = listOf()
         _isSelected.value=null
         _schedule.value = listOf()
         getSchedule()
@@ -67,7 +66,7 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
     fun onClickPrevious(){
         _currentYear.value = calculateTime(currentYear.value!!, currentMonth.value!!.minus(1)).year
         _currentMonth.value = calculateTime(currentYear.value!!, currentMonth.value!!.minus(1)).month
-        _selectedDateSchedule.value = listOf()
+        selectedDateSchedule.value = listOf()
         _isSelected.value=null
         _schedule.value = listOf()
         getSchedule()
@@ -80,6 +79,9 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
                 when(result){
                     is Result.Success->{
                         _schedule.value = result.value.schedules.map { it.toModel() }.sortedBy { it.startDay }
+                        if (currentMonth.value!! == getCurrentMonth().toInt())
+                            _isSelected.value = getCurrentDay()
+
                     }
                     is Result.Failure->{
                         getScheduleFailed(result)

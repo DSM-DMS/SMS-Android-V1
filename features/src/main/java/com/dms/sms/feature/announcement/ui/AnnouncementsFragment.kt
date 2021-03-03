@@ -23,8 +23,8 @@ class AnnouncementsFragment : EndPointBaseFragment<FragmentAnnouncementsBinding>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycle.addObserver(viewModel)
         initView()
+        viewModel.onCreate()
     }
 
     private fun initView(){

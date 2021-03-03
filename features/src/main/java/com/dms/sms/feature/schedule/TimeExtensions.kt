@@ -2,6 +2,7 @@ package com.dms.sms.feature.schedule
 
 import android.util.Log
 import com.dms.sms.feature.schedule.model.ScheduleDateModel
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -13,5 +14,9 @@ fun getCurrentDate() : ScheduleDateModel {
 }
 fun getCurrentDay() : String {
     val date = Date(System.currentTimeMillis())
-    return SimpleDateFormat("dd", Locale.KOREA).format(date)
+    return SimpleDateFormat("dd", Locale.KOREA).format(date).toInt().toString()
+}
+fun getCurrentMonth() : String {
+    val date = Date(System.currentTimeMillis())
+    return SimpleDateFormat("MM", Locale.KOREA).format(date).toInt().toString()
 }

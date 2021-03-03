@@ -79,17 +79,19 @@
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
             android:layout_marginTop="4dp"
+            android:background="@color/colorPrimary"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
-            tools:background="@color/colorPrimary" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
         <View
             android:id="@+id/second_schedule_view"
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
             android:layout_marginTop="4dp"
-            tools:background="@color/colorOrange2"
+            android:background="@color/colorOrange2"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/first_schedule_view" />
@@ -100,11 +102,13 @@
             android:layout_height="1.5dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="3dp"
+            android:background="@color/colorYellow2"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@id/selected_state_img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/second_schedule_view"
-            tools:background="@color/colorYellow2" />
+             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

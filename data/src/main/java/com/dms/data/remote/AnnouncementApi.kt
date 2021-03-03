@@ -1,5 +1,6 @@
 package com.dms.data.remote
 
+import com.dms.data.dto.response.AnnouncementCheckResponseData
 import com.dms.data.dto.response.AnnouncementResponseData
 import com.dms.data.dto.response.AnnouncementsResponseData
 import io.reactivex.Single
@@ -17,4 +18,7 @@ interface AnnouncementApi {
 
     @GET("v1/announcements/types/school/query/{search_query}")
     fun searchAnnouncement(@Path("search_query") searchQuery : String, @Query("start") start : Int,@Query("count") count : Int) : Single<AnnouncementsResponseData>
+
+    @GET("v1/students/uuid/{student_uuid}/announcement-check")
+    fun checkAnnouncementsUnread(@Path("student_uuid") studentUUID : String) : Single<AnnouncementCheckResponseData>
 }
