@@ -1,14 +1,10 @@
 package com.dms.sms.feature.schedule.bindingadapter
 
 import android.util.Log
-import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import com.dms.sms.R
 import com.dms.sms.feature.schedule.adapter.SchoolCalendarAdapter
+import com.dms.sms.feature.schedule.adapter.SchoolCalendarSelectionAdapter
 import com.dms.sms.feature.schedule.model.ScheduleModel
 import java.lang.Exception
 
@@ -19,6 +15,26 @@ fun RecyclerView.setSchedules(schedules : List<ScheduleModel>?,year: Int, month:
         (adapter as SchoolCalendarAdapter).setCalendar(schedules, year, month)
 
 
+}
+@BindingAdapter("empty_schedules","empty_year","empty_month",requireAll = false)
+fun RecyclerView.setEmptySchedules(schedules : List<ScheduleModel>?,year: Int, month: Int){
+    Log.d("fffffff","fffffff")
+    if (adapter!=null && schedules!=null)
+        (adapter as SchoolCalendarSelectionAdapter).setCalendar(schedules,year, month)
+
+
+}
+
+@BindingAdapter("selectedDay")
+fun RecyclerView.selectDay(selectedDay : String?) {
+    Log.d("jjjjj",selectedDay.toString())
+    if (adapter != null && selectedDay != null) {
+        try {
+            (adapter as SchoolCalendarSelectionAdapter).selectDay(selectedDay.toInt())
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 }
 //@BindingAdapter("schedules","year","month","selectDay","selectedDaySchedule",requireAll = false)
 //fun RecyclerView.setSchedules(schedules : MutableLiveData<List<ScheduleModel>>?, year: MutableLiveData<Int>, month: MutableLiveData<Int>, selectDay : MutableLiveData<String?>, selectedDaySchedule :MutableLiveData<List<ScheduleModel>>){
@@ -49,15 +65,6 @@ fun RecyclerView.setSchedules(schedules : List<ScheduleModel>?,year: Int, month:
 //
 //}
 
-//@BindingAdapter("selectedDay")
-//fun RecyclerView.selectDay(selectedDay : String?) {
-//    if(adapter!=null && selectedDay!=null) {
-//        try {
-//            (adapter as SchoolCalendarAdapter).selectDay(selectedDay.toInt())
-//        }catch (e: Exception){
-//            e.printStackTrace()
-//        }
-//    }
 //
 //    try {
 //        selectedDay?.toInt()
@@ -71,3 +78,4 @@ fun RecyclerView.setSchedules(schedules : List<ScheduleModel>?,year: Int, month:
 //        this.setBackgroundColor(this.context.getColor(R.color.colorWhite))
 //
 //    }
+//}
