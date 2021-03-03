@@ -1,6 +1,13 @@
 package com.dms.data.dto.response
 
+import com.dms.domain.timetable.response.TimeTableListResponse
 import com.dms.domain.timetable.response.TimeTableResponse
+import com.google.gson.annotations.SerializedName
+
+data class TimeTableListResponseData(
+    @SerializedName("time_tables")
+    val timeTables: List<TimeTableResponseData>
+)
 
 data class TimeTableResponseData(
     val time1: String,
@@ -21,4 +28,9 @@ fun TimeTableResponseData.toEntity(): TimeTableResponse =
         this.time5,
         this.time6,
         this.time7
+    )
+
+fun TimeTableListResponseData.toEntity(): TimeTableListResponse =
+    TimeTableListResponse(
+        this.timeTables.map { it.toEntity() }
     )
