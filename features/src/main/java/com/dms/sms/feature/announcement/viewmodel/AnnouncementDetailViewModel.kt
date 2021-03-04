@@ -55,7 +55,7 @@ class AnnouncementDetailViewModel(private val getAnnouncementUseCase: GetAnnounc
                 }
 
                 override fun onError(e: Throwable) {
-                    createToastEvent.value = "오류 발생"
+                    createSnackEvent.value = "오류 발생"
                 }
             },
             AndroidSchedulers.mainThread()
@@ -64,15 +64,15 @@ class AnnouncementDetailViewModel(private val getAnnouncementUseCase: GetAnnounc
 
     fun onFailedToLoadAnnouncement(result: Result.Failure<Announcement>) {
         when (result.reason) {
-            Error.Network -> createToastEvent.value = "네트워크 오류 발생"
-            Error.BadRequest -> createToastEvent.value = "오류 발생"
-            Error.UnAuthorized -> createToastEvent.value = "인증되지 않은 사용자입니다"
-            Error.Forbidden -> createToastEvent.value = "오류 발생"
-            Error.NotFound -> createToastEvent.value = "글이 존재하지 않습니다"
-            Error.Timeout -> createToastEvent.value = "요청 시간이 너무 오래 걸립니다"
-            Error.Conflict -> createToastEvent.value = "오류 발생"
-            Error.InternalServer -> createToastEvent.value = "서버 오류 발생"
-            Error.Unknown -> createToastEvent.value = "알 수 없는 오류 발생"
+            Error.Network -> createSnackEvent.value = "네트워크 오류 발생"
+            Error.BadRequest -> createSnackEvent.value = "오류 발생"
+            Error.UnAuthorized -> createSnackEvent.value = "인증되지 않은 사용자입니다"
+            Error.Forbidden -> createSnackEvent.value = "오류 발생"
+            Error.NotFound -> createSnackEvent.value = "글이 존재하지 않습니다"
+            Error.Timeout -> createSnackEvent.value = "요청 시간이 너무 오래 걸립니다"
+            Error.Conflict -> createSnackEvent.value = "오류 발생"
+            Error.InternalServer -> createSnackEvent.value = "서버 오류 발생"
+            Error.Unknown -> createSnackEvent.value = "알 수 없는 오류 발생"
         }
     }
 

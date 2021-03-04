@@ -9,9 +9,10 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.dms.sms.BR
-import com.google.android.material.snackbar.Snackbar
 import com.dms.sms.R
 import com.dms.sms.navigateFragment
+import com.google.android.material.snackbar.Snackbar
+import splitties.toast.toast
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
 
@@ -32,8 +33,11 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
         binding.lifecycleOwner = viewLifecycleOwner
         binding.setVariable(BR.vm, viewModel)
 
-        viewModel.createToastEvent.observe(viewLifecycleOwner, {
+        viewModel.createSnackEvent.observe(viewLifecycleOwner, {
             Snackbar.make(view.rootView, it, Snackbar.LENGTH_SHORT).show()
+        })
+        viewModel.createToastEvent.observe(viewLifecycleOwner, {
+            toast(it)
         })
         viewModel.backEvent.observe(this, {
             Navigation.findNavController(requireView()).popBackStack()

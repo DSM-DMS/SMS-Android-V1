@@ -1,7 +1,7 @@
 package com.dms.sms.feature.announcement.viewmodel
 
-import androidx.lifecycle.*
-import com.dms.domain.account.usecase.GetStudentUseCase
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.dms.domain.announcement.entity.AnnouncementCheck
 import com.dms.domain.announcement.entity.Announcements
 import com.dms.domain.announcement.usecase.CheckAnnouncementUnreadUseCase
@@ -10,7 +10,6 @@ import com.dms.domain.announcement.usecase.SearchAnnouncementsUseCase
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
 import com.dms.domain.mypage.usecase.GetStudentUUIDUseCase
-import com.dms.domain.schedule.entity.Schedules
 import com.dms.sms.base.BaseViewModel
 import com.dms.sms.base.SingleLiveEvent
 import com.dms.sms.feature.announcement.model.SearchAnnouncementsModel
@@ -75,7 +74,7 @@ class AnnouncementsViewModel(
             _currentPageBunch.value = 0
         }
         else
-            createToastEvent.value = "글을 입력해주세요"
+            createSnackEvent.value = "글을 입력해주세요"
     }
     fun checkAnnouncementsUnread(){
         getStudentUUIDUseCase.execute(Unit, object : DisposableSingleObserver<Result<String>>(){
@@ -135,7 +134,7 @@ class AnnouncementsViewModel(
                 }
 
                 override fun onError(e: Throwable) {
-                    createToastEvent.value = "오류 발생"
+                    createSnackEvent.value = "오류 발생"
 
                 }
             }, AndroidSchedulers.mainThread()
@@ -162,7 +161,7 @@ class AnnouncementsViewModel(
                 }
 
                 override fun onError(e: Throwable) {
-                    createToastEvent.value = "오류 발생"
+                    createSnackEvent.value = "오류 발생"
                 }
             },
             AndroidSchedulers.mainThread()
@@ -238,17 +237,17 @@ class AnnouncementsViewModel(
 
     fun onFailedToLoadAnnouncements(result: Result.Failure<Announcements>) {
         when (result.reason) {
-            Error.Network -> createToastEvent.value = "네트워크 오류 발생"
-            Error.BadRequest -> createToastEvent.value = "오류 발생"
-            Error.UnAuthorized -> createToastEvent.value = "인증되지 않은 사용자입니다"
+            Error.Network -> createSnackEvent.value = "네트워크 오류 발생"
+            Error.BadRequest -> createSnackEvent.value = "오류 발생"
+            Error.UnAuthorized -> createSnackEvent.value = "인증되지 않은 사용자입니다"
             Error.Forbidden ->{
                 expiredTokenEvent.call()
-                createToastEvent.value = "로그인 정보가 만료되었습니다, 다시 로그인 해주십시오"}
-            Error.NotFound -> createToastEvent.value = "글이 없습니다"
-            Error.Timeout -> createToastEvent.value = "요청 시간이 너무 오래 걸립니다"
-            Error.Conflict -> createToastEvent.value = "오류 발생"
-            Error.InternalServer -> createToastEvent.value = "서버 오류 발생"
-            Error.Unknown -> createToastEvent.value = "알 수 없는 오류 발생"
+                createSnackEvent.value = "로그인 정보가 만료되었습니다, 다시 로그인 해주십시오"}
+            Error.NotFound -> createSnackEvent.value = "글이 없습니다"
+            Error.Timeout -> createSnackEvent.value = "요청 시간이 너무 오래 걸립니다"
+            Error.Conflict -> createSnackEvent.value = "오류 발생"
+            Error.InternalServer -> createSnackEvent.value = "서버 오류 발생"
+            Error.Unknown -> createSnackEvent.value = "알 수 없는 오류 발생"
         }
     }
 

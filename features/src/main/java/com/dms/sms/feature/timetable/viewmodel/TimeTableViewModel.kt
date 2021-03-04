@@ -46,7 +46,7 @@ class TimeTableViewModel(private val timeTableUseCase: TimeTableUseCase) : BaseV
                     }
                 }
                 override fun onError(e: Throwable) {
-                    createToastEvent.value = e.message
+                    createSnackEvent.value = e.message
                 }
             },AndroidSchedulers.mainThread())
     }

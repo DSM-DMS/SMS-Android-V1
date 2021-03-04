@@ -99,25 +99,25 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
     private fun getScheduleFailed(result: Result.Failure<Schedules>) {
         when (result.reason) {
             Error.Conflict ->
-                createToastEvent.value = "오류 발생"
+                createSnackEvent.value = "오류 발생"
             Error.InternalServer ->
-                createToastEvent.value = "서버 오류 발생"
+                createSnackEvent.value = "서버 오류 발생"
             Error.Network ->
-                createToastEvent.value = "네트워크 오류 발생"
+                createSnackEvent.value = "네트워크 오류 발생"
             Error.BadRequest ->
-                createToastEvent.value = "오류 발생"
+                createSnackEvent.value = "오류 발생"
             Error.UnAuthorized ->
-                createToastEvent.value = "오류 발생"
+                createSnackEvent.value = "오류 발생"
             Error.Forbidden -> {
                 expiredTokenEvent.call()
-                createToastEvent.value = "로그인 정보가 만료되었습니다, 다시 로그인 해주십시오"
+                createSnackEvent.value = "로그인 정보가 만료되었습니다, 다시 로그인 해주십시오"
             }
             Error.NotFound ->
-                createToastEvent.value = "오류 발생"
+                createSnackEvent.value = "오류 발생"
             Error.Timeout ->
-                createToastEvent.value = "요청하는데 시간이 너무 오래 걸립니다."
+                createSnackEvent.value = "요청하는데 시간이 너무 오래 걸립니다."
             Error.Unknown ->
-                createToastEvent.value = "알 수 없는 오류 발생"
+                createSnackEvent.value = "알 수 없는 오류 발생"
 
         }
 

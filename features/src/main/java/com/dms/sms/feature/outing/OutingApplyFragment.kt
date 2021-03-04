@@ -35,8 +35,8 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
                                 inputStartTime = "$hour:$minute:00"
                                 outingStartTime.value = "${hour}시  ${minute}분"
                             }
-                            2 -> createToastEvent.value = "외출은 4시 20분 이후에 가능합니다."
-                            4 -> createToastEvent.value = "귀교 시간보다 늦을 수 없습니다."
+                            2 -> createSnackEvent.value = "외출은 4시 20분 이후에 가능합니다."
+                            4 -> createSnackEvent.value = "귀교 시간보다 늦을 수 없습니다."
                         }
                     }
                 val timePickerDialog = TimePickerDialog(requireContext(),timePickerDialogListener,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),android.text.format.DateFormat.is24HourFormat(requireContext()))
@@ -52,8 +52,8 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
                                 inputEndTime = "$hour:$minute:00"
                                 outingEndTime.value = "${hour}시  ${minute}분 "
                             }
-                            2 -> createToastEvent.value = "외출은 20시 30분 이후엔 불가능합니다."
-                            4 -> createToastEvent.value = "외출 시간보다 빠를 수 없습니다."
+                            2 -> createSnackEvent.value = "외출은 20시 30분 이후엔 불가능합니다."
+                            4 -> createSnackEvent.value = "외출 시간보다 빠를 수 없습니다."
                         }
                     }
                 val timePickerDialog = TimePickerDialog( requireContext(),timePickerDialogListener,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),android.text.format.DateFormat.is24HourFormat(requireContext())

@@ -75,7 +75,7 @@ class LoginViewModel(
                 }
 
                 override fun onError(e: Throwable) {
-                    createToastEvent.value = "로그인 실패"
+                    createSnackEvent.value = "로그인 실패"
                     e.printStackTrace()
                 }
 
@@ -99,13 +99,13 @@ class LoginViewModel(
                             Log.d("자동 로그인", "성공")
                         }
                         is Result.Failure -> {
-                            createToastEvent.value = "자동 로그인 설정이 실패했습니다."
+                            createSnackEvent.value = "자동 로그인 설정이 실패했습니다."
                         }
                     }
                 }
 
                 override fun onError(e: Throwable) {
-                    createToastEvent.value = "자동 로그인 설정이 실패했습니다."
+                    createSnackEvent.value = "자동 로그인 설정이 실패했습니다."
                 }
             }, AndroidSchedulers.mainThread()
         )
@@ -113,7 +113,7 @@ class LoginViewModel(
 
 
     private fun loginSuccess(result: Result.Success<LoginResponse>) {
-        createToastEvent.value = "로그인에 성공하셨습니다"
+        createSnackEvent.value = "로그인에 성공하셨습니다"
         _loginSuccessEvent.value = true
         saveLoginData(result.value)
         isConnectedWithParents(result)
@@ -126,12 +126,12 @@ class LoginViewModel(
                 when(result){
                     is Result.Success->{
                         if(result.value.parentStatus=="CONNECTED")
-                            createToastEvent.value="학부모 계정과 연결되었습니다."
+                            createSnackEvent.value="학부모 계정과 연결되었습니다."
                         else if(result.value.parentStatus=="UN_CONNECTED")
-                            createToastEvent.value="현재 연결된 학부모 계정이 없습니다."
+                            createSnackEvent.value="현재 연결된 학부모 계정이 없습니다."
 
                     }
-                    is Result.Failure-> createToastEvent.value= "오류 발생"
+                    is Result.Failure-> createSnackEvent.value= "오류 발생"
                 }
             }
 
@@ -146,22 +146,22 @@ class LoginViewModel(
             Error.Conflict ->
                 _loginErrorEvent.value = true
             Error.InternalServer ->
-                createToastEvent.value = "서버 오류 발생"
+                createSnackEvent.value = "서버 오류 발생"
             Error.Network ->
-                createToastEvent.value = "네트워크 오류 발생"
+                createSnackEvent.value = "네트워크 오류 발생"
             Error.BadRequest ->
-                createToastEvent.value = "로그인 실패"
+                createSnackEvent.value = "로그인 실패"
             Error.UnAuthorized ->
-                createToastEvent.value = "로그인 실패"
+                createSnackEvent.value = "로그인 실패"
             Error.Forbidden ->
-                createToastEvent.value = "로그인 실패"
+                createSnackEvent.value = "로그인 실패"
             Error.NotFound ->
-                createToastEvent.value = "로그인 실패"
+                createSnackEvent.value = "로그인 실패"
             Error.Timeout ->
-                createToastEvent.value = "요청하는데 시간이 너무 오래 걸립니다."
+                createSnackEvent.value = "요청하는데 시간이 너무 오래 걸립니다."
             Error.Unknown ->
-                createToastEvent.value = "알 수 없는 오류 발생"
-            Error.Locked ->   createToastEvent.value = "로그인 실패"
+                createSnackEvent.value = "알 수 없는 오류 발생"
+            Error.Locked ->   createSnackEvent.value = "로그인 실패"
         }
 
     }

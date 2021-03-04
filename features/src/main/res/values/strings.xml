@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SMS-Android_V1</string>
+    <string name="app_name">SMS</string>
 
     //outing main
     <string name="outing_tv">외출</string>
