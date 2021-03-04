@@ -20,31 +20,32 @@ import com.dms.sms.feature.schedule.model.toModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 
-class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase) : BaseViewModel(){
+class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase) :
+    BaseViewModel() {
 
     private val _isSelected = MutableLiveData<String?>()
-    val isSelected : LiveData<String?> get() =_isSelected
+    val isSelected: LiveData<String?> get() = _isSelected
 
     private val _currentMonth = MutableLiveData<Int>()
-    val currentMonth : LiveData<Int> get() = _currentMonth
+    val currentMonth: LiveData<Int> get() = _currentMonth
 
     private val _currentYear = MutableLiveData<Int>()
-    val currentYear : LiveData<Int> get() =_currentYear
+    val currentYear: LiveData<Int> get() = _currentYear
 
     private val _schedule = MutableLiveData<List<ScheduleModel>>()
-    val schedule : LiveData<List<ScheduleModel>> get() =_schedule
+    val schedule: LiveData<List<ScheduleModel>> get() = _schedule
 
     val selectedDateSchedule = MutableLiveData<List<ScheduleModel>>()
 
     val onClickTimeTableSwitch = SingleLiveEvent<Unit>()
 
-    fun onCreate(){
+    fun onCreate() {
         _currentYear.value = getCurrentDate().year
         _currentMonth.value = getCurrentDate().month
         getSchedule()
     }
 
-    fun onClickDate(schedules : List<ScheduleModel>, selectedDay : String) {
+    fun onClickDate(schedules: List<ScheduleModel>, selectedDay: String) {
         Log.d("selectedDay", selectedDay)
         _isSelected.value = selectedDay
         selectedDateSchedule.value = schedules
@@ -54,7 +55,7 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
         onClickTimeTableSwitch.call()
     }
 
-    fun onClickNext(){
+    fun onClickNext() {
         _currentYear.value = calculateTime(currentYear.value!!, currentMonth.value!!.plus(1)).year
         _currentMonth.value = calculateTime(currentYear.value!!, currentMonth.value!!.plus(1)).month
         selectedDateSchedule.value = listOf()
@@ -63,39 +64,50 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
         getSchedule()
 
     }
-    fun onClickPrevious(){
+
+    fun onClickPrevious() {
         _currentYear.value = calculateTime(currentYear.value!!, currentMonth.value!!.minus(1)).year
-        _currentMonth.value = calculateTime(currentYear.value!!, currentMonth.value!!.minus(1)).month
+        _currentMonth.value =
+            calculateTime(currentYear.value!!, currentMonth.value!!.minus(1)).month
         selectedDateSchedule.value = listOf()
         _isSelected.postValue(null)
         _schedule.value = listOf()
         getSchedule()
 
     }
-    private fun getSchedule(){
-        getScheduleUseCase.execute(ScheduleDateModel(currentYear.value!!, currentMonth.value!!).toEntity(),
-            object : DisposableSingleObserver<Result<Schedules>>(){
-            override fun onSuccess(result: Result<Schedules>) {
-                when(result){
-                    is Result.Success->{
-                        _schedule.value = result.value.schedules.map { it.toModel() }.sortedBy { it.startDay }
-                        if (currentMonth.value!! == getCurrentMonth().toInt())
-                            _isSelected.value = getCurrentDay()
 
+    private fun getSchedule() {
+        getScheduleUseCase.execute(
+            ScheduleDateModel(
+                currentYear.value!!,
+                currentMonth.value!!
+            ).toEntity(),
+            object : DisposableSingleObserver<Result<Schedules>>() {
+                override fun onSuccess(result: Result<Schedules>) {
+                    when (result) {
+                        is Result.Success -> {
+                            _schedule.value =
+                                result.value.schedules.map { it.toModel() }.sortedBy { it.startDay }
+                            if (currentMonth.value!! == getCurrentMonth().toInt())
+                                _isSelected.value = getCurrentDay()
+
+                        }
+                        is Result.Failure -> {
+                            getScheduleFailed(result)
+                        }
                     }
-                    is Result.Failure->{
-                        getScheduleFailed(result)
-                    }
+
                 }
 
-            }
-            override fun onError(e: Throwable) {
-                e.printStackTrace()
-            }
+                override fun onError(e: Throwable) {
+                    e.printStackTrace()
+                }
 
-        }, AndroidSchedulers.mainThread())
+            }, AndroidSchedulers.mainThread()
+        )
 
     }
+
     private fun getScheduleFailed(result: Result.Failure<Schedules>) {
         when (result.reason) {
             Error.Conflict ->
@@ -116,8 +128,8 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
                 createSnackEvent.value = "오류 발생"
             Error.Timeout ->
                 createSnackEvent.value = "요청하는데 시간이 너무 오래 걸립니다."
-            Error.Unknown ->
-                createSnackEvent.value = "알 수 없는 오류 발생"
+            Error.Unknown -> createSnackEvent.value = "알 수 없는 오류 발생"
+            Error.Locked -> createSnackEvent.value = "알 수 없는 오류 발생"
 
         }
 

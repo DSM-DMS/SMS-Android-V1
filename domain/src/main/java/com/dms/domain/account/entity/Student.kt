@@ -7,6 +7,5 @@ data class Student(
      val name: String,
      val phoneNumber: String,
      val profileImage: String,
-     val studentUUID: String,
      val parentStatus: String
 )
