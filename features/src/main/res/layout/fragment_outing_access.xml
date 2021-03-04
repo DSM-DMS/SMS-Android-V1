@@ -330,7 +330,7 @@
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:layout_marginTop="32dp"
-                    android:backgroundTint="@color/colorGray"
+                    android:backgroundTint="@color/colorGray3"
                     app:cardCornerRadius="2000dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_chainStyle="spread"

@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/radius_gray_view"
+        android:background="@drawable/radius_dialog_view"
         tools:context=".feature.outing.dialog.OutingStartDialog">
 
         <TextView

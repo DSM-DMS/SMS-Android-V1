@@ -8,6 +8,7 @@
     <color name="colorBlack2">#000001</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorWhite2">#FDFDFD</color>
+    <color name="colorLoginWhite">#ffffff</color>
 
     <color name="colorLigthRed">#F85656</color>
     <color name="colorRed">#F30404</color>

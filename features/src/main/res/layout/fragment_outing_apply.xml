@@ -336,7 +336,7 @@
             android:clickable="@{vm.btnClickable}"
             android:onClick="@{()->vm.clickOutingApply()}"
             android:text="신청하기"
-            android:textColor="@{!vm.btnClickable ? @color/colorDarkGray : @color/colorLightGray }"
+            android:textColor="@{!vm.btnClickable ? @color/colorDarkGray : @color/colorLoginWhite }"
             app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right2"
             app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left2"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
