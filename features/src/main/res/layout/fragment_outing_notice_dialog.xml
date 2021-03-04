@@ -28,7 +28,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite2">
 
                 <TextView
                     android:id="@+id/textView"
@@ -114,9 +115,9 @@
                     android:id="@+id/apply_outing_warning_dialog_cancel_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:background="?attr/selectableItemBackground"
                     android:gravity="center"
-                    android:layout_marginTop="10dp"
                     android:onClick="@{()->vm.clickCancel()}"
                     android:padding="12dp"
                     android:text="@string/cancel_tv"
@@ -131,9 +132,9 @@
                     android:id="@+id/apply_outing_warning_dialog_apply_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:background="?attr/selectableItemBackground"
                     android:gravity="center"
-                    android:layout_marginTop="10dp"
                     android:onClick="@{()->vm.clickSuccess()}"
                     android:padding="12dp"
                     android:text="@string/apply_tv"
