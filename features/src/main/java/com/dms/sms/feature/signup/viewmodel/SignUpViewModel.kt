@@ -2,12 +2,9 @@ package com.dms.sms.feature.signup.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.dms.domain.account.entity.Student
 import com.dms.domain.account.usecase.GetStudentUseCase
-import com.dms.domain.auth.request.LoginRequest
 import com.dms.domain.auth.response.LoginResponse
 import com.dms.domain.auth.usecase.LoginUseCase
 import com.dms.domain.auth.usecase.SaveLoginDataUseCase
@@ -85,7 +82,7 @@ class SignUpViewModel(
                 }
 
                 override fun onError(e: Throwable) {
-                    createToastEvent.value = "로그인 실패"
+                    createSnackEvent.value = "로그인 실패"
                     e.printStackTrace()
                 }
 
@@ -116,7 +113,7 @@ class SignUpViewModel(
 
                     is Result.Failure -> when (result.reason) {
                         Error.NotFound -> wrongVerificationNumberEvent.call()
-                        else -> createToastEvent.value = "오류 발생"
+                        else -> createSnackEvent.value = "오류 발생"
                     }
                 }
             }
@@ -146,7 +143,7 @@ class SignUpViewModel(
                     is Result.Failure->{
                         when(result.reason){
                             Error.Conflict -> duplicateIdEvent.call()
-                            else -> createToastEvent.value = "아이디는 한글로 사용할 수 없습니다."
+                            else -> createSnackEvent.value = "아이디는 한글로 사용할 수 없습니다."
                         }
                     }
                 }
@@ -179,13 +176,13 @@ class SignUpViewModel(
                             Log.d("자동 로그인", "성공")
                         }
                         is Result.Failure -> {
-                            createToastEvent.value = "자동 로그인 설정이 실패했습니다."
+                            createSnackEvent.value = "자동 로그인 설정이 실패했습니다."
                         }
                     }
                 }
 
                 override fun onError(e: Throwable) {
-                    createToastEvent.value = "자동 로그인 설정이 실패했습니다."
+                    createSnackEvent.value = "자동 로그인 설정이 실패했습니다."
                 }
             }, AndroidSchedulers.mainThread()
         )
@@ -197,12 +194,12 @@ class SignUpViewModel(
                 when(result){
                     is Result.Success->{
                         if(result.value.parentStatus=="CONNECTED")
-                            createToastEvent.value="학부모 계정과 연결되었습니다."
+                            createSnackEvent.value="학부모 계정과 연결되었습니다."
                         else if(result.value.parentStatus=="UN_CONNECTED")
-                            createToastEvent.value="현재 연결된 학부모 계정이 없습니다."
+                            createSnackEvent.value="현재 연결된 학부모 계정이 없습니다."
 
                     }
-                    is Result.Failure-> createToastEvent.value= "오류 발생"
+                    is Result.Failure-> createSnackEvent.value= "오류 발생"
                 }
             }
 

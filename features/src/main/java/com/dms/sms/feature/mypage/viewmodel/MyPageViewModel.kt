@@ -28,7 +28,7 @@ class MyPageViewModel(private val getUserProfileUseCase: GetUserProfileUseCase, 
             override fun onSuccess(result: Result<String>) {
                 when(result){
                     is Result.Success -> getUserProfile(result.value)
-                    is Result.Failure -> createToastEvent.value = "실패"
+                    is Result.Failure -> createSnackEvent.value = "실패"
                 }
             }
 
@@ -44,7 +44,7 @@ class MyPageViewModel(private val getUserProfileUseCase: GetUserProfileUseCase, 
             override fun onSuccess(result: Result<UserResponse>) {
                 when(result){
                     is Result.Success -> userModel.value = result.value.toModel()
-                    is Result.Failure -> createToastEvent.value = "실패"
+                    is Result.Failure -> createSnackEvent.value = "실패"
                 }
             }
 

@@ -16,13 +16,13 @@ class LogoutViewModel(private val loginDataDeleteUseCase: LoginDataDeleteUseCase
             override fun onSuccess(result: Result<Unit>) {
                 when(result) {
                     is Result.Success -> logoutConfirm.call()
-                    is Result.Failure -> createToastEvent.value = "로그아웃에 실패하셨습니다."
+                    is Result.Failure -> createSnackEvent.value = "로그아웃에 실패하셨습니다."
 
                 }
             }
 
             override fun onError(e: Throwable) {
-                createToastEvent.value = "로그아웃에 실패하셨습니다."
+                createSnackEvent.value = "로그아웃에 실패하셨습니다."
             }
         }, AndroidSchedulers.mainThread())
     }

@@ -52,16 +52,16 @@ class ChangePwViewModel(private val changePasswordUseCase: ChangePasswordUseCase
         when (result.reason) {
             Error.Conflict -> currentPwErrorEvent.call()
             Error.InternalServer ->
-                createToastEvent.value = "서버 오류 발생"
+                createSnackEvent.value = "서버 오류 발생"
             Error.Network ->
-                createToastEvent.value = "네트워크 오류 발생"
+                createSnackEvent.value = "네트워크 오류 발생"
             Error.Unknown ->
-                createToastEvent.value = "알 수 없는 오류 발생"
+                createSnackEvent.value = "알 수 없는 오류 발생"
         }
     }
 
     private fun successChangePw() {
-        createToastEvent.value = "비밀번호 변경 성공"
+        createSnackEvent.value = "비밀번호 변경 성공"
         successChangePw.call()
     }
 
