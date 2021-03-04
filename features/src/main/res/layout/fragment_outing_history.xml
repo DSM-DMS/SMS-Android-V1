@@ -15,6 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorWhite"
         tools:context=".feature.outing.OutingHistoryFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -63,10 +64,11 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="16dp"
+            android:gravity="center"
             android:text="외출 신청 내역이 없습니다."
             android:textSize="15sp"
+            android:textColor="@color/colorDarkGray"
             android:visibility="@{vm.historyResult == true ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toStartOf="@+id/outing_history_gl_right"
             app:layout_constraintStart_toStartOf="@+id/outing_history_gl_left"

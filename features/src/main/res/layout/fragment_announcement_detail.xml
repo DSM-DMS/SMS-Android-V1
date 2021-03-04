@@ -17,6 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorWhite"
         tools:context=".feature.announcement.ui.AnnouncementDetailFragment">
 
 
@@ -195,7 +196,7 @@
             <View
                 android:id="@+id/previous_announcement_top_line"
                 android:layout_width="0dp"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:background="@color/colorLightGray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -258,7 +259,7 @@
             <View
                 android:id="@+id/next_announcement_bottom_line"
                 android:layout_width="0dp"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:background="@color/colorLightGray"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -269,7 +270,7 @@
         <View
             android:id="@+id/announcement_middle_line"
             android:layout_width="0dp"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:background="@color/colorLightGray"
             app:layout_constraintBottom_toBottomOf="@+id/previous_announcement_layout"
             app:layout_constraintEnd_toStartOf="@+id/announcement_detail_gl_right"

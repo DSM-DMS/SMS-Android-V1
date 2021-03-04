@@ -13,6 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorWhite"
         tools:context=".feature.timetable.TimeTableFragment">
 
         <TextView
@@ -27,31 +28,31 @@
             app:layout_constraintStart_toStartOf="@+id/time_table_gl_left"
             app:layout_constraintTop_toTopOf="@+id/time_table_gl_top" />
 
-<!--        <ImageView-->
-<!--            android:id="@+id/next_day_img"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="?android:attr/selectableItemBackgroundBorderless"-->
-<!--            android:clickable="true"-->
-<!--            android:focusable="true"-->
-<!--            android:padding="5dp"-->
-<!--            android:src="@drawable/ic_next_month"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/textView5"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/time_table_gl_max_right"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/textView5" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/next_day_img"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:background="?android:attr/selectableItemBackgroundBorderless"-->
+        <!--            android:clickable="true"-->
+        <!--            android:focusable="true"-->
+        <!--            android:padding="5dp"-->
+        <!--            android:src="@drawable/ic_next_month"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/textView5"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/time_table_gl_max_right"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/textView5" />-->
 
-<!--        <ImageView-->
-<!--            android:id="@+id/previous_day_img"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="?android:attr/selectableItemBackgroundBorderless"-->
-<!--            android:clickable="true"-->
-<!--            android:focusable="true"-->
-<!--            android:padding="5dp"-->
-<!--            android:src="@drawable/ic_previous_month"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/textView5"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/time_table_gl_max_left"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/textView5" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/previous_day_img"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:background="?android:attr/selectableItemBackgroundBorderless"-->
+        <!--            android:clickable="true"-->
+        <!--            android:focusable="true"-->
+        <!--            android:padding="5dp"-->
+        <!--            android:src="@drawable/ic_previous_month"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/textView5"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/time_table_gl_max_left"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/textView5" />-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
