@@ -258,7 +258,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/create_account_btn"
-        android:textColor="@color/colorWhite"
+        android:textColor="@{vm.idText.length()>=4 &amp;&amp; vm.passwordText.length()>=4 ? @color/colorDarkGray : @color/colorLightGray }"
         android:textStyle="bold"
         android:background="@{vm.idText.length()>=4 &amp;&amp; vm.passwordText.length()>=4 ? @drawable/radius_purple_view : @drawable/radius_gray_view}"
         android:clickable="@{vm.idText.length()>=4 &amp;&amp; vm.passwordText.length()>=4}"

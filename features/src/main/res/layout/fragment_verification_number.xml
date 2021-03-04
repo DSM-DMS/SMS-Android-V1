@@ -111,7 +111,7 @@
         android:background="@{vm.verificationNumber.length() !=6 ? @drawable/radius_gray_view : @drawable/radius_purple_view}"
         android:clickable="@{vm.verificationNumber.length() ==6}"
         android:text="@string/confirm_tv"
-        android:textColor="@color/colorWhite"
+        android:textColor="@{vm.verificationNumber.length() !=6 ? @color/colorDarkGray : @color/colorLightGray }"
         android:textSize="16sp"
         android:onClick="@{()->vm.getNoAccountStudent()}"
         app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
