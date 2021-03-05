@@ -8,9 +8,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.dms.sms.BR
 import com.dms.sms.R
 import com.dms.sms.navigateFragment
+import com.dms.sms.navigateFragmentWithHost
 import com.google.android.material.snackbar.Snackbar
 import splitties.toast.toast
 
@@ -43,9 +45,8 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
             Navigation.findNavController(requireView()).popBackStack()
         })
         viewModel.expiredTokenEvent.observe(viewLifecycleOwner,{
-            navigateFragment(R.id.action_global_loginFragment)
+            requireActivity().findNavController(R.id.fragment_container).navigate(R.id.action_mainFragment_to_logInFragment)
         })
-
         observeEvents()
     }
 

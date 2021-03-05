@@ -60,8 +60,8 @@ class MyPageViewModel(private val getUserProfileUseCase: GetUserProfileUseCase, 
             Error.Network -> createSnackEvent.value = "실패"
             Error.BadRequest -> createSnackEvent.value = "실패"
             Error.UnAuthorized -> {
-                createSnackEvent.value = "로그인 정보가 만료되었습니다. 다시 로그인 해주세요."
                 expiredTokenEvent.call()
+                createSnackEvent.value = "로그인 정보가 만료되었습니다. 다시 로그인 해주세요."
             }
             Error.Forbidden -> {
                 createSnackEvent.value = "오류 발생"
