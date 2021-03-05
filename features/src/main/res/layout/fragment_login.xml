@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorWhite"
         tools:context=".feature.login.LoginFragment">
 
         <TextView
@@ -70,7 +71,7 @@
             android:layout_height="wrap_content"
             android:background="@{!vm.isAllLoginInfoFilled ? @drawable/radius_gray_view : @drawable/radius_purple_view}"
             android:text="@string/login_title_tv"
-            android:textColor="@color/colorWhite"
+            android:textColor="@{!vm.isAllLoginInfoFilled ? @color/colorDarkGray : @color/colorLoginWhite }"
             android:textSize="16sp"
             android:onClick="@{()->vm.onLoginClicked()}"
             android:clickable="@{vm.isAllLoginInfoFilled}"

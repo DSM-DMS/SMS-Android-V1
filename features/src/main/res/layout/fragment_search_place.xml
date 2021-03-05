@@ -21,6 +21,7 @@
             android:layout_height="500dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
+            android:backgroundTint="@color/colorGray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -53,7 +54,7 @@
                     android:background="@color/colorPurple"
                     android:onClick="@{()-> vm.searchPlace()}"
                     android:text="검색"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="#ffffff"
                     app:layout_constraintBottom_toTopOf="@+id/guideline18"
                     app:layout_constraintEnd_toStartOf="@+id/guideline19"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -63,6 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textColor="@color/colorDarkGray"
                     android:visibility="@{vm.searchPlaceResult == true ? View.GONE : View.VISIBLE}"
                     android:text="검색 결과가 없습니다. \n도로명이나 지역명을 이용해서 검색하세요"
                     app:layout_constraintEnd_toStartOf="@+id/guideline19"

@@ -21,6 +21,7 @@ class ChangePwViewModel(private val changePasswordUseCase: ChangePasswordUseCase
     val confirmPwErrorEvent = SingleLiveEvent<Unit>()
     val currentPwErrorEvent = SingleLiveEvent<Unit>()
     val successChangePw = SingleLiveEvent<Unit>()
+    val pwFormCheckEvent = SingleLiveEvent<Unit>()
 
     val pwMediatorLiveData = MediatorLiveData<Boolean>().apply {
         addSource(currentPw) { value = checkFullText() }
@@ -50,7 +51,10 @@ class ChangePwViewModel(private val changePasswordUseCase: ChangePasswordUseCase
 
     private fun failChangePw(result: Result.Failure<Unit>) {
         when (result.reason) {
-            Error.Conflict -> currentPwErrorEvent.call()
+            Error.BadRequest ->
+                pwFormCheckEvent.call()
+            Error.Conflict ->
+                currentPwErrorEvent.call()
             Error.InternalServer ->
                 createSnackEvent.value = "서버 오류 발생"
             Error.Network ->

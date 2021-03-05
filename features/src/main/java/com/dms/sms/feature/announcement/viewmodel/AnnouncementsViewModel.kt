@@ -248,6 +248,7 @@ class AnnouncementsViewModel(
             Error.Conflict -> createSnackEvent.value = "오류 발생"
             Error.InternalServer -> createSnackEvent.value = "서버 오류 발생"
             Error.Unknown -> createSnackEvent.value = "알 수 없는 오류 발생"
+            Error.Locked -> createSnackEvent.value = "알 수 없는 오류 발생"
         }
     }
 

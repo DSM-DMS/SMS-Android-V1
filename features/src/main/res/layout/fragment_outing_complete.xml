@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".feature.outing.OutingCompleteFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,11 +36,11 @@
     <Button
         android:id="@+id/outing_complete_btn"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:background="@drawable/radius_purple_view"
         android:text="@string/complete_tv"
-        android:textColor="@color/colorWhite"
-        android:textSize="18sp"
+        android:textColor="@color/colorLoginWhite"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/outing_complete_gl_right"
         app:layout_constraintStart_toStartOf="@+id/outing_complete_gl_left"

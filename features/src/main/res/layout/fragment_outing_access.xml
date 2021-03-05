@@ -15,6 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorWhite"
         tools:context=".feature.outing.OutingAccessFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -66,6 +67,7 @@
             android:id="@+id/cardView6"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:backgroundTint="@color/colorWhite2"
             android:visibility="@{vm.accessResult == false ? View.VISIBLE : View.GONE}"
             app:cardCornerRadius="6dp"
             app:cardElevation="4dp"
@@ -191,7 +193,7 @@
                     android:id="@+id/constraintLayout3"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@color/colorGray"
+                    android:background="@color/colorGray3"
                     app:layout_constraintBottom_toTopOf="@+id/outing_access_card_gl_middle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -302,6 +304,7 @@
             android:layout_height="0dp"
             android:visibility="@{vm.accessResult == true ? View.VISIBLE : View.GONE}"
             app:cardCornerRadius="6dp"
+            android:backgroundTint="@color/colorWhite2"
             app:cardElevation="4dp"
             app:layout_constraintBottom_toTopOf="@+id/outing_access_gl_bottom"
             app:layout_constraintEnd_toStartOf="@+id/outing_access_gl_right"
@@ -327,7 +330,7 @@
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:layout_marginTop="32dp"
-                    android:backgroundTint="@color/colorGray"
+                    android:backgroundTint="@color/colorGray3"
                     app:cardCornerRadius="2000dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_chainStyle="spread"
@@ -343,7 +346,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:background="@color/colorGray"
+                    android:background="@color/colorGray3"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

@@ -14,6 +14,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/colorWhite"
         android:layout_height="match_parent"
         tools:context=".feature.outing.OutingApplyFragment">
 
@@ -62,6 +63,7 @@
             android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:background="@color/colorWhite"
             app:layout_constraintBottom_toTopOf="@+id/outing_apply_gl_bottom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +103,7 @@
                     android:paddingStart="8dp"
                     android:paddingEnd="4dp"
                     android:text="@{vm.outingDate}"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorDarkGray"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -140,7 +142,7 @@
                     android:paddingStart="8dp"
                     android:paddingEnd="4dp"
                     android:text="@={vm.outingReason}"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorDarkGray"
                     android:textSize="14dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -159,7 +161,7 @@
                 android:onClick="@{()->vm.clickDisease()}"
                 android:padding="4dp"
                 android:text="@{vm.outingWithDisease == true ? @string/no_disease_apply : @string/disease_apply}"
-                android:textColor="@color/colorPurple"
+                android:textColor="@{vm.outingWithDisease == true ? @color/colorPurple : @color/colorBlack}"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toTopOf="@+id/time_tv"
                 app:layout_constraintEnd_toStartOf="@+id/textView14"
@@ -174,7 +176,7 @@
                 android:focusable="true"
                 android:onClick="@{() -> vm.clickDiseaseCancel()}"
                 android:text="@string/cancel_tv"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorPurple"
                 android:textSize="13sp"
                 android:visibility="@{vm.outingWithDisease == true ? View.GONE : View.VISIBLE }"
                 app:layout_constraintBottom_toTopOf="@+id/time_tv"
@@ -213,7 +215,7 @@
                     android:hint="출발 시간"
                     android:onClick="@{()->vm.clickStartTime()}"
                     android:text="@={vm.outingStartTime}"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorDarkGray"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -243,7 +245,7 @@
                     android:paddingStart="8dp"
                     android:paddingEnd="4dp"
                     android:text="@={vm.outingEndTime}"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorDarkGray"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -295,7 +297,7 @@
                     android:paddingStart="8dp"
                     android:paddingEnd="4dp"
                     android:text="@={vm.outingPlace}"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorDarkGray"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -334,8 +336,7 @@
             android:clickable="@{vm.btnClickable}"
             android:onClick="@{()->vm.clickOutingApply()}"
             android:text="신청하기"
-            android:textColor="@color/colorWhite"
-
+            android:textColor="@{!vm.btnClickable ? @color/colorDarkGray : @color/colorLoginWhite }"
             app:layout_constraintEnd_toStartOf="@+id/outing_apply_gl_right2"
             app:layout_constraintStart_toStartOf="@+id/outing_apply_gl_left2"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />

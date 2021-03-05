@@ -14,7 +14,7 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 
 val outingModule: Module = module {
-    viewModel { OutingViewModel() }
+    viewModel { OutingViewModel(get()) }
     viewModel { OutingApplyViewModel(get(), get()) }
     viewModel { OutingHistoryViewModel(get(), get()) }
     viewModel { OutingAccessViewModel(get(), get(), get(), get()) }

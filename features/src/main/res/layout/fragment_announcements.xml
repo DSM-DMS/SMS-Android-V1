@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
 
         <variable
             name="vm"
@@ -15,6 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorWhite"
         tools:context=".feature.announcement.ui.AnnouncementsFragment">
 
         <TextView
@@ -41,9 +43,9 @@
             android:inputType="text"
             android:maxLines="1"
             android:padding="8dp"
+            android:text="@={vm.searchQuery}"
             android:textColorHint="@color/colorBlack"
             android:textSize="14sp"
-            android:text="@={vm.searchQuery}"
             app:layout_constraintBottom_toTopOf="@+id/announcement_top_line"
             app:layout_constraintEnd_toStartOf="@+id/announcement_gl_right"
             app:layout_constraintStart_toStartOf="@+id/announcement_gl_middle" />
@@ -53,7 +55,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="65dp"
-            android:background="@color/colorBlack"
+            android:background="@color/colorDarkGray"
             app:layout_constraintEnd_toStartOf="@+id/announcement_gl_right"
             app:layout_constraintStart_toStartOf="@+id/announcement_gl_left"
             app:layout_constraintTop_toBottomOf="@+id/announcement_tv" />
@@ -216,10 +218,10 @@
             android:id="@+id/back_to_main_announcements_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{()->vm.onBackPressed()}"
             android:padding="10dp"
             android:visibility="@{vm.isSearched  ?  View.VISIBLE : View.GONE}"
-            android:onClick="@{()->vm.onBackPressed()}"
-            android:background="?attr/selectableItemBackgroundBorderless"
             app:layout_constraintBottom_toBottomOf="@+id/announcement_tv"
             app:layout_constraintStart_toStartOf="@+id/announcement_gl_left"
             app:layout_constraintTop_toTopOf="@+id/announcement_gl_top"

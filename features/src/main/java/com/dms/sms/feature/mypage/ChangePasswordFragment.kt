@@ -2,7 +2,6 @@ package com.dms.sms.feature.mypage
 
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
-import com.dms.sms.base.BaseViewModel
 import com.dms.sms.databinding.FragmentChangePasswordBinding
 import com.dms.sms.feature.mypage.viewmodel.ChangePwViewModel
 import com.dms.sms.navigateFragment
@@ -20,13 +19,20 @@ class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
             confirmPwErrorEvent.observe(viewLifecycleOwner, {
                 binding.newPasswordConfirmEtLayout.error = "비밀번호가 일치하지 않습니다."
                 binding.currentPasswordEtLayout.error = null
+                binding.newPasswordEtLayout.error = null
             })
             currentPwErrorEvent.observe(viewLifecycleOwner, {
                 binding.currentPasswordEtLayout.error = "비밀번호가 일치하지 않습니다."
                 binding.newPasswordConfirmEtLayout.error = null
+                binding.newPasswordEtLayout.error = null
             })
             successChangePw.observe(viewLifecycleOwner, {
                 requireActivity().navigateFragment(R.id.fragment_container,R.id.action_changePasswordFragment_to_loginFragment)
+            })
+            pwFormCheckEvent.observe(viewLifecycleOwner, {
+                binding.newPasswordEtLayout.error = "비밀번호는 4자이상으로 입력해주세요"
+                binding.newPasswordConfirmEtLayout.error = null
+                binding.currentPasswordEtLayout.error = null
             })
         }
     }
