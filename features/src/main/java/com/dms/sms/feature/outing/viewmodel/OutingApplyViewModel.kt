@@ -113,7 +113,7 @@ class OutingApplyViewModel(
             Error.Network ->
                 createSnackEvent.value = "네트워크 오류 발생"
             Error.BadRequest ->
-                createSnackEvent.value = "외출 시간을 다시 확인해주세요"
+                createSnackEvent.value = "외출 시간을 다시 확인해주세요 \n외출 시작 시간이 현재 시간과 같거나 느립니다."
             Error.UnAuthorized ->
                 createSnackEvent.value = "외출증 생성 실패"
             Error.Forbidden ->
