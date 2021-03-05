@@ -113,7 +113,7 @@ class LoginViewModel(
 
 
     private fun loginSuccess(result: Result.Success<LoginResponse>) {
-        createSnackEvent.value = "로그인에 성공하셨습니다"
+        createToastEvent.value = "로그인에 성공하셨습니다"
         _loginSuccessEvent.value = true
         saveLoginData(result.value)
         isConnectedWithParents(result)
@@ -126,9 +126,9 @@ class LoginViewModel(
                 when(result){
                     is Result.Success->{
                         if(result.value.parentStatus=="CONNECTED")
-                            createSnackEvent.value="학부모 계정과 연결되었습니다."
+                            createToastEvent.value="학부모 계정과 연결되었습니다."
                         else if(result.value.parentStatus=="UN_CONNECTED")
-                            createSnackEvent.value="현재 연결된 학부모 계정이 없습니다."
+                            createToastEvent.value="현재 연결된 학부모 계정이 없습니다."
 
                     }
                     is Result.Failure-> createSnackEvent.value= "오류 발생"
