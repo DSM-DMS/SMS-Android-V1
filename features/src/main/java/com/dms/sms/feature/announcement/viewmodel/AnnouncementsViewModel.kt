@@ -239,10 +239,11 @@ class AnnouncementsViewModel(
         when (result.reason) {
             Error.Network -> createSnackEvent.value = "네트워크 오류 발생"
             Error.BadRequest -> createSnackEvent.value = "오류 발생"
-            Error.UnAuthorized -> createSnackEvent.value = "인증되지 않은 사용자입니다"
-            Error.Forbidden ->{
+            Error.UnAuthorized -> {
                 expiredTokenEvent.call()
-                createSnackEvent.value = "로그인 정보가 만료되었습니다, 다시 로그인 해주십시오"}
+                createSnackEvent.value = "로그인 정보가 만료되었습니다, 다시 로그인 해주십시오"
+            }
+            Error.Forbidden -> createSnackEvent.value = "오류 발생"
             Error.NotFound -> createSnackEvent.value = "글이 없습니다"
             Error.Timeout -> createSnackEvent.value = "요청 시간이 너무 오래 걸립니다"
             Error.Conflict -> createSnackEvent.value = "오류 발생"

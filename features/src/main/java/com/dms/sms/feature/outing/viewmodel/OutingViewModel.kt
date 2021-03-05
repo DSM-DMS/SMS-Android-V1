@@ -45,12 +45,11 @@ class OutingViewModel(private val getAnnouncementsUseCase: GetAnnouncementsUseCa
             Error.Network -> createSnackEvent.value = "실패"
             Error.BadRequest -> createSnackEvent.value = "실패"
             Error.UnAuthorized -> {
+                expiredTokenEvent.call()
                 createSnackEvent.value = "로그인 정보가 만료되었습니다. 다시 로그인 해주세요."
-
             }
             Error.Forbidden -> {
-                expiredTokenEvent.call()
-                createSnackEvent.value = "로그인 정보가 만료되었습니다, 다시 로그인 해주십시오"
+                createSnackEvent.value = "오류 발생"
             }
             Error.NotFound ->
                 createSnackEvent.value = "오류 발생"
