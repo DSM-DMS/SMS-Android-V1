@@ -9,22 +9,16 @@ import com.dms.domain.outing.request.AccessOutingRequest
 import com.dms.domain.outing.request.OutingApplyRequest
 import com.dms.domain.outing.response.DetailOutingResponse
 import com.dms.domain.outing.response.OutingListResponse
+import com.dms.domain.outing.response.OutingResponse
 import com.dms.domain.outing.response.SearchPlaceListResponse
-import com.dms.domain.util.getDate
 import io.reactivex.Single
 
 class OutingServiceImpl(
     private val outingRepository: OutingRepository,
     private val errorHandler: ErrorHandler
 ) : OutingService {
-    override fun createOuting(outingApplyRequest: OutingApplyRequest): Single<Result<Unit>> =
-        outingRepository.createOuting(outingApplyRequest).map {
-            outingRepository.saveOutingUUID(
-                it.outingUUID,
-                getDate(outingApplyRequest.startTime.toLong() * 1000)
-            )
-        }.toResult(errorHandler)
-
+    override fun createOuting(outingApplyRequest: OutingApplyRequest): Single<Result<OutingResponse>> =
+        outingRepository.createOuting(outingApplyRequest).toResult(errorHandler)
 
     override fun getOutingList(studentUUID: String): Single<Result<OutingListResponse>> =
         outingRepository.getOutingList(studentUUID).toResult(errorHandler)
@@ -37,7 +31,6 @@ class OutingServiceImpl(
 
     override fun postOutingAction(actionData: AccessOutingRequest): Single<Result<Unit>> =
         outingRepository.postOutingAction(actionData).toSingleResult(errorHandler)
-
 
     override fun getStudentUUID(): String =
         outingRepository.getStudentUUID()
