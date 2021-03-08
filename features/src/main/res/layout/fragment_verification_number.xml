@@ -118,5 +118,18 @@
         app:layout_constraintEnd_toStartOf="@+id/gl_right"
         app:layout_constraintStart_toStartOf="@+id/gl_left" />
 
+    <TextView
+        android:id="@+id/unrecieved_number_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="@{()->vm.questToDms()}"
+        android:padding="10dp"
+        android:text="@string/unrecieved_number_tv"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toStartOf="@+id/gl_right"
+        app:layout_constraintStart_toStartOf="@+id/gl_left"
+        app:layout_constraintTop_toBottomOf="@+id/confirm_btn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

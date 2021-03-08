@@ -12,6 +12,7 @@ import com.dms.sms.base.BaseFragment
 import com.dms.sms.base.BaseViewModel
 import com.dms.sms.databinding.FragmentVerificationNumberBinding
 import com.dms.sms.feature.signup.model.NoAccountStudentModel
+import com.dms.sms.feature.signup.ui.dialog.QuestToDmsDialogFragment
 import com.dms.sms.feature.signup.ui.dialog.WrongVerificationNumberDialogFragment
 import com.dms.sms.feature.signup.viewmodel.SignUpViewModel
 import com.dms.sms.navigateFragment
@@ -33,6 +34,12 @@ class VerificationNumberFragment : BaseFragment<FragmentVerificationNumberBindin
             WrongVerificationNumberDialogFragment().show(
                 requireActivity().supportFragmentManager,
                 "WrongVerificationNumberDialogFragment"
+            )
+        })
+        viewModel.questToDmsEvent.observe(viewLifecycleOwner, {
+            QuestToDmsDialogFragment().show(
+                requireActivity().supportFragmentManager,
+                "QuestToDmsDialogFragment"
             )
         })
     }

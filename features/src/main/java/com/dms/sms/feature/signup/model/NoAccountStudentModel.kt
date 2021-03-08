@@ -5,7 +5,7 @@ import com.dms.domain.signup.entity.NoAccountStudent
 data class NoAccountStudentModel(
     val grade: String,
     val group: Int,
-    val studentNumber: String,
+    var studentNumber: String,
     val name: String,
     val phoneNumber: String
 )
