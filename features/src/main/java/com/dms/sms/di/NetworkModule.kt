@@ -1,7 +1,6 @@
 package com.dms.sms.di
 
 import com.dms.data.base.AuthorizationInterceptor
-import com.dms.data.remote.OutingApi
 import com.dms.sms.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

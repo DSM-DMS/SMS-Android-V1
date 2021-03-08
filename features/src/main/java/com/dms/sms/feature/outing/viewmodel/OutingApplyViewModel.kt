@@ -4,6 +4,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
+import com.dms.domain.outing.response.OutingResponse
 import com.dms.domain.outing.response.SearchPlaceListResponse
 import com.dms.domain.outing.usecase.GetPlaceListUseCase
 import com.dms.domain.outing.usecase.OutingUseCase
@@ -45,7 +46,8 @@ class OutingApplyViewModel(
     val outingPlace = MutableLiveData<String>()
     val outingStartTime = MutableLiveData<String>()
     val outingEndTime = MutableLiveData<String>()
-    val searchPlaceEt = MutableLiveData<String>("")
+    val searchPlaceEt = MutableLiveData("")
+    val completeMessage = MutableLiveData<String>()
 
     val btnClickable = MediatorLiveData<Boolean>().apply {
         addSource(outingDate) { value = checkFullText() }
@@ -67,6 +69,7 @@ class OutingApplyViewModel(
     val outingApplyNoticeEvent = SingleLiveEvent<Unit>()
     val outingApplyNoticeConfirmEvent = SingleLiveEvent<Unit>()
     val outingApplyNoticeCancelEvent = SingleLiveEvent<Unit>()
+    val outingCompleteEvent = SingleLiveEvent<Unit>()
 
     fun applyOuting() {
         val startTime = (changeToUnixTime(applyDate!!, startTime!!).time / 1000).toString()
@@ -82,10 +85,13 @@ class OutingApplyViewModel(
 
         outingUseCase.execute(
             outingModel.toDomain(),
-            object : DisposableSingleObserver<Result<Unit>>() {
-                override fun onSuccess(result: Result<Unit>) {
+            object : DisposableSingleObserver<Result<OutingResponse>>() {
+                override fun onSuccess(result: Result<OutingResponse>) {
                     when (result) {
-                        is Result.Success -> createOutingSuccess()
+                        is Result.Success -> {
+                            createOutingSuccess()
+                            setCompleteMessage(result.value.code)
+                        }
                         is Result.Failure -> failOutingSuccess(result)
                     }
                 }
@@ -104,7 +110,21 @@ class OutingApplyViewModel(
         createOutingSuccessEvent.call()
     }
 
-    private fun failOutingSuccess(result: Result.Failure<Unit>) {
+    private fun setCompleteMessage(code: Int){
+        when(code){
+            0 -> {
+                completeMessage.value = "외출증 신청이 완료되었습니다.\n 승인을 받은 후 모바일을 통해 외출을 시작해주세요."
+            }
+            -1 -> {
+                completeMessage.value = "연결된 학부모 계정이 존재하지 않습니다.\n 선생님께 바로 찾아가 승인을 받아주세요."
+            }
+            -2 -> {
+                completeMessage.value = "학부모가 문자 사용을 동의하지 않았습니다.\n 선생님께 바로 찾아가 승인을 받아주세요."
+            }
+        }
+    }
+
+    private fun failOutingSuccess(result: Result.Failure<OutingResponse>) {
         when (result.reason) {
             Error.Conflict ->
                 createSnackEvent.value = "이미 해당날짜에 대기 중인 외출증이 있습니다. "
@@ -113,7 +133,7 @@ class OutingApplyViewModel(
             Error.Network ->
                 createSnackEvent.value = "네트워크 오류 발생"
             Error.BadRequest ->
-                createSnackEvent.value = "외출 시간을 다시 확인해주세요"
+                createSnackEvent.value = "외출 시간을 다시 확인해주세요 \n외출 시작 시간이 현재 시간과 같거나 느립니다."
             Error.UnAuthorized ->
                 createSnackEvent.value = "외출증 생성 실패"
             Error.Forbidden ->
@@ -244,5 +264,6 @@ class OutingApplyViewModel(
     fun clickCancel() = onCancelEvent.call()
     fun clickDiseaseCancel() = onDiseaseCancelEvent.call()
     fun clickSearchPlace() = searchPlaceEvent.call()
+    fun clickComplete() = outingCompleteEvent.call()
     fun clickBack() = backEvent.call()
 }
