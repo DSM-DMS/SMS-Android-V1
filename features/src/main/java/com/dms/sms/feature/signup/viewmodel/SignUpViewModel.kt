@@ -109,6 +109,16 @@ class SignUpViewModel(
                     is Result.Success -> {
                         noAccountStudentEvent.call()
                         _noAccountStudentInfo.value = result.value.toModel()
+                        if(_noAccountStudentInfo.value!!.studentNumber.toInt()<10) {
+                            _noAccountStudentInfo.value!!.studentNumber =
+                                _noAccountStudentInfo.value!!.grade +
+                                        _noAccountStudentInfo.value!!.group +"0"+ _noAccountStudentInfo.value!!.studentNumber
+                        }
+                        else{
+                            _noAccountStudentInfo.value!!.studentNumber =
+                                _noAccountStudentInfo.value!!.grade +
+                                        _noAccountStudentInfo.value!!.group + _noAccountStudentInfo.value!!.studentNumber
+                        }
                     }
 
                     is Result.Failure -> when (result.reason) {

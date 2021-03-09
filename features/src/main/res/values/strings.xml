@@ -120,5 +120,6 @@
     <string name="different_info_tv">표시된 정보가 실제 정보와 다른가요?</string>
     <string name="create_account_btn">계정 생성</string>
     <string name="timetable_date_tv">2020년 3월 2일</string>
+    <string name="unrecieved_number_tv">인증 번호를 받지 못하셨나요?</string>
 
 </resources>
