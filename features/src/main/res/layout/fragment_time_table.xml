@@ -175,7 +175,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/time_table_mon_recycler_view"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@+id/time_table_gl_bottom"
@@ -188,7 +188,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/time_table_tue_recycler_view"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@+id/time_table_gl_bottom"
@@ -201,7 +201,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/time_table_wed_recycler_view"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@+id/time_table_gl_bottom"
@@ -214,7 +214,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/time_table_thu_recycler_view"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@+id/time_table_gl_bottom"
@@ -227,7 +227,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/time_table_fri_recycler_view"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@+id/time_table_gl_bottom"
@@ -285,7 +285,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.23" />
+            app:layout_constraintGuide_percent="0.235" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/time_table_gl_tue"
