@@ -38,6 +38,7 @@ class LoginViewModel(
     private val _loginSuccessEvent = MutableLiveData<Boolean>()
     private val _loginErrorEvent = MutableLiveData<Boolean>()
     val onClickSignUpEvent = SingleLiveEvent<Unit>()
+    val onLoadEvent = MutableLiveData<Boolean>(false)
 
 
     private val _isAllLoginInfoFilled = MediatorLiveData<Boolean>().apply {
@@ -56,7 +57,10 @@ class LoginViewModel(
         onClickSignUpEvent.call()
     }
     fun onLoginClicked() {
-        _isAllLoginInfoFilled.value = false
+        Log.d("isall", _isAllLoginInfoFilled.value.toString())
+        onLoadEvent.value = true
+        Log.d("isall", onLoadEvent.value.toString())
+
         loginUseCase.execute(
             LoginModel(idText.value!!.trim(), passwordText.value!!.trim()).toDomain(),
             object : DisposableSingleObserver<Result<LoginResponse>>() {
@@ -64,11 +68,10 @@ class LoginViewModel(
                     when (result) {
                         is Result.Success -> {
                             loginSuccess(result)
-                            _isAllLoginInfoFilled.value = false
                         }
                         is Result.Failure -> {
                             loginFailed(result)
-                            _isAllLoginInfoFilled.value = true
+                            onLoadEvent.value = false
                         }
                     }
 
