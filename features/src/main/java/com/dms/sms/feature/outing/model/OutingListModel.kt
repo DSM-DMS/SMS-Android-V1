@@ -1,6 +1,7 @@
 package com.dms.sms.feature.outing.model
 
 import com.dms.domain.outing.response.OutingList
+import com.dms.domain.util.isToday
 
 data class OutingModel(
     val outingUUID: String,
@@ -14,6 +15,12 @@ data class OutingModel(
     val isEmergency: Boolean
         get() {
             return outingSituation == "EMERGENCY"
+        }
+
+    val todayOutingStatus: String
+        get() {
+            println(isToday(startTime.toLong()))
+            return outingStatus
         }
 }
 

@@ -41,7 +41,7 @@ class OutingHistoryAdapter(private val outingHistoryViewModel: OutingHistoryView
             binding.outingHistoryDateTv.text = setDate(outingModel.startTime.toLong() * 1000).substring(0,11)
             binding.outingHistoryTimeTv.text = "${setDate(outingModel.startTime.toLong() * 1000).substring(11,16)} ~ ${setDate(outingModel.endTime.toLong() * 1000).substring(11,16)}"
 
-            when(outingModel.outingStatus){
+            when(outingModel.todayOutingStatus){
                 "0" -> {
                     setOutingType("학부모 승인 대기","#FEDF42") // 노란색
                 }
@@ -55,7 +55,7 @@ class OutingHistoryAdapter(private val outingHistoryViewModel: OutingHistoryView
                     setOutingType("외출중","#5323B2") // 보라색
                 }
                 "4" -> {
-                    setOutingType("만료","#F30404") // 빨간색
+                    setOutingType("선생님 방문 인증 필요","#F30404") // 빨간색
                 }
                 "5" -> {
                     setOutingType("외출 확인 완료","#344FE6") // 파란색

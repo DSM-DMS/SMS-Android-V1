@@ -1,6 +1,5 @@
 package com.dms.sms.feature.outing.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
@@ -91,7 +90,6 @@ class OutingHistoryViewModel(
     }
 
     fun clickOutingApply() {
-        Log.d("asdfasdfasdfasdf","dfasdfasdfasfas")
         return clickOutingApplyEvent.call()
     }
 }
