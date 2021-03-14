@@ -22,13 +22,21 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="14dp"
-            app:cardElevation="4dp"
             android:backgroundTint="@color/colorWhite2"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/outing_history_late_layout"
+                android:layout_width="30dp"
+                android:layout_height="130dp"
+                android:layout_gravity="right"
+                android:background="#4DF30404"
+                android:visibility="invisible" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -102,10 +110,10 @@
                     android:layout_marginEnd="16dp"
                     android:text="승인 만료"
                     android:textColor="@color/colorPurple"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/outing_history_reason_tv"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/outing_history_time_tv"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/outing_history_time_tv"
                     app:layout_constraintVertical_bias="0.45" />
 
                 <TextView
