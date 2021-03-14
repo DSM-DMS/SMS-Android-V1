@@ -2,7 +2,6 @@ package com.dms.data.dto.response
 
 import com.dms.domain.outing.response.OutingList
 import com.dms.domain.outing.response.OutingListResponse
-import com.dms.domain.outing.response.OutingResponse
 import com.google.gson.annotations.SerializedName
 
 data class OutingListResponseData(
@@ -23,7 +22,9 @@ data class OutingListData(
     @SerializedName("outing_situation")
     val outingSituation: String,
     @SerializedName("outing_status")
-    val outingStatus: String
+    val outingStatus: String,
+    @SerializedName("arrival_time")
+    val arrivalTime: Int
 )
 
 fun OutingListResponseData.toDomainData(): OutingListResponse =
@@ -39,5 +40,6 @@ fun OutingListData.toDomainData(): OutingList =
         this.startTime,
         this.endTime,
         this.outingSituation,
-        this.outingStatus
+        this.outingStatus,
+        this.arrivalTime
     )
