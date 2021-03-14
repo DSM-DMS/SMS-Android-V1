@@ -11,5 +11,6 @@ data class OutingList(
     val startTime: Int,
     val endTime: Int,
     val outingSituation: String,
-    val outingStatus: String
+    val outingStatus: String,
+    val arrivalTime: Int
 )
