@@ -22,6 +22,7 @@ class TimeTableFragment : EndPointBaseFragment<FragmentTimeTableBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewLifecycleOwner.lifecycle.addObserver(viewModel)
 
         bindToAdapter(binding.timeTableMonRecyclerView)
         bindToAdapter(binding.timeTableTueRecyclerView)

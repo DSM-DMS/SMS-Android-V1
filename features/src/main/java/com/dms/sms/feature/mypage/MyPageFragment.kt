@@ -1,5 +1,7 @@
 package com.dms.sms.feature.mypage
 
+import android.os.Bundle
+import android.view.View
 import com.dms.sms.R
 import com.dms.sms.base.EndPointBaseFragment
 import com.dms.sms.databinding.FragmentMyPageBinding
@@ -15,6 +17,10 @@ class MyPageFragment : EndPointBaseFragment<FragmentMyPageBinding>() {
 
     override val viewModel: MyPageViewModel by viewModel()
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewLifecycleOwner.lifecycle.addObserver(viewModel)
+    }
     override fun observeEvents() {
         with(viewModel){
             changePwEvent.observe(this@MyPageFragment, {

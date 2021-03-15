@@ -1,7 +1,6 @@
 package com.dms.sms.feature.announcement.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
 import com.dms.domain.announcement.entity.AnnouncementCheck
 import com.dms.domain.announcement.entity.Announcements
 import com.dms.domain.announcement.usecase.CheckAnnouncementUnreadUseCase
@@ -24,7 +23,7 @@ class AnnouncementsViewModel(
     private val searchAnnouncementsUseCase: SearchAnnouncementsUseCase,
     private val checkAnnouncementUnreadUseCase: CheckAnnouncementUnreadUseCase,
     private val getStudentUUIDUseCase: GetStudentUUIDUseCase) :
-    BaseViewModel() {
+    BaseViewModel(), LifecycleObserver {
 
 
 
@@ -48,7 +47,8 @@ class AnnouncementsViewModel(
     val isSearched = MutableLiveData(false)
 
     val announcementEvent = SingleLiveEvent<String>()
-
+    
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onCreate() {
         _currentPage.value = 0
         isSearched.value = false

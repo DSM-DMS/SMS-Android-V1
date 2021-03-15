@@ -8,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dms.sms.feature.announcement.ui.AnnouncementsFragment
 import com.dms.sms.feature.mypage.MyPageFragment
 import com.dms.sms.feature.outing.OutingMainFragment
+import com.dms.sms.feature.schedule.ui.ScheduleMainFragment
 import com.dms.sms.feature.schedule.ui.SchoolScheduleFragment
 
 class MainPagerAdapter(fm : FragmentManager, lc : Lifecycle) : FragmentStateAdapter(fm, lc){
@@ -17,7 +18,7 @@ class MainPagerAdapter(fm : FragmentManager, lc : Lifecycle) : FragmentStateAdap
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> SchoolScheduleFragment()
+            0 -> ScheduleMainFragment()
             1 -> OutingMainFragment()
             2 -> AnnouncementsFragment()
             else -> MyPageFragment()
