@@ -40,8 +40,13 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onCreate() {
-
         if(schedule.value==null) {
+            Log.d("onCreate","ssssss")
+            _currentYear.value = getCurrentDate().year
+            _currentMonth.value = getCurrentDate().month
+            getSchedule()
+        }
+        else if (schedule.value.isNullOrEmpty()){
             _currentYear.value = getCurrentDate().year
             _currentMonth.value = getCurrentDate().month
             getSchedule()
