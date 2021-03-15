@@ -53,6 +53,11 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
             requireActivity().findNavController(R.id.fragment_container).navigate(R.id.action_mainFragment_to_logInFragment)
         })
         observeEvents()
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                Navigation.findNavController(requireView()).popBackStack()
+            }
+        })
     }
 
     abstract fun observeEvents()

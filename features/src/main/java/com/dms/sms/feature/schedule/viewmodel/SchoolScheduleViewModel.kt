@@ -1,8 +1,7 @@
 package com.dms.sms.feature.schedule.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
 import com.dms.domain.schedule.entity.Schedules
@@ -21,7 +20,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 
 class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase) :
-    BaseViewModel() {
+    BaseViewModel(), LifecycleObserver {
 
     private val _isSelected = MutableLiveData<String?>()
     val isSelected: LiveData<String?> get() = _isSelected
@@ -39,10 +38,14 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
 
     val onClickTimeTableSwitch = SingleLiveEvent<Unit>()
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onCreate() {
-        _currentYear.value = getCurrentDate().year
-        _currentMonth.value = getCurrentDate().month
-        getSchedule()
+
+        if(schedule.value==null) {
+            _currentYear.value = getCurrentDate().year
+            _currentMonth.value = getCurrentDate().month
+            getSchedule()
+        }
     }
 
     fun onClickDate(schedules: List<ScheduleModel>, selectedDay: String) {
