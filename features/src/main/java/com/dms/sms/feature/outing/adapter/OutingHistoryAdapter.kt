@@ -63,7 +63,7 @@ class OutingHistoryAdapter(private val outingHistoryViewModel: OutingHistoryView
                     setOutingType("외출중", "#5323B2") // 보라색
                 }
                 "4" -> {
-                    setOutingType("선생님 방문 인증 필요", "#F30404") // 빨간색
+                    setOutingType("선생님 방문 필요", "#F30404") // 빨간색
                     isLate(outingModel.endTime.toLong(), outingModel.arrivalTime.toLong())
                 }
                 "5" -> {
