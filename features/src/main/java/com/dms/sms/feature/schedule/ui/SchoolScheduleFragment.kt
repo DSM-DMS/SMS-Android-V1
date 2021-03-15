@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.R
+import com.dms.sms.base.BackPressedBaseFragment
 import com.dms.sms.base.EndPointBaseFragment
 import com.dms.sms.databinding.FragmentSchoolScheduleBinding
 import com.dms.sms.feature.schedule.adapter.DetailScheduleAdapter
@@ -28,7 +29,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import splitties.fragments.addToBackStack
 
 
-class SchoolScheduleFragment : EndPointBaseFragment<FragmentSchoolScheduleBinding>() {
+class SchoolScheduleFragment : BackPressedBaseFragment<FragmentSchoolScheduleBinding>() {
     override val viewModel: SchoolScheduleViewModel by viewModel()
     override val layoutId: Int = R.layout.fragment_school_schedule
 

@@ -9,6 +9,7 @@ import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
 import com.dms.sms.databinding.FragmentAnnouncementDetailBinding
 import com.dms.sms.feature.announcement.viewmodel.AnnouncementDetailViewModel
+import com.dms.sms.feature.announcement.viewmodel.AnnouncementsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import work.upstarts.editorjskit.models.HeadingLevel
 import work.upstarts.editorjskit.ui.EditorJsAdapter
@@ -18,7 +19,7 @@ import work.upstarts.editorjskit.ui.theme.EJStyle
 class AnnouncementDetailFragment : BaseFragment<FragmentAnnouncementDetailBinding>(){
 
     override val viewModel: AnnouncementDetailViewModel by viewModel()
-
+    private val announcementsViewModel : AnnouncementsViewModel by viewModel()
     override val layoutId: Int = R.layout.fragment_announcement_detail
 
     private val args : AnnouncementDetailFragmentArgs by navArgs()
@@ -32,11 +33,14 @@ class AnnouncementDetailFragment : BaseFragment<FragmentAnnouncementDetailBindin
         viewModel.backButtonEvent.observe(viewLifecycleOwner, {
             requireActivity().onBackPressed()
         })
+        viewModel.announcements.observe(viewLifecycleOwner,{
+            announcementsViewModel.setAnnouncements(it)
+        })
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.onCreate(args.announcementUUID)
+        viewModel.onCreate(args.announcementUUID, announcementsViewModel.currentPage.value!!)
     }
 
     private fun initView(context: Context){

@@ -2,20 +2,25 @@ package com.dms.sms.feature.announcement.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.activity.OnBackPressedCallback
 import com.dms.sms.R
+import com.dms.sms.base.BackPressedBaseFragment
+import com.dms.sms.base.BaseFragment
 import com.dms.sms.base.EndPointBaseFragment
+import com.dms.sms.base.NoBackPressedBaseFragment
 import com.dms.sms.databinding.FragmentAnnouncementsBinding
 import com.dms.sms.feature.announcement.viewmodel.AnnouncementsViewModel
 import com.dms.sms.navigateFragmentWithArgs
 import com.dms.sms.ui.MainFragmentDirections
 import kotlinx.android.synthetic.*
+import kotlinx.coroutines.delay
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AnnouncementsFragment : EndPointBaseFragment<FragmentAnnouncementsBinding>() {
+class AnnouncementsFragment : NoBackPressedBaseFragment<FragmentAnnouncementsBinding>() {
 
     override val viewModel: AnnouncementsViewModel by viewModel()
     override val layoutId: Int
@@ -23,8 +28,8 @@ class AnnouncementsFragment : EndPointBaseFragment<FragmentAnnouncementsBinding>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
         viewLifecycleOwner.lifecycle.addObserver(viewModel)
+        initView()
 
     }
 
@@ -43,8 +48,9 @@ class AnnouncementsFragment : EndPointBaseFragment<FragmentAnnouncementsBinding>
 
         requireActivity().onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
-                if(viewModel.isSearched.value!!)
+                if(viewModel.isSearched.value!!) {
                     viewModel.onBackPressed()
+                }
                 else {
                     remove()
                     requireActivity().onBackPressed()

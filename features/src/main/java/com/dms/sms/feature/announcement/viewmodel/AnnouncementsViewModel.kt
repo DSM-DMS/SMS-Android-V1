@@ -1,5 +1,6 @@
 package com.dms.sms.feature.announcement.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.dms.domain.announcement.entity.AnnouncementCheck
 import com.dms.domain.announcement.entity.Announcements
@@ -50,6 +51,7 @@ class AnnouncementsViewModel(
     
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onCreate() {
+        Log.d("annnonCreate","fff")
         _currentPage.value = 0
         isSearched.value = false
         searchQuery.value = ""
@@ -57,8 +59,12 @@ class AnnouncementsViewModel(
         getAnnouncements(currentPage.value!!)
     }
 
-
+    fun setAnnouncements(announcements : List<SimpleAnnouncementModel>) {
+        _announcements.value =announcements
+        Log.d("ddd",_currentPage.value.toString())
+    }
     fun onBackPressed(){
+        Log.d("annnonBack","fff")
         isSearched.value = false
         _currentPage.value = 0
         _currentPageBunch.value = 0
@@ -150,6 +156,7 @@ class AnnouncementsViewModel(
                         is Result.Success -> {
                             _announcements.value =
                                 result.value.simpleAnnouncements.map { it.toModel() }
+                            Log.d("dddddddd",_announcements.value.toString())
 
                             _announcementsPages.value = makePages(result.value.size)
                         }
@@ -191,6 +198,7 @@ class AnnouncementsViewModel(
 
     fun onPageClick(page: String) {
         _currentPage.value = page.toInt() - 1
+        Log.d("cp", _currentPage.value.toString())
         if (isSearched.value!!) {
             searchAnnouncements(searchQuery.value!!, currentPage.value!!)
         } else

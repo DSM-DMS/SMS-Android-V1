@@ -3,6 +3,7 @@ package com.dms.sms.feature.mypage
 import android.os.Bundle
 import android.view.View
 import com.dms.sms.R
+import com.dms.sms.base.BackPressedBaseFragment
 import com.dms.sms.base.EndPointBaseFragment
 import com.dms.sms.databinding.FragmentMyPageBinding
 import com.dms.sms.feature.mypage.viewmodel.MyPageViewModel
@@ -10,7 +11,7 @@ import com.dms.sms.navigateFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class MyPageFragment : EndPointBaseFragment<FragmentMyPageBinding>() {
+class MyPageFragment : BackPressedBaseFragment<FragmentMyPageBinding>() {
 
     override val layoutId: Int
         get() = R.layout.fragment_my_page

@@ -1,10 +1,13 @@
 package com.dms.sms.feature.announcement.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dms.domain.announcement.entity.Announcement
+import com.dms.domain.announcement.entity.Announcements
 import com.dms.domain.announcement.usecase.GetAnnouncementUseCase
+import com.dms.domain.announcement.usecase.GetAnnouncementsUseCase
 import com.dms.domain.base.Result
 import com.dms.sms.base.BaseViewModel
 import com.dms.sms.base.SingleLiveEvent
@@ -15,8 +18,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 import work.upstarts.editorjskit.models.EJBlock
 import com.dms.domain.base.Error
+import com.dms.sms.feature.announcement.model.SimpleAnnouncementModel
 
-class AnnouncementDetailViewModel(private val getAnnouncementUseCase: GetAnnouncementUseCase) :
+class AnnouncementDetailViewModel(private val getAnnouncementUseCase: GetAnnouncementUseCase,private val getAnnouncementsUseCase: GetAnnouncementsUseCase) :
     BaseViewModel(),
     LifecycleObserver {
 
@@ -25,10 +29,17 @@ class AnnouncementDetailViewModel(private val getAnnouncementUseCase: GetAnnounc
 
     private val _announcement = MutableLiveData<AnnouncementModel>()
     val announcement: LiveData<AnnouncementModel> get() = _announcement
+    private val _currentPage = MutableLiveData(0)
+    val currentPage: LiveData<Int> get() = _currentPage
+
+    private val _announcements = MutableLiveData<List<SimpleAnnouncementModel>>()
+    val announcements: LiveData<List<SimpleAnnouncementModel>> get() = _announcements
 
     val backButtonEvent = SingleLiveEvent<Unit>()
 
-    fun onCreate(announcementUUID: String) {
+    fun onCreate(announcementUUID: String, page : Int) {
+        _currentPage.value = page
+        Log.d("ddddd",_currentPage.value.toString())
         getAnnouncement(announcementUUID)
     }
 
@@ -46,11 +57,37 @@ class AnnouncementDetailViewModel(private val getAnnouncementUseCase: GetAnnounc
                         is Result.Success -> {
                             _announcement.value = result.value.toModel()
                             _announcementContent.value = result.value.content.convertToEditorjs()
-
+                            getAnnouncements(currentPage.value!!)
                         }
                         is Result.Failure -> {
                             onFailedToLoadAnnouncement(result)
                         }
+                    }
+                }
+
+                override fun onError(e: Throwable) {
+                    createSnackEvent.value = "오류 발생"
+                }
+            },
+            AndroidSchedulers.mainThread()
+        )
+    }
+
+    private fun getAnnouncements(announcementsPage: Int) {
+        getAnnouncementsUseCase.execute(
+            announcementsPage, object : DisposableSingleObserver<Result<Announcements>>() {
+                override fun onSuccess(result: Result<Announcements>) {
+                    when (result) {
+                        is Result.Success -> {
+                            _announcements.value =
+                                result.value.simpleAnnouncements.map { it.toModel() }
+                            Log.d("dddddddd",_announcements.value.toString())
+
+                        }
+                        is Result.Failure -> {
+                            createSnackEvent.value = "오류 발생"
+                        }
+
                     }
                 }
 
