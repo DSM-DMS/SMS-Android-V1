@@ -1,6 +1,5 @@
 package com.dms.sms.feature.schedule.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
@@ -41,7 +40,6 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onCreate() {
         if(schedule.value==null) {
-            Log.d("onCreate","ssssss")
             _currentYear.value = getCurrentDate().year
             _currentMonth.value = getCurrentDate().month
             getSchedule()
@@ -54,7 +52,6 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
     }
 
     fun onClickDate(schedules: List<ScheduleModel>, selectedDay: String) {
-        Log.d("selectedDay", selectedDay)
         _isSelected.value = selectedDay
         selectedDateSchedule.value = schedules
     }
