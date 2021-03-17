@@ -1,5 +1,6 @@
 package com.dms.sms.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,16 +14,20 @@ import androidx.navigation.findNavController
 import com.dms.sms.BR
 import com.dms.sms.R
 import com.google.android.material.snackbar.Snackbar
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.Subject
 import splitties.toast.toast
 
-abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
+abstract class NoBackPressedBaseFragment <T : ViewDataBinding> : Fragment(){
 
     lateinit var binding : T
     abstract val viewModel : BaseViewModel
 
     abstract val layoutId : Int
 
-    override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
 
         return binding.root
@@ -33,12 +38,6 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.setVariable(BR.vm, viewModel)
-
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                Navigation.findNavController(requireView()).popBackStack()
-            }
-        })
 
         viewModel.createSnackEvent.observe(viewLifecycleOwner, {
             Snackbar.make(view.rootView, it, Snackbar.LENGTH_SHORT).show()

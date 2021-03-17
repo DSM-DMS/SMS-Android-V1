@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class SchoolCalendarAdapter(
-    private val days: List<Day>,
+    private var days: List<Day>,
     private val viewModel: SchoolScheduleViewModel
 ) : RecyclerView.Adapter<SchoolCalendarViewHolder>() {
 
@@ -58,36 +58,25 @@ class SchoolCalendarAdapter(
         calendar.time = sdf.parse("${year}년 ${month}월")!!
         emptyDays = 5 + calendar.get(Calendar.DAY_OF_WEEK)
         Log.d("smsddd","setcal")
+        val newDays = days
 
         list.forEach {
             if (it.startMonth < it.endMonth && it.endMonth == viewModel.currentMonth.value) {
                 for (i in 1..it.endDay) {
-                    days[emptyDays + i].schedule.add(it)
+                    newDays[emptyDays + i].schedule.add(it)
                 }
             } else if (it.startMonth < it.endMonth && it.startMonth == viewModel.currentMonth.value) {
                 for (i in it.startDay..calendar.getActualMaximum(Calendar.DAY_OF_MONTH)) {
-                    days[emptyDays + i].schedule.add(it)
+                    newDays[emptyDays + i].schedule.add(it)
                 }
             } else {
                 for (i in it.startDay..it.endDay) {
-                    days[emptyDays + i].schedule.add(it)
+                    newDays[emptyDays + i].schedule.add(it)
                 }
             }
         }
         notifyDataSetChanged()
     }
-//
-//    fun selectDay(selectedDay: Int) {
-//
-//        previousDay = this.selectedDay
-//        this.selectedDay = selectedDay
-//
-//        if (previousDay != null) {
-//            notifyItemChanged(previousDay!! + emptyDays)
-//        }
-//        notifyItemChanged(this.selectedDay!! + emptyDays)
-//
-//    }
 
 
 }

@@ -1,7 +1,10 @@
 package com.dms.sms.feature.timetable.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
 import com.dms.domain.base.Result
 import com.dms.domain.timetable.response.TimeTableListResponse
 import com.dms.domain.timetable.usecase.TimeTableUseCase
@@ -11,7 +14,7 @@ import com.dms.sms.feature.timetable.model.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 
-class TimeTableViewModel(private val timeTableUseCase: TimeTableUseCase) : BaseViewModel() {
+class TimeTableViewModel(private val timeTableUseCase: TimeTableUseCase) : BaseViewModel(), LifecycleObserver {
     val mondayTimeTableList = MutableLiveData<ArrayList<String>>().apply { value = arrayListOf() }
     val tuesdayTimeTableList = MutableLiveData<ArrayList<String>>().apply { value = arrayListOf() }
     val wednesdayTimeTableList = MutableLiveData<ArrayList<String>>().apply { value = arrayListOf() }
@@ -24,10 +27,7 @@ class TimeTableViewModel(private val timeTableUseCase: TimeTableUseCase) : BaseV
     private val thursdayList = arrayListOf<String>()
     private val fridayList = arrayListOf<String>()
 
-    init {
-        getTimeTable()
-    }
-
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun getTimeTable() {
 
         val year = getCurDay(1).substring(0, 4)
@@ -41,7 +41,10 @@ class TimeTableViewModel(private val timeTableUseCase: TimeTableUseCase) : BaseV
             object : DisposableSingleObserver<Result<TimeTableListResponse>>() {
                 override fun onSuccess(result: Result<TimeTableListResponse>) {
                     when (result) {
-                        is Result.Success -> saveTimeTable(result.value.toModel())
+                        is Result.Success ->
+                            if(mondayTimeTableList.value!!.isEmpty()){
+                                saveTimeTable(result.value.toModel())
+                            }
                         is Result.Failure -> Log.e("getTimeTable Fail", result.reason.toString())
                     }
                 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="com.dms.sms.feature.outing.viewmodel.OutingApplyViewModel" />
@@ -15,41 +16,15 @@
         android:background="@color/colorWhite"
         tools:context=".feature.outing.OutingCompleteFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/colorGray"
-            android:elevation="4dp"
-            android:minHeight="?attr/actionBarSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/outing_apply_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/outing_apply_tv"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
         <Button
             android:id="@+id/outing_complete_btn"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/radius_purple_view"
+            android:onClick="@{()->vm.clickComplete()}"
             android:text="@string/complete_tv"
             android:textColor="@color/colorLoginWhite"
             android:textSize="16sp"
-            android:onClick="@{()->vm.clickComplete()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/outing_complete_gl_right"
             app:layout_constraintStart_toStartOf="@+id/outing_complete_gl_left"
@@ -59,8 +34,8 @@
             android:id="@+id/outing_apply_complete_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="16dp"
+            android:gravity="center"
             android:text="@{vm.completeMessage}"
             android:textColor="@color/colorBlack"
             android:textSize="22sp"
@@ -81,9 +56,9 @@
             android:id="@+id/textView21"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:gravity="center"
             android:text="부모님 승인후 선생님에게 찾아가 주세요"
-            android:layout_marginTop="24dp"
             android:textColor="@color/colorDarkGray"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/outing_complete_gl_right"
@@ -116,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_percent="0.46" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -19,9 +20,9 @@
         <androidx.cardview.widget.CardView
             android:layout_width="320dp"
             android:layout_height="500dp"
+            android:backgroundTint="@color/colorGray"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
-            android:backgroundTint="@color/colorGray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -33,30 +34,19 @@
                     android:id="@+id/search_place_et"
                     android:layout_width="0dp"
                     android:layout_height="36dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/border_gray"
+                    android:background="@drawable/search_edittext_view"
+                    android:drawableStart="@drawable/ic_search_gray"
+                    android:drawablePadding="4dp"
                     android:ellipsize="end"
+                    android:hint="ex) 장동, 23-9"
+                    android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:hint="ex) 장동, 23-9"
                     android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:text="@={vm.searchPlaceEt}"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline18"
-                    app:layout_constraintEnd_toStartOf="@+id/search_place_button"
-                    app:layout_constraintStart_toStartOf="@+id/guideline17"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/search_place_button"
-                    android:layout_width="66dp"
-                    android:layout_height="36dp"
-                    android:background="@color/colorPurple"
-                    android:onClick="@{()-> vm.searchPlace()}"
-                    android:text="검색"
-                    android:textColor="#ffffff"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toTopOf="@+id/guideline18"
                     app:layout_constraintEnd_toStartOf="@+id/guideline19"
+                    app:layout_constraintStart_toStartOf="@+id/guideline17"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -64,9 +54,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:text="검색 결과가 없습니다. \n도로명이나 지역명을 이용해서 검색하세요"
                     android:textColor="@color/colorDarkGray"
                     android:visibility="@{vm.searchPlaceResult == true ? View.GONE : View.VISIBLE}"
-                    android:text="검색 결과가 없습니다. \n도로명이나 지역명을 이용해서 검색하세요"
                     app:layout_constraintEnd_toStartOf="@+id/guideline19"
                     app:layout_constraintStart_toStartOf="@+id/guideline17"
                     app:layout_constraintTop_toTopOf="@+id/search_place_recycler_view" />
@@ -75,11 +65,12 @@
                     android:id="@+id/search_place_recycler_view"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:searchPlaceList="@{vm.searchPlaceList}"
+                    android:layout_marginTop="12dp"
                     app:layout_constraintBottom_toTopOf="@+id/guideline20"
                     app:layout_constraintEnd_toStartOf="@+id/guideline19"
                     app:layout_constraintStart_toStartOf="@+id/guideline17"
                     app:layout_constraintTop_toTopOf="@+id/guideline18"
+                    app:searchPlaceList="@{vm.searchPlaceList}"
                     tools:listitem="@layout/item_search_place" />
 
                 <androidx.constraintlayout.widget.Guideline
@@ -87,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.2" />
+                    app:layout_constraintGuide_percent="0.16" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline20"
