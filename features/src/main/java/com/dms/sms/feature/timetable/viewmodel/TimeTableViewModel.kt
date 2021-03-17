@@ -41,7 +41,10 @@ class TimeTableViewModel(private val timeTableUseCase: TimeTableUseCase) : BaseV
             object : DisposableSingleObserver<Result<TimeTableListResponse>>() {
                 override fun onSuccess(result: Result<TimeTableListResponse>) {
                     when (result) {
-                        is Result.Success -> saveTimeTable(result.value.toModel())
+                        is Result.Success ->
+                            if(mondayTimeTableList.value!!.isEmpty()){
+                                saveTimeTable(result.value.toModel())
+                            }
                         is Result.Failure -> Log.e("getTimeTable Fail", result.reason.toString())
                     }
                 }
