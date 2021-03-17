@@ -21,8 +21,9 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
-            android:layout_width="60dp"
-            android:layout_height="28dp"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="#7A36FF"
             app:cardCornerRadius="4dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,16 +34,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="주소"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView4"
-            android:layout_width="60dp"
-            android:layout_height="28dp"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:layout_marginTop="6dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="#A87BFF"
             app:cardCornerRadius="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -54,20 +56,22 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="도로명"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
 
         </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/search_place_address_tv"
             android:layout_width="200dp"
-            android:layout_height="28dp"
+            android:layout_height="20dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{placeModel.placeAddress}"
             android:textColor="@color/colorBlack"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/cardView3"
             app:layout_constraintStart_toEndOf="@+id/cardView3"
             app:layout_constraintTop_toTopOf="@+id/cardView3" />
@@ -75,13 +79,14 @@
         <TextView
             android:id="@+id/search_place_road_address_tv"
             android:layout_width="200dp"
-            android:layout_height="28dp"
+            android:layout_height="20dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{placeModel.placeRoadAddress}"
             android:textColor="@color/colorBlack"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/cardView4"
             app:layout_constraintStart_toEndOf="@+id/cardView4"
             app:layout_constraintTop_toTopOf="@+id/cardView4" />

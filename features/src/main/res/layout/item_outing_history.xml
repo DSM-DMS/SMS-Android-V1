@@ -18,7 +18,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/outing_history_card"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="115dp"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="16dp"
@@ -33,7 +33,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/outing_history_late_layout"
                 android:layout_width="30dp"
-                android:layout_height="130dp"
+                android:layout_height="115dp"
                 android:layout_gravity="right"
                 android:background="#4DF30404"
                 android:visibility="invisible" />

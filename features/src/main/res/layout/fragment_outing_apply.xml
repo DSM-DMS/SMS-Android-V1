@@ -14,50 +14,37 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/colorWhite"
         android:layout_height="match_parent"
+        android:background="@color/colorWhite"
         tools:context=".feature.outing.OutingApplyFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/outing_apply_back_btn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorGray"
-            android:elevation="4dp"
-            android:minHeight="?attr/actionBarSize"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{()->vm.clickBack()}"
+            android:padding="10dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="@+id/outing_apply_tv"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/outing_apply_tv" />
 
-            <ImageButton
-                android:id="@+id/outing_apply_back_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:onClick="@{()->vm.clickBack()}"
-                android:padding="10dp"
-                android:src="@drawable/ic_back"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/outing_apply_tv"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/outing_apply_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:text="@string/outing_apply_tv"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline16"
+            app:layout_constraintStart_toEndOf="@+id/outing_apply_back_btn"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.8" />
 
-            <TextView
-                android:id="@+id/outing_apply_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/outing_apply_tv"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
@@ -67,13 +54,13 @@
             app:layout_constraintBottom_toTopOf="@+id/outing_apply_gl_bottom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+            app:layout_constraintTop_toBottomOf="@+id/outing_apply_tv">
 
             <TextView
                 android:id="@+id/date_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/date_tv"
                 android:textColor="@color/colorPurple"
                 android:textSize="16sp"
@@ -330,8 +317,7 @@
         <Button
             android:id="@+id/outing_apply_btn"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_height="40dp"
             android:background="@{!vm.btnClickable ? @drawable/radius_gray_view : @drawable/radius_purple_view}"
             android:clickable="@{vm.btnClickable}"
             android:onClick="@{()->vm.clickOutingApply()}"
@@ -360,7 +346,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.82" />
+            app:layout_constraintGuide_percent="0.84" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
