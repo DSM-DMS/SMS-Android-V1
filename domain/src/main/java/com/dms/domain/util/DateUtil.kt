@@ -34,8 +34,21 @@ fun getCurDay(day: Int): String {
     return formatter.format(c.time)
 }
 
-fun isMonday(curDate: String): Boolean {
-    return curDate == getCurDay(1)
+fun dayOfWeek(): String {
+    val c = Calendar.getInstance()
+    var str = ""
+
+    when (c.get(Calendar.DAY_OF_WEEK)) {
+        1 -> str = "일요일"
+        2 -> str = "월요일"
+        3 -> str = "화요일"
+        4 -> str = "수요일"
+        5 -> str = "목요일"
+        6 -> str = "금요일"
+        7 -> str = "토요일"
+    }
+
+    return str
 }
 
 fun isToday(timeUnix: Long): Boolean =

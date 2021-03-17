@@ -103,13 +103,4 @@ class TimeTableViewModel(private val timeTableUseCase: TimeTableUseCase) : BaseV
             add(timeTableList.time7)
         }
     }
-
-    fun onClickNext() {
-//        _currentYear.value = calculateTime(currentYear.value!!, currentMonth.value!!.plus(1)).year
-//        _currentMonth.value = calculateTime(currentYear.value!!, currentMonth.value!!.plus(1)).month
-    }
-
-    fun onClickPrevious() {
-
-    }
 }
