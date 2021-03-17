@@ -10,6 +10,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.dms.sms.R
+import com.dms.sms.base.BackPressedBaseFragment
 import com.dms.sms.base.BaseFragment
 import com.dms.sms.base.BaseViewModel
 import com.dms.sms.databinding.FragmentMainBinding
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainFragment : BaseFragment<FragmentMainBinding>() {
+class MainFragment : BackPressedBaseFragment<FragmentMainBinding>() {
 
     override val viewModel: AnnouncementsViewModel by viewModel()
 
