@@ -110,8 +110,8 @@ class OutingApplyViewModel(
         createOutingSuccessEvent.call()
     }
 
-    private fun setCompleteMessage(code: Int){
-        when(code){
+    private fun setCompleteMessage(code: Int) {
+        when (code) {
             0 -> {
                 completeMessage.value = "외출증 신청이 완료되었습니다.\n 승인을 받은 후 모바일을 통해 외출을 시작해주세요."
             }
@@ -148,12 +148,12 @@ class OutingApplyViewModel(
         }
     }
 
-    fun searchPlace() {
+    private fun searchPlace(searchPlaceQuery: String) {
         searchPlaceResult.value = true
 
-        if (!searchPlaceEt.value.isNullOrEmpty()) {
+        if (searchPlaceQuery.isNotEmpty()) {
             getPlaceListUseCase.execute(
-                searchPlaceEt.value!!,
+                searchPlaceQuery,
                 object : DisposableSingleObserver<Result<SearchPlaceListResponse>>() {
                     override fun onSuccess(result: Result<SearchPlaceListResponse>) {
                         when (result) {
@@ -249,6 +249,13 @@ class OutingApplyViewModel(
             }
         }
         return 0
+    }
+
+    fun onSearchPressed(searchQuery: String) {
+        if (searchQuery.isNotEmpty() && searchQuery.isNotBlank()) {
+            searchPlace(searchQuery)
+        } else
+            createToastEvent.value = "글을 입력해주세요"
     }
 
     private fun checkFullText(): Boolean =

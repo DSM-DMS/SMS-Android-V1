@@ -15,17 +15,15 @@
         android:layout_height="match_parent"
         tools:context=".ui.MainFragment">
 
-        <fragment
-            android:id="@+id/main_container"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/main_vp"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@+id/main_navigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/main_nav_graph" />
+            />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/main_navigation"

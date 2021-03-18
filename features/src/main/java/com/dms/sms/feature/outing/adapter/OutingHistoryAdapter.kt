@@ -2,6 +2,7 @@ package com.dms.sms.feature.outing.adapter
 
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -12,11 +13,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class OutingHistoryAdapter(private val outingHistoryViewModel: OutingHistoryViewModel): RecyclerView.Adapter<OutingHistoryAdapter.OutingHistoryViewHolder>() {
+class OutingHistoryAdapter(private val outingHistoryViewModel: OutingHistoryViewModel) :
+    RecyclerView.Adapter<OutingHistoryAdapter.OutingHistoryViewHolder>() {
     private var outingListItems = ArrayList<OutingModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OutingHistoryViewHolder {
-        val binding = ItemOutingHistoryBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding =
+            ItemOutingHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return OutingHistoryViewHolder(binding)
     }
@@ -35,51 +38,70 @@ class OutingHistoryAdapter(private val outingHistoryViewModel: OutingHistoryView
         notifyDataSetChanged()
     }
 
-    inner class OutingHistoryViewHolder(private val binding: ItemOutingHistoryBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class OutingHistoryViewHolder(private val binding: ItemOutingHistoryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(outingModel: OutingModel) {
-            binding.outingHistoryDateTv.text = setDate(outingModel.startTime.toLong() * 1000).substring(0,11)
-            binding.outingHistoryTimeTv.text = "${setDate(outingModel.startTime.toLong() * 1000).substring(11,16)} ~ ${setDate(outingModel.endTime.toLong() * 1000).substring(11,16)}"
+            binding.outingHistoryDateTv.text =
+                setDate(outingModel.startTime.toLong() * 1000).substring(0, 11)
+            binding.outingHistoryTimeTv.text =
+                "${setDate(outingModel.startTime.toLong() * 1000).substring(11, 16)} ~ ${
+                    setDate(outingModel.endTime.toLong() * 1000).substring(11, 16)
+                }"
 
-            when(outingModel.todayOutingStatus){
+            when (outingModel.todayOutingStatus) {
                 "0" -> {
-                    setOutingType("학부모 승인 대기","#FEDF42") // 노란색
+                    setOutingType("학부모 승인 대기", "#FEDF42") // 노란색
                 }
                 "1" -> {
-                    setOutingType("선생님 승인 대기","#FEDF42") // 노란색
+                    setOutingType("선생님 승인 대기", "#FEDF42") // 노란색
                 }
                 "2" -> {
-                    setOutingType("외출 가능","#0DD214") // 연두색
+                    setOutingType("외출 가능", "#0DD214") // 연두색
                 }
                 "3" -> {
-                    setOutingType("외출중","#5323B2") // 보라색
+                    setOutingType("외출중", "#5323B2") // 보라색
                 }
                 "4" -> {
-                    setOutingType("선생님 방문 인증 필요","#F30404") // 빨간색
+                    setOutingType("선생님 방문 필요", "#F30404") // 빨간색
+                    isLate(outingModel.endTime.toLong(), outingModel.arrivalTime.toLong())
                 }
                 "5" -> {
-                    setOutingType("외출 확인 완료","#344FE6") // 파란색
+                    setOutingType("외출 확인 완료", "#344FE6") // 파란색
                 }
-                "-1","-2" -> {
-                    setOutingType("승인 거부","#FF9100") // 주황색
+                "-1", "-2" -> {
+                    setOutingType("승인 거부", "#FF9100") // 주황색
+                }
+                "6" -> {
+                    setOutingType("만료", "#F30404") // 빨간색
                 }
             }
 
             binding.outingListItems = outingModel
         }
 
-        private fun setOutingType(outingHistoryState: String, color: String){
+        private fun setOutingType(outingHistoryState: String, color: String) {
             binding.outingHistoryStateTv.text = outingHistoryState
             binding.outingApplyView.setBackgroundColor(Color.parseColor(color))
             binding.outingHistoryStateTv.setTextColor(Color.parseColor(color))
         }
 
-        private fun setDate(timeUnix: Long): String{
+        private fun setDate(timeUnix: Long): String {
             val date = Date(timeUnix)
-            val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss",Locale.KOREA)
+            val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA)
             simpleDateFormat.timeZone = TimeZone.getTimeZone("Asia/Seoul")
 
             return simpleDateFormat.format(date)
+        }
+
+        private fun isLate(endTime: Long, arriveTime: Long) {
+            if (endTime < arriveTime) {
+                binding.outingHistoryLateLayout.visibility = View.VISIBLE
+                binding.outingHistoryDateTv.bringToFront()
+                binding.outingHistoryStateTv.bringToFront()
+            } else {
+                binding.outingHistoryLateLayout.visibility = View.INVISIBLE
+            }
         }
     }
 

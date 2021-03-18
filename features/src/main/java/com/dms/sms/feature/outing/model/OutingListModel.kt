@@ -10,7 +10,8 @@ data class OutingModel(
     val startTime: Int,
     val endTime: Int,
     val outingSituation: String,
-    val outingStatus: String
+    val outingStatus: String,
+    val arrivalTime: Int
 ) {
     val isEmergency: Boolean
         get() {
@@ -19,8 +20,15 @@ data class OutingModel(
 
     val todayOutingStatus: String
         get() {
-            println(isToday(startTime.toLong()))
-            return outingStatus
+            return if(outingStatus == "0" || outingStatus == "-2" || outingStatus == "-1" || outingStatus == "1" || outingStatus == "2"){
+                if(!isToday(startTime.toLong())){
+                    "6"
+                }else{
+                    outingStatus
+                }
+            }else {
+                outingStatus
+            }
         }
 }
 
@@ -33,4 +41,5 @@ fun OutingList.toModel(): OutingModel =
         this.endTime,
         this.outingSituation,
         this.outingStatus,
+        this.arrivalTime
     )

@@ -1,6 +1,9 @@
 package com.dms.sms.feature.mypage.viewmodel
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
 import com.dms.domain.mypage.response.UserResponse
@@ -13,17 +16,15 @@ import com.dms.sms.feature.mypage.model.toModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 
-class MyPageViewModel(private val getUserProfileUseCase: GetUserProfileUseCase, private val getStudentUUIDUseCase: GetStudentUUIDUseCase): BaseViewModel() {
+class MyPageViewModel(private val getUserProfileUseCase: GetUserProfileUseCase, private val getStudentUUIDUseCase: GetStudentUUIDUseCase): BaseViewModel(), LifecycleObserver {
     val userModel = MutableLiveData<UserModel>()
 
     val changePwEvent = SingleLiveEvent<Unit>()
     val logoutEvent = SingleLiveEvent<Unit>()
     val developerEvent = SingleLiveEvent<Unit>()
 
-    init {
-        getStudentUUID()
-    }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun getStudentUUID(){
         getStudentUUIDUseCase.execute(Unit, object: DisposableSingleObserver<Result<String>>(){
             override fun onSuccess(result: Result<String>) {

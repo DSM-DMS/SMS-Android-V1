@@ -23,7 +23,7 @@ val announcementModule: Module = module {
 
     single { AnnouncementsViewModel(get(), get(),get(),get()) }
 
-    single { AnnouncementDetailViewModel(get()) }
+    single { AnnouncementDetailViewModel(get(),get()) }
 
     factory { CheckAnnouncementUnreadUseCase(get(), get()) }
 

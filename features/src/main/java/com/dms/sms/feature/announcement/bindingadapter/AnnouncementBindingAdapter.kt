@@ -1,5 +1,6 @@
 package com.dms.sms.feature.announcement.bindingadapter
 
+import android.util.Log
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,11 +12,12 @@ import com.dms.sms.feature.announcement.viewmodel.AnnouncementsViewModel
 import work.upstarts.editorjskit.models.EJBlock
 import work.upstarts.editorjskit.ui.EditorJsAdapter
 
-@BindingAdapter("vm","announcementItems")
+@BindingAdapter("vm","announcementItems", requireAll = false)
 fun RecyclerView.bindAnnouncementItems(viewModel: AnnouncementsViewModel,announcementItems: List<SimpleAnnouncementModel>?) {
     adapter = AnnouncementsAdapter(viewModel)
     layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
     if(!announcementItems.isNullOrEmpty()) {
+        Log.d("ddddd",announcementItems.toString())
         (adapter as AnnouncementsAdapter).setAnnouncements(announcementItems)
     }
 

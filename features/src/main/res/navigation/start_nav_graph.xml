@@ -40,7 +40,11 @@
 
         <action
             android:id="@+id/action_mainFragment_to_announcementDetailFragment"
-            app:destination="@id/announcementDetailFragment">
+            app:destination="@id/announcementDetailFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/fadeout"
+            app:popEnterAnim="@anim/fadein"
+            app:popExitAnim="@anim/slide_to_right">
             <argument
                 android:name="announcementUUID"
                 app:argType="string"
@@ -180,7 +184,7 @@
         android:id="@+id/verificationNumberFragment"
         android:name="com.dms.sms.feature.signup.ui.VerificationNumberFragment"
         android:label="fragment_verification_number"
-        tools:layout="@layout/fragment_verification_number" >
+        tools:layout="@layout/fragment_verification_number">
         <action
             android:id="@+id/action_verificationNumberFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -192,7 +196,7 @@
         android:id="@+id/signUpFragment"
         android:name="com.dms.sms.feature.signup.ui.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_verificationNumberFragment"
             app:destination="@id/verificationNumberFragment" />
@@ -200,14 +204,12 @@
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signUpFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:popUpTo="@id/mainFragment"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
     </fragment>
 
     <action
