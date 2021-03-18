@@ -317,7 +317,7 @@
         <Button
             android:id="@+id/outing_apply_btn"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:background="@{!vm.btnClickable ? @drawable/radius_gray_view : @drawable/radius_purple_view}"
             android:clickable="@{vm.btnClickable}"
             android:onClick="@{()->vm.clickOutingApply()}"
