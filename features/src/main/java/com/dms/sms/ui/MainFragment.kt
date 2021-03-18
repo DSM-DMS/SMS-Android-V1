@@ -71,9 +71,9 @@ class MainFragment : BackPressedBaseFragment<FragmentMainBinding>() {
     override fun observeEvents() {
         viewModel.announcementsChecked.observe(viewLifecycleOwner,{
             if(it!=0)
-                binding.mainNavigation.menu.getItem(2).icon = ContextCompat.getDrawable(requireActivity(),R.drawable.ic_unread)
+                binding.mainNavigation.menu.getItem(2).icon = ContextCompat.getDrawable(requireActivity(),R.drawable.ic_notice_background)
             else
-                binding.mainNavigation.menu.getItem(2).icon = ContextCompat.getDrawable(requireActivity(),R.drawable.ic_notice)
+                binding.mainNavigation.menu.getItem(2).icon = ContextCompat.getDrawable(requireActivity(),R.drawable.ic_notice_unread_background)
 
         })
     }
