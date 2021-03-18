@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
@@ -43,6 +44,17 @@ class VerificationNumberFragment : BaseFragment<FragmentVerificationNumberBindin
             )
         })
     }
+    override fun onResume() {
+        super.onResume()
+        Log.d("smsonre","dsd")
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                viewModel.backEvent.call()
+            }
+        })
+    }
+
+
 
 
 }

@@ -1,8 +1,10 @@
 package com.dms.sms.feature.outing
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
@@ -23,6 +25,11 @@ class OutingHistoryFragment : BaseFragment<FragmentOutingHistoryBinding>() {
 
         binding.outingHistoryRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.outingHistoryRecyclerView.adapter = OutingHistoryAdapter(viewModel)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                viewModel.clickBack()
+            }
+        })
     }
 
     override fun observeEvents() {
@@ -34,6 +41,15 @@ class OutingHistoryFragment : BaseFragment<FragmentOutingHistoryBinding>() {
 
         viewModel.clickOutingApplyEvent.observe(viewLifecycleOwner, {
             navigateFragment(R.id.action_outingHistoryFragment_to_outingApplyFragment)
+        })
+    }
+    override fun onResume() {
+        super.onResume()
+        Log.d("smsonre","dsd")
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                viewModel.clickBack()
+            }
         })
     }
 

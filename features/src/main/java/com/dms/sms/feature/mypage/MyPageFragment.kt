@@ -12,7 +12,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MyPageFragment : BackPressedBaseFragment<FragmentMyPageBinding>() {
-
     override val layoutId: Int
         get() = R.layout.fragment_my_page
 

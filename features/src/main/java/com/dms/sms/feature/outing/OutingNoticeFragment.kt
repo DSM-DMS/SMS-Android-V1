@@ -1,5 +1,10 @@
 package com.dms.sms.feature.outing
 
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import androidx.activity.OnBackPressedCallback
+import androidx.navigation.Navigation
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
 import com.dms.sms.databinding.FragmentOutingNoticeBinding
@@ -12,6 +17,15 @@ class OutingNoticeFragment : BaseFragment<FragmentOutingNoticeBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_outing_notice
 
+    override fun onResume() {
+        super.onResume()
+        Log.d("smsonre","dsd")
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                viewModel.clickBack()
+            }
+        })
+    }
     override fun observeEvents() {
 
     }

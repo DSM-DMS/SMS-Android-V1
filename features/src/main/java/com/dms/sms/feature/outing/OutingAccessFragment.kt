@@ -2,7 +2,9 @@ package com.dms.sms.feature.outing
 
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
 import com.dms.sms.databinding.FragmentOutingAccessBinding
@@ -38,6 +40,16 @@ class OutingAccessFragment : BaseFragment<FragmentOutingAccessBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getStudentUUID()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("smsonre","dsd")
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                viewModel.clickBack()
+            }
+        })
     }
 
 }
