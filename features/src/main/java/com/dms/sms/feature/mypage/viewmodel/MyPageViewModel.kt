@@ -1,5 +1,6 @@
 package com.dms.sms.feature.mypage.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
@@ -26,11 +27,13 @@ class MyPageViewModel(private val getUserProfileUseCase: GetUserProfileUseCase, 
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun getStudentUUID(){
-        getStudentUUIDUseCase.execute(Unit, object: DisposableSingleObserver<Result<String>>(){
+        getStudentUUIDUseCase.execute(Unit, object : DisposableSingleObserver<Result<String>>() {
             override fun onSuccess(result: Result<String>) {
-                when(result){
+                when (result) {
                     is Result.Success -> getUserProfile(result.value)
-                    is Result.Failure -> createSnackEvent.value = "실패"
+                    is Result.Failure -> {
+                        Log.d("fail","getstudentuuid")
+                    }
                 }
             }
 
@@ -38,7 +41,7 @@ class MyPageViewModel(private val getUserProfileUseCase: GetUserProfileUseCase, 
 
             }
 
-        },AndroidSchedulers.mainThread())
+        }, AndroidSchedulers.mainThread())
     }
 
     fun getUserProfile(studentUUID: String){
