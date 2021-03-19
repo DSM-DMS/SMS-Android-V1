@@ -11,7 +11,7 @@ fun String.convertToEditorjs() : List<EJBlock>{
         .registerTypeAdapter(object : TypeToken<MutableList<EJBlock>>() {}.type
             , EJDeserializer()
         )
-        .create().fromJson(this.replace("\\", "")
+        .create().fromJson(this.replace("\\/", "")
             , EJResponse::class.java)
 
     return ejResponse.blocks
