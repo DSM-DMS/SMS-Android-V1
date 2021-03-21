@@ -1,6 +1,10 @@
 package com.dms.sms.feature.outing
 
 import android.app.TimePickerDialog
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import androidx.activity.OnBackPressedCallback
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
 import com.dms.sms.databinding.FragmentOutingApplyBinding
@@ -17,6 +21,15 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
         get() = R.layout.fragment_outing_apply
 
     override val viewModel by sharedViewModel<OutingApplyViewModel>()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                viewModel.clickBack()
+            }
+        })
+    }
 
     override fun observeEvents() {
         with(viewModel) {
@@ -82,5 +95,15 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
                 dialog.show(requireActivity().supportFragmentManager, "OutingApplyNoticeDialog")
             })
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("smsonre","dsd")
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                viewModel.clickBack()
+            }
+        })
     }
 }

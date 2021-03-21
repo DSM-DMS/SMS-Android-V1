@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
 import com.dms.sms.base.BaseViewModel
@@ -42,6 +43,15 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>() {
     }
     private fun initView(){
         binding.studentPhoneNumberEt.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+    }
+    override fun onResume() {
+        super.onResume()
+        Log.d("smsonre","dsd")
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                viewModel.backEvent.call()
+            }
+        })
     }
 
 
