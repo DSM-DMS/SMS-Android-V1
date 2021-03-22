@@ -16,7 +16,7 @@
         tools:context=".feature.outing.dialog.OutingApplyNoticeDialog">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="360dp"
+            android:layout_width="330dp"
             android:layout_height="match_parent"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
@@ -123,7 +123,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="외출 전 정문 지킴이 선생님께 '모바일 > 외늘의 외출증' 을 보여주세요."
+                    android:text="외출 전 정문 지킴이 선생님께 '모바일 > 오늘의 외출증' 을 보여주세요."
                     android:textColor="@color/colorBlack"
                     android:textSize="13sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline4"
