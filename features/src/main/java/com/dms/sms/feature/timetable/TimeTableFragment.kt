@@ -56,7 +56,6 @@ class TimeTableFragment : BackPressedBaseFragment<FragmentTimeTableBinding>() {
     }
 
     private fun setDayBackground(tv: TextView){
-        tv.setTextColor(resources.getColor(R.color.colorWhite))
         tv.setBackgroundResource(R.drawable.little_purple_gray_view)
     }
 }
