@@ -1,6 +1,5 @@
 package com.dms.sms.feature.announcement.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,17 +7,17 @@ import com.dms.domain.announcement.entity.Announcement
 import com.dms.domain.announcement.entity.Announcements
 import com.dms.domain.announcement.usecase.GetAnnouncementUseCase
 import com.dms.domain.announcement.usecase.GetAnnouncementsUseCase
+import com.dms.domain.base.Error
 import com.dms.domain.base.Result
 import com.dms.sms.base.BaseViewModel
 import com.dms.sms.base.SingleLiveEvent
 import com.dms.sms.feature.announcement.convertToEditorjs
 import com.dms.sms.feature.announcement.model.AnnouncementModel
+import com.dms.sms.feature.announcement.model.SimpleAnnouncementModel
 import com.dms.sms.feature.announcement.model.toModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 import work.upstarts.editorjskit.models.EJBlock
-import com.dms.domain.base.Error
-import com.dms.sms.feature.announcement.model.SimpleAnnouncementModel
 
 class AnnouncementDetailViewModel(private val getAnnouncementUseCase: GetAnnouncementUseCase,private val getAnnouncementsUseCase: GetAnnouncementsUseCase) :
     BaseViewModel(),
@@ -39,7 +38,6 @@ class AnnouncementDetailViewModel(private val getAnnouncementUseCase: GetAnnounc
 
     fun onCreate(announcementUUID: String, page : Int) {
         _currentPage.value = page
-        Log.d("ddddd",_currentPage.value.toString())
         getAnnouncement(announcementUUID)
     }
 
@@ -81,7 +79,6 @@ class AnnouncementDetailViewModel(private val getAnnouncementUseCase: GetAnnounc
                         is Result.Success -> {
                             _announcements.value =
                                 result.value.simpleAnnouncements.map { it.toModel() }
-                            Log.d("dddddddd",_announcements.value.toString())
 
                         }
                         is Result.Failure -> {
