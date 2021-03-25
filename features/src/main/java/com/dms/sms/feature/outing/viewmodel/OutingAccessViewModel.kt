@@ -1,6 +1,5 @@
 package com.dms.sms.feature.outing.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
@@ -32,11 +31,8 @@ class OutingAccessViewModel(
     val accessBtnResult = MutableLiveData(false)
 
     val outingStartDialogEvent = SingleLiveEvent<Unit>()
-    val outingFinishDialogEvent = SingleLiveEvent<Unit>()
     val outingStartConfirmEvent = SingleLiveEvent<Unit>()
     val outingStartCancelEvent = SingleLiveEvent<Unit>()
-    val outingFinishConfirmEvent = SingleLiveEvent<Unit>()
-    val outingFinishCancelEvent = SingleLiveEvent<Unit>()
 
     private fun getDetailOuting(outingUUID: String) {
         getDetailOutingUseCase.execute(
@@ -56,7 +52,6 @@ class OutingAccessViewModel(
     }
 
     fun getStudentUUID() {
-        Log.d("getStudentUUId","getStudentUUID")
         val thread = Thread {
             studentUUID = getStudentUUIDUseCase.getUUID("")
         }
@@ -112,34 +107,35 @@ class OutingAccessViewModel(
         accessResult.value = false
         detailOutingData.value = result.value.toModel()
 
-        if (result.value.outingStatus == "2") {
-            accessBtnResult.value = true
-            outingStartTv.value = true
-        } else if (result.value.outingStatus == "3") {
-            accessBtnResult.value = true
-            outingStartTv.value = false
+        when (result.value.outingStatus) {
+            "2" -> {
+                accessBtnResult.value = true
+                outingStartTv.value = true
+            }
+            "3" -> {
+                accessBtnResult.value = true
+                outingStartTv.value = false
+            }
+            else -> {
+                accessBtnResult.value = false
+            }
         }
     }
 
     fun clickStart() {
         if (outingStartTv.value!!) {
             compareTime(detailOutingData.value!!.startTime)
-        } else {
-            outingFinishDialogEvent.call()
         }
     }
 
     fun startOrFinishOuting() {
-        val accessOutingModel = AccessOutingModel(outingUUID, isOutingStart())
+        val accessOutingModel = AccessOutingModel(outingUUID, "start")
         postOutingActionUseCase.execute(
             accessOutingModel.toDomain(),
             object : DisposableSingleObserver<Result<Unit>>() {
                 override fun onSuccess(result: Result<Unit>) {
                     when (result) {
                         is Result.Success -> {
-                            if (isOutingStart() == "end") {
-                                accessBtnResult.value = false
-                            }
                             outingStartTv.value = !outingStartTv.value!!
                         }
                         is Result.Failure -> createSnackEvent.value = result.reason.toString()
@@ -153,12 +149,6 @@ class OutingAccessViewModel(
         )
     }
 
-    private fun isOutingStart(): String {
-        return if (outingStartTv.value == true) {
-            "start"
-        } else "end"
-    }
-
     private fun isTodayOuting(outingList: List<OutingModel>) {
         for (i in outingList.indices) {
             if (isToday(outingList[i].startTime.toLong())) {
@@ -169,10 +159,10 @@ class OutingAccessViewModel(
     }
 
     private fun compareTime(time: String) {
-        val nowTime: Long = System.currentTimeMillis()/1000
+        val nowTime: Long = System.currentTimeMillis() / 1000
         val startTime: Long = time.toLong()
 
-        if(nowTime > startTime) {
+        if (nowTime > startTime) {
             outingStartDialogEvent.call()
         } else {
             createSnackEvent.value = "아직 외출시간이 아닙니다."
@@ -182,6 +172,4 @@ class OutingAccessViewModel(
     fun clickBack() = backEvent.call()
     fun clickOutingStartConfirm() = outingStartConfirmEvent.call()
     fun clickOutingStartCancel() = outingStartCancelEvent.call()
-    fun clickOutingFinishConfirm() = outingFinishConfirmEvent.call()
-    fun clickOutingFinishCancel() = outingFinishCancelEvent.call()
 }

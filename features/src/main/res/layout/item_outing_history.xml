@@ -31,14 +31,6 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/outing_history_late_layout"
-                android:layout_width="30dp"
-                android:layout_height="115dp"
-                android:layout_gravity="right"
-                android:background="#4DF30404"
-                android:visibility="invisible" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
