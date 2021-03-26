@@ -3,6 +3,7 @@
 
     //outing main
     <string name="outing_tv">외출</string>
+    <string name="outing_during_tv">외출중</string>
     <string name="outing_detail_tv">유의사항에 주의하면서 외출신청을 해주세요</string>
     <string name="outing_apply_tv">외출신청</string>
     <string name="outing_apply_detail_tv">외출신청을 합니다</string>

@@ -20,7 +20,7 @@ import kotlinx.coroutines.delay
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AnnouncementsFragment : NoBackPressedBaseFragment<FragmentAnnouncementsBinding>() {
+class AnnouncementsFragment : BackPressedBaseFragment<FragmentAnnouncementsBinding>() {
 
     override val viewModel: AnnouncementsViewModel by viewModel()
     override val layoutId: Int
