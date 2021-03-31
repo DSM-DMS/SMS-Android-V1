@@ -1,6 +1,6 @@
 # SMS-Android-V1
 
-> SMS ( School Manangement System - 대덕소프트웨어마이스터고등학교 학교 관리 시스템 )
+> SMS ( School Management System - 대덕소프트웨어마이스터고등학교 학교 관리 시스템 )
 
 <br/>
 
