@@ -2,7 +2,6 @@ package com.dms.sms.feature.outing.adapter
 
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -64,7 +63,6 @@ class OutingHistoryAdapter(private val outingHistoryViewModel: OutingHistoryView
                 }
                 "4" -> {
                     setOutingType("선생님 방문 필요", "#F30404") // 빨간색
-                    isLate(outingModel.endTime.toLong(), outingModel.arrivalTime.toLong())
                 }
                 "5" -> {
                     setOutingType("외출 확인 완료", "#344FE6") // 파란색
@@ -93,16 +91,5 @@ class OutingHistoryAdapter(private val outingHistoryViewModel: OutingHistoryView
 
             return simpleDateFormat.format(date)
         }
-
-        private fun isLate(endTime: Long, arriveTime: Long) {
-            if (endTime < arriveTime) {
-                binding.outingHistoryLateLayout.visibility = View.VISIBLE
-                binding.outingHistoryDateTv.bringToFront()
-                binding.outingHistoryStateTv.bringToFront()
-            } else {
-                binding.outingHistoryLateLayout.visibility = View.INVISIBLE
-            }
-        }
     }
-
 }

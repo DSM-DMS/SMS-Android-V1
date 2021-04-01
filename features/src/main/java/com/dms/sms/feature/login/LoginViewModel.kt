@@ -57,9 +57,7 @@ class LoginViewModel(
         onClickSignUpEvent.call()
     }
     fun onLoginClicked() {
-        Log.d("isall", _isAllLoginInfoFilled.value.toString())
         onLoadEvent.value = true
-        Log.d("isall", onLoadEvent.value.toString())
 
         loginUseCase.execute(
             LoginModel(idText.value!!.trim(), passwordText.value!!.trim()).toDomain(),

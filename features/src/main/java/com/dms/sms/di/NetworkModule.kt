@@ -26,7 +26,7 @@ val networkModule = module {
 
     single {
         Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl("https://api.dsm-sms.com")
             .client(
                 OkHttpClient.Builder()
                     .addInterceptor(get<AuthorizationInterceptor>())

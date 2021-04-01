@@ -3,16 +3,16 @@ package com.dms.sms.feature.outing
 import android.os.Bundle
 import android.text.Html
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
 import com.dms.sms.databinding.FragmentOutingAccessBinding
-import com.dms.sms.feature.outing.dialog.OutingFinishDialog
 import com.dms.sms.feature.outing.dialog.OutingStartDialog
 import com.dms.sms.feature.outing.viewmodel.OutingAccessViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class OutingAccessFragment : BaseFragment<FragmentOutingAccessBinding>() {
-    override val viewModel: OutingAccessViewModel by sharedViewModel<OutingAccessViewModel>()
+    override val viewModel: OutingAccessViewModel by sharedViewModel()
 
     override val layoutId: Int
         get() = R.layout.fragment_outing_access
@@ -26,11 +26,6 @@ class OutingAccessFragment : BaseFragment<FragmentOutingAccessBinding>() {
                 val dialog = OutingStartDialog()
                 dialog.show(requireActivity().supportFragmentManager, "OutingStartDialog")
             })
-
-            outingFinishDialogEvent.observe(viewLifecycleOwner, {
-                val dialog = OutingFinishDialog()
-                dialog.show(requireActivity().supportFragmentManager, "OutingFinishDialog")
-            })
         }
     }
 
@@ -38,6 +33,15 @@ class OutingAccessFragment : BaseFragment<FragmentOutingAccessBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getStudentUUID()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                viewModel.clickBack()
+            }
+        })
     }
 
 }

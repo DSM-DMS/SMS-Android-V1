@@ -1,7 +1,9 @@
 package com.dms.sms.feature.mypage
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
@@ -26,6 +28,16 @@ class IntroducingDevelopersFragment : BaseFragment<FragmentIntroducingDevelopers
 
     override fun observeEvents() {
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("smsonre","dsd")
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                viewModel.clickBack()
+            }
+        })
     }
 
 }

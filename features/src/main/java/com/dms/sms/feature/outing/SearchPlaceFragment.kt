@@ -39,7 +39,7 @@ class SearchPlaceFragment : BaseDialog<FragmentSearchPlaceBinding>() {
     }
 
     private fun initView() {
-        binding.searchPlaceEt.setOnEditorActionListener { v, actionId, event ->
+        binding.searchPlaceEt.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 viewModel.onSearchPressed(binding.searchPlaceEt.text.trim().toString())
                 return@setOnEditorActionListener true
