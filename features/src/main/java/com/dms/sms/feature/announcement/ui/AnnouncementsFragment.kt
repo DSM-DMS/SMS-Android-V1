@@ -2,21 +2,15 @@ package com.dms.sms.feature.announcement.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.activity.OnBackPressedCallback
 import com.dms.sms.R
 import com.dms.sms.base.BackPressedBaseFragment
-import com.dms.sms.base.BaseFragment
-import com.dms.sms.base.EndPointBaseFragment
-import com.dms.sms.base.NoBackPressedBaseFragment
 import com.dms.sms.databinding.FragmentAnnouncementsBinding
 import com.dms.sms.feature.announcement.viewmodel.AnnouncementsViewModel
 import com.dms.sms.navigateFragmentWithArgs
 import com.dms.sms.ui.MainFragmentDirections
-import kotlinx.android.synthetic.*
-import kotlinx.coroutines.delay
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -34,7 +28,7 @@ class AnnouncementsFragment : BackPressedBaseFragment<FragmentAnnouncementsBindi
     }
 
     private fun initView(){
-        binding.searchAnnouncementEt.setOnEditorActionListener { v, actionId, event ->
+        binding.searchAnnouncementEt.setOnEditorActionListener { _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_SEARCH){
                 viewModel.onSearchPressed(binding.searchAnnouncementEt.text.toString())
                 return@setOnEditorActionListener true
