@@ -24,11 +24,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        debug{
-            buildConfigField("String", "SECURITY_BASE_PLAIN", "\"${SECURITY_BASE_PLAIN}\"")
-
-            buildConfigField("String", "SECURITY_PASS_PHRASE", "\"${SECURITY_PASS_PHRASE}\"")
-        }
     }
 }
 
