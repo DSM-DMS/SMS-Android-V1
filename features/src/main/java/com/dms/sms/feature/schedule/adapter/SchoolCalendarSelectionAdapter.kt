@@ -1,12 +1,9 @@
 package com.dms.sms.feature.schedule.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.dms.sms.databinding.ItemSchoolScheduleCalenderBinding
 import com.dms.sms.databinding.ItemSchoolScheduleEmptyCalenderBinding
 import com.dms.sms.feature.schedule.model.Day
 import com.dms.sms.feature.schedule.model.ScheduleModel
@@ -29,20 +26,16 @@ class SchoolCalendarSelectionAdapter(
     }
 
     override fun onBindViewHolder(holder: SchoolEmptyCalendarViewHolder, position: Int) {
-        Log.d("smsddd", position.toString())
         try {
             if (position > emptyDays) {
-                holder.bindSchedule(days[position - 1], days[position], selectedDay)
-                Log.d("smsddd", "bindschedule")
+                holder.bindSchedule(days[position], selectedDay)
             }
             else{
                 holder.bind(days[position])
-                Log.d("smsddd", "bind")
             }
 
         } catch (e: Exception) {
             holder.bind(days[position])
-            Log.d("smsddd", "exceptionnnn")
         }
     }
 
@@ -53,7 +46,6 @@ class SchoolCalendarSelectionAdapter(
         val sdf = SimpleDateFormat("yyyy년 M월", Locale.KOREAN)
         calendar.time = sdf.parse("${year}년 ${month}월")!!
         emptyDays = 5 + calendar.get(Calendar.DAY_OF_WEEK)
-        Log.d("smsddd","setcal")
 
         list.forEach {
             if (it.startMonth < it.endMonth && it.endMonth == viewModel.currentMonth.value) {
@@ -93,16 +85,13 @@ class SchoolEmptyCalendarViewHolder(
     private val viewModel: SchoolScheduleViewModel
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(day: Day) {
-        Log.d("bindday", day.toString())
         binding.vm = viewModel
         binding.model = day
         binding.day = day.date
         binding.executePendingBindings()
     }
 
-    fun bindSchedule(previousDay: Day, today: Day, selectedDay: Int? = null) {
-        Log.d("binddaysche", today.toString())
-        Log.d("binddayschepr", previousDay.toString())
+    fun bindSchedule(today: Day, selectedDay: Int? = null) {
 
         if (selectedDay.toString() == today.date) {
             binding.selectedStateImg.visibility = View.VISIBLE

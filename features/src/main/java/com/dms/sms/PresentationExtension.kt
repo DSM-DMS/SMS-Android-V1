@@ -10,10 +10,6 @@ fun Fragment.navigateFragment(action : Int){
    findNavController().navigate(action)
 }
 
-fun Fragment.navigateFragmentWithHost(action : Int){
-    childFragmentManager.primaryNavigationFragment!!.findNavController().navigate(action)
-}
-
 fun Activity.navigateFragment(navHostId : Int,action : Int){
     findNavController(navHostId).navigate(action)
 }

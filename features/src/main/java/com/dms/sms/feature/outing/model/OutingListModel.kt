@@ -20,13 +20,13 @@ data class OutingModel(
 
     val todayOutingStatus: String
         get() {
-            return if(outingStatus == "0" || outingStatus == "-2" || outingStatus == "-1" || outingStatus == "1" || outingStatus == "2"){
-                if(!isToday(startTime.toLong())){
+            return if (outingStatus == "0" || outingStatus == "-2" || outingStatus == "-1" || outingStatus == "1" || outingStatus == "2") {
+                if (!isToday(startTime.toLong())) {
                     "6"
-                }else{
+                } else {
                     outingStatus
                 }
-            }else {
+            } else {
                 outingStatus
             }
         }

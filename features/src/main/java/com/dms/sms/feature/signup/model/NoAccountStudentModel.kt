@@ -10,5 +10,11 @@ data class NoAccountStudentModel(
     val phoneNumber: String
 )
 
-fun NoAccountStudent.toModel() : NoAccountStudentModel =
-    NoAccountStudentModel(this.grade.toString(),this.group,this.studentNumber.toString(),this.name,this.phoneNumber)
+fun NoAccountStudent.toModel(): NoAccountStudentModel =
+    NoAccountStudentModel(
+        this.grade.toString(),
+        this.group,
+        this.studentNumber.toString(),
+        this.name,
+        this.phoneNumber
+    )

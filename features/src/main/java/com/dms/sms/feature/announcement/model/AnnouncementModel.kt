@@ -14,4 +14,13 @@ data class AnnouncementModel(
 )
 
 fun Announcement.toModel() =
-    AnnouncementModel(this.date,this.title,this.content,this.writerName,this.nextTitle,this.nextAnnouncementUUID,this.previousTitle,this.previousAnnouncementUUID)
+    AnnouncementModel(
+        this.date,
+        this.title,
+        this.content,
+        this.writerName,
+        this.nextTitle,
+        this.nextAnnouncementUUID,
+        this.previousTitle,
+        this.previousAnnouncementUUID
+    )

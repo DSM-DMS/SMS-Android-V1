@@ -8,8 +8,8 @@ data class SignUpInfoModel(
     val studentPw: String
 )
 
-fun SignUpInfo.toModel() : SignUpInfoModel =
-    SignUpInfoModel(this.authCode,this.studentId,this.studentPw)
+fun SignUpInfo.toModel(): SignUpInfoModel =
+    SignUpInfoModel(this.authCode, this.studentId, this.studentPw)
 
-fun SignUpInfoModel.toDomain() : SignUpInfo =
-    SignUpInfo(this.authCode,this.studentId,this.studentPw)
+fun SignUpInfoModel.toDomain(): SignUpInfo =
+    SignUpInfo(this.authCode, this.studentId, this.studentPw)
