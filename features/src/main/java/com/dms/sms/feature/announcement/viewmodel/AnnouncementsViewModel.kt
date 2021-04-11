@@ -1,6 +1,5 @@
 package com.dms.sms.feature.announcement.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.dms.domain.announcement.entity.AnnouncementCheck
 import com.dms.domain.announcement.entity.Announcements
@@ -60,7 +59,6 @@ class AnnouncementsViewModel(
 
     fun setAnnouncements(announcements : List<SimpleAnnouncementModel>) {
         _announcements.value =announcements
-        Log.d("ddd",_currentPage.value.toString())
     }
     fun onBackPressed(){
         isSearched.value = false

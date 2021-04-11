@@ -1,7 +1,6 @@
 package com.dms.sms.base
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.dms.sms.BR
 import com.dms.sms.R
 import com.google.android.material.snackbar.Snackbar
@@ -33,7 +31,6 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("smsonView",findNavController().currentDestination.toString())
         binding.lifecycleOwner = viewLifecycleOwner
         binding.setVariable(BR.vm, viewModel)
 
@@ -50,7 +47,6 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
             toast(it)
         })
         viewModel.backEvent.observe(this, {
-            Log.d("currentdes", findNavController().currentDestination.toString())
             Navigation.findNavController(requireView()).popBackStack()
         })
         viewModel.expiredTokenEvent.observe(viewLifecycleOwner,{

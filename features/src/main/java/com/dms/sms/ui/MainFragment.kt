@@ -30,7 +30,6 @@ class MainFragment : BackPressedBaseFragment<FragmentMainBinding>() {
                 binding.mainNavigation.menu.getItem(2).icon = ContextCompat.getDrawable(requireActivity(),R.drawable.ic_notice_unread_background)
             else
                 binding.mainNavigation.menu.getItem(2).icon = ContextCompat.getDrawable(requireActivity(),R.drawable.ic_notice_background)
-
         })
     }
 }

@@ -14,6 +14,10 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
+    override val layoutId = R.layout.fragment_splash
+
+    override val viewModel: AutoLoginViewModel by viewModel()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -30,12 +34,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
         }, 1500)
     }
 
-    override val layoutId: Int
-        get() = R.layout.fragment_splash
-
     override fun observeEvents() {
 
     }
-
-    override val viewModel: AutoLoginViewModel by viewModel()
 }

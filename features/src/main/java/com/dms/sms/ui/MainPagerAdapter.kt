@@ -2,17 +2,14 @@ package com.dms.sms.ui
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dms.sms.feature.announcement.ui.AnnouncementsFragment
 import com.dms.sms.feature.mypage.MyPageFragment
 import com.dms.sms.feature.outing.OutingMainFragment
 import com.dms.sms.feature.schedule.ui.ScheduleMainFragment
-import com.dms.sms.feature.schedule.ui.SchoolScheduleFragment
 
 class MainPagerAdapter(fm : FragmentManager, lc : Lifecycle) : FragmentStateAdapter(fm, lc){
-
 
     override fun getItemCount(): Int =4
 

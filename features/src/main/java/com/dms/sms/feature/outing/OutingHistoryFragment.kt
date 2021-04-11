@@ -1,7 +1,6 @@
 package com.dms.sms.feature.outing
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.activity.OnBackPressedCallback
@@ -45,7 +44,6 @@ class OutingHistoryFragment : BaseFragment<FragmentOutingHistoryBinding>() {
     }
     override fun onResume() {
         super.onResume()
-        Log.d("smsonre","dsd")
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 viewModel.clickBack()

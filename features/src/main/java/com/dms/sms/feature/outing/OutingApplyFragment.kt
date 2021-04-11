@@ -2,7 +2,6 @@ package com.dms.sms.feature.outing
 
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import com.dms.sms.R
@@ -99,7 +98,6 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
 
     override fun onResume() {
         super.onResume()
-        Log.d("smsonre","dsd")
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 viewModel.clickBack()

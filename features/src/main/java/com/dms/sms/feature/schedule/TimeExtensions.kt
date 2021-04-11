@@ -1,8 +1,6 @@
 package com.dms.sms.feature.schedule
 
-import android.util.Log
 import com.dms.sms.feature.schedule.model.ScheduleDateModel
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 

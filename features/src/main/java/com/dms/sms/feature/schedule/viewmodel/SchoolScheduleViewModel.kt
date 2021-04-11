@@ -1,5 +1,6 @@
 package com.dms.sms.feature.schedule.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
@@ -39,21 +40,25 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onCreate() {
-        if(schedule.value==null) {
-            _currentYear.value = getCurrentDate().year
-            _currentMonth.value = getCurrentDate().month
-            getSchedule()
-        }
-        else if (schedule.value.isNullOrEmpty()){
-            _currentYear.value = getCurrentDate().year
-            _currentMonth.value = getCurrentDate().month
-            getSchedule()
-        }
+        _currentYear.value = getCurrentDate().year
+        _currentMonth.value = getCurrentDate().month
+        getSchedule()
+
+
     }
 
     fun onClickDate(schedules: List<ScheduleModel>, selectedDay: String) {
         _isSelected.value = selectedDay
-        selectedDateSchedule.value = schedules
+        selectedDateSchedule.value = setPosition(schedules)
+    }
+    private fun setPosition(schedules: List<ScheduleModel>) : List<ScheduleModel>{
+        for (i in schedules.indices){
+            schedules[i].datePosition = i
+            if (i>2)
+                schedules[i].datePosition = -1
+        }
+        return schedules
+
     }
 
     fun onClickSwitch() {

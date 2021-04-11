@@ -1,6 +1,5 @@
 package com.dms.sms.feature.mypage
 
-import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import com.dms.sms.R
 import com.dms.sms.base.BaseFragment
@@ -41,7 +40,6 @@ class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
 
     override fun onResume() {
         super.onResume()
-        Log.d("smsonre","dsd")
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 viewModel.clickBack()

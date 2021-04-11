@@ -8,23 +8,23 @@ import com.dms.domain.account.usecase.GetStudentUseCase
 import com.dms.domain.auth.response.LoginResponse
 import com.dms.domain.auth.usecase.LoginUseCase
 import com.dms.domain.auth.usecase.SaveLoginDataUseCase
+import com.dms.domain.base.Error
 import com.dms.domain.base.Result
 import com.dms.domain.signup.entity.NoAccountStudent
 import com.dms.domain.signup.usecase.GetNoAccountStudentInfoUseCase
 import com.dms.domain.signup.usecase.SignUpUseCase
 import com.dms.sms.base.BaseViewModel
-import com.dms.sms.feature.signup.model.NoAccountStudentModel
-import com.dms.sms.feature.signup.model.toModel
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.observers.DisposableSingleObserver
-import com.dms.domain.base.Error
 import com.dms.sms.base.SingleLiveEvent
 import com.dms.sms.feature.login.model.LoggedInUserModel
 import com.dms.sms.feature.login.model.LoginModel
 import com.dms.sms.feature.login.model.toDomain
 import com.dms.sms.feature.login.model.toEntity
+import com.dms.sms.feature.signup.model.NoAccountStudentModel
 import com.dms.sms.feature.signup.model.SignUpInfoModel
 import com.dms.sms.feature.signup.model.toDomain
+import com.dms.sms.feature.signup.model.toModel
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.observers.DisposableSingleObserver
 
 class SignUpViewModel(
     private val getNoAccountStudentInfoUseCase: GetNoAccountStudentInfoUseCase,
@@ -62,7 +62,7 @@ class SignUpViewModel(
         cancelEvent.call()
     }
 
-    fun login(){
+    fun login() {
         loginUseCase.execute(
             LoginModel(idText.value!!.trim(), passwordText.value!!.trim()).toDomain(),
             object : DisposableSingleObserver<Result<LoginResponse>>() {
@@ -109,12 +109,11 @@ class SignUpViewModel(
                     is Result.Success -> {
                         noAccountStudentEvent.call()
                         _noAccountStudentInfo.value = result.value.toModel()
-                        if(_noAccountStudentInfo.value!!.studentNumber.toInt()<10) {
+                        if (_noAccountStudentInfo.value!!.studentNumber.toInt() < 10) {
                             _noAccountStudentInfo.value!!.studentNumber =
                                 _noAccountStudentInfo.value!!.grade +
-                                        _noAccountStudentInfo.value!!.group +"0"+ _noAccountStudentInfo.value!!.studentNumber
-                        }
-                        else{
+                                        _noAccountStudentInfo.value!!.group + "0" + _noAccountStudentInfo.value!!.studentNumber
+                        } else {
                             _noAccountStudentInfo.value!!.studentNumber =
                                 _noAccountStudentInfo.value!!.grade +
                                         _noAccountStudentInfo.value!!.group + _noAccountStudentInfo.value!!.studentNumber
@@ -140,29 +139,31 @@ class SignUpViewModel(
     }
 
     fun signUp() {
-        signUpUseCase.execute(SignUpInfoModel(
-            verificationNumber.value!!.toInt(),
-            idText.value!!.trim(), passwordText.value!!.trim()
-        ).toDomain(), object : DisposableSingleObserver<Result<Unit>>(){
-            override fun onSuccess(result: Result<Unit>) {
-                when(result){
-                    is Result.Success->{
-                        login()
-                        signUpSuccessEvent.call()
-                    }
-                    is Result.Failure->{
-                        when(result.reason){
-                            Error.Conflict -> duplicateIdEvent.call()
-                            else -> createSnackEvent.value = "아이디는 한글로 사용할 수 없습니다."
+        signUpUseCase.execute(
+            SignUpInfoModel(
+                verificationNumber.value!!.toInt(),
+                idText.value!!.trim(), passwordText.value!!.trim()
+            ).toDomain(), object : DisposableSingleObserver<Result<Unit>>() {
+                override fun onSuccess(result: Result<Unit>) {
+                    when (result) {
+                        is Result.Success -> {
+                            login()
+                            signUpSuccessEvent.call()
+                        }
+                        is Result.Failure -> {
+                            when (result.reason) {
+                                Error.Conflict -> duplicateIdEvent.call()
+                                else -> createSnackEvent.value = "아이디는 한글로 사용할 수 없습니다."
+                            }
                         }
                     }
                 }
-            }
 
-            override fun onError(e: Throwable) {
-                e.printStackTrace()
-            }
-        }, AndroidSchedulers.mainThread())
+                override fun onError(e: Throwable) {
+                    e.printStackTrace()
+                }
+            }, AndroidSchedulers.mainThread()
+        )
     }
 
     private fun initialize() {
@@ -171,7 +172,6 @@ class SignUpViewModel(
         verificationNumber.value = ""
         _noAccountStudentInfo.value = NoAccountStudentModel("", -1, "", "", "")
     }
-
 
 
     private fun saveLoginData(loginResponse: LoginResponse) {
@@ -198,26 +198,27 @@ class SignUpViewModel(
         )
     }
 
-    private fun isConnectedWithParents(result : Result.Success<LoginResponse>){
-        getStudentUseCase.execute(result.value.studentUUID,object : DisposableSingleObserver<Result<Student>>(){
-            override fun onSuccess(result: Result<Student>) {
-                when(result){
-                    is Result.Success->{
-                        if(result.value.parentStatus=="CONNECTED")
-                            createSnackEvent.value="학부모 계정과 연결되었습니다."
-                        else if(result.value.parentStatus=="UN_CONNECTED")
-                            createSnackEvent.value="현재 연결된 학부모 계정이 없습니다."
+    private fun isConnectedWithParents(result: Result.Success<LoginResponse>) {
+        getStudentUseCase.execute(
+            result.value.studentUUID,
+            object : DisposableSingleObserver<Result<Student>>() {
+                override fun onSuccess(result: Result<Student>) {
+                    when (result) {
+                        is Result.Success -> {
+                            if (result.value.parentStatus == "CONNECTED")
+                                createSnackEvent.value = "학부모 계정과 연결되었습니다."
+                            else if (result.value.parentStatus == "UN_CONNECTED")
+                                createSnackEvent.value = "현재 연결된 학부모 계정이 없습니다."
 
+                        }
+                        is Result.Failure -> createSnackEvent.value = "오류 발생"
                     }
-                    is Result.Failure-> createSnackEvent.value= "오류 발생"
                 }
-            }
 
-            override fun onError(e: Throwable) {
-                e.printStackTrace()
-            }
-        }, AndroidSchedulers.mainThread())
+                override fun onError(e: Throwable) {
+                    e.printStackTrace()
+                }
+            },AndroidSchedulers.mainThread()
+        )
     }
-
-
 }

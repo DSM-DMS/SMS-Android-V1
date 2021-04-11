@@ -1,19 +1,13 @@
 package com.dms.sms.feature.outing.viewmodel
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
 import com.dms.domain.announcement.entity.Announcements
 import com.dms.domain.announcement.usecase.GetAnnouncementsUseCase
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
-import com.dms.domain.mypage.usecase.GetStudentUUIDUseCase
-import com.dms.domain.schedule.usecase.GetScheduleUseCase
 import com.dms.sms.base.BaseViewModel
 import com.dms.sms.base.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
-import java.util.*
 
 class OutingViewModel(private val getAnnouncementsUseCase: GetAnnouncementsUseCase) : BaseViewModel() {
 
@@ -29,7 +23,6 @@ class OutingViewModel(private val getAnnouncementsUseCase: GetAnnouncementsUseCa
                     is Result.Success->{}
                     is Result.Failure->{
                         onGetFailed(result)
-
                     }
                 }
             }
@@ -40,6 +33,7 @@ class OutingViewModel(private val getAnnouncementsUseCase: GetAnnouncementsUseCa
         },
         AndroidSchedulers.mainThread())
     }
+
     private fun onGetFailed(result : Result.Failure<Announcements>){
         when(result.reason){
             Error.Network -> createToastEvent.value = "실패"

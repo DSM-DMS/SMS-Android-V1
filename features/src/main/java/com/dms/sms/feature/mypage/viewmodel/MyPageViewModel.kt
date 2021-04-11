@@ -32,7 +32,7 @@ class MyPageViewModel(private val getUserProfileUseCase: GetUserProfileUseCase, 
                 when (result) {
                     is Result.Success -> getUserProfile(result.value)
                     is Result.Failure -> {
-                        Log.d("fail","getstudentuuid")
+                        Log.e("fail","getstudentuuid")
                     }
                 }
             }

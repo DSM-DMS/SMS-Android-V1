@@ -9,8 +9,7 @@ import com.dms.sms.R
 import com.dms.sms.base.BackPressedBaseFragment
 import com.dms.sms.databinding.FragmentAnnouncementsBinding
 import com.dms.sms.feature.announcement.viewmodel.AnnouncementsViewModel
-import com.dms.sms.navigateFragmentWithArgs
-import com.dms.sms.ui.MainFragmentDirections
+import com.dms.sms.navigateFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -57,7 +56,7 @@ class AnnouncementsFragment : BackPressedBaseFragment<FragmentAnnouncementsBindi
 
     override fun observeEvents() {
         viewModel.announcementEvent.observe(viewLifecycleOwner, {
-            requireActivity().navigateFragmentWithArgs(R.id.fragment_container, MainFragmentDirections.actionMainFragmentToAnnouncementDetailFragment(it))
+            requireActivity().navigateFragment(R.id.fragment_container, R.id.action_mainFragment_to_announcementDetailFragment)
         })
 
     }

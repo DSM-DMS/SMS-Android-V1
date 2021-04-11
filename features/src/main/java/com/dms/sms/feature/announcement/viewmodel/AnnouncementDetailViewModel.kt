@@ -11,7 +11,7 @@ import com.dms.domain.base.Error
 import com.dms.domain.base.Result
 import com.dms.sms.base.BaseViewModel
 import com.dms.sms.base.SingleLiveEvent
-import com.dms.sms.feature.announcement.convertToEditorjs
+import com.dms.sms.feature.announcement.convertToEditorJs
 import com.dms.sms.feature.announcement.model.AnnouncementModel
 import com.dms.sms.feature.announcement.model.SimpleAnnouncementModel
 import com.dms.sms.feature.announcement.model.toModel
@@ -54,7 +54,7 @@ class AnnouncementDetailViewModel(private val getAnnouncementUseCase: GetAnnounc
                     when (result) {
                         is Result.Success -> {
                             _announcement.value = result.value.toModel()
-                            _announcementContent.value = result.value.content.convertToEditorjs()
+                            _announcementContent.value = result.value.content.convertToEditorJs()
                             getAnnouncements(currentPage.value!!)
                         }
                         is Result.Failure -> {

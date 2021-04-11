@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import com.dms.sms.R
 import com.dms.sms.base.BackPressedBaseFragment
-import com.dms.sms.base.EndPointBaseFragment
 import com.dms.sms.databinding.FragmentMyPageBinding
 import com.dms.sms.feature.mypage.viewmodel.MyPageViewModel
 import com.dms.sms.navigateFragment
