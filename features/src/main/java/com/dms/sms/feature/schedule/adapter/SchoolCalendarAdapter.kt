@@ -1,5 +1,6 @@
 package com.dms.sms.feature.schedule.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -120,7 +121,6 @@ class SchoolCalendarViewHolder(
 
     private fun bindTodaySchedule(today: Day) {
         val list: MutableList<Int> = mutableListOf()
-
         for (i in 0 until today.schedule.size) {
             if (i > 2)
                 break
