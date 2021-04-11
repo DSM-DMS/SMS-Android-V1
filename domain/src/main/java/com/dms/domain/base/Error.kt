@@ -20,5 +20,4 @@ sealed class Error {
     object Unknown : Error()
 
     object Locked : Error()
-
 }

@@ -1,7 +1,6 @@
 package com.dms.data.datasource
 
 import com.dms.data.dto.request.SignUpRequestData
-import com.dms.data.dto.response.StudentResponseData
 import com.dms.data.dto.response.VerificationNumberResponseData
 import com.dms.data.remote.SignUpApi
 import io.reactivex.Completable
@@ -13,5 +12,4 @@ class SignUpDataSourceImpl(private val signUpApi: SignUpApi) : SignUpDataSource{
 
     override fun signUp(signUpInfo : SignUpRequestData) : Completable =
         signUpApi.signUp(signUpInfo)
-
 }

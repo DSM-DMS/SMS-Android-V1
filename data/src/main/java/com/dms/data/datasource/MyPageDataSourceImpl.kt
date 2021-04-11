@@ -10,12 +10,12 @@ import io.reactivex.Single
 class MyPageDataSourceImpl(
     private val myPageApi: MyPageApi,
     private val autoLoginUserDatabase: LoggedInUserDatabase,
-): MyPageDataSource {
+) : MyPageDataSource {
     override fun getUserProfile(studentUUID: String): Single<UserResponseData> =
         myPageApi.getUserProfile(studentUUID)
 
     override fun getStudentUUID(): Single<String> =
-        autoLoginUserDatabase.loggedInUserDao().getStudentUUID().map{
+        autoLoginUserDatabase.loggedInUserDao().getStudentUUID().map {
             it[0]
         }
 
@@ -31,6 +31,6 @@ class MyPageDataSourceImpl(
         thread.start()
         thread.join()
 
-        return myPageApi.changePw(stdUUID,pw)
+        return myPageApi.changePw(stdUUID, pw)
     }
 }

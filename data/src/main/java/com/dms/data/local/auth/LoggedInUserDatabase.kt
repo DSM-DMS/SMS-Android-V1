@@ -1,8 +1,9 @@
 package com.dms.data.local.auth
 
 import android.content.Context
-import androidx.room.*
-
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 
 @Database(entities = [LoggedInUserData::class], version = 1,exportSchema = false)
 abstract class LoggedInUserDatabase : RoomDatabase(){
@@ -20,7 +21,5 @@ abstract class LoggedInUserDatabase : RoomDatabase(){
                 instance
             }
         }
-
     }
-
 }

@@ -18,5 +18,4 @@ class AnnouncementDataSourceImpl(private val announcementApi: AnnouncementApi) :
 
     override fun checkAnnouncementUnread(studentUUID: String): Single<AnnouncementCheckResponseData> =
         announcementApi.checkAnnouncementsUnread(studentUUID)
-
 }

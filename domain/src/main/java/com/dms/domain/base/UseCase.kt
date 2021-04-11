@@ -10,7 +10,6 @@ abstract class UseCase<T, E>(private val disposable : CompositeDisposable) {
 
      abstract fun buildUseCase(data : T) : Single<E>
 
-
      fun execute(data: T, singleObserver: DisposableSingleObserver<E>, scheduler: Scheduler) {
           val observer = buildUseCase(data)
                .subscribeOn(Schedulers.io())

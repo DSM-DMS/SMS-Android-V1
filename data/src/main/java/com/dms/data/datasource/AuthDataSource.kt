@@ -7,7 +7,6 @@ import io.reactivex.Completable
 import io.reactivex.Single
 
 interface AuthDataSource {
-
     fun login(loginData: LoginRequestData) : Single<LoginResponseData>
 
     fun saveLoginData(loggedInUserData: LoggedInUserData) : Completable
@@ -15,6 +14,4 @@ interface AuthDataSource {
     fun getLoginData() : Single<LoggedInUserData>
 
     fun deleteLoginData() : Completable
-
-
 }

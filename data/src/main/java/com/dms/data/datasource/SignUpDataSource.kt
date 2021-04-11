@@ -9,5 +9,4 @@ interface SignUpDataSource {
     fun getNoAccountStudentInfo(authCode: Int) : Single<VerificationNumberResponseData>
 
     fun signUp(signUpInfo : SignUpRequestData) : Completable
-
 }

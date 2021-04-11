@@ -3,7 +3,6 @@ package com.dms.domain.announcement.service
 import com.dms.domain.announcement.entity.Announcement
 import com.dms.domain.announcement.entity.AnnouncementCheck
 import com.dms.domain.announcement.entity.Announcements
-import com.dms.domain.announcement.entity.SimpleAnnouncement
 import com.dms.domain.announcement.repository.AnnouncementRepository
 import com.dms.domain.base.Result
 import com.dms.domain.base.toResult
@@ -22,5 +21,4 @@ class AnnouncementServiceImpl(private val announcementRepository: AnnouncementRe
 
     override fun checkAnnouncementsUnread(studentUUID: String): Single<Result<AnnouncementCheck>> =
         announcementRepository.checkAnnouncementsUnread(studentUUID).toResult(errorHandler)
-
 }

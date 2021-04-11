@@ -11,7 +11,6 @@ class ErrorHandlerImpl : ErrorHandler {
             is IOException -> Error.Network
             is HttpException -> {
                 when (throwable.code()) {
-
                     400 -> Error.BadRequest
                     401 -> Error.UnAuthorized
                     403 -> Error.Forbidden

@@ -1,6 +1,5 @@
 package com.dms.domain.base
 
-import com.dms.domain.base.Error
 import com.dms.domain.errorhandler.ErrorHandler
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -9,7 +8,6 @@ sealed class Result<T> {
     data class Success<T>(val value: T) : Result<T>()
 
     data class Failure<T>(val reason: Error) : Result<T>()
-
 }
 
 fun Completable.toSingleResult(
@@ -17,7 +15,6 @@ fun Completable.toSingleResult(
 ): Single<Result<Unit>> = this
     .toSingle {
     }.toResult(handler)
-
 
 fun <T> Single<T>.toResult(
     handler: ErrorHandler

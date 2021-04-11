@@ -14,5 +14,4 @@ interface AnnouncementDataSource {
     fun searchAnnouncements(searchQuery : String, announcementPage : Int) : Single<AnnouncementsResponseData>
 
     fun checkAnnouncementUnread(studentUUID : String) : Single<AnnouncementCheckResponseData>
-
 }

@@ -9,7 +9,6 @@ import io.reactivex.Single
 
 @Dao
 interface LoggedInUserDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(loggedInUser: LoggedInUserData): Completable
 

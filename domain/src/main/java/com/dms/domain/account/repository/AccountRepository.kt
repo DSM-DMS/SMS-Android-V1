@@ -5,5 +5,4 @@ import io.reactivex.Single
 
 interface AccountRepository {
     fun getStudent(studentUUID : String) : Single<Student>
-
 }

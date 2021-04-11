@@ -10,16 +10,17 @@ import io.reactivex.Completable
 import io.reactivex.Single
 
 
-class AuthDataSourceImpl(private val authApi: AuthApi, private val autoLoginUserDatabase: LoggedInUserDatabase,
-                         private val sharedPreferencesStorage: SharedPreferencesStorage) : AuthDataSource {
+class AuthDataSourceImpl(
+    private val authApi: AuthApi, private val autoLoginUserDatabase: LoggedInUserDatabase,
+    private val sharedPreferencesStorage: SharedPreferencesStorage
+) : AuthDataSource {
     override fun login(loginData: LoginRequestData): Single<LoginResponseData> =
         authApi.login(loginData)
 
     override fun saveLoginData(loggedInUserData: LoggedInUserData): Completable {
-        sharedPreferencesStorage.saveInfo(loggedInUserData.token,"sms")
+        sharedPreferencesStorage.saveInfo(loggedInUserData.token, "sms")
         return autoLoginUserDatabase.loggedInUserDao().insert(loggedInUserData)
     }
-
 
     override fun getLoginData(): Single<LoggedInUserData> =
         autoLoginUserDatabase.loggedInUserDao().getLoggedInUser().map {
