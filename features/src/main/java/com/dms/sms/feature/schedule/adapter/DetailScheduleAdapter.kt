@@ -42,11 +42,22 @@ class DetailScheduleViewHolder(private val binding: ItemDetailSchoolScheduleBind
             2 -> binding.eventView.backgroundTintList = binding.root.context.resources.getColorStateList(R.color.colorYellow2, null)
             else -> binding.eventView.backgroundTintList = binding.root.context.resources.getColorStateList(R.color.colorGray2, null)
         }
-        binding.dateTv.text = item.startMonth.toString()+"/"+item.startDay.toString() + " - " + item.endMonth.toString()+"/"+item.endDay.toString()
+        setDateText(item)
+    }
+    private fun setDateText(item: ScheduleModel){
+        if (isSameDay(item)){
+            if (item.startMonth!=0)
+                binding.dateTv.text = item.startMonth.toString()+"/"+item.startDay.toString()
+        }
+        else
+            binding.dateTv.text = item.startMonth.toString()+"/"+item.startDay.toString() + " - " + item.endMonth.toString()+"/"+item.endDay.toString()
 
 
-
-
+    }
+    private fun isSameDay(item: ScheduleModel) : Boolean{
+        if (item.startMonth==item.endMonth&&item.startDay==item.endDay)
+            return true
+        return false
     }
 
 }
