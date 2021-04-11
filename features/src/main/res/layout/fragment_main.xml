@@ -13,7 +13,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorWhite"
         tools:context=".ui.MainFragment">
+
         <fragment
             android:id="@+id/main_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -24,8 +26,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/main_nav_graph"
-            />
+            app:navGraph="@navigation/main_nav_graph" />
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/main_navigation"
             android:layout_width="match_parent"
