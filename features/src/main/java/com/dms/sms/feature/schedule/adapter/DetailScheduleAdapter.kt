@@ -56,7 +56,7 @@ class DetailScheduleViewHolder(private val binding: ItemDetailSchoolScheduleBind
             2 -> binding.eventView.backgroundTintList =
                 binding.root.context.resources.getColorStateList(R.color.colorYellow2, null)
             else -> binding.eventView.backgroundTintList =
-                binding.root.context.resources.getColorStateList(R.color.colorGray2, null)
+                binding.root.context.resources.getColorStateList(R.color.colorGray4, null)
         }
         setDateText(item)
     }
