@@ -1,7 +1,8 @@
 package com.dms.sms.feature.schedule.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.dms.domain.base.Error
 import com.dms.domain.base.Result
 import com.dms.domain.schedule.entity.Schedules
