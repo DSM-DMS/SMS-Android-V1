@@ -29,6 +29,7 @@ class SchoolScheduleFragment : BackPressedBaseFragment<FragmentSchoolScheduleBin
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycle.addObserver(viewModel)
+        viewModel.onCreate()
         initView()
     }
 

@@ -38,7 +38,6 @@ class SchoolScheduleViewModel(private val getScheduleUseCase: GetScheduleUseCase
 
     val onClickTimeTableSwitch = SingleLiveEvent<Unit>()
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onCreate() {
         _currentYear.value = getCurrentDate().year
         _currentMonth.value = getCurrentDate().month
