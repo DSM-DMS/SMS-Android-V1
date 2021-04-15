@@ -11,6 +11,10 @@
 ![sms](https://user-images.githubusercontent.com/48552153/113076550-3fa46a00-920a-11eb-98b6-03f37b8f6da8.png)
 
 <br/>
+## 기술스택
+* 언어 : Kotlin
+* 아키텍쳐 : Clean Architecture, MVVM
+* 라이브러리 : RxJava, Koin, Navigation, Retrofit2, Android Jetpack libraries 
 
 ## 주요기능
 
@@ -56,6 +60,4 @@
 
 <br/>
 
-## 사용 언어
 
-Kotlin
