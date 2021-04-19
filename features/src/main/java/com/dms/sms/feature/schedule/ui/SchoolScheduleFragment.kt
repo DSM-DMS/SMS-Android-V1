@@ -1,8 +1,6 @@
 package com.dms.sms.feature.schedule.ui
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,6 +27,7 @@ class SchoolScheduleFragment : BackPressedBaseFragment<FragmentSchoolScheduleBin
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycle.addObserver(viewModel)
+        viewModel.onCreate()
         initView()
     }
 
