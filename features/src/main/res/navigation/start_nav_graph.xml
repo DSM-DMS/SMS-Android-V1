@@ -45,10 +45,7 @@
             app:exitAnim="@anim/fadeout"
             app:popEnterAnim="@anim/fadein"
             app:popExitAnim="@anim/slide_to_right">
-            <argument
-                android:name="announcementUUID"
-                app:argType="string"
-                app:nullable="false" />
+
         </action>
         <action
             android:id="@+id/action_mainFragment_to_introducingDevelopersFragment"

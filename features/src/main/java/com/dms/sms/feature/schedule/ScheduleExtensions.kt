@@ -1,8 +1,8 @@
 package com.dms.sms.feature.schedule
 
+import com.dms.sms.feature.schedule.model.CalendarTime
 import com.dms.sms.feature.schedule.model.Day
 import com.dms.sms.feature.schedule.model.ScheduleDateModel
-import com.dms.sms.feature.schedule.model.CalendarTime
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -61,11 +61,9 @@ fun calculateTime(year : Int, month : Int) : CalendarTime {
         }
         month < 1 -> {
             CalendarTime(year - 1, 12)
-
         }
         else -> {
             CalendarTime(year, month)
-
         }
     }
 }

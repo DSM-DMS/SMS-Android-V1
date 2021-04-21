@@ -3,6 +3,7 @@ package com.dms.sms.feature.announcement.ui
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.navArgs
 import com.dms.sms.R
@@ -22,7 +23,6 @@ class AnnouncementDetailFragment : BaseFragment<FragmentAnnouncementDetailBindin
     private val announcementsViewModel : AnnouncementsViewModel by viewModel()
     override val layoutId: Int = R.layout.fragment_announcement_detail
 
-    private val args : AnnouncementDetailFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(requireContext())
@@ -31,7 +31,7 @@ class AnnouncementDetailFragment : BaseFragment<FragmentAnnouncementDetailBindin
 
     override fun observeEvents() {
         viewModel.backButtonEvent.observe(viewLifecycleOwner, {
-            requireActivity().onBackPressed()
+            viewModel.backEvent.call()
         })
         viewModel.announcements.observe(viewLifecycleOwner,{
             announcementsViewModel.setAnnouncements(it)
@@ -40,14 +40,19 @@ class AnnouncementDetailFragment : BaseFragment<FragmentAnnouncementDetailBindin
 
     override fun onResume() {
         super.onResume()
-        viewModel.onCreate(args.announcementUUID, announcementsViewModel.currentPage.value!!)
+        viewModel.onCreate(announcementsViewModel.announcementEvent.value!!, announcementsViewModel.currentPage.value!!)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                viewModel.backEvent.call()
+            }
+        })
     }
 
     private fun initView(context: Context){
         binding.announcementDetailRv.adapter =  EditorJsAdapter(
             EJStyle.builderWithDefaults(context.applicationContext)
                 .paragraphTextColor(ContextCompat.getColor(context, R.color.colorBlack))
-                .linkColor(ContextCompat.getColor(context, R.color.link_color))
+
                 .linkColor(ContextCompat.getColor(context, R.color.link_color))
                 .headingMargin(
                     STANDARD_MARGIN,
@@ -63,7 +68,6 @@ class AnnouncementDetailFragment : BaseFragment<FragmentAnnouncementDetailBindin
                     ZERO_MARGIN,
                     HeadingLevel.h2
                 )
-                .linkColor(ContextCompat.getColor(context, R.color.link_color))
                 .listTextItemTextSize(18f)
                 .dividerBreakHeight(DIVIDER_HEIGHT)
                 .dividerBreakHeight(DIVIDER_HEIGHT)

@@ -43,7 +43,7 @@ data class DetailOutingModel(
     val status: String
         get() {
             var outingState = ""
-            when(outingStatus){
+            when (outingStatus) {
                 "-1" -> outingState = "학부모 거절"
                 "-2" -> outingState = "선생님 거절"
                 "0" -> outingState = "학부모 승인 대기"

@@ -86,3 +86,5 @@ lint/tmp/
 
 .idea
 gradle.properties
+
+data/src/main/java/com/dms/data/base/RequestEncoder.kt

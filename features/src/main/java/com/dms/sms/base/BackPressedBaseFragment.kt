@@ -2,7 +2,6 @@ package com.dms.sms.base
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.dms.sms.BR
 import com.dms.sms.R
 import com.google.android.material.snackbar.Snackbar
@@ -48,8 +46,6 @@ abstract class BackPressedBaseFragment <T : ViewDataBinding> : Fragment(){
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 backButtonSubject.onNext(System.currentTimeMillis())
-                Log.d("smsonatt",findNavController().currentDestination.toString())
-
             }
         }
 

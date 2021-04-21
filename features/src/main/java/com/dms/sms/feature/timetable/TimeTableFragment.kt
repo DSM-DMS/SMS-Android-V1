@@ -12,7 +12,6 @@ import com.dms.sms.databinding.FragmentTimeTableBinding
 import com.dms.sms.feature.timetable.adapter.TimeTableAdapter
 import com.dms.sms.feature.timetable.viewmodel.TimeTableViewModel
 import com.dms.sms.navigateFragment
-import kotlinx.android.synthetic.main.fragment_school_schedule.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TimeTableFragment : BackPressedBaseFragment<FragmentTimeTableBinding>() {
@@ -35,7 +34,7 @@ class TimeTableFragment : BackPressedBaseFragment<FragmentTimeTableBinding>() {
     }
 
     override fun observeEvents() {
-        calendar_switch_btn.setOnClickListener {
+        binding.calendarSwitchBtn.setOnClickListener {
             navigateFragment(R.id.action_global_schoolScheduleFragment)
         }
     }

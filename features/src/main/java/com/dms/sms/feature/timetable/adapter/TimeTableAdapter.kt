@@ -6,11 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.dms.sms.databinding.ItemTimeTableBinding
 
-class TimeTableAdapter: RecyclerView.Adapter<TimeTableAdapter.TimeTableViewHolder>() {
+class TimeTableAdapter : RecyclerView.Adapter<TimeTableAdapter.TimeTableViewHolder>() {
     private var timeTableListItems = ArrayList<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TimeTableViewHolder {
-        val binding = ItemTimeTableBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding =
+            ItemTimeTableBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return TimeTableViewHolder(binding)
     }
@@ -27,9 +28,10 @@ class TimeTableAdapter: RecyclerView.Adapter<TimeTableAdapter.TimeTableViewHolde
         notifyDataSetChanged()
     }
 
-    inner class TimeTableViewHolder(private val binding: ItemTimeTableBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class TimeTableViewHolder(private val binding: ItemTimeTableBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: String){
+        fun bind(item: String) {
             binding.item = item
         }
     }

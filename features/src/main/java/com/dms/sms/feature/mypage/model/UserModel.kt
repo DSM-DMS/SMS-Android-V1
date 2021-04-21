@@ -9,14 +9,14 @@ data class UserModel(
     val name: String,
     val phoneNumber: String,
     val profileUri: String
-){
+) {
     val stdNum: String
-    get() {
-        val num: String = if(studentNumber < 10){
-            "0${studentNumber}"
-        } else studentNumber.toString()
-        return "$grade$group$num"
-    }
+        get() {
+            val num: String = if (studentNumber < 10) {
+                "0${studentNumber}"
+            } else studentNumber.toString()
+            return "$grade$group$num"
+        }
 }
 
 fun UserResponse.toModel(): UserModel =

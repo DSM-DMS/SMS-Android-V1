@@ -38,7 +38,7 @@ class LoginViewModel(
     private val _loginSuccessEvent = MutableLiveData<Boolean>()
     private val _loginErrorEvent = MutableLiveData<Boolean>()
     val onClickSignUpEvent = SingleLiveEvent<Unit>()
-    val onLoadEvent = MutableLiveData<Boolean>(false)
+    val onLoadEvent = MutableLiveData(false)
 
 
     private val _isAllLoginInfoFilled = MediatorLiveData<Boolean>().apply {
@@ -57,9 +57,7 @@ class LoginViewModel(
         onClickSignUpEvent.call()
     }
     fun onLoginClicked() {
-        Log.d("isall", _isAllLoginInfoFilled.value.toString())
         onLoadEvent.value = true
-        Log.d("isall", onLoadEvent.value.toString())
 
         loginUseCase.execute(
             LoginModel(idText.value!!.trim(), passwordText.value!!.trim()).toDomain(),
@@ -79,7 +77,6 @@ class LoginViewModel(
 
                 override fun onError(e: Throwable) {
                     createSnackEvent.value = "로그인 실패"
-                    e.printStackTrace()
                 }
 
             },
