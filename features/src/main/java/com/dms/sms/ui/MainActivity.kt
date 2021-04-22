@@ -9,7 +9,6 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.dms.sms.R
-import com.dms.sms.feature.login.DeleteLoginDataViewModel
 import com.dms.sms.feature.outing.viewmodel.OutingAccessViewModel
 import com.dms.sms.feature.outing.viewmodel.OutingApplyViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
