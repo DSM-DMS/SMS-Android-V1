@@ -211,44 +211,30 @@ class OutingApplyViewModel(
         return "${year}년 ${month}월 ${day}일"
     }
 
-    fun compareTime(time: String, type: Int): Int {
+    fun compareTime(time: String, type: Int): Boolean {
         when (type) {
             1 -> {
-                val regularStartTime = "16:20:00".split(":")
                 val inputTime = time.split(":")
 
                 return if (outingEndTime.value.isNullOrEmpty()) {
-                    if ((regularStartTime[0].toInt() * 60 + regularStartTime[1].toInt()) - (inputTime[0].toInt() * 60 + inputTime[1].toInt()) < 0) {
-                        1 // 1 - 정규시간이 입력시간보다 작다 즉 옳은 경우
-                    } else 2 // 2 - 정규시간이 입력시간보다 크다 즉 틀린 경우
+                    true
                 } else {
                     val inputEndTime = this.inputEndTime!!.split(":")
-                    if ((regularStartTime[0].toInt() * 60 + regularStartTime[1].toInt()) - (inputTime[0].toInt() * 60 + inputTime[1].toInt()) < 0) {
-                        if (inputEndTime[0].toInt() * 60 + inputEndTime[1].toInt() >= (inputTime[0].toInt() * 60 + inputTime[1].toInt())) {
-                            3 // 도착 시간보다 시작 시간이 작다 즉 옳은 경우
-                        } else 4 // 도착 시간보다 시작 시간이 크다 즉 틀린 경우
-                    } else 2
+                    inputEndTime[0].toInt() * 60 + inputEndTime[1].toInt() >= (inputTime[0].toInt() * 60 + inputTime[1].toInt()) // 도착 시간보다 시작 시간이 크다 즉 틀린 경우\
                 }
             }
             2 -> {
-                val regularEndTime = "20:30:00".split(":")
                 val inputTime = time.split(":")
 
                 return if (outingStartTime.value.isNullOrEmpty()) {
-                    return if ((regularEndTime[0].toInt() * 60 + regularEndTime[1].toInt()) - (inputTime[0].toInt() * 60 + inputTime[1].toInt()) >= 0) {
-                        1 //정규 종료시간이 입력 종료시간보다 크다 즉 옳은 경우
-                    } else 2 // 정규 종료시간이 입력 종류시간보다 작다 즉 틀린 경우
+                    true
                 } else {
                     val inputStartTime = this.inputStartTime!!.split(":")
-                    if ((regularEndTime[0].toInt() * 60 + regularEndTime[1].toInt()) - (inputTime[0].toInt() * 60 + inputTime[1].toInt()) >= 0) {
-                        if (inputStartTime[0].toInt() * 60 + inputStartTime[1].toInt() <= (inputTime[0].toInt() * 60 + inputTime[1].toInt())) {
-                            3 // 도착 시간보다 시작 시간이 크다 즉 옳은 경우
-                        } else 4 // 도착 시간보다 시작 시간이 작다 즉 틀린 경우
-                    } else 2
+                    inputStartTime[0].toInt() * 60 + inputStartTime[1].toInt() <= (inputTime[0].toInt() * 60 + inputTime[1].toInt()) // 도착 시간보다 시작 시간이 작다 즉 틀린 경우
                 }
             }
         }
-        return 0
+        return false
     }
 
     fun onSearchPressed(searchQuery: String) {

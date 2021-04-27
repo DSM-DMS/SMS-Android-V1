@@ -1,6 +1,5 @@
 package com.dms.sms.feature.login
 
-import android.util.Log
 import com.dms.domain.auth.entity.LoggedInUser
 import com.dms.domain.auth.usecase.GetLoginDataUseCase
 import com.dms.domain.auth.usecase.LoginDataDeleteUseCase
@@ -19,26 +18,21 @@ class DeleteLoginDataViewModel(private val getLoginDataUseCase: GetLoginDataUseC
                         if(!result.value!!.isAutoLoginChecked){
                             loginDataDeleteUseCase.execute(Unit, object : DisposableSingleObserver<Result<Unit>>(){
                                 override fun onSuccess(t: Result<Unit>) {
-                                    Log.d("삭제","완료")
                                 }
 
                                 override fun onError(e: Throwable) {
-                                    Log.d("삭제","실패")
                                 }
                             }, AndroidSchedulers.mainThread() )
                         }
                         else{
-                            Log.d("삭제","실패")
                         }
                     }
                     is Result.Failure ->{
-                        Log.d("삭제","실패")
                     }
                 }
             }
 
             override fun onError(e: Throwable) {
-                Log.d("삭제","실패")
 
             }
 
