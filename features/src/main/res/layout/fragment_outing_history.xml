@@ -92,7 +92,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="36dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/outing_history_gl_bottom"
             app:layout_constraintEnd_toStartOf="@+id/outing_history_gl_right"
             app:layout_constraintStart_toStartOf="@+id/outing_history_gl_left"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
@@ -119,6 +119,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/outing_history_gl_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.94" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

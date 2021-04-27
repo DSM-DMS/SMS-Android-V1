@@ -23,11 +23,13 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                viewModel.clickBack()
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    viewModel.clickBack()
+                }
+            })
     }
 
     override fun observeEvents() {
@@ -42,16 +44,21 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
                 val timePickerDialogListener =
                     TimePickerDialog.OnTimeSetListener { _, hour, minute ->
                         startTime = "$hour:$minute:00"
-                        when(compareTime("$hour:$minute:00",1)){
-                            1,3 -> {
+                        when (compareTime("$hour:$minute:00", 1)) {
+                            true -> {
                                 inputStartTime = "$hour:$minute:00"
                                 outingStartTime.value = "${hour}시  ${minute}분"
                             }
-                            2 -> createSnackEvent.value = "외출은 4시 20분 이후에 가능합니다."
-                            4 -> createSnackEvent.value = "귀교 시간보다 늦을 수 없습니다."
+                            false -> createSnackEvent.value = "귀교 시간보다 늦을 수 없습니다."
                         }
                     }
-                val timePickerDialog = TimePickerDialog(requireContext(),timePickerDialogListener,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),android.text.format.DateFormat.is24HourFormat(requireContext()))
+                val timePickerDialog = TimePickerDialog(
+                    requireContext(),
+                    timePickerDialogListener,
+                    calendar.get(Calendar.HOUR_OF_DAY),
+                    calendar.get(Calendar.MINUTE),
+                    android.text.format.DateFormat.is24HourFormat(requireContext())
+                )
                 timePickerDialog.show()
             })
 
@@ -59,16 +66,20 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
                 val timePickerDialogListener =
                     TimePickerDialog.OnTimeSetListener { _, hour, minute ->
                         endTime = "$hour:$minute:00"
-                        when(compareTime("$hour:$minute:00",2)){
-                            1,3 -> {
+                        when (compareTime("$hour:$minute:00", 2)) {
+                            true -> {
                                 inputEndTime = "$hour:$minute:00"
                                 outingEndTime.value = "${hour}시  ${minute}분 "
                             }
-                            2 -> createSnackEvent.value = "외출은 20시 30분 이후엔 불가능합니다."
-                            4 -> createSnackEvent.value = "외출 시간보다 빠를 수 없습니다."
+                            false -> createSnackEvent.value = "외출 시간보다 빠를 수 없습니다."
                         }
                     }
-                val timePickerDialog = TimePickerDialog( requireContext(),timePickerDialogListener,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),android.text.format.DateFormat.is24HourFormat(requireContext())
+                val timePickerDialog = TimePickerDialog(
+                    requireContext(),
+                    timePickerDialogListener,
+                    calendar.get(Calendar.HOUR_OF_DAY),
+                    calendar.get(Calendar.MINUTE),
+                    android.text.format.DateFormat.is24HourFormat(requireContext())
                 )
                 timePickerDialog.show()
             })
@@ -98,10 +109,12 @@ class OutingApplyFragment : BaseFragment<FragmentOutingApplyBinding>() {
 
     override fun onResume() {
         super.onResume()
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                viewModel.clickBack()
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    viewModel.clickBack()
+                }
+            })
     }
 }

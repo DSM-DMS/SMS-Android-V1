@@ -108,19 +108,6 @@
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <CheckBox
-            android:id="@+id/auto_login_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:text="@string/auto_log_in_checkbox"
-            android:textSize="14sp"
-            android:checked="@={vm.isAutoLoginChecked}"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/password_et_layout" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/login_gl_middle"
             android:layout_width="wrap_content"

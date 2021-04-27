@@ -91,7 +91,7 @@ class LoginViewModel(
         saveLoginDataUseCase.execute(
             LoggedInUserModel(
                 loginResponse.accessToken, loginResponse.studentUUID,
-                isAutoLoginChecked.value!!
+                true
             ).toEntity(), object : DisposableSingleObserver<Result<Unit>>() {
                 override fun onSuccess(result: Result<Unit>) {
                     when (result) {
